@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: BaseViewController {
     //MARK: - Properties
     //MARK: - LifeCycle
     override func viewDidLoad() {

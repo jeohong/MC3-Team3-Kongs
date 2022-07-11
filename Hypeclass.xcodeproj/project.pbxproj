@@ -28,6 +28,7 @@
 		C05BF1FF287BC90900C95E1B /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BF1FE287BC90900C95E1B /* Device.swift */; };
 		C05BF203287BC99A00C95E1B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BF202287BC99A00C95E1B /* BaseViewController.swift */; };
 		C05BF209287BCAD900C95E1B /* Dancer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BF208287BCAD900C95E1B /* Dancer.swift */; };
+		C05BF20D287BCFB000C95E1B /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BF20C287BCFB000C95E1B /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		C05BF1FE287BC90900C95E1B /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		C05BF202287BC99A00C95E1B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C05BF208287BCAD900C95E1B /* Dancer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dancer.swift; sourceTree = "<group>"; };
+		C05BF20C287BCFB000C95E1B /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,13 +88,13 @@
 		C05BF1C7287BC33100C95E1B /* Hypeclass */ = {
 			isa = PBXGroup;
 			children = (
+				C05BF20A287BCF7F00C95E1B /* Source */,
 				C05BF207287BCAC600C95E1B /* Model */,
 				C05BF206287BCA9E00C95E1B /* API */,
 				C05BF1E4287BC7D300C95E1B /* Util */,
 				C05BF1DE287BC79600C95E1B /* Config */,
 				C05BF1C8287BC33100C95E1B /* AppDelegate.swift */,
 				C05BF1CA287BC33100C95E1B /* SceneDelegate.swift */,
-				C05BF1DC287BC60600C95E1B /* ViewController.swift */,
 				C05BF1D1287BC33200C95E1B /* Assets.xcassets */,
 				C05BF1D3287BC33200C95E1B /* LaunchScreen.storyboard */,
 				C05BF1D6287BC33200C95E1B /* Info.plist */,
@@ -166,6 +168,23 @@
 				C05BF208287BCAD900C95E1B /* Dancer.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C05BF20A287BCF7F00C95E1B /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				C05BF20B287BCF9A00C95E1B /* Main */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		C05BF20B287BCF9A00C95E1B /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				C05BF1DC287BC60600C95E1B /* ViewController.swift */,
+				C05BF20C287BCFB000C95E1B /* ViewModel.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,6 +267,7 @@
 				C05BF209287BCAD900C95E1B /* Dancer.swift in Sources */,
 				C05BF1F3287BC7EF00C95E1B /* UIView.swift in Sources */,
 				C05BF1FD287BC88400C95E1B /* IndicatorView.swift in Sources */,
+				C05BF20D287BCFB000C95E1B /* ViewModel.swift in Sources */,
 				C05BF1F4287BC7EF00C95E1B /* UIFont.swift in Sources */,
 				C05BF1E3287BC7C800C95E1B /* Constant.swift in Sources */,
 				C05BF1F1287BC7EF00C95E1B /* UIViewController.swift in Sources */,
