@@ -29,6 +29,9 @@
 		C05BF203287BC99A00C95E1B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BF202287BC99A00C95E1B /* BaseViewController.swift */; };
 		C05BF209287BCAD900C95E1B /* Dancer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BF208287BCAD900C95E1B /* Dancer.swift */; };
 		C05BF20D287BCFB000C95E1B /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BF20C287BCFB000C95E1B /* ViewModel.swift */; };
+		C05BF211287BD1E900C95E1B /* NotoSansCJKkr-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C05BF20E287BD1E800C95E1B /* NotoSansCJKkr-Bold.otf */; };
+		C05BF212287BD1E900C95E1B /* NotoSansCJKkr-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C05BF20F287BD1E900C95E1B /* NotoSansCJKkr-Regular.otf */; };
+		C05BF213287BD1E900C95E1B /* NotoSansCJKkr-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C05BF210287BD1E900C95E1B /* NotoSansCJKkr-Medium.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +59,9 @@
 		C05BF202287BC99A00C95E1B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C05BF208287BCAD900C95E1B /* Dancer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dancer.swift; sourceTree = "<group>"; };
 		C05BF20C287BCFB000C95E1B /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		C05BF20E287BD1E800C95E1B /* NotoSansCJKkr-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Bold.otf"; sourceTree = "<group>"; };
+		C05BF20F287BD1E900C95E1B /* NotoSansCJKkr-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Regular.otf"; sourceTree = "<group>"; };
+		C05BF210287BD1E900C95E1B /* NotoSansCJKkr-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Medium.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,11 +94,11 @@
 		C05BF1C7287BC33100C95E1B /* Hypeclass */ = {
 			isa = PBXGroup;
 			children = (
-				C05BF20A287BCF7F00C95E1B /* Source */,
+				C05BF1DE287BC79600C95E1B /* Config */,
+				C05BF1E4287BC7D300C95E1B /* Util */,
 				C05BF207287BCAC600C95E1B /* Model */,
 				C05BF206287BCA9E00C95E1B /* API */,
-				C05BF1E4287BC7D300C95E1B /* Util */,
-				C05BF1DE287BC79600C95E1B /* Config */,
+				C05BF20A287BCF7F00C95E1B /* Source */,
 				C05BF1C8287BC33100C95E1B /* AppDelegate.swift */,
 				C05BF1CA287BC33100C95E1B /* SceneDelegate.swift */,
 				C05BF1D1287BC33200C95E1B /* Assets.xcassets */,
@@ -114,6 +120,9 @@
 		C05BF1DF287BC79D00C95E1B /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				C05BF20E287BD1E800C95E1B /* NotoSansCJKkr-Bold.otf */,
+				C05BF210287BD1E900C95E1B /* NotoSansCJKkr-Medium.otf */,
+				C05BF20F287BD1E900C95E1B /* NotoSansCJKkr-Regular.otf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -246,7 +255,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C05BF1D5287BC33200C95E1B /* LaunchScreen.storyboard in Resources */,
+				C05BF212287BD1E900C95E1B /* NotoSansCJKkr-Regular.otf in Resources */,
 				C05BF1D2287BC33200C95E1B /* Assets.xcassets in Resources */,
+				C05BF211287BD1E900C95E1B /* NotoSansCJKkr-Bold.otf in Resources */,
+				C05BF213287BD1E900C95E1B /* NotoSansCJKkr-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
