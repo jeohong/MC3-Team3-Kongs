@@ -31,7 +31,6 @@
 		C05BF1FF287BC90900C95E1B /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BF1FE287BC90900C95E1B /* Device.swift */; };
 		C05BF203287BC99A00C95E1B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BF202287BC99A00C95E1B /* BaseViewController.swift */; };
 		C05BF209287BCAD900C95E1B /* Dancer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BF208287BCAD900C95E1B /* Dancer.swift */; };
-		C05BF20D287BCFB000C95E1B /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BF20C287BCFB000C95E1B /* ViewModel.swift */; };
 		C05BF211287BD1E900C95E1B /* NotoSansCJKkr-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C05BF20E287BD1E800C95E1B /* NotoSansCJKkr-Bold.otf */; };
 		C05BF212287BD1E900C95E1B /* NotoSansCJKkr-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C05BF20F287BD1E900C95E1B /* NotoSansCJKkr-Regular.otf */; };
 		C05BF213287BD1E900C95E1B /* NotoSansCJKkr-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C05BF210287BD1E900C95E1B /* NotoSansCJKkr-Medium.otf */; };
@@ -64,7 +63,6 @@
 		C05BF1FE287BC90900C95E1B /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		C05BF202287BC99A00C95E1B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C05BF208287BCAD900C95E1B /* Dancer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dancer.swift; sourceTree = "<group>"; };
-		C05BF20C287BCFB000C95E1B /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		C05BF20E287BD1E800C95E1B /* NotoSansCJKkr-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Bold.otf"; sourceTree = "<group>"; };
 		C05BF20F287BD1E900C95E1B /* NotoSansCJKkr-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Regular.otf"; sourceTree = "<group>"; };
 		C05BF210287BD1E900C95E1B /* NotoSansCJKkr-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Medium.otf"; sourceTree = "<group>"; };
@@ -216,7 +214,6 @@
 			isa = PBXGroup;
 			children = (
 				C05BF1DC287BC60600C95E1B /* MainViewController.swift */,
-				C05BF20C287BCFB000C95E1B /* ViewModel.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -306,7 +303,6 @@
 				C039DCBE287D944C0007951D /* ScheduleViewController.swift in Sources */,
 				C05BF1F3287BC7EF00C95E1B /* UIView.swift in Sources */,
 				C05BF1FD287BC88400C95E1B /* IndicatorView.swift in Sources */,
-				C05BF20D287BCFB000C95E1B /* ViewModel.swift in Sources */,
 				C05BF1F4287BC7EF00C95E1B /* UIFont.swift in Sources */,
 				C05BF1E3287BC7C800C95E1B /* Constant.swift in Sources */,
 				C05BF1F1287BC7EF00C95E1B /* UIViewController.swift in Sources */,
