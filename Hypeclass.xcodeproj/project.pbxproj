@@ -14,7 +14,7 @@
 		C05BF1CB287BC33100C95E1B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BF1CA287BC33100C95E1B /* SceneDelegate.swift */; };
 		C05BF1D2287BC33200C95E1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C05BF1D1287BC33200C95E1B /* Assets.xcassets */; };
 		C05BF1D5287BC33200C95E1B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C05BF1D3287BC33200C95E1B /* LaunchScreen.storyboard */; };
-		C05BF1DD287BC60600C95E1B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BF1DC287BC60600C95E1B /* ViewController.swift */; };
+		C05BF1DD287BC60600C95E1B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BF1DC287BC60600C95E1B /* MainViewController.swift */; };
 		C05BF1E3287BC7C800C95E1B /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BF1E2287BC7C800C95E1B /* Constant.swift */; };
 		C05BF1F1287BC7EF00C95E1B /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BF1E6287BC7EF00C95E1B /* UIViewController.swift */; };
 		C05BF1F2287BC7EF00C95E1B /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BF1E7287BC7EF00C95E1B /* UITextField.swift */; };
@@ -47,7 +47,7 @@
 		C05BF1D1287BC33200C95E1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C05BF1D4287BC33200C95E1B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C05BF1D6287BC33200C95E1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C05BF1DC287BC60600C95E1B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C05BF1DC287BC60600C95E1B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C05BF1E2287BC7C800C95E1B /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		C05BF1E6287BC7EF00C95E1B /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		C05BF1E7287BC7EF00C95E1B /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
@@ -215,7 +215,7 @@
 		C05BF20B287BCF9A00C95E1B /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				C05BF1DC287BC60600C95E1B /* ViewController.swift */,
+				C05BF1DC287BC60600C95E1B /* MainViewController.swift */,
 				C05BF20C287BCFB000C95E1B /* ViewModel.swift */,
 			);
 			path = Main;
@@ -294,7 +294,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C05BF1DD287BC60600C95E1B /* ViewController.swift in Sources */,
+				C05BF1DD287BC60600C95E1B /* MainViewController.swift in Sources */,
 				C05BF1FA287BC7EF00C95E1B /* UIColor.swift in Sources */,
 				C039DCBA287D940F0007951D /* MainTabController.swift in Sources */,
 				C05BF1F7287BC7EF00C95E1B /* String.swift in Sources */,
