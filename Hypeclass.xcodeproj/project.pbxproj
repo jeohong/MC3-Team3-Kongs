@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C039DCBA287D940F0007951D /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C039DCB9287D940F0007951D /* MainTabController.swift */; };
+		C039DCBE287D944C0007951D /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C039DCBD287D944C0007951D /* ScheduleViewController.swift */; };
+		C039DCC0287D94630007951D /* SubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C039DCBF287D94630007951D /* SubscriptionViewController.swift */; };
 		C05BF1C9287BC33100C95E1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BF1C8287BC33100C95E1B /* AppDelegate.swift */; };
 		C05BF1CB287BC33100C95E1B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BF1CA287BC33100C95E1B /* SceneDelegate.swift */; };
 		C05BF1D2287BC33200C95E1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C05BF1D1287BC33200C95E1B /* Assets.xcassets */; };
@@ -35,6 +38,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C039DCB9287D940F0007951D /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
+		C039DCBD287D944C0007951D /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		C039DCBF287D94630007951D /* SubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionViewController.swift; sourceTree = "<group>"; };
 		C05BF1C5287BC33100C95E1B /* Hypeclass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hypeclass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C05BF1C8287BC33100C95E1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C05BF1CA287BC33100C95E1B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +81,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C039DCBB287D941C0007951D /* Subscription */ = {
+			isa = PBXGroup;
+			children = (
+				C039DCBF287D94630007951D /* SubscriptionViewController.swift */,
+			);
+			path = Subscription;
+			sourceTree = "<group>";
+		};
+		C039DCBC287D941E0007951D /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				C039DCBD287D944C0007951D /* ScheduleViewController.swift */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
 		C05BF1BC287BC33100C95E1B = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +204,9 @@
 		C05BF20A287BCF7F00C95E1B /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				C039DCB9287D940F0007951D /* MainTabController.swift */,
+				C039DCBC287D941E0007951D /* Schedule */,
+				C039DCBB287D941C0007951D /* Subscription */,
 				C05BF20B287BCF9A00C95E1B /* Main */,
 			);
 			path = Source;
@@ -271,12 +296,14 @@
 			files = (
 				C05BF1DD287BC60600C95E1B /* ViewController.swift in Sources */,
 				C05BF1FA287BC7EF00C95E1B /* UIColor.swift in Sources */,
+				C039DCBA287D940F0007951D /* MainTabController.swift in Sources */,
 				C05BF1F7287BC7EF00C95E1B /* String.swift in Sources */,
 				C05BF1FF287BC90900C95E1B /* Device.swift in Sources */,
 				C05BF1C9287BC33100C95E1B /* AppDelegate.swift in Sources */,
 				C05BF203287BC99A00C95E1B /* BaseViewController.swift in Sources */,
 				C05BF1CB287BC33100C95E1B /* SceneDelegate.swift in Sources */,
 				C05BF209287BCAD900C95E1B /* Dancer.swift in Sources */,
+				C039DCBE287D944C0007951D /* ScheduleViewController.swift in Sources */,
 				C05BF1F3287BC7EF00C95E1B /* UIView.swift in Sources */,
 				C05BF1FD287BC88400C95E1B /* IndicatorView.swift in Sources */,
 				C05BF20D287BCFB000C95E1B /* ViewModel.swift in Sources */,
@@ -286,6 +313,7 @@
 				C05BF1FB287BC7EF00C95E1B /* UINavigationBar.swift in Sources */,
 				C05BF1F2287BC7EF00C95E1B /* UITextField.swift in Sources */,
 				C05BF1F8287BC7EF00C95E1B /* UIImage.swift in Sources */,
+				C039DCC0287D94630007951D /* SubscriptionViewController.swift in Sources */,
 				C05BF1F6287BC7EF00C95E1B /* UIApplication.swift in Sources */,
 				C05BF1F9287BC7EF00C95E1B /* Date.swift in Sources */,
 				C05BF1F5287BC7EF00C95E1B /* UIButton.swift in Sources */,
