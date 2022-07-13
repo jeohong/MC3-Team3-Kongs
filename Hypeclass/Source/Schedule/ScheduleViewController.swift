@@ -34,17 +34,62 @@ class ScheduleViewController: BaseViewController {
     
     var weekdayView: WeekdayView?
     
+    let previousBtn: UIButton = {
+        var config = UIButton.Configuration.plain()
+        config.baseForegroundColor = .white
+        config.image = UIImage(systemName: "chevron.backward")
+        config.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15)
+        
+        let btn = UIButton(configuration: config)
+        btn.addTarget(self, action: #selector(getLastWeek), for: .touchUpInside)
+        
+        return btn
+    }()
+    
+    let nextBtn: UIButton = {
+        var config = UIButton.Configuration.plain()
+        config.baseForegroundColor = .white
+        config.image = UIImage(systemName: "chevron.forward")
+        config.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15)
+        
+        let btn = UIButton(configuration: config)
+        btn.addTarget(self, action: #selector(getNextWeek), for: .touchUpInside)
+        
+        return btn
+    }()
+    
     //MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
     }
+    
     //MARK: - Selectors
+    
+    @objc func getLastWeek() {
+        weekdayView!.removeFromSuperview()
+        let modifiedDate = Calendar.current.date(byAdding: .day, value: -7, to: selectedDate)!
+        selectedDate = modifiedDate
+        weekdayView = WeekdayView(frame: .zero, date: selectedDate)
+        configureUI()
+    }
+    
+    @objc func getNextWeek() {
+        weekdayView!.removeFromSuperview()
+        let modifiedDate = Calendar.current.date(byAdding: .day, value: 7, to: selectedDate)!
+        selectedDate = modifiedDate
+        weekdayView = WeekdayView(frame: .zero, date: selectedDate)
+        configureUI()
+    }
+    
     //MARK: - Helpers
+    
     func configureUI() {
         //레이아웃 구성
         
         //상단 month 레이블
+        monthNumLable.text = String(selectedDate.get(.month))
         view.addSubview(monthNumLable)
         monthNumLable.translatesAutoresizingMaskIntoConstraints = false
         monthNumLable.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
@@ -54,6 +99,17 @@ class ScheduleViewController: BaseViewController {
         monthLable.translatesAutoresizingMaskIntoConstraints = false
         monthLable.topAnchor.constraint(equalTo: view.topAnchor, constant: 78).isActive = true
         monthLable.leadingAnchor.constraint(equalTo: monthNumLable.trailingAnchor).isActive = true
+        
+        //<> 버튼
+        view.addSubview(nextBtn)
+        nextBtn.translatesAutoresizingMaskIntoConstraints = false
+        nextBtn.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
+        nextBtn.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
+        
+        view.addSubview(previousBtn)
+        previousBtn.translatesAutoresizingMaskIntoConstraints = false
+        previousBtn.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
+        previousBtn.trailingAnchor.constraint(equalTo: nextBtn.leadingAnchor, constant: -5).isActive = true
         
         //좌측 week 뷰
         weekdayView = WeekdayView(frame: .zero, date: selectedDate)

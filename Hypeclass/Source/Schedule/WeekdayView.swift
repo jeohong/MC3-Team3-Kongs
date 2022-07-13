@@ -41,16 +41,19 @@ class WeekdayView: UIView {
     
     //MARK: - Helpers
     
-    private func setLayout(monday: Int) {
+    private func setLayout(monday: Date) {
         
         self.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         
-        for day in monday...(monday + 6) {
-            let cell = getDayView(weekday: weekdays[day - monday], day: day)
+        var date = monday
+        for day in 0...6 {
+            let cell = getDayView(weekday: weekdays[day], day: date.get(.day))
             stackView.addArrangedSubview(cell)
+            
+            date = Calendar.current.date(byAdding: .day, value: 1, to: date)!
         }
         
         self.addSubview(separator)
@@ -89,12 +92,12 @@ class WeekdayView: UIView {
         return view
     }
     
-    private func getMonday(myDate: Date) -> Int {
+    private func getMonday(myDate: Date) -> Date {
         let cal = Calendar.current
         var comps = cal.dateComponents([.weekOfYear, .yearForWeekOfYear], from: myDate)
         comps.weekday = 2 // Monday
         let mondayInWeek = cal.date(from: comps)!
-        return mondayInWeek.get(.day)
+        return mondayInWeek
     }
 }
 
