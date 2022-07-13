@@ -11,6 +11,6 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //모든 ViewController 에 공통적으로 적용
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.background
     }
 }
