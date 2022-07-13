@@ -10,7 +10,8 @@ import Foundation
 struct Studio: Identifiable {
     let id: String
     let name: String
-    let description: String
+    let description: String?
     let tags: [String]
     let classes: [DanceClass]
+    let platformUrls: [Platform: String]
 }

@@ -15,4 +15,5 @@ enum Genre {
     case house
     case popping
     case vouging
+    case etc(String)
 }

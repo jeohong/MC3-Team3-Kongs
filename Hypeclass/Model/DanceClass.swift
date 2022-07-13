@@ -14,5 +14,5 @@ struct DanceClass {
     let tags: [String]
     let date: Date
     let studioID: String
-    let description: String
+    let description: String?
 }
