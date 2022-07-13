@@ -6,7 +6,8 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 class Constant {
-    
+    static let dancerRef = Firestore.firestore().collection("dancer")
 }
