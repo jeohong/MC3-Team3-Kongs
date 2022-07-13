@@ -9,15 +9,24 @@ import UIKit
 
 class SearchViewController: BaseViewController {
     //MARK: - Properties
+    let searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.placeholder = "찾고자 하는 댄서나 장르를 검색하세요."
+        
+        return searchBar
+    }()
+    
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
     }
+    
     //MARK: - Selectors
     //MARK: - Helpers
     func configureUI() {
         //레이아웃 구성
+        self.navigationItem.titleView = searchBar
     }
 }
 
@@ -26,11 +35,11 @@ import SwiftUI
 
 struct SearchViewControllerRepresentable: UIViewControllerRepresentable {
     typealias UIViewControllerType = SearchViewController
-
+    
     func makeUIViewController(context: Context) -> SearchViewController {
         return SearchViewController()
     }
-
+    
     func updateUIViewController(_ uiViewController: SearchViewController, context: Context) {}
 }
 
