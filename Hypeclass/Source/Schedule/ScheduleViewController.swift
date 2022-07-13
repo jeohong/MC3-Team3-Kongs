@@ -28,6 +28,12 @@ class ScheduleViewController: BaseViewController {
         return label
     }()
     
+    var selectedDate: Date = {
+        return Date()
+    }()
+    
+    var weekdayView: WeekdayView?
+    
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +43,8 @@ class ScheduleViewController: BaseViewController {
     //MARK: - Helpers
     func configureUI() {
         //레이아웃 구성
+        
+        //상단 month 레이블
         view.addSubview(monthNumLable)
         monthNumLable.translatesAutoresizingMaskIntoConstraints = false
         monthNumLable.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
@@ -46,7 +54,18 @@ class ScheduleViewController: BaseViewController {
         monthLable.translatesAutoresizingMaskIntoConstraints = false
         monthLable.topAnchor.constraint(equalTo: view.topAnchor, constant: 78).isActive = true
         monthLable.leadingAnchor.constraint(equalTo: monthNumLable.trailingAnchor).isActive = true
+        
+        //좌측 week 뷰
+        weekdayView = WeekdayView(frame: .zero, date: selectedDate)
+        guard let weekdayView = weekdayView else {
+            return
+        }
+        view.addSubview(weekdayView)
+        weekdayView.translatesAutoresizingMaskIntoConstraints = false
+        weekdayView.topAnchor.constraint(equalTo: monthNumLable.bottomAnchor, constant: 60).isActive = true
+        weekdayView.leadingAnchor.constraint(equalTo: monthNumLable.leadingAnchor, constant: 10).isActive = true
     }
+    
 }
 
 //MARK: - Preview
