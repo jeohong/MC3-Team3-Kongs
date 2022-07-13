@@ -11,6 +11,7 @@ struct DanceClass {
     let id: String
     let name: String
     let dancerName: String
+    let tags: [String]
     let date: Date
     let studioID: String
     let description: String

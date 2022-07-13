@@ -12,6 +12,7 @@ struct Dancer: Identifiable {
     let name: String
     let lastUpdate: Date
     let description: String
+    let tags: [String]
     
     let links: [String]
     let profileImage: [String]

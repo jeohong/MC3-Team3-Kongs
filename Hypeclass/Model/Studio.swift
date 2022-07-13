@@ -11,5 +11,6 @@ struct Studio: Identifiable {
     let id: String
     let name: String
     let description: String
+    let tags: [String]
     let classes: [DanceClass]
 }
