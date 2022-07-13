@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+struct Dancer: Identifiable {
+    let id: String
+    let name: String
+    let lastUpdate: Date
+    let description: String
+    
+    let links: [String]
+    let profileImage: [String]
+    let schedules: [DanceClass]
+}
+
