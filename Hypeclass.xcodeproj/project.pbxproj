@@ -13,6 +13,7 @@
 		C0402189287EAE24009D9083 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0402188287EAE23009D9083 /* GoogleService-Info.plist */; };
 		C040218C287EB8DB009D9083 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = C040218B287EB8DB009D9083 /* FirebaseFirestore */; };
 		C040218E287EB8DB009D9083 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = C040218D287EB8DB009D9083 /* FirebaseStorage */; };
+		C0402190287EBAB9009D9083 /* DancerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C040218F287EBAB9009D9083 /* DancerService.swift */; };
 		C05BF1C9287BC33100C95E1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BF1C8287BC33100C95E1B /* AppDelegate.swift */; };
 		C05BF1CB287BC33100C95E1B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BF1CA287BC33100C95E1B /* SceneDelegate.swift */; };
 		C05BF1D2287BC33200C95E1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C05BF1D1287BC33200C95E1B /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 		C039DCBD287D944C0007951D /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		C039DCBF287D94630007951D /* SubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionViewController.swift; sourceTree = "<group>"; };
 		C0402188287EAE23009D9083 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C040218F287EBAB9009D9083 /* DancerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DancerService.swift; sourceTree = "<group>"; };
 		C05BF1C5287BC33100C95E1B /* Hypeclass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hypeclass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C05BF1C8287BC33100C95E1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C05BF1CA287BC33100C95E1B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				C05BF1E2287BC7C800C95E1B /* Constant.swift */,
+				C040218F287EBAB9009D9083 /* DancerService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				C07E5C91287E707200BDA46D /* Genre.swift in Sources */,
 				C05BF1F8287BC7EF00C95E1B /* UIImage.swift in Sources */,
 				C039DCC0287D94630007951D /* SubscriptionViewController.swift in Sources */,
+				C0402190287EBAB9009D9083 /* DancerService.swift in Sources */,
 				C05BF1F6287BC7EF00C95E1B /* UIApplication.swift in Sources */,
 				C05BF1F9287BC7EF00C95E1B /* Date.swift in Sources */,
 				C05BF1F5287BC7EF00C95E1B /* UIButton.swift in Sources */,
