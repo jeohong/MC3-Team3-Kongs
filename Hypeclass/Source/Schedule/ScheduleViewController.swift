@@ -9,6 +9,25 @@ import UIKit
 
 class ScheduleViewController: BaseViewController {
     //MARK: - Properties
+    
+    let monthNumLable: UILabel = {
+        let label = UILabel()
+        label.text = String(Date().get(.month))
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 30.0, weight: .semibold)
+        
+        return label
+    }()
+    
+    let monthLable: UILabel = {
+        let label = UILabel()
+        label.text = "월"
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 20.0, weight: .regular)
+        
+        return label
+    }()
+    
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +37,15 @@ class ScheduleViewController: BaseViewController {
     //MARK: - Helpers
     func configureUI() {
         //레이아웃 구성
+        view.addSubview(monthNumLable)
+        monthNumLable.translatesAutoresizingMaskIntoConstraints = false
+        monthNumLable.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
+        monthNumLable.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
+        
+        view.addSubview(monthLable)
+        monthLable.translatesAutoresizingMaskIntoConstraints = false
+        monthLable.topAnchor.constraint(equalTo: view.topAnchor, constant: 78).isActive = true
+        monthLable.leadingAnchor.constraint(equalTo: monthNumLable.trailingAnchor).isActive = true
     }
 }
 

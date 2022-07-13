@@ -42,4 +42,12 @@ extension Date {
     }
     
     //2022-01-11T08:18:09.000Z 에 해당하는 메서드 만들기
+    
+    func get(_ components: Calendar.Component..., calendar: Calendar = Calendar.current) -> DateComponents {
+        return calendar.dateComponents(Set(components), from: self)
+    }
+    
+    func get(_ component: Calendar.Component, calendar: Calendar = Calendar.current) -> Int {
+        return calendar.component(component, from: self)
+    }
 }
