@@ -37,8 +37,8 @@
 		C07E5C8D287E6D8B00BDA46D /* DanceClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E5C8C287E6D8B00BDA46D /* DanceClass.swift */; };
 		C07E5C8F287E6D9A00BDA46D /* Studio.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E5C8E287E6D9A00BDA46D /* Studio.swift */; };
 		C07E5C91287E707200BDA46D /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E5C90287E707200BDA46D /* Genre.swift */; };
-		C7CE6758287F2F4900C8F137 /* WeekdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE6757287F2F4900C8F137 /* WeekdayView.swift */; };
 		C7CE675E287FF21200C8F137 /* ScheduleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE675D287FF21200C8F137 /* ScheduleButton.swift */; };
+		C7CE676028807C8E00C8F137 /* WeekdayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE675F28807C8E00C8F137 /* WeekdayCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,8 +74,8 @@
 		C07E5C8C287E6D8B00BDA46D /* DanceClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DanceClass.swift; sourceTree = "<group>"; };
 		C07E5C8E287E6D9A00BDA46D /* Studio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Studio.swift; sourceTree = "<group>"; };
 		C07E5C90287E707200BDA46D /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
-		C7CE6757287F2F4900C8F137 /* WeekdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayView.swift; sourceTree = "<group>"; };
 		C7CE675D287FF21200C8F137 /* ScheduleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleButton.swift; sourceTree = "<group>"; };
+		C7CE675F28807C8E00C8F137 /* WeekdayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,8 +101,8 @@
 			isa = PBXGroup;
 			children = (
 				C039DCBD287D944C0007951D /* ScheduleViewController.swift */,
-				C7CE6757287F2F4900C8F137 /* WeekdayView.swift */,
 				C7CE675D287FF21200C8F137 /* ScheduleButton.swift */,
+				C7CE675F28807C8E00C8F137 /* WeekdayCell.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -308,6 +308,7 @@
 			files = (
 				C05BF1DD287BC60600C95E1B /* MainViewController.swift in Sources */,
 				C05BF1FA287BC7EF00C95E1B /* UIColor.swift in Sources */,
+				C7CE676028807C8E00C8F137 /* WeekdayCell.swift in Sources */,
 				C039DCBA287D940F0007951D /* MainTabController.swift in Sources */,
 				C07E5C8D287E6D8B00BDA46D /* DanceClass.swift in Sources */,
 				C05BF1F7287BC7EF00C95E1B /* String.swift in Sources */,
@@ -321,7 +322,6 @@
 				C05BF1FD287BC88400C95E1B /* IndicatorView.swift in Sources */,
 				C05BF1F4287BC7EF00C95E1B /* UIFont.swift in Sources */,
 				C05BF1E3287BC7C800C95E1B /* Constant.swift in Sources */,
-				C7CE6758287F2F4900C8F137 /* WeekdayView.swift in Sources */,
 				C07E5C8F287E6D9A00BDA46D /* Studio.swift in Sources */,
 				C05BF1F1287BC7EF00C95E1B /* UIViewController.swift in Sources */,
 				C05BF1FB287BC7EF00C95E1B /* UINavigationBar.swift in Sources */,
