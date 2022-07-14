@@ -162,8 +162,8 @@ class ScheduleViewController: BaseViewController {
     
     /// 클래스 데이터를 이용해 StackView에 각각 해당하는 ScheduleButton을 추가합니다.
     func addBtnToStackView() {
-        for stackView in stackViews {
-            for subView in stackView.subviews {
+        stackViews.forEach{ stackView in
+            stackView.subviews.forEach{ subView in
                 subView.removeFromSuperview()
             }
             
@@ -190,7 +190,7 @@ class ScheduleViewController: BaseViewController {
     
     /// ScheduleViewController의 모든 서브 뷰를 삭제합니다.
     func removeAllSubViews() {
-        for subView in view.subviews{
+        view.subviews.forEach{ subView in
             subView.removeFromSuperview()
         }
     }
