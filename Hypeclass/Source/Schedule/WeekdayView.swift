@@ -9,15 +9,6 @@ import UIKit
 
 class WeekdayView: UIView {
     
-    init(frame: CGRect, date: Date) {
-        super.init(frame: frame)
-        setLayout(monday: getMonday(myDate: date))
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     //MARK: - Properties
     
     let weekdays = ["월", "화", "수", "목", "금", "토", "일"]
@@ -38,6 +29,17 @@ class WeekdayView: UIView {
         
         return line
     }()
+    
+    //MARK: - LifeCycle
+    
+    init(frame: CGRect, date: Date) {
+        super.init(frame: frame)
+        setLayout(monday: getMonday(myDate: date))
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     //MARK: - Helpers
     

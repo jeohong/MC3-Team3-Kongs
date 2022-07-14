@@ -10,7 +10,7 @@ import UIKit
 class ScheduleViewController: BaseViewController {
     //MARK: - Properties
     
-    let monthNumLable: UILabel = {
+    let monthNumLabel: UILabel = {
         let label = UILabel()
         label.text = String(Date().get(.month))
         label.textColor = .white
@@ -19,7 +19,7 @@ class ScheduleViewController: BaseViewController {
         return label
     }()
     
-    let monthLable: UILabel = {
+    let monthLabel: UILabel = {
         let label = UILabel()
         label.text = "월"
         label.textColor = .white
@@ -41,7 +41,7 @@ class ScheduleViewController: BaseViewController {
         config.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15)
         
         let btn = UIButton(configuration: config)
-        btn.addTarget(self, action: #selector(getLastWeek), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(fetchLastWeek), for: .touchUpInside)
         
         return btn
     }()
@@ -53,7 +53,7 @@ class ScheduleViewController: BaseViewController {
         config.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15)
         
         let btn = UIButton(configuration: config)
-        btn.addTarget(self, action: #selector(getNextWeek), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(fetchNextWeek), for: .touchUpInside)
         
         return btn
     }()
@@ -67,7 +67,7 @@ class ScheduleViewController: BaseViewController {
     
     //MARK: - Selectors
     
-    @objc func getLastWeek() {
+    @objc func fetchLastWeek() {
         weekdayView!.removeFromSuperview()
         let modifiedDate = Calendar.current.date(byAdding: .day, value: -7, to: selectedDate)!
         selectedDate = modifiedDate
@@ -75,7 +75,7 @@ class ScheduleViewController: BaseViewController {
         configureUI()
     }
     
-    @objc func getNextWeek() {
+    @objc func fetchNextWeek() {
         weekdayView!.removeFromSuperview()
         let modifiedDate = Calendar.current.date(byAdding: .day, value: 7, to: selectedDate)!
         selectedDate = modifiedDate
@@ -89,16 +89,16 @@ class ScheduleViewController: BaseViewController {
         //레이아웃 구성
         
         //상단 month 레이블
-        monthNumLable.text = String(selectedDate.get(.month))
-        view.addSubview(monthNumLable)
-        monthNumLable.translatesAutoresizingMaskIntoConstraints = false
-        monthNumLable.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
-        monthNumLable.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
+        monthNumLabel.text = String(selectedDate.get(.month))
+        view.addSubview(monthNumLabel)
+        monthNumLabel.translatesAutoresizingMaskIntoConstraints = false
+        monthNumLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
+        monthNumLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
         
-        view.addSubview(monthLable)
-        monthLable.translatesAutoresizingMaskIntoConstraints = false
-        monthLable.topAnchor.constraint(equalTo: view.topAnchor, constant: 78).isActive = true
-        monthLable.leadingAnchor.constraint(equalTo: monthNumLable.trailingAnchor).isActive = true
+        view.addSubview(monthLabel)
+        monthLabel.translatesAutoresizingMaskIntoConstraints = false
+        monthLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 78).isActive = true
+        monthLabel.leadingAnchor.constraint(equalTo: monthNumLabel.trailingAnchor).isActive = true
         
         //<> 버튼
         view.addSubview(nextBtn)
@@ -118,8 +118,8 @@ class ScheduleViewController: BaseViewController {
         }
         view.addSubview(weekdayView)
         weekdayView.translatesAutoresizingMaskIntoConstraints = false
-        weekdayView.topAnchor.constraint(equalTo: monthNumLable.bottomAnchor, constant: 60).isActive = true
-        weekdayView.leadingAnchor.constraint(equalTo: monthNumLable.leadingAnchor, constant: 10).isActive = true
+        weekdayView.topAnchor.constraint(equalTo: monthNumLabel.bottomAnchor, constant: 60).isActive = true
+        weekdayView.leadingAnchor.constraint(equalTo: monthNumLabel.leadingAnchor, constant: 10).isActive = true
     }
     
 }
