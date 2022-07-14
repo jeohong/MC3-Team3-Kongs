@@ -197,7 +197,7 @@ class ScheduleViewController: BaseViewController {
     
 }
 
-//MARK: - Extension
+//MARK: - UICollectionView Extension
 extension ScheduleViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
