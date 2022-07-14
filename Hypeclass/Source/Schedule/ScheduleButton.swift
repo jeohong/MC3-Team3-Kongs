@@ -8,7 +8,6 @@
 import UIKit
 
 class ScheduleButton: UIButton {
-    
     init(frame: CGRect, dancerName: String, studioName: String, startTime: String, endTime: String) {
         super.init(frame: frame)
         

@@ -8,9 +8,7 @@
 import UIKit
 
 class WeekdayView: UIView {
-    
     //MARK: - Properties
-    
     let weekdays = ["월", "화", "수", "목", "금", "토", "일"]
     
     lazy var stackView: UIStackView = {
@@ -31,7 +29,6 @@ class WeekdayView: UIView {
     }()
     
     //MARK: - LifeCycle
-    
     init(frame: CGRect, date: Date) {
         super.init(frame: frame)
         setLayout(monday: getMonday(myDate: date))
@@ -42,7 +39,6 @@ class WeekdayView: UIView {
     }
     
     //MARK: - Helpers
-    
     private func setLayout(monday: Date) {
         
         self.addSubview(stackView)

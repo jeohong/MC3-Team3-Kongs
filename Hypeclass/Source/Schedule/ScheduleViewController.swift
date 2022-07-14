@@ -9,7 +9,6 @@ import UIKit
 
 class ScheduleViewController: BaseViewController {
     //MARK: - Properties
-    
     let monthNumLabel: UILabel = {
         let label = UILabel()
         label.text = String(Date().get(.month))
@@ -74,14 +73,12 @@ class ScheduleViewController: BaseViewController {
     }()
     
     //MARK: - LifeCycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
     }
     
     //MARK: - Selectors
-    
     /// 지난 주 날짜의 weekdayView로 변경합니다.
     @objc func fetchLastWeek() {
         removeAllSubViews()
@@ -109,10 +106,8 @@ class ScheduleViewController: BaseViewController {
     }
     
     //MARK: - Helpers
-    
     func configureUI() {
         //레이아웃 구성
-        
         //상단 month 레이블
         monthNumLabel.text = String(selectedDate.get(.month))
         view.addSubview(monthNumLabel)
@@ -199,7 +194,6 @@ class ScheduleViewController: BaseViewController {
 
 //MARK: - UICollectionView Extension
 extension ScheduleViewController: UICollectionViewDataSource {
-
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: scheduleCellID, for: indexPath)
         cell.contentView.addSubview(stackViews[indexPath.item])
