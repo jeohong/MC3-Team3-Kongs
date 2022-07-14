@@ -9,6 +9,14 @@ import UIKit
 
 class SearchDetailViewController: BaseViewController {
     //MARK: - Properties
+    let searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.tintColor = .white
+        searchBar.searchTextField.textColor = .white
+        
+        return searchBar
+    }()
+    
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +26,7 @@ class SearchDetailViewController: BaseViewController {
     //MARK: - Helpers
     func configureUI() {
         //레이아웃 구성
+        self.navigationItem.titleView = searchBar
     }
 }
 
