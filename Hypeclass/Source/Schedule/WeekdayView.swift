@@ -31,7 +31,7 @@ class WeekdayView: UIView {
     //MARK: - LifeCycle
     init(frame: CGRect, date: Date) {
         super.init(frame: frame)
-        setLayout(monday: getMonday(myDate: date))
+        setLayout(monday: monday(myDate: date))
     }
     
     required init?(coder: NSCoder) {
@@ -49,7 +49,7 @@ class WeekdayView: UIView {
         // stackView에 각각의 dayView 추가
         var date = monday
         for day in 0...6 {
-            let cell = getDayView(weekday: weekdays[day], day: date.get(.day))
+            let cell = dayView(weekday: weekdays[day], day: date.get(.day))
             stackView.addArrangedSubview(cell)
             
             date = Calendar.current.date(byAdding: .day, value: 1, to: date)!
@@ -65,7 +65,7 @@ class WeekdayView: UIView {
     }
     
     /// weekday와 day로 구성된 UIView를 반환합니다.
-    private func getDayView(weekday: String, day: Int) -> UIView {
+    private func dayView(weekday: String, day: Int) -> UIView {
         let view = UIView()
         
         // 요일 label
@@ -94,7 +94,7 @@ class WeekdayView: UIView {
     }
     
     /// myDate가 속해 있는 주의 월요일을 반환합니다.
-    private func getMonday(myDate: Date) -> Date {
+    private func monday(myDate: Date) -> Date {
         let cal = Calendar.current
         var comps = cal.dateComponents([.weekOfYear, .yearForWeekOfYear], from: myDate)
         comps.weekday = 2 // Monday
