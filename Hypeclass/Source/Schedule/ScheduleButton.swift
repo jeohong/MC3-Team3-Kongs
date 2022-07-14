@@ -11,18 +11,19 @@ class ScheduleButton: UIButton {
     
     init(frame: CGRect, dancerName: String, studioName: String, startTime: String, endTime: String) {
         super.init(frame: frame)
+        
         var config = UIButton.Configuration.filled()
         config.baseBackgroundColor = .background
-        config.background.cornerRadius = 5
+        config.background.cornerRadius = 10
         config.background.strokeColor = .white
         config.background.strokeWidth = 1
         
         var nameAttr = AttributedString.init("\(dancerName)")
         nameAttr.font = .systemFont(ofSize: 18.0, weight: .bold)
         config.attributedTitle = nameAttr
-        config.titlePadding = 5
+        config.titlePadding = 4
         
-        var detailAttr = AttributedString.init("\(startTime)~\(endTime) | \(studioName)")
+        var detailAttr = AttributedString.init("\(startTime)~\(endTime)  |  \(studioName)")
         detailAttr.font = .systemFont(ofSize: 13.0, weight: .regular)
         config.attributedSubtitle = detailAttr
         

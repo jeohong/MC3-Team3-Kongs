@@ -58,6 +58,21 @@ class ScheduleViewController: BaseViewController {
         return btn
     }()
     
+    let stackViews: [UIStackView] = [
+        UIStackView(), UIStackView(), UIStackView(), UIStackView(), UIStackView(), UIStackView(), UIStackView()
+    ]
+    
+    let scheduleCellID = "cell"
+    
+    let scheduleCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        layout.scrollDirection = .horizontal
+        cv.backgroundColor = .background
+
+        return cv
+    }()
+    
     //MARK: - LifeCycle
     
     override func viewDidLoad() {
@@ -67,20 +82,30 @@ class ScheduleViewController: BaseViewController {
     
     //MARK: - Selectors
     
+    /// 지난 주 날짜의 weekdayView로 변경합니다.
     @objc func fetchLastWeek() {
-        weekdayView!.removeFromSuperview()
+        removeAllSubViews()
         let modifiedDate = Calendar.current.date(byAdding: .day, value: -7, to: selectedDate)!
         selectedDate = modifiedDate
         weekdayView = WeekdayView(frame: .zero, date: selectedDate)
+        scheduleCollectionView.reloadData()
         configureUI()
     }
     
+    /// 다음 주 날짜의 weekdayView로 변경합니다.
     @objc func fetchNextWeek() {
-        weekdayView!.removeFromSuperview()
+        removeAllSubViews()
         let modifiedDate = Calendar.current.date(byAdding: .day, value: 7, to: selectedDate)!
         selectedDate = modifiedDate
         weekdayView = WeekdayView(frame: .zero, date: selectedDate)
+        scheduleCollectionView.reloadData()
         configureUI()
+    }
+    
+    /// 댄서 디테일 뷰 페이지로 이동합니다.
+    @objc func moveToDetailView(sender: UIButton) {
+        // TODO: push detailViewController with sender.tag
+        print("moveToDetailView(): \(sender.tag)")
     }
     
     //MARK: - Helpers
@@ -120,8 +145,84 @@ class ScheduleViewController: BaseViewController {
         weekdayView.translatesAutoresizingMaskIntoConstraints = false
         weekdayView.topAnchor.constraint(equalTo: monthNumLabel.bottomAnchor, constant: 60).isActive = true
         weekdayView.leadingAnchor.constraint(equalTo: monthNumLabel.leadingAnchor, constant: 10).isActive = true
+        
+        //scheduleCollectionView
+        addBtnToStackView()
+        scheduleCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: scheduleCellID)
+        scheduleCollectionView.dataSource = self
+        scheduleCollectionView.delegate = self
+
+        view.addSubview(scheduleCollectionView)
+        scheduleCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        scheduleCollectionView.topAnchor.constraint(equalTo: monthNumLabel.bottomAnchor, constant: 40).isActive = true
+        scheduleCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 95).isActive = true
+        scheduleCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -90).isActive = true
+        scheduleCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
     }
     
+    /// 클래스 데이터를 이용해 StackView에 각각 해당하는 ScheduleButton을 추가합니다.
+    func addBtnToStackView() {
+        for stackView in stackViews {
+            for subView in stackView.subviews {
+                subView.removeFromSuperview()
+            }
+            
+            stackView.translatesAutoresizingMaskIntoConstraints = false
+            stackView.axis = .horizontal
+            stackView.spacing = 20
+            stackView.distribution = .equalSpacing
+            
+            // TODO: Should be replaced to real data management!
+            for n in 0...3 {
+                // TODO: Fetch class information here
+                let dancerName = "NARAE"
+                let studioName = "1million"
+                let startTime = "18:00"
+                let endTime = "20:00"
+                
+                let btn = ScheduleButton(frame: .zero, dancerName: dancerName, studioName: studioName, startTime: startTime, endTime: endTime)
+                btn.tag = n // TODO: DanceClass id를 Int로 변환
+                btn.addTarget(self, action: #selector(moveToDetailView), for: .touchUpInside)
+                stackView.addArrangedSubview(btn)
+            }
+        }
+    }
+    
+    /// ScheduleViewController의 모든 서브 뷰를 삭제합니다.
+    func removeAllSubViews() {
+        for subView in view.subviews{
+            subView.removeFromSuperview()
+        }
+    }
+    
+}
+
+//MARK: - Extension
+extension ScheduleViewController: UICollectionViewDataSource {
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: scheduleCellID, for: indexPath)
+        cell.contentView.addSubview(stackViews[indexPath.item])
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return stackViews.count
+    }
+}
+
+extension ScheduleViewController: UICollectionViewDelegate {
+}
+
+extension ScheduleViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        // TODO: width -> 가장 많은 아이템을 가진 스택 뷰의 width
+        let width: CGFloat = 200 * 4
+        let height: CGFloat = (collectionView.frame.height / 8)
+
+        return CGSize(width: width, height: height)
+   }
 }
 
 //MARK: - Preview
