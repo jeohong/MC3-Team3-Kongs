@@ -20,12 +20,16 @@ class SearchDetailViewController: BaseViewController {
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationBarUI()
         configureUI()
     }
     //MARK: - Selectors
     //MARK: - Helpers
     func configureUI() {
         //레이아웃 구성
+    }
+    
+    func setNavigationBarUI() {
         self.navigationItem.titleView = searchBar
     }
 }

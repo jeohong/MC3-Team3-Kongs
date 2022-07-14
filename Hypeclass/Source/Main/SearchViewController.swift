@@ -44,10 +44,10 @@ extension SearchViewController: UISearchBarDelegate {
     // SearchButton Clicked
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
+        
         let searchDetailVC = SearchDetailViewController()
         searchDetailVC.searchBar.text = searchText
         self.navigationController?.pushViewController(searchDetailVC, animated: true)
-        
     }
 }
 
