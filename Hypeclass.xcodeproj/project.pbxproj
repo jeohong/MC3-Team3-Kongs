@@ -38,6 +38,7 @@
 		C07E5C8F287E6D9A00BDA46D /* Studio.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E5C8E287E6D9A00BDA46D /* Studio.swift */; };
 		C07E5C91287E707200BDA46D /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E5C90287E707200BDA46D /* Genre.swift */; };
 		C7CE6758287F2F4900C8F137 /* WeekdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE6757287F2F4900C8F137 /* WeekdayView.swift */; };
+		C7CE675E287FF21200C8F137 /* ScheduleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE675D287FF21200C8F137 /* ScheduleButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		C07E5C8E287E6D9A00BDA46D /* Studio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Studio.swift; sourceTree = "<group>"; };
 		C07E5C90287E707200BDA46D /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		C7CE6757287F2F4900C8F137 /* WeekdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayView.swift; sourceTree = "<group>"; };
+		C7CE675D287FF21200C8F137 /* ScheduleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 			children = (
 				C039DCBD287D944C0007951D /* ScheduleViewController.swift */,
 				C7CE6757287F2F4900C8F137 /* WeekdayView.swift */,
+				C7CE675D287FF21200C8F137 /* ScheduleButton.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				C039DCC0287D94630007951D /* SubscriptionViewController.swift in Sources */,
 				C05BF1F6287BC7EF00C95E1B /* UIApplication.swift in Sources */,
 				C05BF1F9287BC7EF00C95E1B /* Date.swift in Sources */,
+				C7CE675E287FF21200C8F137 /* ScheduleButton.swift in Sources */,
 				C05BF1F5287BC7EF00C95E1B /* UIButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
