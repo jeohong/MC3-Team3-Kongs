@@ -97,22 +97,14 @@ class ScheduleViewController: BaseViewController {
     //MARK: - Selectors
     /// 지난 주 날짜의 weekdayView로 변경합니다.
     @objc func fetchLastWeek() {
-        removeAllSubViews()
-        let modifiedDate = Calendar.current.date(byAdding: .day, value: -7, to: selectedDate)!
-        selectedDate = modifiedDate
-        scheduleCollectionView.reloadData()
-        weekCollectionView.reloadData()
-        configureUI()
+        selectedDate = Calendar.current.date(byAdding: .day, value: -7, to: selectedDate)!
+        reloadViews()
     }
     
     /// 다음 주 날짜의 weekdayView로 변경합니다.
     @objc func fetchNextWeek() {
-        removeAllSubViews()
-        let modifiedDate = Calendar.current.date(byAdding: .day, value: 7, to: selectedDate)!
-        selectedDate = modifiedDate
-        scheduleCollectionView.reloadData()
-        weekCollectionView.reloadData()
-        configureUI()
+        selectedDate = Calendar.current.date(byAdding: .day, value: 7, to: selectedDate)!
+        reloadViews()
     }
     
     /// 댄서 디테일 뷰 페이지로 이동합니다.
@@ -209,13 +201,12 @@ class ScheduleViewController: BaseViewController {
         }
     }
     
-    /// ScheduleViewController의 모든 서브 뷰를 삭제합니다.
-    func removeAllSubViews() {
-        view.subviews.forEach{ subView in
-            subView.removeFromSuperview()
-        }
+    /// ScheduleViewController에서 변경되는 뷰를 다시 로드합니다.
+    func reloadViews() {
+        monthNumLabel.text = String(selectedDate.get(.month))
+        scheduleCollectionView.reloadData()
+        weekCollectionView.reloadData()
     }
-    
 }
 
 //MARK: - UICollectionView Extension
