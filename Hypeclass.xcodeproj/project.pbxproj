@@ -39,6 +39,7 @@
 		C07E5C91287E707200BDA46D /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E5C90287E707200BDA46D /* Genre.swift */; };
 		C7CE675E287FF21200C8F137 /* ScheduleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE675D287FF21200C8F137 /* ScheduleButton.swift */; };
 		C7CE676028807C8E00C8F137 /* WeekdayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE675F28807C8E00C8F137 /* WeekdayCell.swift */; };
+		C7CE676228814D3C00C8F137 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE676128814D3C00C8F137 /* Weekday.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		C07E5C90287E707200BDA46D /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		C7CE675D287FF21200C8F137 /* ScheduleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleButton.swift; sourceTree = "<group>"; };
 		C7CE675F28807C8E00C8F137 /* WeekdayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayCell.swift; sourceTree = "<group>"; };
+		C7CE676128814D3C00C8F137 /* Weekday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekday.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +212,7 @@
 				C07E5C8C287E6D8B00BDA46D /* DanceClass.swift */,
 				C07E5C8E287E6D9A00BDA46D /* Studio.swift */,
 				C07E5C90287E707200BDA46D /* Genre.swift */,
+				C7CE676128814D3C00C8F137 /* Weekday.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				C05BF1F2287BC7EF00C95E1B /* UITextField.swift in Sources */,
 				C07E5C91287E707200BDA46D /* Genre.swift in Sources */,
 				C05BF1F8287BC7EF00C95E1B /* UIImage.swift in Sources */,
+				C7CE676228814D3C00C8F137 /* Weekday.swift in Sources */,
 				C039DCC0287D94630007951D /* SubscriptionViewController.swift in Sources */,
 				C05BF1F6287BC7EF00C95E1B /* UIApplication.swift in Sources */,
 				C05BF1F9287BC7EF00C95E1B /* Date.swift in Sources */,

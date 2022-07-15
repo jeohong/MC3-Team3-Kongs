@@ -8,7 +8,9 @@
 import UIKit
 
 class ScheduleViewController: BaseViewController {
+    
     //MARK: - Properties
+    
     let monthNumLabel: UILabel = {
         let label = UILabel()
         label.text = String(Date().get(.month))
@@ -89,12 +91,14 @@ class ScheduleViewController: BaseViewController {
     }()
     
     //MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
     }
     
     //MARK: - Selectors
+    
     /// 지난 주 날짜의 weekdayView로 변경합니다.
     @objc func fetchLastWeek() {
         selectedDate = Calendar.current.date(byAdding: .day, value: -7, to: selectedDate)!
@@ -114,6 +118,7 @@ class ScheduleViewController: BaseViewController {
     }
     
     //MARK: - Helpers
+    
     func configureUI() {
         //레이아웃 구성
         //상단 month 레이블
@@ -210,6 +215,7 @@ class ScheduleViewController: BaseViewController {
 }
 
 //MARK: - UICollectionView Extension
+
 extension ScheduleViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.scheduleCollectionView {
@@ -218,7 +224,7 @@ extension ScheduleViewController: UICollectionViewDataSource {
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: weekCellID, for: indexPath) as! WeekdayCell
-            cell.weekdayLabel.text = cell.weekdays[indexPath.item]
+            cell.weekdayLabel.text = Weekday.allCases[indexPath.item].rawValue
             cell.dayLabel.text = cell.day(date: selectedDate, dayNum: indexPath.item)
             return cell
         }
@@ -247,6 +253,7 @@ extension ScheduleViewController: UICollectionViewDelegateFlowLayout {
 }
 
 //MARK: - Preview
+
 import SwiftUI
 
 struct ScheduleViewControllerRepresentable: UIViewControllerRepresentable {
