@@ -8,9 +8,7 @@
 import UIKit
 
 class WeekdayView: UIView {
-    
     //MARK: - Properties
-    
     let weekdays = ["월", "화", "수", "목", "금", "토", "일"]
     
     lazy var stackView: UIStackView = {
@@ -31,10 +29,9 @@ class WeekdayView: UIView {
     }()
     
     //MARK: - LifeCycle
-    
     init(frame: CGRect, date: Date) {
         super.init(frame: frame)
-        setLayout(monday: getMonday(myDate: date))
+        setLayout(monday: monday(myDate: date))
     }
     
     required init?(coder: NSCoder) {
@@ -42,7 +39,6 @@ class WeekdayView: UIView {
     }
     
     //MARK: - Helpers
-    
     private func setLayout(monday: Date) {
         
         self.addSubview(stackView)
@@ -50,14 +46,16 @@ class WeekdayView: UIView {
         stackView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         
+        // stackView에 각각의 dayView 추가
         var date = monday
         for day in 0...6 {
-            let cell = getDayView(weekday: weekdays[day], day: date.get(.day))
+            let cell = dayView(weekday: weekdays[day], day: date.get(.day))
             stackView.addArrangedSubview(cell)
             
             date = Calendar.current.date(byAdding: .day, value: 1, to: date)!
         }
         
+        // 세로 구분선
         self.addSubview(separator)
         separator.translatesAutoresizingMaskIntoConstraints = false
         separator.leadingAnchor.constraint(equalTo: self.trailingAnchor, constant: 35).isActive = true
@@ -66,7 +64,8 @@ class WeekdayView: UIView {
         separator.widthAnchor.constraint(equalToConstant: 0.5).isActive = true
     }
     
-    private func getDayView(weekday: String, day: Int) -> UIView {
+    /// weekday와 day로 구성된 UIView를 반환합니다.
+    private func dayView(weekday: String, day: Int) -> UIView {
         let view = UIView()
         
         // 요일 label
@@ -94,7 +93,8 @@ class WeekdayView: UIView {
         return view
     }
     
-    private func getMonday(myDate: Date) -> Date {
+    /// myDate가 속해 있는 주의 월요일을 반환합니다.
+    private func monday(myDate: Date) -> Date {
         let cal = Calendar.current
         var comps = cal.dateComponents([.weekOfYear, .yearForWeekOfYear], from: myDate)
         comps.weekday = 2 // Monday
