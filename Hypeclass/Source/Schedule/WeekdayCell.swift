@@ -8,8 +8,8 @@
 import UIKit
 
 class WeekdayCell: UICollectionViewCell {
+    
     //MARK: - Properties
-    let weekdays = ["월", "화", "수", "목", "금", "토", "일"]
     
     let weekdayLabel: UILabel = {
         let label = UILabel()
@@ -28,6 +28,7 @@ class WeekdayCell: UICollectionViewCell {
     }()
     
     //MARK: - LifeCycle
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setLayout()
@@ -38,6 +39,7 @@ class WeekdayCell: UICollectionViewCell {
     }
     
     //MARK: - Helpers
+    
     private func setLayout() {
         // 요일 label
         contentView.addSubview(weekdayLabel)
