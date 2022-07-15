@@ -37,6 +37,12 @@ class SearchViewController: BaseViewController {
     func setNavigationBarUI() {
         self.navigationItem.titleView = searchBar
     }
+    
+    func presentSearchDetailView(_ searchText: String) {
+        let searchDetailVC = SearchDetailViewController()
+        searchDetailVC.searchBar.text = searchText
+        self.navigationController?.pushViewController(searchDetailVC, animated: true)
+    }
 }
 
 // SearchBar Delegate
@@ -44,10 +50,7 @@ extension SearchViewController: UISearchBarDelegate {
     // SearchButton Clicked
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
-        
-        let searchDetailVC = SearchDetailViewController()
-        searchDetailVC.searchBar.text = searchText
-        self.navigationController?.pushViewController(searchDetailVC, animated: true)
+        presentSearchDetailView(searchText)
     }
 }
 
