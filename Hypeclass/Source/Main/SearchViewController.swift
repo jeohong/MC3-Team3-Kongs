@@ -18,6 +18,7 @@ class SearchViewController: BaseViewController {
         searchBar.searchTextField.textColor = .white
         searchBar.searchTextField.backgroundColor = .searchBarBackgroud
         searchBar.searchTextField.leftViewMode = .never
+        searchBar.returnKeyType = .google
         
         return searchBar
     }()
