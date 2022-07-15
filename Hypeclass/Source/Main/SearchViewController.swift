@@ -14,7 +14,10 @@ class SearchViewController: BaseViewController {
         searchBar.placeholder = "찾고자 하는 댄서나 장르를 검색하세요."
         searchBar.becomeFirstResponder()
         searchBar.tintColor = .white
+        searchBar.searchTextField.font = UIFont.systemFont(ofSize: 12.0)
         searchBar.searchTextField.textColor = .white
+        searchBar.searchTextField.backgroundColor = .searchBarBackgroud
+        searchBar.searchTextField.leftViewMode = .never
         
         return searchBar
     }()
