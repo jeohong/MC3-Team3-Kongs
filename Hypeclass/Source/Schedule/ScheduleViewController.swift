@@ -8,7 +8,9 @@
 import UIKit
 
 class ScheduleViewController: BaseViewController {
+    
     //MARK: - Properties
+    
     let monthNumLabel: UILabel = {
         let label = UILabel()
         label.text = String(Date().get(.month))
@@ -30,8 +32,24 @@ class ScheduleViewController: BaseViewController {
     var selectedDate: Date = {
         return Date()
     }()
+
+    let weekCellID = "week"
     
-    var weekdayView: WeekdayView?
+    let weekCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 11
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.backgroundColor = .background
+
+        return cv
+    }()
+    
+    let separator: UIView = {
+        let line = UIView()
+        line.backgroundColor = .gray
+        
+        return line
+    }()
     
     let previousBtn: UIButton = {
         var config = UIButton.Configuration.plain()
@@ -61,7 +79,7 @@ class ScheduleViewController: BaseViewController {
         UIStackView(), UIStackView(), UIStackView(), UIStackView(), UIStackView(), UIStackView(), UIStackView()
     ]
     
-    let scheduleCellID = "cell"
+    let scheduleCellID = "schedule"
     
     let scheduleCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -73,30 +91,24 @@ class ScheduleViewController: BaseViewController {
     }()
     
     //MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
     }
     
     //MARK: - Selectors
+    
     /// 지난 주 날짜의 weekdayView로 변경합니다.
     @objc func fetchLastWeek() {
-        removeAllSubViews()
-        let modifiedDate = Calendar.current.date(byAdding: .day, value: -7, to: selectedDate)!
-        selectedDate = modifiedDate
-        weekdayView = WeekdayView(frame: .zero, date: selectedDate)
-        scheduleCollectionView.reloadData()
-        configureUI()
+        selectedDate = Calendar.current.date(byAdding: .day, value: -7, to: selectedDate)!
+        reloadViews()
     }
     
     /// 다음 주 날짜의 weekdayView로 변경합니다.
     @objc func fetchNextWeek() {
-        removeAllSubViews()
-        let modifiedDate = Calendar.current.date(byAdding: .day, value: 7, to: selectedDate)!
-        selectedDate = modifiedDate
-        weekdayView = WeekdayView(frame: .zero, date: selectedDate)
-        scheduleCollectionView.reloadData()
-        configureUI()
+        selectedDate = Calendar.current.date(byAdding: .day, value: 7, to: selectedDate)!
+        reloadViews()
     }
     
     /// 댄서 디테일 뷰 페이지로 이동합니다.
@@ -106,6 +118,7 @@ class ScheduleViewController: BaseViewController {
     }
     
     //MARK: - Helpers
+    
     func configureUI() {
         //레이아웃 구성
         //상단 month 레이블
@@ -131,16 +144,26 @@ class ScheduleViewController: BaseViewController {
         previousBtn.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
         previousBtn.trailingAnchor.constraint(equalTo: nextBtn.leadingAnchor, constant: -5).isActive = true
         
-        //좌측 week 뷰
-        weekdayView = WeekdayView(frame: .zero, date: selectedDate)
-        guard let weekdayView = weekdayView else {
-            return
-        }
-        view.addSubview(weekdayView)
-        weekdayView.translatesAutoresizingMaskIntoConstraints = false
-        weekdayView.topAnchor.constraint(equalTo: monthNumLabel.bottomAnchor, constant: 60).isActive = true
-        weekdayView.leadingAnchor.constraint(equalTo: monthNumLabel.leadingAnchor, constant: 10).isActive = true
+        //weekCollectionView
+        weekCollectionView.register(WeekdayCell.self, forCellWithReuseIdentifier: weekCellID)
+        weekCollectionView.dataSource = self
+        weekCollectionView.delegate = self
+
+        view.addSubview(weekCollectionView)
+        weekCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        weekCollectionView.topAnchor.constraint(equalTo: monthNumLabel.bottomAnchor, constant: 40).isActive = true
+        weekCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
+        weekCollectionView.trailingAnchor.constraint(equalTo: monthNumLabel.leadingAnchor, constant: 40).isActive = true
+        weekCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -90).isActive = true
         
+        // 세로 구분선
+        view.addSubview(separator)
+        separator.translatesAutoresizingMaskIntoConstraints = false
+        separator.leadingAnchor.constraint(equalTo: weekCollectionView.trailingAnchor, constant: 10).isActive = true
+        separator.topAnchor.constraint(equalTo: weekCollectionView.topAnchor).isActive = true
+        separator.bottomAnchor.constraint(equalTo: weekCollectionView.bottomAnchor).isActive = true
+        separator.widthAnchor.constraint(equalToConstant: 0.5).isActive = true
+
         //scheduleCollectionView
         addBtnToStackView()
         scheduleCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: scheduleCellID)
@@ -150,7 +173,7 @@ class ScheduleViewController: BaseViewController {
         view.addSubview(scheduleCollectionView)
         scheduleCollectionView.translatesAutoresizingMaskIntoConstraints = false
         scheduleCollectionView.topAnchor.constraint(equalTo: monthNumLabel.bottomAnchor, constant: 40).isActive = true
-        scheduleCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 95).isActive = true
+        scheduleCollectionView.leadingAnchor.constraint(equalTo: separator.trailingAnchor, constant: 30).isActive = true
         scheduleCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -90).isActive = true
         scheduleCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
     }
@@ -183,25 +206,32 @@ class ScheduleViewController: BaseViewController {
         }
     }
     
-    /// ScheduleViewController의 모든 서브 뷰를 삭제합니다.
-    func removeAllSubViews() {
-        view.subviews.forEach{ subView in
-            subView.removeFromSuperview()
-        }
+    /// ScheduleViewController에서 변경되는 뷰를 다시 로드합니다.
+    func reloadViews() {
+        monthNumLabel.text = String(selectedDate.get(.month))
+        scheduleCollectionView.reloadData()
+        weekCollectionView.reloadData()
     }
-    
 }
 
 //MARK: - UICollectionView Extension
+
 extension ScheduleViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: scheduleCellID, for: indexPath)
-        cell.contentView.addSubview(stackViews[indexPath.item])
-        return cell
+        if collectionView == self.scheduleCollectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: scheduleCellID, for: indexPath)
+            cell.contentView.addSubview(stackViews[indexPath.item])
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: weekCellID, for: indexPath) as! WeekdayCell
+            cell.weekdayLabel.text = Weekday.allCases[indexPath.item].rawValue
+            cell.dayLabel.text = cell.day(date: selectedDate, dayNum: indexPath.item)
+            return cell
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return stackViews.count
+        return 7
     }
 }
 
@@ -210,16 +240,20 @@ extension ScheduleViewController: UICollectionViewDelegate {
 
 extension ScheduleViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == self.scheduleCollectionView {
+            // TODO: width -> 가장 많은 아이템을 가진 스택 뷰의 width
+            let width: CGFloat = 200 * 4
+            let height: CGFloat = (collectionView.frame.height / 8)
 
-        // TODO: width -> 가장 많은 아이템을 가진 스택 뷰의 width
-        let width: CGFloat = 200 * 4
-        let height: CGFloat = (collectionView.frame.height / 8)
-
-        return CGSize(width: width, height: height)
+            return CGSize(width: width, height: height)
+        } else {
+            return CGSize(width: 30, height: (collectionView.frame.height / 8))
+        }
    }
 }
 
 //MARK: - Preview
+
 import SwiftUI
 
 struct ScheduleViewControllerRepresentable: UIViewControllerRepresentable {
