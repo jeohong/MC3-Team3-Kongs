@@ -70,15 +70,15 @@ class SearchViewController: BaseViewController {
     
     // SearchHistory를 UserDefault에 저장
     func storeSearchHistory(_ searchText: String) {
-        if var searchHistory = UserDefaults.standard.stringArray(forKey: "\(searchHistory)") {
+        if var searchHistory = UserDefaults.standard.stringArray(forKey: "SearchHistory") {
             searchHistory.insert(searchText, at: 0)
             
             if(searchHistory.count > 10) { searchHistory.remove(at: 10) }
-            UserDefaults.standard.set(searchHistory, forKey: "\(searchHistory)")
+            UserDefaults.standard.set(searchHistory, forKey: "SearchHistory")
         } else {
             var newHistory = [String]()
             newHistory.append(searchText)
-            UserDefaults.standard.set(newHistory, forKey: "\(searchHistory)")
+            UserDefaults.standard.set(newHistory, forKey: "SearchHistory")
         }
     }
 }
