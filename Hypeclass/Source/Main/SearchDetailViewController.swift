@@ -11,17 +11,7 @@ class SearchDetailViewController: BaseViewController {
     
     //MARK: - Properties
     
-    let searchBar: UISearchBar = {
-        let searchBar = UISearchBar()
-        searchBar.tintColor = .white
-        searchBar.searchTextField.font = UIFont.systemFont(ofSize: 12.0)
-        searchBar.searchTextField.textColor = .white
-        searchBar.searchTextField.backgroundColor = .searchBarBackgroud
-        searchBar.searchTextField.leftViewMode = .never
-        searchBar.returnKeyType = .google
-        
-        return searchBar
-    }()
+    let searchBar = SearchBar()
     
     //MARK: - LifeCycle
     
