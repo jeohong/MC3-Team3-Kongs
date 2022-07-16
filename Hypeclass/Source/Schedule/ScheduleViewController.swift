@@ -112,9 +112,9 @@ class ScheduleViewController: BaseViewController {
     }
     
     /// 댄서 디테일 뷰 페이지로 이동합니다.
-    @objc func moveToDetailView(sender: UIButton) {
+    @objc func pushDetailView(sender: UIButton) {
         // TODO: push detailViewController with sender.tag
-        print("moveToDetailView(): \(sender.tag)")
+        print("pushDetailView(): \(sender.tag)")
     }
     
     //MARK: - Helpers
@@ -200,7 +200,7 @@ class ScheduleViewController: BaseViewController {
                 
                 let btn = ScheduleButton(frame: .zero, dancerName: dancerName, studioName: studioName, startTime: startTime, endTime: endTime)
                 btn.tag = n // TODO: DanceClass id를 Int로 변환
-                btn.addTarget(self, action: #selector(moveToDetailView), for: .touchUpInside)
+                btn.addTarget(self, action: #selector(pushDetailView), for: .touchUpInside)
                 stackView.addArrangedSubview(btn)
             }
         }
@@ -225,7 +225,7 @@ extension ScheduleViewController: UICollectionViewDataSource {
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: weekCellID, for: indexPath) as! WeekdayCell
             cell.weekdayLabel.text = Weekday.allCases[indexPath.item].rawValue
-            cell.dayLabel.text = cell.day(date: selectedDate, dayNum: indexPath.item)
+            cell.dayLabel.text = cell.dayString(date: selectedDate, dayNum: indexPath.item)
             return cell
         }
     }
