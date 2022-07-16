@@ -8,7 +8,9 @@
 import UIKit
 
 class SearchViewController: BaseViewController {
+    
     //MARK: - Properties
+    
     let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.placeholder = "찾고자 하는 댄서나 장르를 검색하세요."
@@ -24,6 +26,7 @@ class SearchViewController: BaseViewController {
     }()
     
     //MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBarUI()
@@ -33,7 +36,9 @@ class SearchViewController: BaseViewController {
     }
     
     //MARK: - Selectors
+    
     //MARK: - Helpers
+    
     func configureUI() {
         //레이아웃 구성
     }
@@ -49,7 +54,8 @@ class SearchViewController: BaseViewController {
     }
 }
 
-// SearchBar Delegate
+//MARK: - SearchBar Delegate
+
 extension SearchViewController: UISearchBarDelegate {
     // SearchButton Clicked
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -59,6 +65,7 @@ extension SearchViewController: UISearchBarDelegate {
 }
 
 //MARK: - Preview
+
 import SwiftUI
 
 struct SearchViewControllerRepresentable: UIViewControllerRepresentable {
