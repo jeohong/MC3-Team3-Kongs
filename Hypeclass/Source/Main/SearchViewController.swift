@@ -13,6 +13,14 @@ class SearchViewController: BaseViewController {
     
     let searchBar = SearchBar()
     let separator = Separator()
+    let historyTitle: UILabel = {
+       let label = UILabel()
+        label.text = "최근 검색어"
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        
+        return label
+    }()
     
     //MARK: - LifeCycle
     
@@ -35,6 +43,11 @@ class SearchViewController: BaseViewController {
         separator.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
         separator.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -18).isActive = true
         separator.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 18).isActive = true
+        
+        self.view.addSubview(historyTitle)
+        historyTitle.translatesAutoresizingMaskIntoConstraints = false
+        historyTitle.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 26).isActive = true
+        historyTitle.topAnchor.constraint(equalTo: separator.bottomAnchor, constant: 26).isActive = true
     }
     
     func setNavigationBarUI() {
