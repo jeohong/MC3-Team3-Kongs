@@ -28,4 +28,5 @@ class SearchBar: UISearchBar {
 }
 
 // MARK: - SearchHistory를 위한 상수
+
 let searchHistory = "SearchHistory"
