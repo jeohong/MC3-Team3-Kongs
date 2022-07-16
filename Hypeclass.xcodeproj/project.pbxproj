@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A31C3F4428828B96005A6F6E /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31C3F4328828B96005A6F6E /* SearchBar.swift */; };
 		A38A4C57287E97B900614E94 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38A4C56287E97B900614E94 /* SearchViewController.swift */; };
 		A38A4C59287E97CF00614E94 /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38A4C58287E97CF00614E94 /* SearchDetailViewController.swift */; };
 		C039DCBA287D940F0007951D /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C039DCB9287D940F0007951D /* MainTabController.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A31C3F4328828B96005A6F6E /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		A38A4C56287E97B900614E94 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		A38A4C58287E97CF00614E94 /* SearchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailViewController.swift; sourceTree = "<group>"; };
 		C039DCB9287D940F0007951D /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			children = (
 				C05BF1FC287BC88400C95E1B /* IndicatorView.swift */,
 				C05BF1FE287BC90900C95E1B /* Device.swift */,
+				A31C3F4328828B96005A6F6E /* SearchBar.swift */,
 				C05BF1E5287BC7DB00C95E1B /* Extension */,
 			);
 			path = Util;
@@ -329,6 +332,7 @@
 				A38A4C57287E97B900614E94 /* SearchViewController.swift in Sources */,
 				C05BF1E3287BC7C800C95E1B /* Constant.swift in Sources */,
 				C7CE6758287F2F4900C8F137 /* WeekdayView.swift in Sources */,
+				A31C3F4428828B96005A6F6E /* SearchBar.swift in Sources */,
 				C07E5C8F287E6D9A00BDA46D /* Studio.swift in Sources */,
 				C05BF1F1287BC7EF00C95E1B /* UIViewController.swift in Sources */,
 				C05BF1FB287BC7EF00C95E1B /* UINavigationBar.swift in Sources */,
