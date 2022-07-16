@@ -26,3 +26,6 @@ class SearchBar: UISearchBar {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+// MARK: - SearchHistory를 위한 상수
+let searchHistory = "SearchHistory"

@@ -34,17 +34,32 @@ class SearchViewController: BaseViewController {
         self.navigationItem.titleView = searchBar
     }
     
+    func setSearchBar() {
+        searchBar.delegate = self
+        
+        searchBar.placeholder = "찾고자 하는 댄서나 장르를 검색하세요."
+        searchBar.becomeFirstResponder()
+    }
+    
+    // Navigation 화면 전환
     func pushSearchDetailView(_ searchText: String) {
         let searchDetailVC = SearchDetailViewController()
         searchDetailVC.searchBar.text = searchText
         self.navigationController?.pushViewController(searchDetailVC, animated: true)
     }
     
-    func setSearchBar() {
-        searchBar.delegate = self
-        
-        searchBar.placeholder = "찾고자 하는 댄서나 장르를 검색하세요."
-        searchBar.becomeFirstResponder()
+    // SearchHistory를 UserDefault에 저장
+    func storeSearchHistory(_ searchText: String) {
+        if var searchHistory = UserDefaults.standard.stringArray(forKey: "\(searchHistory)") {
+            searchHistory.insert(searchText, at: 0)
+            
+            if(searchHistory.count > 10) { searchHistory.remove(at: 10) }
+            UserDefaults.standard.set(searchHistory, forKey: "\(searchHistory)")
+        } else {
+            var newHistory = [String]()
+            newHistory.append(searchText)
+            UserDefaults.standard.set(newHistory, forKey: "\(searchHistory)")
+        }
     }
 }
 
@@ -54,6 +69,7 @@ extension SearchViewController: UISearchBarDelegate {
     // SearchButton Clicked
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
+        storeSearchHistory(searchText)
         pushSearchDetailView(searchText)
     }
 }
