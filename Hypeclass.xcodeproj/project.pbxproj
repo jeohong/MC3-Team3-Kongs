@@ -97,6 +97,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A31C3F452882ABD3005A6F6E /* ReusableComponent */ = {
+			isa = PBXGroup;
+			children = (
+				A31C3F4328828B96005A6F6E /* SearchBar.swift */,
+			);
+			path = ReusableComponent;
+			sourceTree = "<group>";
+		};
 		C039DCBB287D941C0007951D /* Subscription */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +159,7 @@
 		C05BF1DE287BC79600C95E1B /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				A31C3F452882ABD3005A6F6E /* ReusableComponent */,
 				C05BF1E0287BC7A300C95E1B /* Base */,
 				C05BF1DF287BC79D00C95E1B /* Font */,
 			);
@@ -180,7 +189,6 @@
 			children = (
 				C05BF1FC287BC88400C95E1B /* IndicatorView.swift */,
 				C05BF1FE287BC90900C95E1B /* Device.swift */,
-				A31C3F4328828B96005A6F6E /* SearchBar.swift */,
 				C05BF1E5287BC7DB00C95E1B /* Extension */,
 			);
 			path = Util;
