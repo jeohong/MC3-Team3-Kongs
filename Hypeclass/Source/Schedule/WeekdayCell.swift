@@ -55,7 +55,7 @@ class WeekdayCell: UICollectionViewCell {
     }
     
     /// date가 속해 있는 주의 날짜를 반환합니다.
-    func day(date: Date, dayNum: Int) -> String {
+    func dayString(date: Date, dayNum: Int) -> String {
         var myDate = date
         if dayNum == 6 {
             myDate = Calendar.current.date(byAdding: .day, value: 7, to: date)!
