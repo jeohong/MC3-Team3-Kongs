@@ -11,19 +11,7 @@ class SearchViewController: BaseViewController {
     
     //MARK: - Properties
     
-    let searchBar: UISearchBar = {
-        let searchBar = UISearchBar()
-        searchBar.placeholder = "찾고자 하는 댄서나 장르를 검색하세요."
-        searchBar.becomeFirstResponder()
-        searchBar.tintColor = .white
-        searchBar.searchTextField.font = UIFont.systemFont(ofSize: 12.0)
-        searchBar.searchTextField.textColor = .white
-        searchBar.searchTextField.backgroundColor = .searchBarBackgroud
-        searchBar.searchTextField.leftViewMode = .never
-        searchBar.returnKeyType = .google
-        
-        return searchBar
-    }()
+    let searchBar = SearchBar()
     
     //MARK: - LifeCycle
     
@@ -31,8 +19,7 @@ class SearchViewController: BaseViewController {
         super.viewDidLoad()
         setNavigationBarUI()
         configureUI()
-        
-        searchBar.delegate = self
+        setSearchBar()
     }
     
     //MARK: - Selectors
@@ -51,6 +38,13 @@ class SearchViewController: BaseViewController {
         let searchDetailVC = SearchDetailViewController()
         searchDetailVC.searchBar.text = searchText
         self.navigationController?.pushViewController(searchDetailVC, animated: true)
+    }
+    
+    func setSearchBar() {
+        searchBar.delegate = self
+        
+        searchBar.placeholder = "찾고자 하는 댄서나 장르를 검색하세요."
+        searchBar.becomeFirstResponder()
     }
 }
 
