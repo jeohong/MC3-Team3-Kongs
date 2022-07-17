@@ -7,20 +7,16 @@
 
 import Foundation
 
-struct Dancer: Identifiable {
+struct Dancer: Codable {
     let id: String
     let name: String
     let lastUpdate: Date
     let description: String?
-    let tags: [String]
+//    let tags: [String]
     
-    let platformUrls: [Platform: String]
-    let profileImageUrl: [String]
-    let videoThumbnailUrl: [String]
+    let youtubeUrl: String?
+    let instagramUrl: String?
+    let profileImageUrl: String
+    let videoThumbnailUrl: String
     let schedules: [DanceClass]
-}
-
-enum Platform {
-    case youtube
-    case instagram
 }
