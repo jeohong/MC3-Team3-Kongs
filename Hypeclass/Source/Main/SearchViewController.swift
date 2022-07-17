@@ -26,11 +26,16 @@ class SearchViewController: BaseViewController {
         let layout = UICollectionViewFlowLayout()
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         layout.scrollDirection = .horizontal
-        
+
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = .red
+        cv.backgroundColor = .clear
+        cv.showsHorizontalScrollIndicator = false
         return cv
     }()
+    
+    let historyCellID = "history"
+    
+    var historyList = [String]()
     
     //MARK: - LifeCycle
     
@@ -39,6 +44,13 @@ class SearchViewController: BaseViewController {
         setNavigationBarUI()
         configureUI()
         setSearchBar()
+        historyCollectionView.register(HistoryCell.self, forCellWithReuseIdentifier: historyCellID)
+        historyCollectionView.dataSource = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        historyList = UserDefaults.standard.stringArray(forKey: "SearchHistory") ?? []
+        historyCollectionView.reloadData()
     }
     
     //MARK: - Selectors
@@ -115,11 +127,13 @@ extension SearchViewController: UISearchBarDelegate {
 
 extension SearchViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return historyList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        let cell = historyCollectionView.dequeueReusableCell(withReuseIdentifier: historyCellID, for: indexPath) as! HistoryCell
+        cell.searchHistory.text = "\(historyList[indexPath.row])"
+        return cell
     }
     
     
