@@ -26,7 +26,7 @@ class SearchViewController: BaseViewController {
         let layout = UICollectionViewFlowLayout()
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         layout.scrollDirection = .horizontal
-
+        
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = .clear
         cv.showsHorizontalScrollIndicator = false
@@ -76,7 +76,7 @@ class SearchViewController: BaseViewController {
         historyCollectionView.topAnchor.constraint(equalTo: historyTitle.bottomAnchor, constant: 13).isActive = true
         historyCollectionView.leadingAnchor.constraint(equalTo: historyTitle.leadingAnchor).isActive = true
         historyCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -637).isActive = true
-        historyCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        historyCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -13).isActive = true
     }
     
     func setNavigationBarUI() {
@@ -100,7 +100,9 @@ class SearchViewController: BaseViewController {
     // SearchHistory를 UserDefault에 저장
     func storeSearchHistory(_ searchText: String) {
         if var searchHistory = UserDefaults.standard.stringArray(forKey: "SearchHistory") {
-            searchHistory.insert(searchText, at: 0)
+            if !searchHistory.contains(searchText) {
+                searchHistory.insert(searchText, at: 0)
+            }
             
             if(searchHistory.count > 10) { searchHistory.remove(at: 10) }
             UserDefaults.standard.set(searchHistory, forKey: "SearchHistory")
