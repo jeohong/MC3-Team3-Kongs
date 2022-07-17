@@ -14,12 +14,22 @@ class SearchViewController: BaseViewController {
     let searchBar = SearchBar()
     let separator = Separator()
     let historyTitle: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "최근 검색어"
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         
         return label
+    }()
+    
+    let historyCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        layout.scrollDirection = .horizontal
+        
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.backgroundColor = .red
+        return cv
     }()
     
     //MARK: - LifeCycle
@@ -48,6 +58,13 @@ class SearchViewController: BaseViewController {
         historyTitle.translatesAutoresizingMaskIntoConstraints = false
         historyTitle.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 26).isActive = true
         historyTitle.topAnchor.constraint(equalTo: separator.bottomAnchor, constant: 26).isActive = true
+        
+        self.view.addSubview(historyCollectionView)
+        historyCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        historyCollectionView.topAnchor.constraint(equalTo: historyTitle.bottomAnchor, constant: 13).isActive = true
+        historyCollectionView.leadingAnchor.constraint(equalTo: historyTitle.leadingAnchor).isActive = true
+        historyCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -637).isActive = true
+        historyCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
     }
     
     func setNavigationBarUI() {
@@ -92,6 +109,20 @@ extension SearchViewController: UISearchBarDelegate {
         storeSearchHistory(searchText)
         pushSearchDetailView(searchText)
     }
+}
+
+//MARK: - CollectionView Extension
+
+extension SearchViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        return UICollectionViewCell()
+    }
+    
+    
 }
 
 //MARK: - Preview
