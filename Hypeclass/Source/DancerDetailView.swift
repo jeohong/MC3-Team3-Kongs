@@ -10,6 +10,12 @@ class DancerDetailViewController: BaseViewController {
     let dancerDetailScrollView: UIScrollView! = UIScrollView()
     let dancerDetailContentView: UIView! = UIView()
 
+    private lazy var dancerCoverImage: UIImageView = {
+        let imageView = UIImageView()
+        let dancerCoverImage: UIImage = UIImage(named: "DancerCoverImage")!
+        imageView.image = dancerCoverImage
+        return imageView
+    }()
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,10 +26,12 @@ class DancerDetailViewController: BaseViewController {
     func configureUI() {
         dancerDetailScrollView.translatesAutoresizingMaskIntoConstraints = false
         dancerDetailContentView.translatesAutoresizingMaskIntoConstraints = false
-        
+        dancerCoverImage.translatesAutoresizingMaskIntoConstraints = false
+
         view.addSubview(dancerDetailScrollView)
         dancerDetailScrollView.addSubview(dancerDetailContentView)
-        
+        dancerDetailContentView.addSubview(dancerCoverImage)
+
         dancerDetailContentView.widthAnchor.constraint(equalTo: dancerDetailScrollView.widthAnchor).isActive = true
 
         let contentViewHeight = dancerDetailContentView.heightAnchor.constraint(greaterThanOrEqualTo: view.heightAnchor)
@@ -41,6 +49,11 @@ class DancerDetailViewController: BaseViewController {
             dancerDetailContentView.trailingAnchor.constraint(equalTo: dancerDetailScrollView.contentLayoutGuide.trailingAnchor),
             dancerDetailContentView.topAnchor.constraint(equalTo: dancerDetailScrollView.contentLayoutGuide.topAnchor),
             dancerDetailContentView.bottomAnchor.constraint(equalTo: dancerDetailScrollView.contentLayoutGuide.bottomAnchor),
+            
+            dancerCoverImage.leadingAnchor.constraint(equalTo: dancerDetailContentView.leadingAnchor, constant: 0),
+            dancerCoverImage.trailingAnchor.constraint(equalTo: dancerDetailContentView.trailingAnchor, constant: 0),
+            dancerCoverImage.heightAnchor.constraint(equalToConstant: 220),
+            dancerCoverImage.topAnchor.constraint(equalTo: dancerDetailContentView.topAnchor, constant: 0)
         ])
     }
 }
