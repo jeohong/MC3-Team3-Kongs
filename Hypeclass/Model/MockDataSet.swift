@@ -6,3 +6,43 @@
 //
 
 import Foundation
+
+class MockDataSet {
+    //댄서 클래스 mock data 리스트
+    static let danceClasses: [DanceClass] = {
+        do {
+            if let filePath = Bundle.main.path(forResource: "DanceClass", ofType: "json") {
+                let fileUrl = URL(fileURLWithPath: filePath)
+                let data = try Data(contentsOf: fileUrl)
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
+                let tableData = try decoder.decode([DanceClass].self, from: data)
+                return tableData
+            } else {
+                print("ERROR: can't find filepath for dancer class mockData")
+            }
+        } catch {
+            print("error: \(error)")
+        }
+        return []
+    }()
+    
+    //댄서 mock data 리스트
+    static let dancers: [Dancer] = {
+        do {
+            if let filePath = Bundle.main.path(forResource: "Dancer", ofType: "json") {
+                let fileUrl = URL(fileURLWithPath: filePath)
+                let data = try Data(contentsOf: fileUrl)
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
+                let tableData = try decoder.decode([Dancer].self, from: data)
+                return tableData
+            } else {
+                print("ERROR: can't find filepath for dancer class mockData")
+            }
+        } catch {
+            print("error: \(error)")
+        }
+        return []
+    }()
+}
