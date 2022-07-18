@@ -12,8 +12,8 @@ class MockDataSet {
     static let danceClasses: [DanceClass] = {
         do {
             if let filePath = Bundle.main.path(forResource: "DanceClass", ofType: "json") {
-                let fileUrl = URL(fileURLWithPath: filePath)
-                let data = try Data(contentsOf: fileUrl)
+                let fileURL = URL(fileURLWithPath: filePath)
+                let data = try Data(contentsOf: fileURL)
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .iso8601
                 let tableData = try decoder.decode([DanceClass].self, from: data)
@@ -31,8 +31,8 @@ class MockDataSet {
     static let dancers: [Dancer] = {
         do {
             if let filePath = Bundle.main.path(forResource: "Dancer", ofType: "json") {
-                let fileUrl = URL(fileURLWithPath: filePath)
-                let data = try Data(contentsOf: fileUrl)
+                let fileURL = URL(fileURLWithPath: filePath)
+                let data = try Data(contentsOf: fileURL)
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .iso8601
                 let tableData = try decoder.decode([Dancer].self, from: data)
