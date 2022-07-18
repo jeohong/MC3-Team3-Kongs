@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct DanceClass {
+struct DanceClass: Codable {
     let id: String
     let name: String
     let dancerName: String
-    let tags: [String]
+//    let tags: [String]
     let startTime: Date
     let endTime: Date
     let studioID: String

@@ -42,6 +42,9 @@
 		C07E5C8D287E6D8B00BDA46D /* DanceClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E5C8C287E6D8B00BDA46D /* DanceClass.swift */; };
 		C07E5C8F287E6D9A00BDA46D /* Studio.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E5C8E287E6D9A00BDA46D /* Studio.swift */; };
 		C07E5C91287E707200BDA46D /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E5C90287E707200BDA46D /* Genre.swift */; };
+		C08A10B02883BC38009A38E7 /* DanceClass.json in Resources */ = {isa = PBXBuildFile; fileRef = C08A10AF2883BC38009A38E7 /* DanceClass.json */; };
+		C08A10B22883BCC1009A38E7 /* MockDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08A10B12883BCC1009A38E7 /* MockDataSet.swift */; };
+		C08A10BC2884F850009A38E7 /* Dancer.json in Resources */ = {isa = PBXBuildFile; fileRef = C08A10BB2884F850009A38E7 /* Dancer.json */; };
 		C7CE6758287F2F4900C8F137 /* WeekdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE6757287F2F4900C8F137 /* WeekdayView.swift */; };
 		C7CE675E287FF21200C8F137 /* ScheduleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE675D287FF21200C8F137 /* ScheduleButton.swift */; };
 /* End PBXBuildFile section */
@@ -84,6 +87,9 @@
 		C07E5C8C287E6D8B00BDA46D /* DanceClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DanceClass.swift; sourceTree = "<group>"; };
 		C07E5C8E287E6D9A00BDA46D /* Studio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Studio.swift; sourceTree = "<group>"; };
 		C07E5C90287E707200BDA46D /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
+		C08A10AF2883BC38009A38E7 /* DanceClass.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DanceClass.json; sourceTree = "<group>"; };
+		C08A10B12883BCC1009A38E7 /* MockDataSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataSet.swift; sourceTree = "<group>"; };
+		C08A10BB2884F850009A38E7 /* Dancer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dancer.json; sourceTree = "<group>"; };
 		C7CE6757287F2F4900C8F137 /* WeekdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayView.swift; sourceTree = "<group>"; };
 		C7CE675D287FF21200C8F137 /* ScheduleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -227,9 +233,12 @@
 			isa = PBXGroup;
 			children = (
 				C05BF208287BCAD900C95E1B /* Dancer.swift */,
+				C08A10BB2884F850009A38E7 /* Dancer.json */,
 				C07E5C8C287E6D8B00BDA46D /* DanceClass.swift */,
+				C08A10AF2883BC38009A38E7 /* DanceClass.json */,
 				C07E5C8E287E6D9A00BDA46D /* Studio.swift */,
 				C07E5C90287E707200BDA46D /* Genre.swift */,
+				C08A10B12883BCC1009A38E7 /* MockDataSet.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -314,6 +323,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C08A10BC2884F850009A38E7 /* Dancer.json in Resources */,
+				C08A10B02883BC38009A38E7 /* DanceClass.json in Resources */,
 				C05BF1D5287BC33200C95E1B /* LaunchScreen.storyboard in Resources */,
 				C05BF212287BD1E900C95E1B /* NotoSansCJKkr-Regular.otf in Resources */,
 				C05BF1D2287BC33200C95E1B /* Assets.xcassets in Resources */,
@@ -345,6 +356,7 @@
 				C05BF1F4287BC7EF00C95E1B /* UIFont.swift in Sources */,
 				A38A4C57287E97B900614E94 /* SearchViewController.swift in Sources */,
 				C05BF1E3287BC7C800C95E1B /* Constant.swift in Sources */,
+				C08A10B22883BCC1009A38E7 /* MockDataSet.swift in Sources */,
 				C7CE6758287F2F4900C8F137 /* WeekdayView.swift in Sources */,
 				A31C3F472882AC38005A6F6E /* Separator.swift in Sources */,
 				A31C3F4428828B96005A6F6E /* SearchBar.swift in Sources */,
