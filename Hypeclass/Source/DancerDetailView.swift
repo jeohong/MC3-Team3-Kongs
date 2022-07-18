@@ -6,7 +6,9 @@
 //
 
 class DancerDetailViewController: BaseViewController {
+    
     //MARK: - Properties
+    
     let dancerDetailScrollView: UIScrollView! = UIScrollView()
     let dancerDetailContentView: UIView! = UIView()
 
@@ -16,13 +18,18 @@ class DancerDetailViewController: BaseViewController {
         imageView.image = dancerCoverImage
         return imageView
     }()
+    
     //MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        
     }
     //MARK: - Selectors
+    
     //MARK: - Helpers
+    
     func configureUI() {
         dancerDetailScrollView.translatesAutoresizingMaskIntoConstraints = false
         dancerDetailContentView.translatesAutoresizingMaskIntoConstraints = false
@@ -59,6 +66,7 @@ class DancerDetailViewController: BaseViewController {
 }
 
 //MARK: - Preview
+
 import SwiftUI
 
 struct DancerDetailViewControllerRepresentable: UIViewControllerRepresentable {
