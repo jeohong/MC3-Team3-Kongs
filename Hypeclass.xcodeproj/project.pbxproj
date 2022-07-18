@@ -42,7 +42,6 @@
 		C08A10B02883BC38009A38E7 /* DanceClass.json in Resources */ = {isa = PBXBuildFile; fileRef = C08A10AF2883BC38009A38E7 /* DanceClass.json */; };
 		C08A10B22883BCC1009A38E7 /* MockDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08A10B12883BCC1009A38E7 /* MockDataSet.swift */; };
 		C08A10BC2884F850009A38E7 /* Dancer.json in Resources */ = {isa = PBXBuildFile; fileRef = C08A10BB2884F850009A38E7 /* Dancer.json */; };
-		C7CE6758287F2F4900C8F137 /* WeekdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE6757287F2F4900C8F137 /* WeekdayView.swift */; };
 		C7CE675E287FF21200C8F137 /* ScheduleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE675D287FF21200C8F137 /* ScheduleButton.swift */; };
 		C7CE676028807C8E00C8F137 /* WeekdayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE675F28807C8E00C8F137 /* WeekdayCell.swift */; };
 		C7CE676228814D3C00C8F137 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE676128814D3C00C8F137 /* Weekday.swift */; };
@@ -86,7 +85,6 @@
 		C08A10AF2883BC38009A38E7 /* DanceClass.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DanceClass.json; sourceTree = "<group>"; };
 		C08A10B12883BCC1009A38E7 /* MockDataSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataSet.swift; sourceTree = "<group>"; };
 		C08A10BB2884F850009A38E7 /* Dancer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dancer.json; sourceTree = "<group>"; };
-		C7CE6757287F2F4900C8F137 /* WeekdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayView.swift; sourceTree = "<group>"; };
 		C7CE675D287FF21200C8F137 /* ScheduleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleButton.swift; sourceTree = "<group>"; };
 		C7CE675F28807C8E00C8F137 /* WeekdayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayCell.swift; sourceTree = "<group>"; };
 		C7CE676128814D3C00C8F137 /* Weekday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekday.swift; sourceTree = "<group>"; };
@@ -346,7 +344,6 @@
 				A38A4C57287E97B900614E94 /* SearchViewController.swift in Sources */,
 				C05BF1E3287BC7C800C95E1B /* Constant.swift in Sources */,
 				C08A10B22883BCC1009A38E7 /* MockDataSet.swift in Sources */,
-				C7CE6758287F2F4900C8F137 /* WeekdayView.swift in Sources */,
 				C07E5C8F287E6D9A00BDA46D /* Studio.swift in Sources */,
 				C05BF1F1287BC7EF00C95E1B /* UIViewController.swift in Sources */,
 				C05BF1FB287BC7EF00C95E1B /* UINavigationBar.swift in Sources */,
