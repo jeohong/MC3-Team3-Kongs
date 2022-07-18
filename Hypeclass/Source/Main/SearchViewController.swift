@@ -115,6 +115,7 @@ class SearchViewController: BaseViewController {
     func setHistoryCollection() {
         historyCollectionView.register(HistoryCell.self, forCellWithReuseIdentifier: historyCellID)
         historyCollectionView.dataSource = self
+        historyCollectionView.delegate = self
     }
 }
 
@@ -141,8 +142,10 @@ extension SearchViewController: UICollectionViewDataSource {
         cell.searchHistory.text = "\(historyList[indexPath.row])"
         return cell
     }
-    
-    
+}
+
+extension SearchViewController: UICollectionViewDelegate {
+    // Delegate 패턴 적용
 }
 
 //MARK: - Preview
