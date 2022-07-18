@@ -8,7 +8,7 @@
 import UIKit
 
 class MainViewController: BaseViewController {
-    //MARK: - Properties
+    // MARK: - Properties
     
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -16,7 +16,7 @@ class MainViewController: BaseViewController {
         label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         label.adjustsFontSizeToFitWidth = true
         
-        //MARK: - TODO: func textRect(라벨 박스 크기 확인)
+        // MARK: - TODO: func textRect(라벨 박스 크기 확인)
         
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -28,7 +28,6 @@ class MainViewController: BaseViewController {
         config.titleAlignment = .leading
         config.title = "찾고자 하는 댄서나 장르를 검색해보세요"
         config.background = .listSidebarCell()
-        //MARK: - 돋보기 이미지 구성
         
         config.image = UIImage(systemName: "magnifyingglass")
         config.imagePadding = 4
@@ -38,7 +37,9 @@ class MainViewController: BaseViewController {
         let button = UIButton (
             configuration: config, primaryAction: UIAction(handler: { _ in
             print("MainViewController -> SearchViewController")
-            //MARK: TO_DO: searchView 연결
+                
+            // MARK: TO_DO: searchView 연결
+                
 //            let searchViewController = SearchViewController()
 //            UINavigationController?.pushViewController(searchViewController, animated: true)
             })
@@ -47,9 +48,9 @@ class MainViewController: BaseViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-
-
-    //MARK: - LifeCycle
+    
+    // MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,8 +61,9 @@ class MainViewController: BaseViewController {
         titleConstraint()
         searchButtonConstraint()
     }
-    //MARK: - Selectors
-    //MARK: - Helpers
+    // MARK: - Selectors
+    // MARK: - Helpers
+    
     private func titleConstraint() {
         let safeArea = self.view.safeAreaLayoutGuide
         self.titleLabel.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 60).isActive = true
@@ -76,8 +78,8 @@ class MainViewController: BaseViewController {
     }
 }
 
+// MARK: - Preview
 
-//MARK: - Preview
 import SwiftUI
 
 struct ViewControllerRepresentable: UIViewControllerRepresentable {
