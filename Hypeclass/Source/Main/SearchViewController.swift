@@ -103,7 +103,9 @@ class SearchViewController: BaseViewController {
                 searchHistory.insert(searchText, at: 0)
             }
             
-            if(searchHistory.count > 10) { searchHistory.remove(at: 10) }
+            if(searchHistory.count > 10) {
+                searchHistory.remove(at: 10)
+            }
             UserDefaults.standard.set(searchHistory, forKey: "SearchHistory")
         } else {
             var newHistory = [String]()
