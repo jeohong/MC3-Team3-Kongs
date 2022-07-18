@@ -48,12 +48,14 @@ class DancerDetailViewController: BaseViewController {
         let dancerProfileImage: UIImage = UIImage(named: "DancerInstagramImage")!
         imageView.image = dancerProfileImage
         imageView.contentMode = .scaleAspectFit
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.imageTapped)))
         return imageView
     }()
     
     private lazy var dancerLabelInformationStackView: UIStackView = {
         let stview = UIStackView(arrangedSubviews: [dancerName, dancerGenre, dancerInstagramImage])
-        stview.spacing = 4
+        stview.spacing = 1
         stview.axis = .vertical
         stview.distribution = .fillEqually
         stview.alignment = .leading
@@ -84,9 +86,6 @@ class DancerDetailViewController: BaseViewController {
         dancerDetailScrollView.addSubview(dancerDetailContentView)
         dancerDetailContentView.addSubview(dancerCoverImage)
         dancerDetailContentView.addSubview(dancerProfileImage)
-//        dancerDetailContentView.addSubview(dancerName)
-//        dancerDetailContentView.addSubview(dancerGenre)
-//        dancerDetailContentView.addSubview(dancerInstagramImage)
         dancerDetailContentView.addSubview(dancerLabelInformationStackView)
 
         dancerDetailContentView.widthAnchor.constraint(equalTo: dancerDetailScrollView.widthAnchor).isActive = true
@@ -120,6 +119,12 @@ class DancerDetailViewController: BaseViewController {
             dancerLabelInformationStackView.leadingAnchor.constraint(equalTo: dancerProfileImage.trailingAnchor, constant: 20),
             dancerLabelInformationStackView.centerYAnchor.constraint(equalTo: dancerProfileImage.centerYAnchor)
         ])
+    }
+    
+    @objc func imageTapped(_ sender: UITapGestureRecognizer) {
+        if let url = URL(string: "https://www.instagram.com/byunghun0712/") {
+            UIApplication.shared.open(url, options: [:])
+        }
     }
 }
 
