@@ -13,7 +13,10 @@ class HistoryCell: UICollectionViewCell {
     
     let chip: UIView = {
         let chip = UIView()
-        chip.backgroundColor = .gray
+        chip.layer.borderColor = UIColor.gray.cgColor
+        chip.layer.borderWidth = 1
+        chip.layer.cornerRadius = 12.5
+        chip.layer.masksToBounds = true
         
         return chip
     }()
@@ -48,15 +51,22 @@ class HistoryCell: UICollectionViewCell {
     //MARK: - Helpers
     
     private func configureLayout() {
-        contentView.addSubview(searchHistory)
-        searchHistory.translatesAutoresizingMaskIntoConstraints = false
-        searchHistory.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 9).isActive = true
-        searchHistory.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        searchHistory.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        contentView.addSubview(chip)
+        chip.translatesAutoresizingMaskIntoConstraints = false
+        chip.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        chip.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        chip.heightAnchor.constraint(equalToConstant: 25).isActive = true
         
-        contentView.addSubview(cancelBtn)
+        chip.addSubview(searchHistory)
+        searchHistory.translatesAutoresizingMaskIntoConstraints = false
+        searchHistory.leadingAnchor.constraint(equalTo: chip.leadingAnchor, constant: 9).isActive = true
+        searchHistory.centerXAnchor.constraint(equalTo: chip.centerXAnchor, constant: -12).isActive = true
+        searchHistory.centerYAnchor.constraint(equalTo: chip.centerYAnchor).isActive = true
+        
+        chip.addSubview(cancelBtn)
         cancelBtn.translatesAutoresizingMaskIntoConstraints = false
-        cancelBtn.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         cancelBtn.leadingAnchor.constraint(equalTo: searchHistory.trailingAnchor, constant: 12).isActive = true
+        cancelBtn.centerYAnchor.constraint(equalTo: chip.centerYAnchor).isActive = true
+        cancelBtn.trailingAnchor.constraint(equalTo: chip.trailingAnchor, constant: -9).isActive = true
     }
 }
