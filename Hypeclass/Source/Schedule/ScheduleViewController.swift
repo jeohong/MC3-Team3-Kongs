@@ -109,6 +109,16 @@ class ScheduleViewController: BaseViewController {
         configureUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
     // MARK: - Selectors
     
     /// 지난 주 날짜의 weekdayView로 변경합니다.
@@ -136,23 +146,23 @@ class ScheduleViewController: BaseViewController {
         monthNumLabel.text = String(selectedDate.get(.month))
         view.addSubview(monthNumLabel)
         monthNumLabel.translatesAutoresizingMaskIntoConstraints = false
-        monthNumLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
+        monthNumLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
         monthNumLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
         
         view.addSubview(monthLabel)
         monthLabel.translatesAutoresizingMaskIntoConstraints = false
-        monthLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 78).isActive = true
+        monthLabel.topAnchor.constraint(equalTo: monthNumLabel.topAnchor, constant: 8).isActive = true
         monthLabel.leadingAnchor.constraint(equalTo: monthNumLabel.trailingAnchor).isActive = true
         
         //<> 버튼
         view.addSubview(nextButton)
         nextButton.translatesAutoresizingMaskIntoConstraints = false
-        nextButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
-        nextButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
+        nextButton.topAnchor.constraint(equalTo: monthNumLabel.topAnchor).isActive = true
+        nextButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -25).isActive = true
         
         view.addSubview(previousButton)
         previousButton.translatesAutoresizingMaskIntoConstraints = false
-        previousButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
+        previousButton.topAnchor.constraint(equalTo: nextButton.topAnchor).isActive = true
         previousButton.trailingAnchor.constraint(equalTo: nextButton.leadingAnchor, constant: -5).isActive = true
         
         //weekCollectionView
@@ -162,15 +172,15 @@ class ScheduleViewController: BaseViewController {
 
         view.addSubview(weekCollectionView)
         weekCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        weekCollectionView.topAnchor.constraint(equalTo: monthNumLabel.bottomAnchor, constant: 40).isActive = true
-        weekCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        weekCollectionView.trailingAnchor.constraint(equalTo: monthNumLabel.leadingAnchor, constant: 40).isActive = true
-        weekCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -90).isActive = true
+        weekCollectionView.topAnchor.constraint(equalTo: monthNumLabel.bottomAnchor, constant: 45).isActive = true
+        weekCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        weekCollectionView.trailingAnchor.constraint(equalTo: weekCollectionView.leadingAnchor, constant: 65).isActive = true
+        weekCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -130).isActive = true
         
         // 세로 구분선
         view.addSubview(separator)
         separator.translatesAutoresizingMaskIntoConstraints = false
-        separator.leadingAnchor.constraint(equalTo: weekCollectionView.trailingAnchor, constant: 10).isActive = true
+        separator.leadingAnchor.constraint(equalTo: weekCollectionView.trailingAnchor).isActive = true
         separator.topAnchor.constraint(equalTo: weekCollectionView.topAnchor).isActive = true
         separator.bottomAnchor.constraint(equalTo: weekCollectionView.bottomAnchor).isActive = true
         separator.widthAnchor.constraint(equalToConstant: 0.5).isActive = true
