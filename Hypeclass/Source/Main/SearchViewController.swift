@@ -44,8 +44,7 @@ class SearchViewController: BaseViewController {
         setNavigationBarUI()
         configureUI()
         setSearchBar()
-        historyCollectionView.register(HistoryCell.self, forCellWithReuseIdentifier: historyCellID)
-        historyCollectionView.dataSource = self
+        setHistoryCollection()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -111,6 +110,11 @@ class SearchViewController: BaseViewController {
             newHistory.append(searchText)
             UserDefaults.standard.set(newHistory, forKey: "SearchHistory")
         }
+    }
+    
+    func setHistoryCollection() {
+        historyCollectionView.register(HistoryCell.self, forCellWithReuseIdentifier: historyCellID)
+        historyCollectionView.dataSource = self
     }
 }
 
