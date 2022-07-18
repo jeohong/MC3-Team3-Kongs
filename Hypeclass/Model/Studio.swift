@@ -13,5 +13,5 @@ struct Studio: Codable {
     let description: String?
 //    let tags: [String]
     let classes: [DanceClass]
-    let platformUrls: [String] //URL 내에 플랫폼 정보가 담겨져있어 URL 자체만 담도록 변경
+    let platformURLs: [String] //URL 내에 플랫폼 정보가 담겨져있어 URL 자체만 담도록 변경
 }
