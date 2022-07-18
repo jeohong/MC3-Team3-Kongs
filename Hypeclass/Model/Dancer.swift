@@ -14,7 +14,7 @@ struct Dancer: Codable {
     let description: String?
 //    let tags: [String]
     
-    let youtubeUrl: String?
+    let youtubeURL: String?
     let instagramUrl: String?
     let profileImageUrl: String
     let videoThumbnailUrl: String
