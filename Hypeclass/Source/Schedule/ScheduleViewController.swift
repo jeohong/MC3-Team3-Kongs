@@ -11,7 +11,7 @@ class ScheduleViewController: BaseViewController {
     
     // MARK: - Properties
     
-    private let monthNumLabel: UILabel = {
+    private let monthNumberLabel: UILabel = {
         let label = UILabel()
         label.text = String(Date().get(.month))
         label.textColor = .white
@@ -143,21 +143,21 @@ class ScheduleViewController: BaseViewController {
     
     private func configureUI() {
         // 상단 month 레이블
-        monthNumLabel.text = String(selectedDate.get(.month))
-        view.addSubview(monthNumLabel)
-        monthNumLabel.translatesAutoresizingMaskIntoConstraints = false
-        monthNumLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
-        monthNumLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
+        monthNumberLabel.text = String(selectedDate.get(.month))
+        view.addSubview(monthNumberLabel)
+        monthNumberLabel.translatesAutoresizingMaskIntoConstraints = false
+        monthNumberLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
+        monthNumberLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
         
         view.addSubview(monthLabel)
         monthLabel.translatesAutoresizingMaskIntoConstraints = false
-        monthLabel.topAnchor.constraint(equalTo: monthNumLabel.topAnchor, constant: 8).isActive = true
-        monthLabel.leadingAnchor.constraint(equalTo: monthNumLabel.trailingAnchor).isActive = true
+        monthLabel.topAnchor.constraint(equalTo: monthNumberLabel.topAnchor, constant: 8).isActive = true
+        monthLabel.leadingAnchor.constraint(equalTo: monthNumberLabel.trailingAnchor).isActive = true
         
-        //<> 버튼
+        // <> 버튼
         view.addSubview(nextButton)
         nextButton.translatesAutoresizingMaskIntoConstraints = false
-        nextButton.topAnchor.constraint(equalTo: monthNumLabel.topAnchor).isActive = true
+        nextButton.topAnchor.constraint(equalTo: monthNumberLabel.topAnchor).isActive = true
         nextButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -25).isActive = true
         
         view.addSubview(previousButton)
@@ -165,14 +165,14 @@ class ScheduleViewController: BaseViewController {
         previousButton.topAnchor.constraint(equalTo: nextButton.topAnchor).isActive = true
         previousButton.trailingAnchor.constraint(equalTo: nextButton.leadingAnchor, constant: -5).isActive = true
         
-        //weekCollectionView
+        // weekCollectionView
         weekCollectionView.register(WeekdayCell.self, forCellWithReuseIdentifier: weekCellID)
         weekCollectionView.dataSource = self
         weekCollectionView.delegate = self
 
         view.addSubview(weekCollectionView)
         weekCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        weekCollectionView.topAnchor.constraint(equalTo: monthNumLabel.bottomAnchor, constant: 45).isActive = true
+        weekCollectionView.topAnchor.constraint(equalTo: monthNumberLabel.bottomAnchor, constant: 45).isActive = true
         weekCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         weekCollectionView.trailingAnchor.constraint(equalTo: weekCollectionView.leadingAnchor, constant: 65).isActive = true
         weekCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -130).isActive = true
@@ -185,7 +185,7 @@ class ScheduleViewController: BaseViewController {
         separator.bottomAnchor.constraint(equalTo: weekCollectionView.bottomAnchor).isActive = true
         separator.widthAnchor.constraint(equalToConstant: 0.5).isActive = true
 
-        //scheduleCollectionView
+        // scheduleCollectionView
         addButtonToStackView()
         scheduleCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: scheduleCellID)
         scheduleCollectionView.dataSource = self
@@ -193,7 +193,7 @@ class ScheduleViewController: BaseViewController {
 
         view.addSubview(scheduleCollectionView)
         scheduleCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        scheduleCollectionView.topAnchor.constraint(equalTo: monthNumLabel.bottomAnchor, constant: 40).isActive = true
+        scheduleCollectionView.topAnchor.constraint(equalTo: monthNumberLabel.bottomAnchor, constant: 40).isActive = true
         scheduleCollectionView.leadingAnchor.constraint(equalTo: separator.trailingAnchor, constant: 30).isActive = true
         scheduleCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -90).isActive = true
         scheduleCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
@@ -231,7 +231,7 @@ class ScheduleViewController: BaseViewController {
     
     /// ScheduleViewController에서 변경되는 뷰를 다시 로드합니다.
     private func reloadViews() {
-        monthNumLabel.text = monthString()
+        monthNumberLabel.text = monthString()
         addButtonToStackView()
         scheduleCollectionView.reloadData()
         weekCollectionView.reloadData()
