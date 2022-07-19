@@ -8,28 +8,24 @@
 import UIKit
 
 class SearchViewController: BaseViewController {
+    
     //MARK: - Properties
-    let searchBar: UISearchBar = {
-        let searchBar = UISearchBar()
-        searchBar.placeholder = "찾고자 하는 댄서나 장르를 검색하세요."
-        searchBar.becomeFirstResponder()
-        searchBar.tintColor = .white
-        searchBar.searchTextField.textColor = .white
-        
-        return searchBar
-    }()
+    
+    let searchBar = SearchBar()
     
     //MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBarUI()
         configureUI()
-        
-        searchBar.delegate = self
+        setSearchBar()
     }
     
     //MARK: - Selectors
+    
     //MARK: - Helpers
+    
     func configureUI() {
         //레이아웃 구성
     }
@@ -38,23 +34,32 @@ class SearchViewController: BaseViewController {
         self.navigationItem.titleView = searchBar
     }
     
-    func presentSearchDetailView(_ searchText: String) {
+    func pushSearchDetailView(_ searchText: String) {
         let searchDetailVC = SearchDetailViewController()
         searchDetailVC.searchBar.text = searchText
         self.navigationController?.pushViewController(searchDetailVC, animated: true)
     }
+    
+    func setSearchBar() {
+        searchBar.delegate = self
+        
+        searchBar.placeholder = "찾고자 하는 댄서나 장르를 검색하세요."
+        searchBar.becomeFirstResponder()
+    }
 }
 
-// SearchBar Delegate
+//MARK: - SearchBar Delegate
+
 extension SearchViewController: UISearchBarDelegate {
     // SearchButton Clicked
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
-        presentSearchDetailView(searchText)
+        pushSearchDetailView(searchText)
     }
 }
 
 //MARK: - Preview
+
 import SwiftUI
 
 struct SearchViewControllerRepresentable: UIViewControllerRepresentable {
