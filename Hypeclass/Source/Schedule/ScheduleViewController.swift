@@ -191,8 +191,9 @@ class ScheduleViewController: BaseViewController {
 
         view.addSubview(scheduleCollectionView)
         scheduleCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        scheduleCollectionView.contentInset = UIEdgeInsets(top: 0, left: 19, bottom: 0, right: 0)
         scheduleCollectionView.topAnchor.constraint(equalTo: monthNumberLabel.bottomAnchor, constant: 40).isActive = true
-        scheduleCollectionView.leadingAnchor.constraint(equalTo: separator.trailingAnchor, constant: 30).isActive = true
+        scheduleCollectionView.leadingAnchor.constraint(equalTo: separator.trailingAnchor, constant: 1).isActive = true
         scheduleCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -90).isActive = true
         scheduleCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
     }
