@@ -160,8 +160,8 @@ extension SearchViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = historyCollectionView.dequeueReusableCell(withReuseIdentifier: historyCellID, for: indexPath) as! HistoryCell
-        cell.searchHistory.text = "\(historyList[indexPath.row])"
-        cell.cancelBtn.addTarget(self, action: #selector(removeHistory(_:)), for: .touchUpInside)
+        cell.logLabel.text = "\(historyList[indexPath.row])"
+        cell.cancelButton.addTarget(self, action: #selector(removeHistory(_:)), for: .touchUpInside)
         
         return cell
     }

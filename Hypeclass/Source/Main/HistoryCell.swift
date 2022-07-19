@@ -21,7 +21,7 @@ class HistoryCell: UICollectionViewCell {
         return chip
     }()
     
-    let searchHistory: UILabel = {
+    let logLabel: UILabel = {
         let searchHistory = UILabel()
         searchHistory.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         searchHistory.textColor = .gray
@@ -29,7 +29,7 @@ class HistoryCell: UICollectionViewCell {
         return searchHistory
     }()
     
-    let cancelBtn: UIButton = {
+    let cancelButton: UIButton = {
         let cancelBtn = UIButton()
         cancelBtn.setImage(UIImage(systemName: "xmark"), for: .normal)
         cancelBtn.tintColor = .gray
@@ -57,16 +57,16 @@ class HistoryCell: UICollectionViewCell {
         chip.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         chip.heightAnchor.constraint(equalToConstant: 25).isActive = true
         
-        chip.addSubview(searchHistory)
-        searchHistory.translatesAutoresizingMaskIntoConstraints = false
-        searchHistory.leadingAnchor.constraint(equalTo: chip.leadingAnchor, constant: 9).isActive = true
-        searchHistory.centerXAnchor.constraint(equalTo: chip.centerXAnchor, constant: -12).isActive = true
-        searchHistory.centerYAnchor.constraint(equalTo: chip.centerYAnchor).isActive = true
+        chip.addSubview(logLabel)
+        logLabel.translatesAutoresizingMaskIntoConstraints = false
+        logLabel.leadingAnchor.constraint(equalTo: chip.leadingAnchor, constant: 9).isActive = true
+        logLabel.centerXAnchor.constraint(equalTo: chip.centerXAnchor, constant: -12).isActive = true
+        logLabel.centerYAnchor.constraint(equalTo: chip.centerYAnchor).isActive = true
         
-        chip.addSubview(cancelBtn)
-        cancelBtn.translatesAutoresizingMaskIntoConstraints = false
-        cancelBtn.leadingAnchor.constraint(equalTo: searchHistory.trailingAnchor, constant: 12).isActive = true
-        cancelBtn.centerYAnchor.constraint(equalTo: chip.centerYAnchor).isActive = true
-        cancelBtn.trailingAnchor.constraint(equalTo: chip.trailingAnchor, constant: -9).isActive = true
+        chip.addSubview(cancelButton)
+        cancelButton.translatesAutoresizingMaskIntoConstraints = false
+        cancelButton.leadingAnchor.constraint(equalTo: logLabel.trailingAnchor, constant: 12).isActive = true
+        cancelButton.centerYAnchor.constraint(equalTo: chip.centerYAnchor).isActive = true
+        cancelButton.trailingAnchor.constraint(equalTo: chip.trailingAnchor, constant: -9).isActive = true
     }
 }
