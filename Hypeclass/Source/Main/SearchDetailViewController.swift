@@ -20,6 +20,14 @@ class SearchDetailViewController: BaseViewController {
     
     let separator = Separator()
     
+    let cancelBtn: UIButton = {
+        let img = UIImage(systemName: "xmark.circle.fill")
+        let cancelBtn = UIButton()
+        cancelBtn.setImage(img, for: .normal)
+        cancelBtn.tintColor = .gray
+        return cancelBtn
+    }()
+    
     //MARK: - LifeCycle
     
     override func viewDidLoad() {
@@ -45,6 +53,7 @@ class SearchDetailViewController: BaseViewController {
     func setNavigationBarUI() {
         searchLabel.translatesAutoresizingMaskIntoConstraints = false
         self.navigationController?.navigationBar.topItem?.title = searchLabel.text
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: cancelBtn)
     }
 }
 
