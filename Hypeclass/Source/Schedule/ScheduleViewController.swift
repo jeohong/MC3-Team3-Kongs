@@ -90,8 +90,8 @@ class ScheduleViewController: BaseViewController {
     }()
     
     private let myDancers: [Dancer?] = {
-        let favoriteIDs = [2364236487, 0768035155, 3947665830] // TODO: User Default 사용
-        let dancers = MockDataSet.dancers.filter { favoriteIDs.contains(Int($0.id)!) }
+        let subscriptionIDs = UserDefaults.standard.stringArray(forKey: "SubscribedDancers") ?? ["2364236487", "0768035155", "3947665830"]
+        let dancers = MockDataSet.dancers.filter { subscriptionIDs.contains($0.id) }
         return dancers
     }()
 
