@@ -87,7 +87,7 @@ class SearchViewController: BaseViewController {
         historyCollectionView.translatesAutoresizingMaskIntoConstraints = false
         historyCollectionView.topAnchor.constraint(equalTo: historyTitle.bottomAnchor, constant: 13).isActive = true
         historyCollectionView.leadingAnchor.constraint(equalTo: historyTitle.leadingAnchor).isActive = true
-        historyCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -637).isActive = true
+        historyCollectionView.heightAnchor.constraint(equalToConstant: 25).isActive = true
         historyCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -13).isActive = true
     }
     
