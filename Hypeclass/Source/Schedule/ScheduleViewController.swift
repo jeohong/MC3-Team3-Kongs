@@ -229,30 +229,15 @@ class ScheduleViewController: BaseViewController {
     
     /// ScheduleViewController에서 변경되는 뷰를 다시 로드합니다.
     private func reloadViews() {
-        monthNumberLabel.text = monthString()
+        monthNumberLabel.text = selectedDate.monthString()
         addButtonToStackView()
         scheduleCollectionView.reloadData()
         weekCollectionView.reloadData()
     }
-    
-    /// selectedDate와 같은 주의 월요일을 반환합니다.
-    private func mondayInWeek() -> Date {
-        let cal = Calendar.current
-        var date = selectedDate
-        let weekdayNum = date.get(.weekday)
-
-        if weekdayNum == 1 {
-            date = cal.date(byAdding: .day, value: -7, to: date)!
-        }
-
-        var comps = cal.dateComponents([.weekOfYear, .yearForWeekOfYear], from: date)
-        comps.weekday = 2
-        return cal.date(from: comps)!
-    }
 
     /// 날짜에 맞는 DanceClass를 각각 배열에 넣어줍니다.
     private func fetchSchedules() {
-        let monday = mondayInWeek()
+        let monday = selectedDate.mondayInWeek(at: selectedDate.get(.weekday))
         let cal = Calendar.current
 
         for idx in 0...6 {
@@ -267,21 +252,6 @@ class ScheduleViewController: BaseViewController {
             }
             weekSchedules[idx] = weekSchedules[idx].sorted(by: { $0.startTime < $1.startTime })
         }
-    }
-    
-    /// 현재 주의 해당 월을 반환합니다.
-    private func monthString() -> String {
-        let monday = mondayInWeek()
-        let cal = Calendar.current
-
-        for idx in 0...6 {
-            let date = cal.date(byAdding: .day, value: idx, to: monday)
-            
-            if date!.get(.day) == 1 {
-                return String(date!.get(.month))
-            }
-        }
-        return String(monday.get(.month))
     }
 }
 
