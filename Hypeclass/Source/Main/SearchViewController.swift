@@ -92,7 +92,7 @@ class SearchViewController: BaseViewController {
     // Navigation 화면 전환
     func pushSearchDetailView(_ searchText: String) {
         let searchDetailVC = SearchDetailViewController()
-        searchDetailVC.searchBar.text = searchText
+        searchDetailVC.searchLabel.text = searchText
         self.navigationController?.pushViewController(searchDetailVC, animated: true)
     }
     
