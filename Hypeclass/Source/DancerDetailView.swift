@@ -19,7 +19,7 @@ class DancerDetailViewController: BaseViewController {
         return imageView
     }()
     
-    private lazy var dancerProfileImage: UIImageView = {
+    private lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
         let dancerProfileImage: UIImage = UIImage(named: "DancerProfileImage")!
         imageView.image = dancerProfileImage
@@ -27,7 +27,7 @@ class DancerDetailViewController: BaseViewController {
         return imageView
     }()
     
-    private lazy var dancerName: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.text = "이병헌"
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
@@ -35,7 +35,7 @@ class DancerDetailViewController: BaseViewController {
         return label
     }()
     
-    private lazy var dancerGenre: UILabel = {
+    private lazy var genreLabel: UILabel = {
         let label = UILabel()
         label.text = "방송댄스"
         label.font = UIFont.systemFont(ofSize: 12, weight: .ultraLight)
@@ -43,7 +43,7 @@ class DancerDetailViewController: BaseViewController {
         return label
     }()
     
-    private lazy var dancerInstagramImage: UIImageView = {
+    private lazy var instagramImageView: UIImageView = {
         let imageView = UIImageView()
         let dancerProfileImage: UIImage = UIImage(named: "DancerInstagramImage")!
         imageView.image = dancerProfileImage
@@ -53,8 +53,8 @@ class DancerDetailViewController: BaseViewController {
         return imageView
     }()
     
-    private lazy var dancerLabelInformationStackView: UIStackView = {
-        let stview = UIStackView(arrangedSubviews: [dancerName, dancerGenre, dancerInstagramImage])
+    private lazy var dancerInfoStackView: UIStackView = {
+        let stview = UIStackView(arrangedSubviews: [nameLabel, genreLabel, instagramImageView])
         stview.spacing = 1
         stview.axis = .vertical
         stview.distribution = .fillEqually
@@ -76,17 +76,17 @@ class DancerDetailViewController: BaseViewController {
         dancerDetailScrollView.translatesAutoresizingMaskIntoConstraints = false
         dancerDetailContentView.translatesAutoresizingMaskIntoConstraints = false
         dancerCoverImage.translatesAutoresizingMaskIntoConstraints = false
-        dancerProfileImage.translatesAutoresizingMaskIntoConstraints = false
-        dancerName.translatesAutoresizingMaskIntoConstraints = false
-        dancerGenre.translatesAutoresizingMaskIntoConstraints = false
-        dancerInstagramImage.translatesAutoresizingMaskIntoConstraints = false
-        dancerLabelInformationStackView.translatesAutoresizingMaskIntoConstraints = false
+        profileImageView.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        genreLabel.translatesAutoresizingMaskIntoConstraints = false
+        instagramImageView.translatesAutoresizingMaskIntoConstraints = false
+        dancerInfoStackView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(dancerDetailScrollView)
         dancerDetailScrollView.addSubview(dancerDetailContentView)
         dancerDetailContentView.addSubview(dancerCoverImage)
-        dancerDetailContentView.addSubview(dancerProfileImage)
-        dancerDetailContentView.addSubview(dancerLabelInformationStackView)
+        dancerDetailContentView.addSubview(profileImageView)
+        dancerDetailContentView.addSubview(dancerInfoStackView)
 
         dancerDetailContentView.widthAnchor.constraint(equalTo: dancerDetailScrollView.widthAnchor).isActive = true
 
@@ -111,13 +111,13 @@ class DancerDetailViewController: BaseViewController {
             dancerCoverImage.heightAnchor.constraint(equalToConstant: 220),
             dancerCoverImage.topAnchor.constraint(equalTo: dancerDetailContentView.topAnchor, constant: 0),
             
-            dancerProfileImage.leadingAnchor.constraint(equalTo: dancerDetailContentView.leadingAnchor, constant: 25),
-            dancerProfileImage.topAnchor.constraint(equalTo: dancerCoverImage.bottomAnchor, constant: 35),
-            dancerProfileImage.heightAnchor.constraint(equalToConstant: 90),
-            dancerProfileImage.widthAnchor.constraint(equalToConstant: 90),
+            profileImageView.leadingAnchor.constraint(equalTo: dancerDetailContentView.leadingAnchor, constant: 25),
+            profileImageView.topAnchor.constraint(equalTo: dancerCoverImage.bottomAnchor, constant: 35),
+            profileImageView.heightAnchor.constraint(equalToConstant: 90),
+            profileImageView.widthAnchor.constraint(equalToConstant: 90),
 
-            dancerLabelInformationStackView.leadingAnchor.constraint(equalTo: dancerProfileImage.trailingAnchor, constant: 20),
-            dancerLabelInformationStackView.centerYAnchor.constraint(equalTo: dancerProfileImage.centerYAnchor)
+            dancerInfoStackView.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 20),
+            dancerInfoStackView.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor)
         ])
     }
     
