@@ -40,6 +40,7 @@
 		C05BF211287BD1E900C95E1B /* NotoSansCJKkr-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C05BF20E287BD1E800C95E1B /* NotoSansCJKkr-Bold.otf */; };
 		C05BF212287BD1E900C95E1B /* NotoSansCJKkr-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C05BF20F287BD1E900C95E1B /* NotoSansCJKkr-Regular.otf */; };
 		C05BF213287BD1E900C95E1B /* NotoSansCJKkr-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C05BF210287BD1E900C95E1B /* NotoSansCJKkr-Medium.otf */; };
+		C07E56DB2886D972000ACE1B /* Dancer.json in Resources */ = {isa = PBXBuildFile; fileRef = C07E56DA2886D972000ACE1B /* Dancer.json */; };
 		C07E5C8D287E6D8B00BDA46D /* DanceClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E5C8C287E6D8B00BDA46D /* DanceClass.swift */; };
 		C07E5C8F287E6D9A00BDA46D /* Studio.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E5C8E287E6D9A00BDA46D /* Studio.swift */; };
 		C07E5C91287E707200BDA46D /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E5C90287E707200BDA46D /* Genre.swift */; };
@@ -88,6 +89,7 @@
 		C05BF20E287BD1E800C95E1B /* NotoSansCJKkr-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Bold.otf"; sourceTree = "<group>"; };
 		C05BF20F287BD1E900C95E1B /* NotoSansCJKkr-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Regular.otf"; sourceTree = "<group>"; };
 		C05BF210287BD1E900C95E1B /* NotoSansCJKkr-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Medium.otf"; sourceTree = "<group>"; };
+		C07E56DA2886D972000ACE1B /* Dancer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dancer.json; sourceTree = "<group>"; };
 		C07E5C8C287E6D8B00BDA46D /* DanceClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DanceClass.swift; sourceTree = "<group>"; };
 		C07E5C8E287E6D9A00BDA46D /* Studio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Studio.swift; sourceTree = "<group>"; };
 		C07E5C90287E707200BDA46D /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
@@ -249,7 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				C05BF208287BCAD900C95E1B /* Dancer.swift */,
-				C08A10BB2884F850009A38E7 /* Dancer.json */,
+				C07E56DA2886D972000ACE1B /* Dancer.json */,
 				C07E5C8C287E6D8B00BDA46D /* DanceClass.swift */,
 				C08A10AF2883BC38009A38E7 /* DanceClass.json */,
 				C07E5C8E287E6D9A00BDA46D /* Studio.swift */,
@@ -342,7 +344,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C08A10BC2884F850009A38E7 /* Dancer.json in Resources */,
+				C07E56DB2886D972000ACE1B /* Dancer.json in Resources */,
 				C08A10B02883BC38009A38E7 /* DanceClass.json in Resources */,
 				C05BF1D5287BC33200C95E1B /* LaunchScreen.storyboard in Resources */,
 				C05BF212287BD1E900C95E1B /* NotoSansCJKkr-Regular.otf in Resources */,
