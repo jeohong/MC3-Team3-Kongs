@@ -20,7 +20,7 @@ class SearchDetailViewController: BaseViewController {
     
     let separator = Separator()
     
-    let cancelBtn: UIButton = {
+    let cancelButton: UIButton = {
         let img = UIImage(systemName: "xmark.circle.fill")
         let cancelBtn = UIButton()
         cancelBtn.setImage(img, for: .normal)
@@ -54,7 +54,7 @@ class SearchDetailViewController: BaseViewController {
     func setNavigationBarUI() {
         searchLabel.translatesAutoresizingMaskIntoConstraints = false
         self.navigationController?.navigationBar.topItem?.title = searchLabel.text
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: cancelBtn)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: cancelButton)
     }
 }
 
