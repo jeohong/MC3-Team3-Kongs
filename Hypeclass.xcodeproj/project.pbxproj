@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A31C3F4428828B96005A6F6E /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31C3F4328828B96005A6F6E /* SearchBar.swift */; };
 		A38A4C57287E97B900614E94 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38A4C56287E97B900614E94 /* SearchViewController.swift */; };
 		A38A4C59287E97CF00614E94 /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38A4C58287E97CF00614E94 /* SearchDetailViewController.swift */; };
 		C039DCBA287D940F0007951D /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C039DCB9287D940F0007951D /* MainTabController.swift */; };
@@ -36,18 +37,19 @@
 		C05BF211287BD1E900C95E1B /* NotoSansCJKkr-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C05BF20E287BD1E800C95E1B /* NotoSansCJKkr-Bold.otf */; };
 		C05BF212287BD1E900C95E1B /* NotoSansCJKkr-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C05BF20F287BD1E900C95E1B /* NotoSansCJKkr-Regular.otf */; };
 		C05BF213287BD1E900C95E1B /* NotoSansCJKkr-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C05BF210287BD1E900C95E1B /* NotoSansCJKkr-Medium.otf */; };
+		C07E56DB2886D972000ACE1B /* Dancer.json in Resources */ = {isa = PBXBuildFile; fileRef = C07E56DA2886D972000ACE1B /* Dancer.json */; };
+		C07E56DF2886DB84000ACE1B /* DanceClass.json in Resources */ = {isa = PBXBuildFile; fileRef = C07E56DE2886DB84000ACE1B /* DanceClass.json */; };
 		C07E5C8D287E6D8B00BDA46D /* DanceClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E5C8C287E6D8B00BDA46D /* DanceClass.swift */; };
 		C07E5C8F287E6D9A00BDA46D /* Studio.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E5C8E287E6D9A00BDA46D /* Studio.swift */; };
 		C07E5C91287E707200BDA46D /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E5C90287E707200BDA46D /* Genre.swift */; };
-		C08A10B02883BC38009A38E7 /* DanceClass.json in Resources */ = {isa = PBXBuildFile; fileRef = C08A10AF2883BC38009A38E7 /* DanceClass.json */; };
 		C08A10B22883BCC1009A38E7 /* MockDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08A10B12883BCC1009A38E7 /* MockDataSet.swift */; };
-		C08A10BC2884F850009A38E7 /* Dancer.json in Resources */ = {isa = PBXBuildFile; fileRef = C08A10BB2884F850009A38E7 /* Dancer.json */; };
 		C7CE675E287FF21200C8F137 /* ScheduleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE675D287FF21200C8F137 /* ScheduleButton.swift */; };
 		C7CE676028807C8E00C8F137 /* WeekdayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE675F28807C8E00C8F137 /* WeekdayCell.swift */; };
 		C7CE676228814D3C00C8F137 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE676128814D3C00C8F137 /* Weekday.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A31C3F4328828B96005A6F6E /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		A38A4C56287E97B900614E94 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		A38A4C58287E97CF00614E94 /* SearchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailViewController.swift; sourceTree = "<group>"; };
 		C039DCB9287D940F0007951D /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
@@ -79,12 +81,12 @@
 		C05BF20E287BD1E800C95E1B /* NotoSansCJKkr-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Bold.otf"; sourceTree = "<group>"; };
 		C05BF20F287BD1E900C95E1B /* NotoSansCJKkr-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Regular.otf"; sourceTree = "<group>"; };
 		C05BF210287BD1E900C95E1B /* NotoSansCJKkr-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Medium.otf"; sourceTree = "<group>"; };
+		C07E56DA2886D972000ACE1B /* Dancer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dancer.json; sourceTree = "<group>"; };
+		C07E56DE2886DB84000ACE1B /* DanceClass.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DanceClass.json; sourceTree = "<group>"; };
 		C07E5C8C287E6D8B00BDA46D /* DanceClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DanceClass.swift; sourceTree = "<group>"; };
 		C07E5C8E287E6D9A00BDA46D /* Studio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Studio.swift; sourceTree = "<group>"; };
 		C07E5C90287E707200BDA46D /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
-		C08A10AF2883BC38009A38E7 /* DanceClass.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DanceClass.json; sourceTree = "<group>"; };
 		C08A10B12883BCC1009A38E7 /* MockDataSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataSet.swift; sourceTree = "<group>"; };
-		C08A10BB2884F850009A38E7 /* Dancer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dancer.json; sourceTree = "<group>"; };
 		C7CE675D287FF21200C8F137 /* ScheduleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleButton.swift; sourceTree = "<group>"; };
 		C7CE675F28807C8E00C8F137 /* WeekdayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayCell.swift; sourceTree = "<group>"; };
 		C7CE676128814D3C00C8F137 /* Weekday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekday.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 			children = (
 				C05BF1FC287BC88400C95E1B /* IndicatorView.swift */,
 				C05BF1FE287BC90900C95E1B /* Device.swift */,
+				A31C3F4328828B96005A6F6E /* SearchBar.swift */,
 				C05BF1E5287BC7DB00C95E1B /* Extension */,
 			);
 			path = Util;
@@ -219,9 +222,9 @@
 			isa = PBXGroup;
 			children = (
 				C05BF208287BCAD900C95E1B /* Dancer.swift */,
-				C08A10BB2884F850009A38E7 /* Dancer.json */,
+				C07E56DA2886D972000ACE1B /* Dancer.json */,
 				C07E5C8C287E6D8B00BDA46D /* DanceClass.swift */,
-				C08A10AF2883BC38009A38E7 /* DanceClass.json */,
+				C07E56DE2886DB84000ACE1B /* DanceClass.json */,
 				C07E5C8E287E6D9A00BDA46D /* Studio.swift */,
 				C07E5C90287E707200BDA46D /* Genre.swift */,
 				C7CE676128814D3C00C8F137 /* Weekday.swift */,
@@ -309,11 +312,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C08A10BC2884F850009A38E7 /* Dancer.json in Resources */,
-				C08A10B02883BC38009A38E7 /* DanceClass.json in Resources */,
+				C07E56DB2886D972000ACE1B /* Dancer.json in Resources */,
 				C05BF1D5287BC33200C95E1B /* LaunchScreen.storyboard in Resources */,
 				C05BF212287BD1E900C95E1B /* NotoSansCJKkr-Regular.otf in Resources */,
 				C05BF1D2287BC33200C95E1B /* Assets.xcassets in Resources */,
+				C07E56DF2886DB84000ACE1B /* DanceClass.json in Resources */,
 				C05BF211287BD1E900C95E1B /* NotoSansCJKkr-Bold.otf in Resources */,
 				C05BF213287BD1E900C95E1B /* NotoSansCJKkr-Medium.otf in Resources */,
 			);
@@ -343,6 +346,7 @@
 				C05BF1F4287BC7EF00C95E1B /* UIFont.swift in Sources */,
 				A38A4C57287E97B900614E94 /* SearchViewController.swift in Sources */,
 				C05BF1E3287BC7C800C95E1B /* Constant.swift in Sources */,
+				A31C3F4428828B96005A6F6E /* SearchBar.swift in Sources */,
 				C08A10B22883BCC1009A38E7 /* MockDataSet.swift in Sources */,
 				C07E5C8F287E6D9A00BDA46D /* Studio.swift in Sources */,
 				C05BF1F1287BC7EF00C95E1B /* UIViewController.swift in Sources */,
