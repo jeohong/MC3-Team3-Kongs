@@ -97,7 +97,6 @@ class SearchViewController: BaseViewController {
     
     func configureSearchBar() {
         searchBar.delegate = self
-        
         searchBar.placeholder = "찾고자 하는 댄서나 장르를 검색하세요."
         searchBar.becomeFirstResponder()
     }
