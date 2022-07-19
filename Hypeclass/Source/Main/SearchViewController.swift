@@ -147,7 +147,9 @@ extension SearchViewController: UICollectionViewDataSource {
 }
 
 extension SearchViewController: UICollectionViewDelegate {
-    // Delegate 패턴 적용
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        pushSearchDetailView(historyList[indexPath.row])
+    }
 }
 
 //MARK: - Preview
