@@ -136,7 +136,7 @@ class SearchViewController: BaseViewController {
     
     func reloadCollectionView() {
         historyList = UserDefaults.standard.stringArray(forKey: "SearchHistory") ?? []
-        reloadCollectionView()
+        historyCollectionView.reloadData()
     }
 }
 
