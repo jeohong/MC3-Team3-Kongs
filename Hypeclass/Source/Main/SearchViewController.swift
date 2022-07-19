@@ -41,10 +41,10 @@ class SearchViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavigationBarUI()
+        configureNavigationBarUI()
         configureUI()
-        setSearchBar()
-        setHistoryCollection()
+        configureSearchBar()
+        configureHistoryCollection()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,11 +91,11 @@ class SearchViewController: BaseViewController {
         historyCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -13).isActive = true
     }
     
-    func setNavigationBarUI() {
+    func configureNavigationBarUI() {
         self.navigationItem.titleView = searchBar
     }
     
-    func setSearchBar() {
+    func configureSearchBar() {
         searchBar.delegate = self
         
         searchBar.placeholder = "찾고자 하는 댄서나 장르를 검색하세요."
@@ -128,7 +128,7 @@ class SearchViewController: BaseViewController {
         }
     }
     
-    func setHistoryCollection() {
+    func configureHistoryCollection() {
         historyCollectionView.register(HistoryCell.self, forCellWithReuseIdentifier: historyCellID)
         historyCollectionView.dataSource = self
         historyCollectionView.delegate = self
