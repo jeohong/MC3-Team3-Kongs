@@ -59,7 +59,6 @@ class HistoryCell: UICollectionViewCell {
         
         chip.addSubview(logLabel)
         logLabel.translatesAutoresizingMaskIntoConstraints = false
-        logLabel.leadingAnchor.constraint(equalTo: chip.leadingAnchor, constant: 9).isActive = true
         logLabel.centerXAnchor.constraint(equalTo: chip.centerXAnchor, constant: -12).isActive = true
         logLabel.centerYAnchor.constraint(equalTo: chip.centerYAnchor).isActive = true
         
