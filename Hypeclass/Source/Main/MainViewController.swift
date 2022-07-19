@@ -10,72 +10,134 @@ import UIKit
 class MainViewController: BaseViewController {
     // MARK: - Properties
     
-    let titleLabel: UILabel = {
+    private let headerView: UIStackView = {
+        let view = UIStackView()
+        view.axis = .vertical
+        view.spacing = 20
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private let headerTitle: UILabel = {
         let label = UILabel()
         label.text = "댄서들의 클래스를 확인해보세요"
         label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         label.adjustsFontSizeToFitWidth = true
-        
-        // MARK: - TODO: func textRect(라벨 박스 크기 확인)
-        
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    let searchButton: UIButton = {
-        var config = UIButton.Configuration.gray()
-        config.buttonSize = .large
-        config.titleAlignment = .leading
-        config.title = "찾고자 하는 댄서나 장르를 검색해보세요"
-        config.background = .listSidebarCell()
-        
-        config.image = UIImage(systemName: "magnifyingglass")
-        config.imagePadding = 4
-        config.imagePlacement = .leading
-        config.baseForegroundColor = UIColor(hex: 0x7A7A7A)
-        config.baseBackgroundColor = UIColor(hex: 0x2D2C38)
-        let button = UIButton (
-            configuration: config, primaryAction: UIAction(handler: { _ in
-            print("MainViewController -> SearchViewController")
-                
-            // MARK: TO_DO: searchView 연결
-                
+    private let searchButton: UIButton = {
+       var config = UIButton.Configuration.gray()
+       config.buttonSize = .large
+       config.titleAlignment = .leading
+       config.title = "댄서 또는 장르를 검색해보세요"
+       config.background = .listSidebarCell()
+       config.image = UIImage(systemName: "magnifyingglass")
+       config.imagePadding = 4
+       config.imagePlacement = .leading
+       
+       config.baseForegroundColor = UIColor(hex: 0x7A7A7A)
+       config.baseBackgroundColor = UIColor(hex: 0x2D2C38)
+       
+       let button = UIButton (
+           configuration: config, primaryAction: UIAction(handler: { _ in
+           print("MainViewController -> SearchViewController")
+           // TODO: searchView 연결
 //            let searchViewController = SearchViewController()
 //            UINavigationController?.pushViewController(searchViewController, animated: true)
-            })
-        )
-        button.contentHorizontalAlignment = .leading
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
+           })
+       )
+       button.contentHorizontalAlignment = .leading
+       button.translatesAutoresizingMaskIntoConstraints = false
+       return button
+   }()
     
+    private let genreView: UIStackView = {
+            let view = UIStackView()
+            view.axis = .vertical
+            view.spacing = 10
+            view.translatesAutoresizingMaskIntoConstraints = false
+            return view
+        }()
+        
+        private let genreTitle: UILabel = {
+            let label = UILabel()
+            label.text = "이 장르에 도전해보는건 어때요?"
+            label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+            label.adjustsFontSizeToFitWidth = true
+            
+            //MARK: - TODO: func textRect(라벨 박스 크기 확인)
+            label.translatesAutoresizingMaskIntoConstraints = false
+            return label
+        }()
+        
+        private let genreFlowLayout: UICollectionViewFlowLayout = {
+            let layout = UICollectionViewFlowLayout()
+            layout.scrollDirection = .horizontal
+            layout.minimumLineSpacing = 12.0
+            layout.minimumInteritemSpacing = 12.0
+            layout.itemSize = CGSize(width: 100, height: 100)
+            return layout
+          }()
+        
+        private lazy var genreCollectionView: UICollectionView = {
+            let view = UICollectionView(frame: .zero, collectionViewLayout: self.genreFlowLayout)
+            view.isScrollEnabled = true
+            view.showsHorizontalScrollIndicator = false
+            view.showsVerticalScrollIndicator = true
+            view.contentInset = .zero
+            view.backgroundColor = .clear
+            view.clipsToBounds = true
+            view.register(MainViewControllerGenreCell.self, forCellWithReuseIdentifier: "MyCell")
+            view.translatesAutoresizingMaskIntoConstraints = false
+            return view
+        }()
+
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureUI()
         
-        view.addSubview(titleLabel)
-        view.addSubview(searchButton)
-        // MARK: - AutoLayout
-        
-        titleConstraint()
-        searchButtonConstraint()
+        genreCollectionView.dataSource = self
     }
     // MARK: - Selectors
     // MARK: - Helpers
-    
-    private func titleConstraint() {
+    private func configureUI() {
+        view.addSubview(headerView)
+        headerView.addArrangedSubview(headerTitle)
+        headerView.addArrangedSubview(searchButton)
+        
+        view.addSubview(genreView)
+        genreView.addArrangedSubview(genreTitle)
+        genreView.addArrangedSubview(genreCollectionView)
+        
         let safeArea = self.view.safeAreaLayoutGuide
-        self.titleLabel.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 60).isActive = true
-        self.titleLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 25).isActive = true
+        NSLayoutConstraint.activate([
+            headerView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 20),
+            headerView.leftAnchor.constraint(equalTo: safeArea.leftAnchor, constant: 25),
+            headerView.rightAnchor.constraint(equalTo: safeArea.rightAnchor, constant: -25),
+       ])
+        NSLayoutConstraint.activate([
+            genreView.leftAnchor.constraint(equalTo: safeArea.leftAnchor, constant: 25),
+            genreView.rightAnchor.constraint(equalTo: safeArea.rightAnchor),
+            genreView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 180),
+            genreView.heightAnchor.constraint(equalToConstant: 150),
+       ])
     }
+}
+
+extension MainViewController: UICollectionViewDataSource {
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return 10
+  }
     
-    private func searchButtonConstraint() {
-        let safeArea = self.view.safeAreaLayoutGuide
-        self.searchButton.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 120).isActive = true
-        self.searchButton.leftAnchor.constraint(equalTo: safeArea.leftAnchor, constant: 25).isActive = true
-        self.searchButton.rightAnchor.constraint(equalTo: safeArea.rightAnchor, constant: -25).isActive = true
-    }
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainViewControllerGenreCell.id, for: indexPath) as! MainViewControllerGenreCell
+        cell.prepare(image: UIStackView(frame: .zero))
+       return cell
+  }
 }
 
 // MARK: - Preview
