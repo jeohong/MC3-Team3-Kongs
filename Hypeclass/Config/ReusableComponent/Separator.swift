@@ -11,7 +11,6 @@ class Separator: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.frame = frame
-        
         self.backgroundColor = .gray
     }
     
