@@ -41,10 +41,10 @@
 		C05BF212287BD1E900C95E1B /* NotoSansCJKkr-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C05BF20F287BD1E900C95E1B /* NotoSansCJKkr-Regular.otf */; };
 		C05BF213287BD1E900C95E1B /* NotoSansCJKkr-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C05BF210287BD1E900C95E1B /* NotoSansCJKkr-Medium.otf */; };
 		C07E56DB2886D972000ACE1B /* Dancer.json in Resources */ = {isa = PBXBuildFile; fileRef = C07E56DA2886D972000ACE1B /* Dancer.json */; };
+		C07E56DF2886DB84000ACE1B /* DanceClass.json in Resources */ = {isa = PBXBuildFile; fileRef = C07E56DE2886DB84000ACE1B /* DanceClass.json */; };
 		C07E5C8D287E6D8B00BDA46D /* DanceClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E5C8C287E6D8B00BDA46D /* DanceClass.swift */; };
 		C07E5C8F287E6D9A00BDA46D /* Studio.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E5C8E287E6D9A00BDA46D /* Studio.swift */; };
 		C07E5C91287E707200BDA46D /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E5C90287E707200BDA46D /* Genre.swift */; };
-		C08A10B02883BC38009A38E7 /* DanceClass.json in Resources */ = {isa = PBXBuildFile; fileRef = C08A10AF2883BC38009A38E7 /* DanceClass.json */; };
 		C08A10B22883BCC1009A38E7 /* MockDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08A10B12883BCC1009A38E7 /* MockDataSet.swift */; };
 		C08A10BC2884F850009A38E7 /* Dancer.json in Resources */ = {isa = PBXBuildFile; fileRef = C08A10BB2884F850009A38E7 /* Dancer.json */; };
 		C7CE6758287F2F4900C8F137 /* WeekdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE6757287F2F4900C8F137 /* WeekdayView.swift */; };
@@ -90,10 +90,10 @@
 		C05BF20F287BD1E900C95E1B /* NotoSansCJKkr-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Regular.otf"; sourceTree = "<group>"; };
 		C05BF210287BD1E900C95E1B /* NotoSansCJKkr-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Medium.otf"; sourceTree = "<group>"; };
 		C07E56DA2886D972000ACE1B /* Dancer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dancer.json; sourceTree = "<group>"; };
+		C07E56DE2886DB84000ACE1B /* DanceClass.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DanceClass.json; sourceTree = "<group>"; };
 		C07E5C8C287E6D8B00BDA46D /* DanceClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DanceClass.swift; sourceTree = "<group>"; };
 		C07E5C8E287E6D9A00BDA46D /* Studio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Studio.swift; sourceTree = "<group>"; };
 		C07E5C90287E707200BDA46D /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
-		C08A10AF2883BC38009A38E7 /* DanceClass.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DanceClass.json; sourceTree = "<group>"; };
 		C08A10B12883BCC1009A38E7 /* MockDataSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataSet.swift; sourceTree = "<group>"; };
 		C08A10BB2884F850009A38E7 /* Dancer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dancer.json; sourceTree = "<group>"; };
 		C7CE6757287F2F4900C8F137 /* WeekdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayView.swift; sourceTree = "<group>"; };
@@ -253,7 +253,7 @@
 				C05BF208287BCAD900C95E1B /* Dancer.swift */,
 				C07E56DA2886D972000ACE1B /* Dancer.json */,
 				C07E5C8C287E6D8B00BDA46D /* DanceClass.swift */,
-				C08A10AF2883BC38009A38E7 /* DanceClass.json */,
+				C07E56DE2886DB84000ACE1B /* DanceClass.json */,
 				C07E5C8E287E6D9A00BDA46D /* Studio.swift */,
 				C07E5C90287E707200BDA46D /* Genre.swift */,
 				C08A10B12883BCC1009A38E7 /* MockDataSet.swift */,
@@ -345,10 +345,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C07E56DB2886D972000ACE1B /* Dancer.json in Resources */,
-				C08A10B02883BC38009A38E7 /* DanceClass.json in Resources */,
 				C05BF1D5287BC33200C95E1B /* LaunchScreen.storyboard in Resources */,
 				C05BF212287BD1E900C95E1B /* NotoSansCJKkr-Regular.otf in Resources */,
 				C05BF1D2287BC33200C95E1B /* Assets.xcassets in Resources */,
+				C07E56DF2886DB84000ACE1B /* DanceClass.json in Resources */,
 				C05BF211287BD1E900C95E1B /* NotoSansCJKkr-Bold.otf in Resources */,
 				C05BF213287BD1E900C95E1B /* NotoSansCJKkr-Medium.otf in Resources */,
 			);

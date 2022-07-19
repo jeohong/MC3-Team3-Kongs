@@ -10,10 +10,19 @@ import Foundation
 struct DanceClass: Codable {
     let id: String
     let name: String
-    let dancerName: String
+    let description: String?
+    let isPopUp: Bool
 //    let tags: [String]
+    
+    // time
     let startTime: Date
     let endTime: Date
+    
+    //dancer
+    let dancerID: String
+    let dancerName: String
+    
+    //studio
     let studioID: String
-    let description: String?
+    let studioName: String
 }
