@@ -29,9 +29,7 @@ class ScheduleViewController: BaseViewController {
         return label
     }()
     
-    private var selectedDate: Date = {
-        return Date()
-    }()
+    private var selectedDate = Date()
 
     private let weekCellID = "week"
     
