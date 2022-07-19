@@ -31,7 +31,7 @@ class WeekdayCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setLayout()
+        configureLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -40,7 +40,7 @@ class WeekdayCell: UICollectionViewCell {
     
     //MARK: - Helpers
     
-    private func setLayout() {
+    private func configureLayout() {
         // 요일 label
         contentView.addSubview(weekdayLabel)
         weekdayLabel.translatesAutoresizingMaskIntoConstraints = false

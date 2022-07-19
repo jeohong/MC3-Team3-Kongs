@@ -52,6 +52,7 @@
 		C7CE675E287FF21200C8F137 /* ScheduleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE675D287FF21200C8F137 /* ScheduleButton.swift */; };
 		C7CE676028807C8E00C8F137 /* WeekdayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE675F28807C8E00C8F137 /* WeekdayCell.swift */; };
 		C7CE676228814D3C00C8F137 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE676128814D3C00C8F137 /* Weekday.swift */; };
+		C7CE67AF2886F70700C8F137 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE67AE2886F70700C8F137 /* ScheduleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +103,7 @@
 		C7CE675D287FF21200C8F137 /* ScheduleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleButton.swift; sourceTree = "<group>"; };
 		C7CE675F28807C8E00C8F137 /* WeekdayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayCell.swift; sourceTree = "<group>"; };
 		C7CE676128814D3C00C8F137 /* Weekday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekday.swift; sourceTree = "<group>"; };
+		C7CE67AE2886F70700C8F137 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,8 +149,8 @@
 			isa = PBXGroup;
 			children = (
 				C039DCBD287D944C0007951D /* ScheduleViewController.swift */,
-				C7CE675D287FF21200C8F137 /* ScheduleButton.swift */,
 				C7CE675F28807C8E00C8F137 /* WeekdayCell.swift */,
+				C7CE67AE2886F70700C8F137 /* ScheduleView.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -388,6 +390,7 @@
 				A31C3F472882AC38005A6F6E /* Separator.swift in Sources */,
 				A31C3F4428828B96005A6F6E /* SearchBar.swift in Sources */,
 				C07E5C8F287E6D9A00BDA46D /* Studio.swift in Sources */,
+				C7CE67AF2886F70700C8F137 /* ScheduleView.swift in Sources */,
 				C05BF1F1287BC7EF00C95E1B /* UIViewController.swift in Sources */,
 				C05BF1FB287BC7EF00C95E1B /* UINavigationBar.swift in Sources */,
 				C05BF1F2287BC7EF00C95E1B /* UITextField.swift in Sources */,
