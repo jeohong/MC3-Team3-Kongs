@@ -25,6 +25,7 @@ class SearchDetailViewController: BaseViewController {
         let cancelBtn = UIButton()
         cancelBtn.setImage(img, for: .normal)
         cancelBtn.tintColor = .gray
+        
         return cancelBtn
     }()
     
@@ -63,11 +64,11 @@ import SwiftUI
 
 struct SearchDetailViewControllerRepresentable: UIViewControllerRepresentable {
     typealias UIViewControllerType = SearchDetailViewController
-
+    
     func makeUIViewController(context: Context) -> SearchDetailViewController {
         return SearchDetailViewController()
     }
-
+    
     func updateUIViewController(_ uiViewController: SearchDetailViewController, context: Context) {}
 }
 
