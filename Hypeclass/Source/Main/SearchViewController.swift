@@ -48,11 +48,24 @@ class SearchViewController: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        historyList = UserDefaults.standard.stringArray(forKey: "SearchHistory") ?? []
-        historyCollectionView.reloadData()
+        super.viewWillAppear(animated)
+        
+        reloadCollectionView()
     }
     
     //MARK: - Selectors
+    
+    @objc func removeHistory(_ sender: UIButton) {
+        let buttonPostion = sender.convert(sender.bounds.origin, to: historyCollectionView)
+        if let indexPath = historyCollectionView.indexPathForItem(at: buttonPostion) {
+            let rowIndex =  indexPath.row
+            if var searchHistory = UserDefaults.standard.stringArray(forKey: "SearchHistory"){
+                searchHistory.remove(at: rowIndex)
+                UserDefaults.standard.set(searchHistory, forKey: "SearchHistory")
+            }
+            reloadCollectionView()
+        }
+    }
     
     //MARK: - Helpers
     
@@ -106,6 +119,7 @@ class SearchViewController: BaseViewController {
             if(searchHistory.count > 10) {
                 searchHistory.remove(at: 10)
             }
+            
             UserDefaults.standard.set(searchHistory, forKey: "SearchHistory")
         } else {
             var newHistory = [String]()
@@ -118,6 +132,11 @@ class SearchViewController: BaseViewController {
         historyCollectionView.register(HistoryCell.self, forCellWithReuseIdentifier: historyCellID)
         historyCollectionView.dataSource = self
         historyCollectionView.delegate = self
+    }
+    
+    func reloadCollectionView() {
+        historyList = UserDefaults.standard.stringArray(forKey: "SearchHistory") ?? []
+        reloadCollectionView()
     }
 }
 
@@ -142,6 +161,8 @@ extension SearchViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = historyCollectionView.dequeueReusableCell(withReuseIdentifier: historyCellID, for: indexPath) as! HistoryCell
         cell.searchHistory.text = "\(historyList[indexPath.row])"
+        cell.cancelBtn.addTarget(self, action: #selector(removeHistory(_:)), for: .touchUpInside)
+        
         return cell
     }
 }
