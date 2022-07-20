@@ -85,7 +85,7 @@ class SearchDetailViewController: BaseViewController {
     func configureTable() {
         dancerTable.delegate = self
         dancerTable.dataSource = self
-        dancerTable.register(DancerCell.self, forCellReuseIdentifier: DancerCell.dancerCellID)
+        dancerTable.register(SearchDetailCell.self, forCellReuseIdentifier: SearchDetailCell.dancerCellID)
     }
 }
 
@@ -108,7 +108,7 @@ extension SearchDetailViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = dancerTable.dequeueReusableCell(withIdentifier: DancerCell.dancerCellID, for:indexPath) as! DancerCell
+        let cell = dancerTable.dequeueReusableCell(withIdentifier: SearchDetailCell.dancerCellID, for:indexPath) as! SearchDetailCell
 //        cell.profileImage.load(url: URL(string: searchResult[indexPath.row].profileImageURL)!)
         
         // Mock데이터에 있는 이미지 링크의 이미지를 불러오지 못함 임시 이미지 링크를 첨부합니다.
