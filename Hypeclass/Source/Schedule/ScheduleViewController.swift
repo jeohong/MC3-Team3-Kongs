@@ -8,20 +8,252 @@
 import UIKit
 
 class ScheduleViewController: BaseViewController {
+    
     //MARK: - Properties
+    
+    let monthNumLabel: UILabel = {
+        let label = UILabel()
+        label.text = String(Date().get(.month))
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 30.0, weight: .semibold)
+        
+        return label
+    }()
+    
+    let monthLabel: UILabel = {
+        let label = UILabel()
+        label.text = "월"
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 20.0, weight: .regular)
+        
+        return label
+    }()
+    
+    var selectedDate: Date = {
+        return Date()
+    }()
+
+    let weekCellID = "week"
+    
+    let weekCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 11
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.backgroundColor = .background
+
+        return cv
+    }()
+    
+    let separator: UIView = {
+        let line = UIView()
+        line.backgroundColor = .gray
+        
+        return line
+    }()
+    
+    let previousBtn: UIButton = {
+        var config = UIButton.Configuration.plain()
+        config.baseForegroundColor = .white
+        config.image = UIImage(systemName: "chevron.backward")
+        config.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15)
+        
+        let btn = UIButton(configuration: config)
+        btn.addTarget(self, action: #selector(fetchLastWeek), for: .touchUpInside)
+        
+        return btn
+    }()
+    
+    let nextBtn: UIButton = {
+        var config = UIButton.Configuration.plain()
+        config.baseForegroundColor = .white
+        config.image = UIImage(systemName: "chevron.forward")
+        config.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15)
+        
+        let btn = UIButton(configuration: config)
+        btn.addTarget(self, action: #selector(fetchNextWeek), for: .touchUpInside)
+        
+        return btn
+    }()
+    
+    let stackViews: [UIStackView] = [
+        UIStackView(), UIStackView(), UIStackView(), UIStackView(), UIStackView(), UIStackView(), UIStackView()
+    ]
+    
+    let scheduleCellID = "schedule"
+    
+    let scheduleCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        layout.scrollDirection = .horizontal
+        cv.backgroundColor = .background
+
+        return cv
+    }()
+    
     //MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
     }
+    
     //MARK: - Selectors
+    
+    /// 지난 주 날짜의 weekdayView로 변경합니다.
+    @objc func fetchLastWeek() {
+        selectedDate = Calendar.current.date(byAdding: .day, value: -7, to: selectedDate)!
+        reloadViews()
+    }
+    
+    /// 다음 주 날짜의 weekdayView로 변경합니다.
+    @objc func fetchNextWeek() {
+        selectedDate = Calendar.current.date(byAdding: .day, value: 7, to: selectedDate)!
+        reloadViews()
+    }
+    
+    /// 댄서 디테일 뷰 페이지로 이동합니다.
+    @objc func pushDetailView(sender: UIButton) {
+        // TODO: push detailViewController with sender.tag
+        print("pushDetailView(): \(sender.tag)")
+    }
+    
     //MARK: - Helpers
+    
     func configureUI() {
         //레이아웃 구성
+        //상단 month 레이블
+        monthNumLabel.text = String(selectedDate.get(.month))
+        view.addSubview(monthNumLabel)
+        monthNumLabel.translatesAutoresizingMaskIntoConstraints = false
+        monthNumLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
+        monthNumLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
+        
+        view.addSubview(monthLabel)
+        monthLabel.translatesAutoresizingMaskIntoConstraints = false
+        monthLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 78).isActive = true
+        monthLabel.leadingAnchor.constraint(equalTo: monthNumLabel.trailingAnchor).isActive = true
+        
+        //<> 버튼
+        view.addSubview(nextBtn)
+        nextBtn.translatesAutoresizingMaskIntoConstraints = false
+        nextBtn.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
+        nextBtn.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
+        
+        view.addSubview(previousBtn)
+        previousBtn.translatesAutoresizingMaskIntoConstraints = false
+        previousBtn.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
+        previousBtn.trailingAnchor.constraint(equalTo: nextBtn.leadingAnchor, constant: -5).isActive = true
+        
+        //weekCollectionView
+        weekCollectionView.register(WeekdayCell.self, forCellWithReuseIdentifier: weekCellID)
+        weekCollectionView.dataSource = self
+        weekCollectionView.delegate = self
+
+        view.addSubview(weekCollectionView)
+        weekCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        weekCollectionView.topAnchor.constraint(equalTo: monthNumLabel.bottomAnchor, constant: 40).isActive = true
+        weekCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
+        weekCollectionView.trailingAnchor.constraint(equalTo: monthNumLabel.leadingAnchor, constant: 40).isActive = true
+        weekCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -90).isActive = true
+        
+        // 세로 구분선
+        view.addSubview(separator)
+        separator.translatesAutoresizingMaskIntoConstraints = false
+        separator.leadingAnchor.constraint(equalTo: weekCollectionView.trailingAnchor, constant: 10).isActive = true
+        separator.topAnchor.constraint(equalTo: weekCollectionView.topAnchor).isActive = true
+        separator.bottomAnchor.constraint(equalTo: weekCollectionView.bottomAnchor).isActive = true
+        separator.widthAnchor.constraint(equalToConstant: 0.5).isActive = true
+
+        //scheduleCollectionView
+        addBtnToStackView()
+        scheduleCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: scheduleCellID)
+        scheduleCollectionView.dataSource = self
+        scheduleCollectionView.delegate = self
+
+        view.addSubview(scheduleCollectionView)
+        scheduleCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        scheduleCollectionView.topAnchor.constraint(equalTo: monthNumLabel.bottomAnchor, constant: 40).isActive = true
+        scheduleCollectionView.leadingAnchor.constraint(equalTo: separator.trailingAnchor, constant: 30).isActive = true
+        scheduleCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -90).isActive = true
+        scheduleCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+    }
+    
+    /// 클래스 데이터를 이용해 StackView에 각각 해당하는 ScheduleButton을 추가합니다.
+    func addBtnToStackView() {
+        stackViews.forEach{ stackView in
+            stackView.subviews.forEach{ subView in
+                subView.removeFromSuperview()
+            }
+            
+            stackView.translatesAutoresizingMaskIntoConstraints = false
+            stackView.axis = .horizontal
+            stackView.spacing = 20
+            stackView.distribution = .equalSpacing
+            
+            // TODO: Should be replaced to real data management!
+            for n in 0...3 {
+                // TODO: Fetch class information here
+                let dancerName = "NARAE"
+                let studioName = "1million"
+                let startTime = "18:00"
+                let endTime = "20:00"
+                
+                let btn = ScheduleButton(frame: .zero, dancerName: dancerName, studioName: studioName, startTime: startTime, endTime: endTime)
+                btn.tag = n // TODO: DanceClass id를 Int로 변환
+                btn.addTarget(self, action: #selector(pushDetailView), for: .touchUpInside)
+                stackView.addArrangedSubview(btn)
+            }
+        }
+    }
+    
+    /// ScheduleViewController에서 변경되는 뷰를 다시 로드합니다.
+    func reloadViews() {
+        monthNumLabel.text = String(selectedDate.get(.month))
+        scheduleCollectionView.reloadData()
+        weekCollectionView.reloadData()
     }
 }
 
+//MARK: - UICollectionView Extension
+
+extension ScheduleViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if collectionView == self.scheduleCollectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: scheduleCellID, for: indexPath)
+            cell.contentView.addSubview(stackViews[indexPath.item])
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: weekCellID, for: indexPath) as! WeekdayCell
+            cell.weekdayLabel.text = Weekday.allCases[indexPath.item].rawValue
+            cell.dayLabel.text = cell.dayString(date: selectedDate, dayNum: indexPath.item)
+            return cell
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 7
+    }
+}
+
+extension ScheduleViewController: UICollectionViewDelegate {
+}
+
+extension ScheduleViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == self.scheduleCollectionView {
+            // TODO: width -> 가장 많은 아이템을 가진 스택 뷰의 width
+            let width: CGFloat = 200 * 4
+            let height: CGFloat = (collectionView.frame.height / 8)
+
+            return CGSize(width: width, height: height)
+        } else {
+            return CGSize(width: 30, height: (collectionView.frame.height / 8))
+        }
+   }
+}
+
 //MARK: - Preview
+
 import SwiftUI
 
 struct ScheduleViewControllerRepresentable: UIViewControllerRepresentable {
