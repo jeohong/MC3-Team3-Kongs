@@ -40,6 +40,14 @@ class DancerCell: UITableViewCell {
         return label
     }()
     
+    let navigationImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(systemName: "greaterthan")
+        image.tintColor = .white
+        
+        return image
+    }()
+    
     // MARK: - LifeCycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -80,5 +88,12 @@ class DancerCell: UITableViewCell {
         classdayLabel.translatesAutoresizingMaskIntoConstraints = false
         classdayLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor).isActive = true
         classdayLabel.topAnchor.constraint(equalTo: genreLabel.bottomAnchor, constant: 2).isActive = true
+        
+        self.addSubview(navigationImage)
+        navigationImage.translatesAutoresizingMaskIntoConstraints = false
+        navigationImage.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        navigationImage.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -24).isActive = true
+        navigationImage.widthAnchor.constraint(equalToConstant: 9).isActive = true
+        navigationImage.heightAnchor.constraint(equalToConstant: 19).isActive = true
     }
 }
