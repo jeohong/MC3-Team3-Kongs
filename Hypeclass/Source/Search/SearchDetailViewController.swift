@@ -95,6 +95,11 @@ extension SearchDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 116
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // DancerDetail View 호출
+        print(searchResult[indexPath.row].id)
+    }
 }
 
 extension SearchDetailViewController: UITableViewDataSource {
