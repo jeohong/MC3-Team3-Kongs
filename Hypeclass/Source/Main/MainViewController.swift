@@ -41,7 +41,7 @@ class MainViewController: BaseViewController {
        config.baseBackgroundColor = UIColor(hex: 0x2D2C38)
        
        let button = UIButton (
-           configuration: config, primaryAction: UIAction(handler: { _ in
+           configuration: config, primaryAction: UIAction( handler: { _ in
            print("MainViewController -> SearchViewController")
            // TODO: searchView 연결
 //            let searchViewController = SearchViewController()
@@ -61,38 +61,40 @@ class MainViewController: BaseViewController {
             return view
         }()
         
-        private let genreTitle: UILabel = {
-            let label = UILabel()
-            label.text = "이 장르에 도전해보는건 어때요?"
-            label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-            label.adjustsFontSizeToFitWidth = true
-            
-            //MARK: - TODO: func textRect(라벨 박스 크기 확인)
-            label.translatesAutoresizingMaskIntoConstraints = false
-            return label
-        }()
+    private let genreTitle: UILabel = {
+        let label = UILabel()
+        label.text = "이 장르에 도전해보는건 어때요?"
+        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        label.adjustsFontSizeToFitWidth = true
         
-        private let genreFlowLayout: UICollectionViewFlowLayout = {
-            let layout = UICollectionViewFlowLayout()
-            layout.scrollDirection = .horizontal
-            layout.minimumLineSpacing = 12.0
-            layout.minimumInteritemSpacing = 12.0
-            layout.itemSize = CGSize(width: 100, height: 100)
-            return layout
-          }()
+        //MARK: - TODO: func textRect(라벨 박스 크기 확인)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
+    private let genreFlowLayout: UICollectionViewFlowLayout = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 12.0
+        layout.minimumInteritemSpacing = 12.0
         
-        private lazy var genreCollectionView: UICollectionView = {
-            let view = UICollectionView(frame: .zero, collectionViewLayout: self.genreFlowLayout)
-            view.isScrollEnabled = true
-            view.showsHorizontalScrollIndicator = false
-            view.showsVerticalScrollIndicator = true
-            view.contentInset = .zero
-            view.backgroundColor = .clear
-            view.clipsToBounds = true
-            view.register(MainViewControllerGenreCell.self, forCellWithReuseIdentifier: "MyCell")
-            view.translatesAutoresizingMaskIntoConstraints = false
-            return view
-        }()
+        // TODO: 100, 100 frame으로 조정
+        layout.itemSize = CGSize(width: 100, height: 100)
+        return layout
+      }()
+
+    private lazy var genreCollectionView: UICollectionView = {
+        let view = UICollectionView(frame: .zero, collectionViewLayout: self.genreFlowLayout)
+        view.isScrollEnabled = true
+        view.showsHorizontalScrollIndicator = false
+        view.showsVerticalScrollIndicator = true
+        view.contentInset = .zero
+        view.backgroundColor = .clear
+        view.clipsToBounds = true
+        view.register(MainViewControllerGenreCell.self, forCellWithReuseIdentifier: "MyCell")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
 
     // MARK: - LifeCycle
     
