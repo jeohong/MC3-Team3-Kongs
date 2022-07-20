@@ -7,12 +7,12 @@
 
 import UIKit
 
+//MARK: - SearchBar Custom
+
 class SearchBar: UISearchBar {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.frame = frame
-        
-        //MARK: - SearchBar Custom
         
         self.tintColor = .white
         self.searchTextField.font = UIFont.systemFont(ofSize: 12.0)

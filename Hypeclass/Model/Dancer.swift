@@ -12,11 +12,11 @@ struct Dancer: Codable {
     let name: String
     let lastUpdate: Date
     let description: String?
+    let profileImageURL: String
 //    let tags: [String]
     
     let youtubeURL: String?
-    let instagramUrl: String?
-    let profileImageUrl: String
-    let videoThumbnailUrl: String
+    let instagramURL: String?
+    let videoThumbnailURL: String
     let schedules: [DanceClass]
 }
