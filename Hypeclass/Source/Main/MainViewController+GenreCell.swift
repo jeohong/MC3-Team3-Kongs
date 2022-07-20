@@ -9,8 +9,8 @@ import UIKit
 
 class MainViewControllerGenreCell: UICollectionViewCell {
 
-    static let id = "MyCell"
-      
+    static let id = "GenreCell"
+    
     // MARK: UIImageView로 수정
     private var imageView: UIStackView = {
         let view = UIStackView()
