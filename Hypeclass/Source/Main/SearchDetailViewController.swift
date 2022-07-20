@@ -33,7 +33,7 @@ class SearchDetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavigationBarUI()
+        configureNavigationBarUI()
         configureUI()
     }
     
@@ -51,7 +51,7 @@ class SearchDetailViewController: BaseViewController {
         separator.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 18).isActive = true
     }
     
-    func setNavigationBarUI() {
+    func configureNavigationBarUI() {
         searchLabel.translatesAutoresizingMaskIntoConstraints = false
         self.navigationController?.navigationBar.topItem?.title = searchLabel.text
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: cancelButton)
