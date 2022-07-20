@@ -120,6 +120,16 @@
 			path = ReusableComponent;
 			sourceTree = "<group>";
 		};
+		A3F1BE4D2887BB0700EEDB67 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				A38A4C56287E97B900614E94 /* SearchViewController.swift */,
+				A38A4C58287E97CF00614E94 /* SearchDetailViewController.swift */,
+				A35DE3A028840A2E00A29BA7 /* HistoryCell.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		C039DCBB287D941C0007951D /* Subscription */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,6 +266,7 @@
 				C039DCB9287D940F0007951D /* MainTabController.swift */,
 				C039DCBC287D941E0007951D /* Schedule */,
 				C039DCBB287D941C0007951D /* Subscription */,
+				A3F1BE4D2887BB0700EEDB67 /* Search */,
 				C05BF20B287BCF9A00C95E1B /* Main */,
 			);
 			path = Source;
@@ -367,7 +378,6 @@
 				A38A4C57287E97B900614E94 /* SearchViewController.swift in Sources */,
 				C05BF1E3287BC7C800C95E1B /* Constant.swift in Sources */,
 				C08A10B22883BCC1009A38E7 /* MockDataSet.swift in Sources */,
-				C7CE6758287F2F4900C8F137 /* WeekdayView.swift in Sources */,
 				A31C3F472882AC38005A6F6E /* Separator.swift in Sources */,
 				A31C3F4428828B96005A6F6E /* SearchBar.swift in Sources */,
 				C07E5C8F287E6D9A00BDA46D /* Studio.swift in Sources */,
