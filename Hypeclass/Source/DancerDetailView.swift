@@ -9,6 +9,8 @@ class DancerDetailViewController: BaseViewController {
     
     //MARK: - Properties
     
+    var dancerID: String?
+    
     let dancerDetailScrollView: UIScrollView! = UIScrollView()
     let dancerDetailContentView: UIView! = UIView()
 
