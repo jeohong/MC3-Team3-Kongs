@@ -32,7 +32,7 @@ class SearchDetailViewController: BaseViewController {
     let dancerTable: UITableView = {
         let table = UITableView()
         table.backgroundColor = .clear
-        
+
         return table
     }()
     
@@ -92,7 +92,9 @@ class SearchDetailViewController: BaseViewController {
 //MARK: - TableView Extension
 
 extension SearchDetailViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 116
+    }
 }
 
 extension SearchDetailViewController: UITableViewDataSource {
@@ -103,14 +105,12 @@ extension SearchDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = dancerTable.dequeueReusableCell(withIdentifier: DancerCell.dancerCellID, for:indexPath) as! DancerCell
         cell.nameLabel.text = searchResult[indexPath.row].name
-        cell.genreLabel.text =  "hello"
-        cell.classdayLabel.text = "hong"
+        cell.genreLabel.text =  "방송 댄스"
+        cell.classdayLabel.text = "화, 수, 목"
         cell.backgroundColor = .clear
         
         return cell
     }
-    
-    
 }
 
 //MARK: - Preview
