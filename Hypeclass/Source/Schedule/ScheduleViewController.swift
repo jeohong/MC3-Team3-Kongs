@@ -42,6 +42,7 @@ class ScheduleViewController: BaseViewController {
         return cv
     }()
     
+
     // TODO: 재사용 Separator로 교체
     private let separator: UIView = {
         let line = UIView()
@@ -100,6 +101,7 @@ class ScheduleViewController: BaseViewController {
         [], [], [], [], [], [], []
     ]
     
+
     private var scheduleViewWidth: CGFloat = 0
     
     // MARK: - LifeCycle
@@ -119,11 +121,13 @@ class ScheduleViewController: BaseViewController {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         reloadViews()
     }
     
+
     // MARK: - Selectors
     
     /// 지난 주 날짜의 weekdayView로 변경합니다.
@@ -160,6 +164,7 @@ class ScheduleViewController: BaseViewController {
         monthLabel.leadingAnchor.constraint(equalTo: monthNumberLabel.trailingAnchor).isActive = true
         
         // < > 버튼
+
         view.addSubview(nextButton)
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         nextButton.topAnchor.constraint(equalTo: monthNumberLabel.topAnchor).isActive = true
@@ -206,6 +211,7 @@ class ScheduleViewController: BaseViewController {
     
     /// 클래스 데이터를 이용해 StackView에 각각 해당하는 ScheduleView를 추가합니다.
     private func addScheduleToStackView() {
+
         fetchSchedules()
         
         stackViews.enumerated().forEach{
