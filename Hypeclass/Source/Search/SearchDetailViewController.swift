@@ -29,12 +29,30 @@ class SearchDetailViewController: BaseViewController {
         return cancelBtn
     }()
     
+    let dancerTable: UITableView = {
+        let table = UITableView()
+        table.backgroundColor = .clear
+        
+        return table
+    }()
+    
+    var searchResult: [Dancer] = []
+    
     //MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBarUI()
         configureUI()
+        configureTable()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        searchResult = MockDataSet.dancers.filter { dancer in
+            dancer.name.contains(searchLabel.text ?? "")
+        }
     }
     
     //MARK: - Selectors
@@ -49,6 +67,13 @@ class SearchDetailViewController: BaseViewController {
         separator.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
         separator.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -18).isActive = true
         separator.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 18).isActive = true
+        
+        self.view.addSubview(dancerTable)
+        dancerTable.translatesAutoresizingMaskIntoConstraints = false
+        dancerTable.topAnchor.constraint(equalTo: separator.bottomAnchor, constant: 5).isActive = true
+        dancerTable.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        dancerTable.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        dancerTable.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
     }
     
     func configureNavigationBarUI() {
@@ -56,6 +81,36 @@ class SearchDetailViewController: BaseViewController {
         self.navigationController?.navigationBar.topItem?.title = searchLabel.text
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: cancelButton)
     }
+    
+    func configureTable() {
+        dancerTable.delegate = self
+        dancerTable.dataSource = self
+        dancerTable.register(DancerCell.self, forCellReuseIdentifier: DancerCell.dancerCellID)
+    }
+}
+
+//MARK: - TableView Extension
+
+extension SearchDetailViewController: UITableViewDelegate {
+    
+}
+
+extension SearchDetailViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return searchResult.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = dancerTable.dequeueReusableCell(withIdentifier: DancerCell.dancerCellID, for:indexPath) as! DancerCell
+        cell.nameLabel.text = searchResult[indexPath.row].name
+        cell.genreLabel.text =  "hello"
+        cell.classdayLabel.text = "hong"
+        cell.backgroundColor = .clear
+        
+        return cell
+    }
+    
+    
 }
 
 //MARK: - Preview
