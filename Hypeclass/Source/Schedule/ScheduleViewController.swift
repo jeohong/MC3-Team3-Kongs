@@ -85,6 +85,7 @@ class ScheduleViewController: BaseViewController {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         layout.scrollDirection = .horizontal
         cv.backgroundColor = .background
+        cv.showsHorizontalScrollIndicator = false
 
         return cv
     }()
