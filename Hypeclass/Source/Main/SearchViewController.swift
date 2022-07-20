@@ -58,7 +58,7 @@ class SearchViewController: BaseViewController {
     @objc func removeHistory(_ sender: UIButton) {
         let buttonPostion = sender.convert(sender.bounds.origin, to: historyCollectionView)
         if let indexPath = historyCollectionView.indexPathForItem(at: buttonPostion) {
-            let rowIndex =  indexPath.row
+            let rowIndex = indexPath.row
             if var searchHistory = UserDefaults.standard.stringArray(forKey: "SearchHistory"){
                 searchHistory.remove(at: rowIndex)
                 UserDefaults.standard.set(searchHistory, forKey: "SearchHistory")
