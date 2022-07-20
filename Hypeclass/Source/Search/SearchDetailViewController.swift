@@ -51,7 +51,7 @@ class SearchDetailViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         searchResult = MockDataSet.dancers.filter { dancer in
-            dancer.name.contains(searchLabel.text ?? "")
+            dancer.name.lowercased().contains(searchLabel.text?.lowercased() ?? "")
         }
     }
     
