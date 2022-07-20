@@ -265,12 +265,6 @@ class ScheduleViewController: BaseViewController {
             weekSchedules[idx] = weekSchedules[idx].sorted(by: { $0.startTime < $1.startTime })
         }
     }
-    
-    /// 현재 가장 큰 stackView의 아이템 개수 값을 반환합니다.
-    private func maxItemNumber() -> Int {
-        let maxNum = weekSchedules.max { $0.count < $1.count }
-        return maxNum!.count
-    }
 }
 
 // MARK: - UICollectionView Extension
@@ -300,7 +294,8 @@ extension ScheduleViewController: UICollectionViewDelegate {
 extension ScheduleViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == self.scheduleCollectionView {
-            return CGSize(width: (scheduleViewWidth + 15) * CGFloat(maxItemNumber()), height: (collectionView.frame.height / 8))
+            let maxNum = weekSchedules.max { $0.count < $1.count }
+            return CGSize(width: (scheduleViewWidth + 15) * CGFloat(maxNum!.count), height: (collectionView.frame.height / 8))
         } else {
             return CGSize(width: 30, height: (collectionView.frame.height / 8))
         }
