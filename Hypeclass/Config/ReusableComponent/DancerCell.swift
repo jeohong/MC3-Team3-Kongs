@@ -14,7 +14,12 @@ class DancerCell: UITableViewCell {
     static let dancerCellID = "DancerCellID"
     
     // TODO: 추후에 profileImageURL 사용 예정
-    let profileImage = UIView()
+//    let profileImage = UIView()
+    let profileImage: UIImageView = {
+        let imageView = UIImageView()
+        
+        return imageView
+    }()
     
     let nameLabel: UILabel = {
         let label = UILabel()
