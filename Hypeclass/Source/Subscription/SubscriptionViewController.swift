@@ -7,21 +7,68 @@
 
 import UIKit
 
-class SubscriptionViewController: BaseViewController {
-    //MARK: - Properties
-    //MARK: - LifeCycle
+class SubscriptionViewController: BaseViewController{
+   
+    // MARK: - Properties
+    
+    let table = UITableView()
+    
+    // TODO: 추후에 profileImageURL 사용 예정
+    let dancerInfo: [DancerInfo] = [
+        DancerInfo(profileImage: UIView(), nameLabel: "이병헌", genreLabel: "방송댄스", classdayLabel: "화, 수, 목"),
+        DancerInfo(profileImage: UIView(), nameLabel: "이병헌", genreLabel: "방송댄스", classdayLabel: "화, 수, 목"),
+        DancerInfo(profileImage: UIView(), nameLabel: "이병헌", genreLabel: "방송댄스", classdayLabel: "화, 수, 목"),
+        DancerInfo(profileImage: UIView(), nameLabel: "이병헌", genreLabel: "방송댄스", classdayLabel: "화, 수, 목"),
+        DancerInfo(profileImage: UIView(), nameLabel: "이병헌", genreLabel: "방송댄스", classdayLabel: "화, 수, 목")
+    ]
+    
+    // MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        configureTableView()
     }
-    //MARK: - Selectors
-    //MARK: - Helpers
+    
+    // MARK: - Helpers
+    
     func configureUI() {
-        //레이아웃 구성
+        view.addSubview(table)
+        table.translatesAutoresizingMaskIntoConstraints = false
+        table.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        table.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        table.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        table.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        table.backgroundColor = UIColor.background
+    }
+    
+    func configureTableView(){
+        table.register(DancerCell.self, forCellReuseIdentifier: DancerCell.dancerCellID)
+        table.delegate = self
+        table.dataSource = self
+        table.rowHeight = 100
     }
 }
 
-//MARK: - Preview
+// MARK: - UICollectionView Extension
+
+extension SubscriptionViewController: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dancerInfo.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = table.dequeueReusableCell(withIdentifier: DancerCell.dancerCellID, for:indexPath) as! DancerCell
+        cell.nameLabel.text = dancerInfo[indexPath.row].nameLabel
+        cell.genreLabel.text =  dancerInfo[indexPath.row].genreLabel
+        cell.classdayLabel.text = dancerInfo[indexPath.row].classdayLabel
+        
+        return cell
+    }
+}
+
+// MARK: - Preview
+
 import SwiftUI
 
 struct SubscriptionViewControllerRepresentable: UIViewControllerRepresentable {
