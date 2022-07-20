@@ -27,7 +27,7 @@ class SubscriptionViewController: BaseViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        attribute()
+        configureTableView()
     }
     
     // MARK: - Helpers
@@ -39,9 +39,10 @@ class SubscriptionViewController: BaseViewController{
         table.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         table.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         table.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        table.backgroundColor = UIColor.background
     }
     
-    func attribute(){
+    func configureTableView(){
         table.register(DancerCell.self, forCellReuseIdentifier: DancerCell.dancerCellID)
         table.delegate = self
         table.dataSource = self
@@ -58,7 +59,6 @@ extension SubscriptionViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = table.dequeueReusableCell(withIdentifier: DancerCell.dancerCellID, for:indexPath) as! DancerCell
-        
         cell.nameLabel.text = dancerInfo[indexPath.row].nameLabel
         cell.genreLabel.text =  dancerInfo[indexPath.row].genreLabel
         cell.classdayLabel.text = dancerInfo[indexPath.row].classdayLabel

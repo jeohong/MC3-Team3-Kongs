@@ -51,6 +51,7 @@ class DancerCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.contentView.backgroundColor = UIColor.background
         configureUI()
     }
     
@@ -61,12 +62,8 @@ class DancerCell: UITableViewCell {
     // MARK: - Helpers
     
     func configureUI() {
-        self.addSubview(profileImage)
-        self.addSubview(nameLabel)
-        self.addSubview(genreLabel)
-        self.addSubview(classdayLabel)
         
-        // 프로필 Image
+        self.addSubview(profileImage)
         profileImage.translatesAutoresizingMaskIntoConstraints = false
         profileImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 25).isActive = true
         profileImage.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
@@ -74,20 +71,19 @@ class DancerCell: UITableViewCell {
         profileImage.heightAnchor.constraint(equalToConstant: 63).isActive = true
         profileImage.backgroundColor = .gray
         
-        // 이름 label
+        self.addSubview(nameLabel)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 20).isActive = true
         nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 22).isActive = true
         
-        // 댄스장르 label
+        self.addSubview(genreLabel)
         genreLabel.translatesAutoresizingMaskIntoConstraints = false
         genreLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor).isActive = true
         genreLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 7).isActive = true
         
-        // 클래스요일 label
+        self.addSubview(classdayLabel)
         classdayLabel.translatesAutoresizingMaskIntoConstraints = false
         classdayLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor).isActive = true
         classdayLabel.topAnchor.constraint(equalTo: genreLabel.bottomAnchor, constant: 2).isActive = true
     }
-    
 }
