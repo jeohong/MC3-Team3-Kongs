@@ -14,8 +14,6 @@ extension Date {
         self = dateFormatter.date(from: "\(year):\(month):\(day)") ?? Date()
     }
     
-    
-    
     var text: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -50,5 +48,30 @@ extension Date {
     
     func get(_ component: Calendar.Component, calendar: Calendar = Calendar.current) -> Int {
         return calendar.component(component, from: self)
+    }
+    
+    // 같은 주의 월요일을 반환합니다.
+    func mondayInWeek(at weekdayNum: Int, calendar: Calendar = Calendar.current) -> Date {
+        var date = self
+        if weekdayNum == 1 {
+            date = calendar.date(byAdding: .day, value: -7, to: date)!
+        }
+        var comps = calendar.dateComponents([.weekOfYear, .yearForWeekOfYear], from: date)
+        comps.weekday = 2
+        return calendar.date(from: comps)!
+    }
+    
+    // 현재 주의 해당 월을 반환합니다.
+    func monthString(calendar: Calendar = Calendar.current) -> String {
+        let monday = self.mondayInWeek(at: self.get(.weekday))
+
+        for idx in 0...6 {
+            let date = calendar.date(byAdding: .day, value: idx, to: monday)
+            
+            if date!.get(.day) == 1 {
+                return String(date!.get(.month))
+            }
+        }
+        return String(monday.get(.month))
     }
 }
