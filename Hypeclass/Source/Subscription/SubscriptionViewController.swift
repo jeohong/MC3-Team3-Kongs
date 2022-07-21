@@ -68,7 +68,7 @@ extension SubscriptionViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let dancerDetailVC = DancerDetailViewController()
-        // TODO - ⚠️ dancerID 프로퍼티에 댄서 ID 전달 필요.
+        // ☑️ TODO: 댄서 ID 건네주어야함.
         self.navigationController?.pushViewController(dancerDetailVC, animated: true)
     }
 }
