@@ -21,4 +21,5 @@ extension UIColor {
     
     class var background: UIColor { UIColor(hex: 0x181818) }
     class var accent: UIColor { UIColor(hex: 0xC7FD51) }
+    class var searchBarBackground: UIColor{ UIColor(hex: 0x2D2C38) }
 }
