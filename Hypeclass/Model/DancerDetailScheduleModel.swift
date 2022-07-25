@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DancerDetailSchedule {
+struct DancerDetailScheduleModel {
     let studioLabel: String
     let startTimeLabel: String
     let endTimeLabel: String

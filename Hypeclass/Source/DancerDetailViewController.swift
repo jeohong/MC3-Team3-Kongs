@@ -13,6 +13,9 @@ class DancerDetailViewController: BaseViewController {
     
     var dancerID: String?
     
+    var dancerScheduleArray: [DancerDetailScheduleModel] = []
+    var dancerDataManager = DancerDetailSchduleManager()
+    
     let dancerDetailScrollView: UIScrollView! = UIScrollView()
     let dancerDetailContentView: UIView! = UIView()
 
@@ -166,6 +169,7 @@ class DancerDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        setupDatas()
     }
     //MARK: - Selectors
     
@@ -182,6 +186,12 @@ class DancerDetailViewController: BaseViewController {
     }
     
     //MARK: - Helpers
+    
+    func setupDatas() {
+        dancerDataManager.makeDancerData()
+        dancerScheduleArray = dancerDataManager.getScheduleData()
+    }
+    
     func configureUI() {
         dancerDetailScrollView.translatesAutoresizingMaskIntoConstraints = false
         dancerDetailContentView.translatesAutoresizingMaskIntoConstraints = false
@@ -283,9 +293,9 @@ extension DancerDetailViewController: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: weekCellID, for: indexPath) as! WeeklyScheduleCell
             cell.weekdayLabel.text = Weekday.allCases[indexPath.section].rawValue
             cell.dayLabel.text = cell.dayString(date: selectedDate, dayNum: indexPath.section)
-//            cell.stackBackgroundView
-//            cell.backgroundColor = .red
-            cell.studioLabel.text =
+            cell.studioLabel.text = dancerScheduleArray[indexPath.row].studioLabel
+            cell.startTimeLabel.text = dancerScheduleArray[indexPath.row].startTimeLabel
+            cell.endTimeLabel.text = dancerScheduleArray[indexPath.row].endTimeLabel
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: weekCellID, for: indexPath) as! WeeklyScheduleCell

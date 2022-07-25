@@ -39,7 +39,7 @@ class WeeklyScheduleCell: UICollectionViewCell {
     
     let studioLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.font = .systemFont(ofSize: 12, weight: .semibold)
         label.textColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -47,7 +47,7 @@ class WeeklyScheduleCell: UICollectionViewCell {
     
     let startTimeLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.font = .systemFont(ofSize: 12, weight: .regular)
         label.textColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -55,7 +55,7 @@ class WeeklyScheduleCell: UICollectionViewCell {
     
     let tildeLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.font = .systemFont(ofSize: 12, weight: .regular)
         label.textColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
         label.text = "~"
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -64,7 +64,7 @@ class WeeklyScheduleCell: UICollectionViewCell {
     
     let endTimeLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.font = .systemFont(ofSize: 12, weight: .regular)
         label.textColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -74,8 +74,8 @@ class WeeklyScheduleCell: UICollectionViewCell {
         let sv = UIStackView()
         sv.axis = .vertical
         sv.distribution  = .fill
-        sv.alignment = .fill
-        sv.spacing = 15
+        sv.alignment = .center
+        sv.spacing = 1
         sv.translatesAutoresizingMaskIntoConstraints = false
         return sv
     }()
@@ -116,15 +116,15 @@ class WeeklyScheduleCell: UICollectionViewCell {
             dayLabel.topAnchor.constraint(equalTo: weekdayLabel.bottomAnchor, constant: 1),
             dayLabel.centerXAnchor.constraint(equalTo: weekdayLabel.centerXAnchor),
             
-            stackBackgroundView.topAnchor.constraint(equalTo: dayLabel.bottomAnchor, constant: 25),
+            stackBackgroundView.topAnchor.constraint(equalTo: dayLabel.bottomAnchor, constant: 20),
             stackBackgroundView.centerXAnchor.constraint(equalTo: dayLabel.centerXAnchor),
-            stackBackgroundView.heightAnchor.constraint(equalToConstant: 70),
+            stackBackgroundView.heightAnchor.constraint(equalToConstant: 80),
             stackBackgroundView.widthAnchor.constraint(equalToConstant: 56),
 
-            studioLabel.topAnchor.constraint(equalTo: stackBackgroundView.topAnchor, constant: 30),
+            studioLabel.topAnchor.constraint(equalTo: stackBackgroundView.topAnchor, constant: 10),
             studioLabel.centerXAnchor.constraint(equalTo: stackBackgroundView.centerXAnchor),
 
-            timeStackView.topAnchor.constraint(equalTo: studioLabel.topAnchor, constant: 30),
+            timeStackView.topAnchor.constraint(equalTo: studioLabel.topAnchor, constant: 15),
             timeStackView.centerXAnchor.constraint(equalTo: studioLabel.centerXAnchor)
         ])
     }

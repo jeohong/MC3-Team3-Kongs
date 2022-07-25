@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0AA1E7DE288EE32A00AC0CE9 /* DancerDetailSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA1E7DD288EE32A00AC0CE9 /* DancerDetailSchedule.swift */; };
+		0AA1E7DE288EE32A00AC0CE9 /* DancerDetailScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA1E7DD288EE32A00AC0CE9 /* DancerDetailScheduleModel.swift */; };
 		0AA1E7E0288EE3F600AC0CE9 /* DancerDetailSchduleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA1E7DF288EE3F600AC0CE9 /* DancerDetailSchduleManager.swift */; };
 		0ADD3B7F288447B30074C496 /* DancerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD3B7E288447B30074C496 /* DancerDetailViewController.swift */; };
 		97C17C86288738A300A510CA /* MainViewController+GenreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C17C85288738A300A510CA /* MainViewController+GenreCell.swift */; };
@@ -60,7 +60,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0AA1E7DD288EE32A00AC0CE9 /* DancerDetailSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DancerDetailSchedule.swift; sourceTree = "<group>"; };
+		0AA1E7DD288EE32A00AC0CE9 /* DancerDetailScheduleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DancerDetailScheduleModel.swift; sourceTree = "<group>"; };
 		0AA1E7DF288EE3F600AC0CE9 /* DancerDetailSchduleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DancerDetailSchduleManager.swift; sourceTree = "<group>"; };
 		0ADD3B7E288447B30074C496 /* DancerDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DancerDetailViewController.swift; sourceTree = "<group>"; };
 		97C17C85288738A300A510CA /* MainViewController+GenreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+GenreCell.swift"; sourceTree = "<group>"; };
@@ -273,7 +273,7 @@
 				C07E5C90287E707200BDA46D /* Genre.swift */,
 				C7CE676128814D3C00C8F137 /* Weekday.swift */,
 				C08A10B12883BCC1009A38E7 /* MockDataSet.swift */,
-				0AA1E7DD288EE32A00AC0CE9 /* DancerDetailSchedule.swift */,
+				0AA1E7DD288EE32A00AC0CE9 /* DancerDetailScheduleModel.swift */,
 				0AA1E7DF288EE3F600AC0CE9 /* DancerDetailSchduleManager.swift */,
 			);
 			path = Model;
@@ -380,7 +380,7 @@
 			files = (
 				0ADD3B7F288447B30074C496 /* DancerDetailViewController.swift in Sources */,
 				C05BF1DD287BC60600C95E1B /* MainViewController.swift in Sources */,
-				0AA1E7DE288EE32A00AC0CE9 /* DancerDetailSchedule.swift in Sources */,
+				0AA1E7DE288EE32A00AC0CE9 /* DancerDetailScheduleModel.swift in Sources */,
 				0AA1E7E0288EE3F600AC0CE9 /* DancerDetailSchduleManager.swift in Sources */,
 				C05BF1FA287BC7EF00C95E1B /* UIColor.swift in Sources */,
 				C7CE676028807C8E00C8F137 /* WeekdayCell.swift in Sources */,

@@ -8,17 +8,21 @@
 import UIKit
 
 class DancerDetailSchduleManager {
-    private var dancerScheduleDataArray: [DancerDetailSchedule] = []
+    private var dancerScheduleDataArray: [DancerDetailScheduleModel] = []
     
     func makeDancerData() {
         dancerScheduleDataArray = [
-            DancerDetailSchedule(studioLabel: "1 Million", startTimeLabel: "22:00", endTimeLabel: "24:00"),
-            DancerDetailSchedule(studioLabel: "호진스튜디오", startTimeLabel: "22:00", endTimeLabel: "24:00"),
-            DancerDetailSchedule(studioLabel: "justjerk", startTimeLabel: "22:00", endTimeLabel: "24:00"),
-            DancerDetailSchedule(studioLabel: "1 Million", startTimeLabel: "22:00", endTimeLabel: "24:00"),
-            DancerDetailSchedule(studioLabel: "1 Million", startTimeLabel: "22:00", endTimeLabel: "24:00"),
-            DancerDetailSchedule(studioLabel: "1 Million", startTimeLabel: "22:00", endTimeLabel: "24:00"),
-            DancerDetailSchedule(studioLabel: "1 Million", startTimeLabel: "22:00", endTimeLabel: "24:00"),
+            DancerDetailScheduleModel(studioLabel: "1 Million", startTimeLabel: "22:00", endTimeLabel: "24:00"),
+            DancerDetailScheduleModel(studioLabel: "호진스튜디오", startTimeLabel: "22:00", endTimeLabel: "24:00"),
+            DancerDetailScheduleModel(studioLabel: "justjerk", startTimeLabel: "22:00", endTimeLabel: "24:00"),
+            DancerDetailScheduleModel(studioLabel: "1 Million", startTimeLabel: "22:00", endTimeLabel: "24:00"),
+            DancerDetailScheduleModel(studioLabel: "1 Million", startTimeLabel: "22:00", endTimeLabel: "24:00"),
+            DancerDetailScheduleModel(studioLabel: "1 Million", startTimeLabel: "22:00", endTimeLabel: "24:00"),
+            DancerDetailScheduleModel(studioLabel: "1 Million", startTimeLabel: "22:00", endTimeLabel: "24:00"),
         ]
+    }
+    
+    func getScheduleData() -> [DancerDetailScheduleModel] {
+        return dancerScheduleDataArray
     }
 }
