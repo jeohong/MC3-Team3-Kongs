@@ -20,6 +20,7 @@ class DancerDetailViewController: BaseViewController {
         let imageView = UIImageView()
         let dancerCoverImage: UIImage = UIImage(named: "DancerCoverImage")!
         imageView.image = dancerCoverImage
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -28,6 +29,7 @@ class DancerDetailViewController: BaseViewController {
         let dancerProfileImage: UIImage = UIImage(named: "DancerProfileImage")!
         imageView.image = dancerProfileImage
         imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -36,6 +38,7 @@ class DancerDetailViewController: BaseViewController {
         label.text = "WOOTAE"
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -44,6 +47,7 @@ class DancerDetailViewController: BaseViewController {
         label.text = "코레오, 힙합"
         label.font = UIFont.systemFont(ofSize: 12, weight: .ultraLight)
         label.textColor = #colorLiteral(red: 0.7843137255, green: 0.7843137255, blue: 0.7843137255, alpha: 1)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -54,6 +58,7 @@ class DancerDetailViewController: BaseViewController {
         imageView.contentMode = .scaleAspectFit
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.instaImageTapped)))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -66,6 +71,7 @@ class DancerDetailViewController: BaseViewController {
         imageView.clipsToBounds = true
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.youTubeImageTapped)))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -75,6 +81,7 @@ class DancerDetailViewController: BaseViewController {
         stview.axis = .vertical
         stview.distribution = .fillEqually
         stview.alignment = .leading
+        stview.translatesAutoresizingMaskIntoConstraints = false
         return stview
     }()
 
@@ -83,6 +90,7 @@ class DancerDetailViewController: BaseViewController {
         label.text = "댄서 스케줄"
         label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -97,12 +105,14 @@ class DancerDetailViewController: BaseViewController {
         cv.register(WeeklyScheduleCell.self, forCellWithReuseIdentifier: weekCellID)
         cv.dataSource = self
         cv.delegate = self
+        cv.translatesAutoresizingMaskIntoConstraints = false
         return cv
     }()
     
     private lazy var separatorLine: UIView = {
         let line = UIView()
         line.backgroundColor = #colorLiteral(red: 0.2352941176, green: 0.2352941176, blue: 0.2352941176, alpha: 1)
+        line.translatesAutoresizingMaskIntoConstraints = false
         return line
     }()
 
@@ -111,6 +121,7 @@ class DancerDetailViewController: BaseViewController {
         label.text = "댄서 영상"
         label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -119,6 +130,7 @@ class DancerDetailViewController: BaseViewController {
         let dancerProfileImage: UIImage = UIImage(systemName: "person")!
         imageView.image = dancerProfileImage
         imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -127,6 +139,7 @@ class DancerDetailViewController: BaseViewController {
         label.text = "댄서 소개"
         label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -140,6 +153,7 @@ class DancerDetailViewController: BaseViewController {
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
         
@@ -171,20 +185,6 @@ class DancerDetailViewController: BaseViewController {
     func configureUI() {
         dancerDetailScrollView.translatesAutoresizingMaskIntoConstraints = false
         dancerDetailContentView.translatesAutoresizingMaskIntoConstraints = false
-        coverImageView.translatesAutoresizingMaskIntoConstraints = false
-        profileImageView.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        genreLabel.translatesAutoresizingMaskIntoConstraints = false
-        instagramImageView.translatesAutoresizingMaskIntoConstraints = false
-        youtubeImageView.translatesAutoresizingMaskIntoConstraints = false
-        dancerInfoStackView.translatesAutoresizingMaskIntoConstraints = false
-        scheduleContentLabel.translatesAutoresizingMaskIntoConstraints = false
-        scheduleCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        separatorLine.translatesAutoresizingMaskIntoConstraints = false
-        videoContentLabel.translatesAutoresizingMaskIntoConstraints = false
-        mockUpThumNail.translatesAutoresizingMaskIntoConstraints = false
-        introduceContentLabel.translatesAutoresizingMaskIntoConstraints = false
-        introduceContent.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(dancerDetailScrollView)
         dancerDetailScrollView.addSubview(dancerDetailContentView)
