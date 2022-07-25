@@ -283,7 +283,9 @@ extension DancerDetailViewController: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: weekCellID, for: indexPath) as! WeeklyScheduleCell
             cell.weekdayLabel.text = Weekday.allCases[indexPath.section].rawValue
             cell.dayLabel.text = cell.dayString(date: selectedDate, dayNum: indexPath.section)
-            cell.backgroundColor = .red
+//            cell.stackBackgroundView
+//            cell.backgroundColor = .red
+            cell.studioLabel.text =
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: weekCellID, for: indexPath) as! WeeklyScheduleCell

@@ -116,8 +116,10 @@ class WeeklyScheduleCell: UICollectionViewCell {
             dayLabel.topAnchor.constraint(equalTo: weekdayLabel.bottomAnchor, constant: 1),
             dayLabel.centerXAnchor.constraint(equalTo: weekdayLabel.centerXAnchor),
             
-            stackBackgroundView.topAnchor.constraint(equalTo: weekdayLabel.bottomAnchor, constant: 0),
+            stackBackgroundView.topAnchor.constraint(equalTo: dayLabel.bottomAnchor, constant: 25),
             stackBackgroundView.centerXAnchor.constraint(equalTo: dayLabel.centerXAnchor),
+            stackBackgroundView.heightAnchor.constraint(equalToConstant: 70),
+            stackBackgroundView.widthAnchor.constraint(equalToConstant: 56),
 
             studioLabel.topAnchor.constraint(equalTo: stackBackgroundView.topAnchor, constant: 30),
             studioLabel.centerXAnchor.constraint(equalTo: stackBackgroundView.centerXAnchor),
