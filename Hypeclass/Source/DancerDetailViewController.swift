@@ -281,13 +281,13 @@ extension DancerDetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.row == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: weekCellID, for: indexPath) as! WeeklyScheduleCell
-            cell.weekdayLabel.text = Weekday.allCases [indexPath.section].rawValue
+            cell.weekdayLabel.text = Weekday.allCases[indexPath.section].rawValue
             cell.dayLabel.text = cell.dayString(date: selectedDate, dayNum: indexPath.section)
-//            cell.backgroundColor = .red
+            cell.backgroundColor = .red
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: weekCellID, for: indexPath) as! WeeklyScheduleCell
-//            cell.backgroundColor = .purple
+            cell.backgroundColor = .purple
             return cell
         }
     }
