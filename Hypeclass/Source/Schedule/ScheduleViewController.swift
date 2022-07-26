@@ -211,7 +211,7 @@ class ScheduleViewController: BaseViewController {
     
     /// 클래스 데이터를 이용해 StackView에 각각 해당하는 ScheduleView를 추가합니다.
     private func addScheduleToStackView() {
-        fetchSchedules()
+        //fetchSchedules()
         
         stackViews.enumerated().forEach{
             let stackView = $0.1
@@ -227,17 +227,17 @@ class ScheduleViewController: BaseViewController {
             weekSchedules[$0.0].forEach { schedule in
                 let dancerName = schedule.dancerName
                 let studioName = schedule.studioName
-                let startTime = "\(schedule.startTime.get(.hour)):\(schedule.startTime.get(.minute))"
-                let endTime = "\(schedule.endTime.get(.hour)):\(schedule.endTime.get(.minute))"
+                let startTime = "\(schedule.startTime?.get(.hour)):\(schedule.startTime?.get(.minute))"
+                let endTime = "\(schedule.endTime?.get(.hour)):\(schedule.endTime?.get(.minute))"
 
                 scheduleViewWidth = (scheduleCollectionView.frame.width - 15) / 2
-                let scheduleView = ScheduleView(frame: .zero, dancerName: dancerName, studioName: studioName, startTime: startTime, endTime: endTime, viewWidth: scheduleViewWidth)
+                let scheduleView = ScheduleView(frame: .zero, dancerName: dancerName ?? "", studioName: studioName ?? "", startTime: startTime, endTime: endTime, viewWidth: scheduleViewWidth)
                 scheduleView.translatesAutoresizingMaskIntoConstraints = false
                 scheduleView.widthAnchor.constraint(equalToConstant: scheduleViewWidth).isActive = true
                 scheduleView.heightAnchor.constraint(equalToConstant: scheduleCollectionView.frame.height / 8).isActive = true
                 
                 scheduleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.pushDetailView(_:))))
-                scheduleView.tag = Int(schedule.dancerID)!
+                scheduleView.tag = Int(schedule.dancerID ?? "0")!
                 
                 stackView.addArrangedSubview(scheduleView)
             }
@@ -253,23 +253,23 @@ class ScheduleViewController: BaseViewController {
     }
 
     /// 날짜에 맞는 DanceClass를 각각 배열에 넣어줍니다.
-    private func fetchSchedules() {
-        let monday = selectedDate.mondayInWeek(at: selectedDate.get(.weekday))
-        let cal = Calendar.current
-
-        for idx in 0...6 {
-            let date = cal.date(byAdding: .day, value: idx, to: monday)
-            weekSchedules[idx] = []
-
-            myDancers.forEach { dancer in
-                let dancerSchedules = dancer?.schedules.filter { cal.isDate(date!, inSameDayAs: $0.startTime) }
-                dancerSchedules?.forEach { schedule in
-                    weekSchedules[idx].append(schedule)
-                }
-            }
-            weekSchedules[idx] = weekSchedules[idx].sorted(by: { $0.startTime < $1.startTime })
-        }
-    }
+//    private func fetchSchedules() {
+//        let monday = selectedDate.mondayInWeek(at: selectedDate.get(.weekday))
+//        let cal = Calendar.current
+//
+//        for idx in 0...6 {
+//            let date = cal.date(byAdding: .day, value: idx, to: monday)
+//            weekSchedules[idx] = []
+//
+//            myDancers.forEach { dancer in
+//                let dancerSchedules = dancer?.schedules.filter { cal.isDate(date!, inSameDayAs: $0.startTime) }
+//                dancerSchedules?.forEach { schedule in
+//                    weekSchedules[idx].append(schedule)
+//                }
+//            }
+//            weekSchedules[idx] = weekSchedules[idx].sorted(by: { $0.startTime < $1.startTime })
+//        }
+//    }
 }
 
 // MARK: - UICollectionView Extension
