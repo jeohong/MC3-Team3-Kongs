@@ -33,7 +33,6 @@ class SearchManager {
     }
     
     func requestSearchGenre(genreSearch: String) async throws -> [Dancer]? {
-        
         let snapshot = try await Constant.dancerRef.whereField("genres", arrayContains: genreSearch).getDocuments()
         
         let searchGenre = snapshot.documents.compactMap { document in
