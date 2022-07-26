@@ -18,4 +18,12 @@ class StudioManager {
             print("Error writing studio to Firestore: \(error)")
         }
     }
+    
+    func requestStudiosBy(dancerName name: String) async throws -> [Studio]? {
+        let snapshot = try await Constant.studioRef.whereField("dancers", arrayContains: name).getDocuments()
+        
+        return snapshot.documents.compactMap { document in
+            try? document.data(as: Studio.self)
+        }
+    }
 }

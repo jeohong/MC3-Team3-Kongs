@@ -19,17 +19,19 @@ class DancerManager {
         }
     }
     
-    func requestDancers() async throws -> [Dancer] {
-        do {
-            let snapshot = try await Constant.dancerRef.getDocuments()
-            
-            return snapshot.documents.compactMap { document in
-                try? document.data(as: Dancer.self)
-            }
+    func requestAllDancers() async throws -> [Dancer]? {
+        let snapshot = try await Constant.dancerRef.getDocuments()
+        
+        return snapshot.documents.compactMap { document in
+            try? document.data(as: Dancer.self)
         }
-        catch {
-            print(error)
-            return []
+    }
+    
+    func requestDancersBy(studioName name: String) async throws -> [Dancer]? {
+        let snapshot = try await Constant.dancerRef.whereField("studios", arrayContains: name).getDocuments()
+        
+        return snapshot.documents.compactMap { document in
+            try? document.data(as: Dancer.self)
         }
     }
 }
