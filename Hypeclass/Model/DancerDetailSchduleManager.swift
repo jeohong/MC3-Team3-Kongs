@@ -22,7 +22,7 @@ class DancerDetailSchduleManager {
         ]
     }
     
-    func getScheduleData() -> [DancerDetailScheduleModel] {
+    func fetchScheduleData() -> [DancerDetailScheduleModel] {
         return dancerScheduleDataArray
     }
 }
