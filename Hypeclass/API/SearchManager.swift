@@ -12,8 +12,8 @@ import FirebaseFirestoreSwift
 class SearchManager {
     static let shared = SearchManager()
     
-    func requestSearchDancer(dancerSearch: String) async throws -> [Dancer]? {
-        let snapshot = try await Constant.dancerRef.whereField("name", isGreaterThanOrEqualTo: dancerSearch).getDocuments()
+    func requestSearchDancer(queryString query: String) async throws -> [Dancer]? {
+        let snapshot = try await Constant.dancerRef.whereField("name", isGreaterThanOrEqualTo: query).getDocuments()
         
         let searchDancer = snapshot.documents.compactMap { document in
             try? document.data(as: Dancer.self)
@@ -22,8 +22,8 @@ class SearchManager {
         return searchDancer
     }
     
-    func requestSearchStudio(studioSearch: String) async throws -> [Studio]? {
-        let snapshot = try await Constant.studioRef.whereField("name", isGreaterThanOrEqualTo: studioSearch).getDocuments()
+    func requestSearchStudio(queryString query: String) async throws -> [Studio]? {
+        let snapshot = try await Constant.studioRef.whereField("name", isGreaterThanOrEqualTo: query).getDocuments()
         
         let searchStudio =  snapshot.documents.compactMap { document in
             try? document.data(as: Studio.self)
@@ -32,8 +32,8 @@ class SearchManager {
         return searchStudio
     }
     
-    func requestSearchGenre(genreSearch: String) async throws -> [Dancer]? {
-        let snapshot = try await Constant.dancerRef.whereField("genres", arrayContains: genreSearch).getDocuments()
+    func requestSearchGenre(queryString query: String) async throws -> [Dancer]? {
+        let snapshot = try await Constant.dancerRef.whereField("genres", arrayContains: query).getDocuments()
         
         let searchGenre = snapshot.documents.compactMap { document in
             try? document.data(as: Dancer.self)
