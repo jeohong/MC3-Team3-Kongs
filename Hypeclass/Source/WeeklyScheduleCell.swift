@@ -103,30 +103,27 @@ class WeeklyScheduleCell: UICollectionViewCell {
     private func setLayout() {
         // 요일 label
         contentView.addSubview(weekdayLabel)
+        weekdayLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        weekdayLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+        weekdayLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        
         contentView.addSubview(dayLabel)
+        dayLabel.topAnchor.constraint(equalTo: weekdayLabel.bottomAnchor, constant: 1).isActive = true
+        dayLabel.centerXAnchor.constraint(equalTo: weekdayLabel.centerXAnchor).isActive = true
+        
         contentView.addSubview(stackBackgroundView)
+        stackBackgroundView.topAnchor.constraint(equalTo: dayLabel.bottomAnchor, constant: 20).isActive = true
+        stackBackgroundView.centerXAnchor.constraint(equalTo: dayLabel.centerXAnchor).isActive = true
+        stackBackgroundView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        stackBackgroundView.widthAnchor.constraint(equalToConstant: 56).isActive = true
+        
         stackBackgroundView.addSubview(studioLabel)
+        studioLabel.topAnchor.constraint(equalTo: stackBackgroundView.topAnchor, constant: 10).isActive = true
+        studioLabel.centerXAnchor.constraint(equalTo: stackBackgroundView.centerXAnchor).isActive = true
+
         stackBackgroundView.addSubview(timeStackView)
-
-        NSLayoutConstraint.activate([
-            weekdayLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            weekdayLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            weekdayLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-
-            dayLabel.topAnchor.constraint(equalTo: weekdayLabel.bottomAnchor, constant: 1),
-            dayLabel.centerXAnchor.constraint(equalTo: weekdayLabel.centerXAnchor),
-            
-            stackBackgroundView.topAnchor.constraint(equalTo: dayLabel.bottomAnchor, constant: 20),
-            stackBackgroundView.centerXAnchor.constraint(equalTo: dayLabel.centerXAnchor),
-            stackBackgroundView.heightAnchor.constraint(equalToConstant: 80),
-            stackBackgroundView.widthAnchor.constraint(equalToConstant: 56),
-
-            studioLabel.topAnchor.constraint(equalTo: stackBackgroundView.topAnchor, constant: 10),
-            studioLabel.centerXAnchor.constraint(equalTo: stackBackgroundView.centerXAnchor),
-
-            timeStackView.topAnchor.constraint(equalTo: studioLabel.topAnchor, constant: 15),
-            timeStackView.centerXAnchor.constraint(equalTo: studioLabel.centerXAnchor)
-        ])
+        timeStackView.topAnchor.constraint(equalTo: studioLabel.topAnchor, constant: 15).isActive = true
+        timeStackView.centerXAnchor.constraint(equalTo: studioLabel.centerXAnchor).isActive = true
     }
     
     /// date가 속해 있는 주의 날짜를 반환합니다.

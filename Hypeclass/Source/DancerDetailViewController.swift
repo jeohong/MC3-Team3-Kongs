@@ -196,21 +196,6 @@ class DancerDetailViewController: BaseViewController {
         dancerDetailScrollView.translatesAutoresizingMaskIntoConstraints = false
         dancerDetailContentView.translatesAutoresizingMaskIntoConstraints = false
         
-        view.addSubview(dancerDetailScrollView)
-        dancerDetailScrollView.addSubview(dancerDetailContentView)
-        dancerDetailContentView.addSubview(coverImageView)
-        dancerDetailContentView.addSubview(profileImageView)
-        dancerDetailContentView.addSubview(dancerInfoStackView)
-        dancerDetailContentView.addSubview(instagramImageView)
-        dancerDetailContentView.addSubview(youtubeImageView)
-        dancerDetailContentView.addSubview(scheduleContentLabel)
-        dancerDetailContentView.addSubview(scheduleCollectionView)
-        dancerDetailContentView.addSubview(separatorLine)
-        dancerDetailContentView.addSubview(videoContentLabel)
-        dancerDetailContentView.addSubview(mockUpThumNail)
-        dancerDetailContentView.addSubview(introduceContentLabel)
-        dancerDetailContentView.addSubview(introduceContent)
-
         dancerDetailContentView.widthAnchor.constraint(equalTo: dancerDetailScrollView.widthAnchor).isActive = true
 
         let contentViewHeight = dancerDetailContentView.heightAnchor.constraint(greaterThanOrEqualTo: view.heightAnchor)
@@ -218,64 +203,76 @@ class DancerDetailViewController: BaseViewController {
         contentViewHeight.isActive = true
         // 수직 스크롤을 적용하기 위해 contentView 와 scrollView의 width를 동일하게 잡아주고 height를 동일하게 잡아주되 priority 값을 조정하여 scroll 될 수 있도록 설정했습니다.
 
-        NSLayoutConstraint.activate([
-            dancerDetailScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            dancerDetailScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            dancerDetailScrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            dancerDetailScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        view.addSubview(dancerDetailScrollView)
+        dancerDetailScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        dancerDetailScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        dancerDetailScrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        dancerDetailScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
             
-            dancerDetailContentView.leadingAnchor.constraint(equalTo: dancerDetailScrollView.contentLayoutGuide.leadingAnchor),
-            dancerDetailContentView.trailingAnchor.constraint(equalTo: dancerDetailScrollView.contentLayoutGuide.trailingAnchor),
-            dancerDetailContentView.topAnchor.constraint(equalTo: dancerDetailScrollView.contentLayoutGuide.topAnchor),
-            dancerDetailContentView.bottomAnchor.constraint(equalTo: dancerDetailScrollView.contentLayoutGuide.bottomAnchor),
+        dancerDetailScrollView.addSubview(dancerDetailContentView)
+        dancerDetailContentView.leadingAnchor.constraint(equalTo: dancerDetailScrollView.contentLayoutGuide.leadingAnchor).isActive = true
+        dancerDetailContentView.trailingAnchor.constraint(equalTo: dancerDetailScrollView.contentLayoutGuide.trailingAnchor).isActive = true
+        dancerDetailContentView.topAnchor.constraint(equalTo: dancerDetailScrollView.contentLayoutGuide.topAnchor).isActive = true
+        dancerDetailContentView.bottomAnchor.constraint(equalTo: dancerDetailScrollView.contentLayoutGuide.bottomAnchor).isActive = true
             
-            coverImageView.leadingAnchor.constraint(equalTo: dancerDetailContentView.leadingAnchor, constant: 0),
-            coverImageView.trailingAnchor.constraint(equalTo: dancerDetailContentView.trailingAnchor, constant: 0),
-            coverImageView.heightAnchor.constraint(equalToConstant: 220),
-            coverImageView.topAnchor.constraint(equalTo: dancerDetailContentView.topAnchor, constant: 0),
+        dancerDetailContentView.addSubview(coverImageView)
+        coverImageView.leadingAnchor.constraint(equalTo: dancerDetailContentView.leadingAnchor, constant: 0).isActive = true
+        coverImageView.trailingAnchor.constraint(equalTo: dancerDetailContentView.trailingAnchor, constant: 0).isActive = true
+        coverImageView.heightAnchor.constraint(equalToConstant: 220).isActive = true
+        coverImageView.topAnchor.constraint(equalTo: dancerDetailContentView.topAnchor, constant: 0).isActive = true
             
-            profileImageView.leadingAnchor.constraint(equalTo: dancerDetailContentView.leadingAnchor, constant: 25),
-            profileImageView.topAnchor.constraint(equalTo: coverImageView.bottomAnchor, constant: 25),
-            profileImageView.heightAnchor.constraint(equalToConstant: 90),
-            profileImageView.widthAnchor.constraint(equalToConstant: 90),
+        dancerDetailContentView.addSubview(profileImageView)
+        profileImageView.leadingAnchor.constraint(equalTo: dancerDetailContentView.leadingAnchor, constant: 25).isActive = true
+        profileImageView.topAnchor.constraint(equalTo: coverImageView.bottomAnchor, constant: 25).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 90).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant: 90).isActive = true
 
-            dancerInfoStackView.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 20),
-            dancerInfoStackView.topAnchor.constraint(equalTo: profileImageView.topAnchor, constant: 10),
+        dancerDetailContentView.addSubview(dancerInfoStackView)
+        dancerInfoStackView.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 20).isActive = true
+        dancerInfoStackView.topAnchor.constraint(equalTo: profileImageView.topAnchor, constant: 10).isActive = true
             
-            instagramImageView.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 20),
-            instagramImageView.bottomAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: -10),
-            instagramImageView.heightAnchor.constraint(equalToConstant: 22),
-            instagramImageView.widthAnchor.constraint(equalToConstant: 22),
+        dancerDetailContentView.addSubview(instagramImageView)
+        instagramImageView.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 20).isActive = true
+        instagramImageView.bottomAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: -10).isActive = true
+        instagramImageView.heightAnchor.constraint(equalToConstant: 22).isActive = true
+        instagramImageView.widthAnchor.constraint(equalToConstant: 22).isActive = true
 
-            youtubeImageView.leadingAnchor.constraint(equalTo: instagramImageView.trailingAnchor, constant: 10),
-            youtubeImageView.bottomAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: -10),
-            youtubeImageView.heightAnchor.constraint(equalToConstant: 22),
+        dancerDetailContentView.addSubview(youtubeImageView)
+        youtubeImageView.leadingAnchor.constraint(equalTo: instagramImageView.trailingAnchor, constant: 10).isActive = true
+        youtubeImageView.bottomAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: -10).isActive = true
+        youtubeImageView.heightAnchor.constraint(equalToConstant: 22).isActive = true
             
-            scheduleContentLabel.leadingAnchor.constraint(equalTo: dancerDetailContentView.leadingAnchor, constant: 25),
-            scheduleContentLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 25),
+        dancerDetailContentView.addSubview(scheduleContentLabel)
+        scheduleContentLabel.leadingAnchor.constraint(equalTo: dancerDetailContentView.leadingAnchor, constant: 25).isActive = true
+        scheduleContentLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 25).isActive = true
             
-            scheduleCollectionView.leadingAnchor.constraint(equalTo: dancerDetailContentView.leadingAnchor,constant: 20),
-            scheduleCollectionView.trailingAnchor.constraint(equalTo: dancerDetailContentView.trailingAnchor, constant: -20),
-            scheduleCollectionView.topAnchor.constraint(equalTo: scheduleContentLabel.bottomAnchor, constant: 10),
-            scheduleCollectionView.heightAnchor.constraint(equalToConstant: 160),
+        dancerDetailContentView.addSubview(scheduleCollectionView)
+        scheduleCollectionView.leadingAnchor.constraint(equalTo: dancerDetailContentView.leadingAnchor,constant: 20).isActive = true
+        scheduleCollectionView.trailingAnchor.constraint(equalTo: dancerDetailContentView.trailingAnchor, constant: -20).isActive = true
+        scheduleCollectionView.topAnchor.constraint(equalTo: scheduleContentLabel.bottomAnchor, constant: 10).isActive = true
+        scheduleCollectionView.heightAnchor.constraint(equalToConstant: 160).isActive = true
             
-            separatorLine.leadingAnchor.constraint(equalTo: scheduleCollectionView.leadingAnchor,constant: 0),
-            separatorLine.trailingAnchor.constraint(equalTo: scheduleCollectionView.trailingAnchor,constant: 0),
-            separatorLine.topAnchor.constraint(equalTo: scheduleCollectionView.topAnchor,constant: 60),
-            separatorLine.bottomAnchor.constraint(equalTo: scheduleCollectionView.topAnchor,constant: 61),
+        dancerDetailContentView.addSubview(separatorLine)
+        separatorLine.leadingAnchor.constraint(equalTo: scheduleCollectionView.leadingAnchor,constant: 0).isActive = true
+        separatorLine.trailingAnchor.constraint(equalTo: scheduleCollectionView.trailingAnchor,constant: 0).isActive = true
+        separatorLine.topAnchor.constraint(equalTo: scheduleCollectionView.topAnchor,constant: 60).isActive = true
+        separatorLine.bottomAnchor.constraint(equalTo: scheduleCollectionView.topAnchor,constant: 61).isActive = true
             
-            videoContentLabel.leadingAnchor.constraint(equalTo: dancerDetailContentView.leadingAnchor, constant: 25),
-            videoContentLabel.topAnchor.constraint(equalTo: scheduleCollectionView.bottomAnchor, constant: 25),
+        dancerDetailContentView.addSubview(videoContentLabel)
+        videoContentLabel.leadingAnchor.constraint(equalTo: dancerDetailContentView.leadingAnchor, constant: 25).isActive = true
+        videoContentLabel.topAnchor.constraint(equalTo: scheduleCollectionView.bottomAnchor, constant: 25).isActive = true
             
-            mockUpThumNail.leadingAnchor.constraint(equalTo: dancerDetailContentView.leadingAnchor, constant: 25),
-            mockUpThumNail.topAnchor.constraint(equalTo: videoContentLabel.bottomAnchor, constant: 10),
+        dancerDetailContentView.addSubview(mockUpThumNail)
+        mockUpThumNail.leadingAnchor.constraint(equalTo: dancerDetailContentView.leadingAnchor, constant: 25).isActive = true
+        mockUpThumNail.topAnchor.constraint(equalTo: videoContentLabel.bottomAnchor, constant: 10).isActive = true
             
-            introduceContentLabel.leadingAnchor.constraint(equalTo: dancerDetailContentView.leadingAnchor, constant: 25),
-            introduceContentLabel.topAnchor.constraint(equalTo: mockUpThumNail.bottomAnchor, constant: 25),
+        dancerDetailContentView.addSubview(introduceContentLabel)
+        introduceContentLabel.leadingAnchor.constraint(equalTo: dancerDetailContentView.leadingAnchor, constant: 25).isActive = true
+        introduceContentLabel.topAnchor.constraint(equalTo: mockUpThumNail.bottomAnchor, constant: 25).isActive = true
             
-            introduceContent.leadingAnchor.constraint(equalTo: dancerDetailContentView.leadingAnchor, constant: 25),
-            introduceContent.topAnchor.constraint(equalTo: introduceContentLabel.bottomAnchor, constant: 25)
-        ])
+        dancerDetailContentView.addSubview(introduceContent)
+        introduceContent.leadingAnchor.constraint(equalTo: dancerDetailContentView.leadingAnchor, constant: 25).isActive = true
+        introduceContent.topAnchor.constraint(equalTo: introduceContentLabel.bottomAnchor, constant: 25).isActive = true
     }
 }
 
