@@ -47,17 +47,11 @@ class DancerManager {
         }
     }
     
-    func requestDancersByIDArray(id: [String]) async throws -> [Dancer]? {
-        do {
-            let snapshot = try await Constant.dancerRef.whereField("id", arrayContainsAny: id).getDocuments()
-            
-            return snapshot.documents.compactMap { document in
-                try? document.data(as: Dancer.self)
-            }
-        }
-        catch {
-            print(error)
-            return nil
+    func requestDancersBy(IDArray ids: [String]) async throws -> [Dancer]? {
+        let snapshot = try await Constant.dancerRef.whereField("id", arrayContainsAny: ids).getDocuments()
+        
+        return snapshot.documents.compactMap { document in
+            try? document.data(as: Dancer.self)
         }
     }
 }

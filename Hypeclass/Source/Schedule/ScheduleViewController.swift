@@ -267,7 +267,12 @@ class ScheduleViewController: BaseViewController {
     /// 구독한 댄서 정보를 Firebase에서 읽어옵니다.
     private func requestDancers() async throws {
         let subscriptionIDs = UserDefaults.standard.stringArray(forKey: "SubscribedDancers") ?? ["CDF787F4-5AD7-4138-AE13-F96DEF538E0D", "2EB613FC-956E-482F-80C1-DAC47C543729", "F77D3855-2CE5-468D-B702-8C9AA521461B"]
-        myDancers = try await DancerManager.shared.requestDancersByIDArray(id: subscriptionIDs)
+        do {
+            myDancers = try await DancerManager.shared.requestDancersBy(IDArray: subscriptionIDs)
+        }
+        catch {
+            print(error)
+        }
     }
 }
 
