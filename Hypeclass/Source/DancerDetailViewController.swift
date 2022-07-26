@@ -222,7 +222,7 @@ class DancerDetailViewController: BaseViewController {
             
         dancerDetailContentView.addSubview(profileImageView)
         profileImageView.leadingAnchor.constraint(equalTo: dancerDetailContentView.leadingAnchor, constant: 25).isActive = true
-        profileImageView.topAnchor.constraint(equalTo: coverImageView.bottomAnchor, constant: 25).isActive = true
+        profileImageView.topAnchor.constraint(equalTo: coverImageView.bottomAnchor, constant: 24).isActive = true
         profileImageView.widthAnchor.constraint(equalTo: dancerDetailContentView.widthAnchor, multiplier: 1 / 4).isActive = true
         profileImageView.heightAnchor.constraint(equalTo: profileImageView.widthAnchor, multiplier: 1).isActive = true
 
@@ -233,21 +233,22 @@ class DancerDetailViewController: BaseViewController {
         dancerDetailContentView.addSubview(instagramImageView)
         instagramImageView.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 20).isActive = true
         instagramImageView.bottomAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: -10).isActive = true
-        instagramImageView.heightAnchor.constraint(equalToConstant: 22).isActive = true
-        instagramImageView.widthAnchor.constraint(equalToConstant: 22).isActive = true
+        instagramImageView.widthAnchor.constraint(equalTo: dancerDetailContentView.widthAnchor, multiplier: 1 / 15).isActive = true
+        instagramImageView.heightAnchor.constraint(equalTo: instagramImageView.widthAnchor, multiplier: 1).isActive = true
 
         dancerDetailContentView.addSubview(youtubeImageView)
         youtubeImageView.leadingAnchor.constraint(equalTo: instagramImageView.trailingAnchor, constant: 10).isActive = true
         youtubeImageView.bottomAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: -10).isActive = true
-        youtubeImageView.heightAnchor.constraint(equalToConstant: 22).isActive = true
+        youtubeImageView.widthAnchor.constraint(equalTo: dancerDetailContentView.widthAnchor, multiplier: 1 / 15).isActive = true
+        youtubeImageView.heightAnchor.constraint(equalTo: youtubeImageView.widthAnchor, multiplier: 1).isActive = true
             
         dancerDetailContentView.addSubview(scheduleContentLabel)
-        scheduleContentLabel.leadingAnchor.constraint(equalTo: dancerDetailContentView.leadingAnchor, constant: 25).isActive = true
+        scheduleContentLabel.leadingAnchor.constraint(equalTo: profileImageView.leadingAnchor, constant: 0).isActive = true
         scheduleContentLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 25).isActive = true
             
         dancerDetailContentView.addSubview(scheduleCollectionView)
-        scheduleCollectionView.leadingAnchor.constraint(equalTo: dancerDetailContentView.leadingAnchor,constant: 20).isActive = true
-        scheduleCollectionView.trailingAnchor.constraint(equalTo: dancerDetailContentView.trailingAnchor, constant: -20).isActive = true
+        scheduleCollectionView.leadingAnchor.constraint(equalTo: scheduleContentLabel.leadingAnchor, constant: 0).isActive = true
+        scheduleCollectionView.trailingAnchor.constraint(equalTo: dancerDetailContentView.trailingAnchor, constant: -24).isActive = true
         scheduleCollectionView.topAnchor.constraint(equalTo: scheduleContentLabel.bottomAnchor, constant: 10).isActive = true
         scheduleCollectionView.heightAnchor.constraint(equalToConstant: 160).isActive = true
             
@@ -255,22 +256,22 @@ class DancerDetailViewController: BaseViewController {
         separatorLine.leadingAnchor.constraint(equalTo: scheduleCollectionView.leadingAnchor,constant: 0).isActive = true
         separatorLine.trailingAnchor.constraint(equalTo: scheduleCollectionView.trailingAnchor,constant: 0).isActive = true
         separatorLine.topAnchor.constraint(equalTo: scheduleCollectionView.topAnchor,constant: 60).isActive = true
-        separatorLine.bottomAnchor.constraint(equalTo: scheduleCollectionView.topAnchor,constant: 61).isActive = true
+        separatorLine.heightAnchor.constraint(equalToConstant: 1).isActive = true
             
         dancerDetailContentView.addSubview(videoContentLabel)
-        videoContentLabel.leadingAnchor.constraint(equalTo: dancerDetailContentView.leadingAnchor, constant: 25).isActive = true
+        videoContentLabel.leadingAnchor.constraint(equalTo: scheduleContentLabel.leadingAnchor, constant: 0).isActive = true
         videoContentLabel.topAnchor.constraint(equalTo: scheduleCollectionView.bottomAnchor, constant: 25).isActive = true
             
         dancerDetailContentView.addSubview(mockUpThumNail)
-        mockUpThumNail.leadingAnchor.constraint(equalTo: dancerDetailContentView.leadingAnchor, constant: 25).isActive = true
+        mockUpThumNail.leadingAnchor.constraint(equalTo: videoContentLabel.leadingAnchor, constant: 0).isActive = true
         mockUpThumNail.topAnchor.constraint(equalTo: videoContentLabel.bottomAnchor, constant: 10).isActive = true
             
         dancerDetailContentView.addSubview(introduceContentLabel)
-        introduceContentLabel.leadingAnchor.constraint(equalTo: dancerDetailContentView.leadingAnchor, constant: 25).isActive = true
+        introduceContentLabel.leadingAnchor.constraint(equalTo: mockUpThumNail.leadingAnchor, constant: 0).isActive = true
         introduceContentLabel.topAnchor.constraint(equalTo: mockUpThumNail.bottomAnchor, constant: 25).isActive = true
             
         dancerDetailContentView.addSubview(introduceContent)
-        introduceContent.leadingAnchor.constraint(equalTo: dancerDetailContentView.leadingAnchor, constant: 25).isActive = true
+        introduceContent.leadingAnchor.constraint(equalTo: introduceContentLabel.leadingAnchor, constant: 0).isActive = true
         introduceContent.topAnchor.constraint(equalTo: introduceContentLabel.bottomAnchor, constant: 25).isActive = true
     }
 }
