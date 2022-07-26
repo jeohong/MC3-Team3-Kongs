@@ -42,13 +42,7 @@ class ScheduleViewController: BaseViewController {
         return cv
     }()
     
-    // TODO: 재사용 Separator로 교체
-    private let separator: UIView = {
-        let line = UIView()
-        line.backgroundColor = .gray
-        
-        return line
-    }()
+    private let separator = Separator()
     
     private let previousButton: UIButton = {
         var config = UIButton.Configuration.plain()
@@ -141,9 +135,9 @@ class ScheduleViewController: BaseViewController {
     /// 댄서 디테일 뷰 페이지로 이동합니다.
     @objc func pushDetailView(_ sender: UITapGestureRecognizer) {
         // TODO: push detailViewController
-        print("pushDetailView(): \(sender.view!.tag)")
+        print("pushDetailView(): \(sender.view!.accessibilityLabel ?? "")")
         let dancerDetailVC = DancerDetailViewController()
-        guard let dancerID = sender.view?.tag else { return }
+        guard let dancerID = sender.view?.accessibilityLabel else { return }
         dancerDetailVC.dancerID = String(dancerID)
         self.navigationController?.pushViewController(dancerDetailVC, animated: true)
         
@@ -211,7 +205,7 @@ class ScheduleViewController: BaseViewController {
     
     /// 클래스 데이터를 이용해 StackView에 각각 해당하는 ScheduleView를 추가합니다.
     private func addScheduleToStackView() {
-        //fetchSchedules()
+        fetchSchedules()
         
         stackViews.enumerated().forEach{
             let stackView = $0.1
@@ -237,7 +231,7 @@ class ScheduleViewController: BaseViewController {
                 scheduleView.heightAnchor.constraint(equalToConstant: scheduleCollectionView.frame.height / 8).isActive = true
                 
                 scheduleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.pushDetailView(_:))))
-                scheduleView.tag = Int(schedule.dancerID ?? "0")!
+                scheduleView.accessibilityLabel = schedule.dancerID ?? ""
                 
                 stackView.addArrangedSubview(scheduleView)
             }
@@ -253,7 +247,7 @@ class ScheduleViewController: BaseViewController {
     }
 
     /// 날짜에 맞는 DanceClass를 각각 배열에 넣어줍니다.
-//    private func fetchSchedules() {
+    private func fetchSchedules() {
 //        let monday = selectedDate.mondayInWeek(at: selectedDate.get(.weekday))
 //        let cal = Calendar.current
 //
@@ -269,7 +263,7 @@ class ScheduleViewController: BaseViewController {
 //            }
 //            weekSchedules[idx] = weekSchedules[idx].sorted(by: { $0.startTime < $1.startTime })
 //        }
-//    }
+    }
 }
 
 // MARK: - UICollectionView Extension
