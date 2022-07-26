@@ -42,13 +42,7 @@ class ScheduleViewController: BaseViewController {
         return cv
     }()
     
-    // TODO: 재사용 Separator로 교체
-    private let separator: UIView = {
-        let line = UIView()
-        line.backgroundColor = .gray
-        
-        return line
-    }()
+    private let separator = Separator()
     
     private let previousButton: UIButton = {
         var config = UIButton.Configuration.plain()
@@ -90,11 +84,7 @@ class ScheduleViewController: BaseViewController {
         return cv
     }()
     
-    private let myDancers: [Dancer?] = {
-        let subscriptionIDs = UserDefaults.standard.stringArray(forKey: "SubscribedDancers") ?? ["2364236487", "0768035155", "3947665830"]
-        let dancers = MockDataSet.dancers.filter { subscriptionIDs.contains($0.id) }
-        return dancers
-    }()
+    private var myDancers: [Dancer]?
 
     private var weekSchedules: [[DanceClass]] = [
         [], [], [], [], [], [], []
@@ -106,7 +96,10 @@ class ScheduleViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
+        Task {
+            try await requestDancers()
+            configureUI()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -141,9 +134,9 @@ class ScheduleViewController: BaseViewController {
     /// 댄서 디테일 뷰 페이지로 이동합니다.
     @objc func pushDetailView(_ sender: UITapGestureRecognizer) {
         // TODO: push detailViewController
-        print("pushDetailView(): \(sender.view!.tag)")
+        print("pushDetailView(): \(sender.view!.accessibilityLabel ?? "")")
         let dancerDetailVC = DancerDetailViewController()
-        guard let dancerID = sender.view?.tag else { return }
+        guard let dancerID = sender.view?.accessibilityLabel else { return }
         dancerDetailVC.dancerID = String(dancerID)
         self.navigationController?.pushViewController(dancerDetailVC, animated: true)
         
@@ -211,7 +204,7 @@ class ScheduleViewController: BaseViewController {
     
     /// 클래스 데이터를 이용해 StackView에 각각 해당하는 ScheduleView를 추가합니다.
     private func addScheduleToStackView() {
-        //fetchSchedules()
+        fetchSchedules()
         
         stackViews.enumerated().forEach{
             let stackView = $0.1
@@ -237,7 +230,7 @@ class ScheduleViewController: BaseViewController {
                 scheduleView.heightAnchor.constraint(equalToConstant: scheduleCollectionView.frame.height / 8).isActive = true
                 
                 scheduleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.pushDetailView(_:))))
-                scheduleView.tag = Int(schedule.dancerID ?? "0")!
+                scheduleView.accessibilityLabel = schedule.dancerID ?? ""
                 
                 stackView.addArrangedSubview(scheduleView)
             }
@@ -253,7 +246,7 @@ class ScheduleViewController: BaseViewController {
     }
 
     /// 날짜에 맞는 DanceClass를 각각 배열에 넣어줍니다.
-//    private func fetchSchedules() {
+    private func fetchSchedules() {
 //        let monday = selectedDate.mondayInWeek(at: selectedDate.get(.weekday))
 //        let cal = Calendar.current
 //
@@ -269,7 +262,18 @@ class ScheduleViewController: BaseViewController {
 //            }
 //            weekSchedules[idx] = weekSchedules[idx].sorted(by: { $0.startTime < $1.startTime })
 //        }
-//    }
+    }
+    
+    /// 구독한 댄서 정보를 Firebase에서 읽어옵니다.
+    private func requestDancers() async throws {
+        let subscriptionIDs = UserDefaults.standard.stringArray(forKey: "SubscribedDancers") ?? ["CDF787F4-5AD7-4138-AE13-F96DEF538E0D", "2EB613FC-956E-482F-80C1-DAC47C543729", "F77D3855-2CE5-468D-B702-8C9AA521461B"]
+        do {
+            myDancers = try await DancerManager.shared.requestDancersBy(IDArray: subscriptionIDs)
+        }
+        catch {
+            print(error)
+        }
+    }
 }
 
 // MARK: - UICollectionView Extension
