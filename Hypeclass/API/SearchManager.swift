@@ -23,7 +23,7 @@ class SearchManager {
     }
     
     func requestSearchStudio(studioSearch: String) async throws -> [Studio]? {
-        let snapshot = try await Constant.studioRef.whereField("name", isGreaterThan: studioSearch).getDocuments()
+        let snapshot = try await Constant.studioRef.whereField("name", isGreaterThanOrEqualTo: studioSearch).getDocuments()
         
         let searchStudio =  snapshot.documents.compactMap { document in
             try? document.data(as: Studio.self)
