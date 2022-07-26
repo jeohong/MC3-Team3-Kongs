@@ -19,7 +19,7 @@ class DanceClassManager {
         }
     }
     
-    func requestDanceClassByDancerID(id: String) async throws -> [DanceClass]? {
+    func requestDanceClassBy(dancerID id: String) async throws -> [DanceClass]? {
         do {
             let snapshot = try await Constant.danceClassRef.whereField("dancerID", isEqualTo: id).getDocuments()
             
@@ -33,7 +33,7 @@ class DanceClassManager {
         }
     }
     
-    func requestDanceClassByStudioID(id: String) async throws -> [DanceClass]? {
+    func requestDanceClassBy(studioID id: String) async throws -> [DanceClass]? {
         do {
             let snapshot = try await Constant.danceClassRef.whereField("studioID", isEqualTo: id).getDocuments()
             

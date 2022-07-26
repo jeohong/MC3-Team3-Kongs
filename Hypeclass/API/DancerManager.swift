@@ -33,7 +33,7 @@ class DancerManager {
         }
     }
     
-    func requestDancersByStudioName(name: String) async throws -> [Dancer]? {
+    func requestDancersBy(studioName name: String) async throws -> [Dancer]? {
         do {
             let snapshot = try await Constant.dancerRef.whereField("studios", arrayContains: name).getDocuments()
             

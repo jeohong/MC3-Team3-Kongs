@@ -19,7 +19,7 @@ class StudioManager {
         }
     }
     
-    func requestStudiosByDancerName(name: String) async throws -> [Studio]? {
+    func requestStudiosBy(dancerName name: String) async throws -> [Studio]? {
         do {
             let snapshot = try await Constant.studioRef.whereField("dancers", arrayContains: name).getDocuments()
             
