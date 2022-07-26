@@ -18,4 +18,32 @@ class DanceClassManager {
             print("Error writing dance class to Firestore: \(error)")
         }
     }
+    
+    func requestDanceClassByDancerID(id: String) async throws -> [DanceClass]? {
+        do {
+            let snapshot = try await Constant.danceClassRef.whereField("dancerID", isEqualTo: id).getDocuments()
+            
+            return snapshot.documents.compactMap { document in
+                try? document.data(as: DanceClass.self)
+            }
+        }
+        catch {
+            print(error)
+            return nil
+        }
+    }
+    
+    func requestDanceClassByStudioID(id: String) async throws -> [DanceClass]? {
+        do {
+            let snapshot = try await Constant.danceClassRef.whereField("studioID", isEqualTo: id).getDocuments()
+            
+            return snapshot.documents.compactMap { document in
+                try? document.data(as: DanceClass.self)
+            }
+        }
+        catch {
+            print(error)
+            return nil
+        }
+    }
 }
