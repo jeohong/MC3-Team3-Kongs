@@ -23,6 +23,7 @@ class DancerDetailViewController: BaseViewController {
         let imageView = UIImageView()
         let dancerCoverImage: UIImage = UIImage(named: "DancerCoverImage")!
         imageView.image = dancerCoverImage
+        imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -31,7 +32,7 @@ class DancerDetailViewController: BaseViewController {
         let imageView = UIImageView()
         let dancerProfileImage: UIImage = UIImage(named: "DancerProfileImage")!
         imageView.image = dancerProfileImage
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -104,7 +105,6 @@ class DancerDetailViewController: BaseViewController {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = #colorLiteral(red: 0.1803921569, green: 0.1803921569, blue: 0.2156862745, alpha: 1)
         cv.layer.cornerRadius = 10
-//        cv.backgroundColor = .blue
         cv.register(WeeklyScheduleCell.self, forCellWithReuseIdentifier: weekCellID)
         cv.dataSource = self
         cv.delegate = self
@@ -193,39 +193,38 @@ class DancerDetailViewController: BaseViewController {
     }
     
     func configureUI() {
-        dancerDetailScrollView.translatesAutoresizingMaskIntoConstraints = false
-        dancerDetailContentView.translatesAutoresizingMaskIntoConstraints = false
-        
-        dancerDetailContentView.widthAnchor.constraint(equalTo: dancerDetailScrollView.widthAnchor).isActive = true
-
-        let contentViewHeight = dancerDetailContentView.heightAnchor.constraint(greaterThanOrEqualTo: view.heightAnchor)
+        let contentViewHeight = dancerDetailContentView.heightAnchor.constraint(equalToConstant: 1000)
         contentViewHeight.priority = .defaultLow
         contentViewHeight.isActive = true
         // 수직 스크롤을 적용하기 위해 contentView 와 scrollView의 width를 동일하게 잡아주고 height를 동일하게 잡아주되 priority 값을 조정하여 scroll 될 수 있도록 설정했습니다.
 
         view.addSubview(dancerDetailScrollView)
+        dancerDetailScrollView.translatesAutoresizingMaskIntoConstraints = false
         dancerDetailScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         dancerDetailScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         dancerDetailScrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         dancerDetailScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
             
+        let contentLayout = dancerDetailScrollView.contentLayoutGuide
         dancerDetailScrollView.addSubview(dancerDetailContentView)
-        dancerDetailContentView.leadingAnchor.constraint(equalTo: dancerDetailScrollView.contentLayoutGuide.leadingAnchor).isActive = true
-        dancerDetailContentView.trailingAnchor.constraint(equalTo: dancerDetailScrollView.contentLayoutGuide.trailingAnchor).isActive = true
-        dancerDetailContentView.topAnchor.constraint(equalTo: dancerDetailScrollView.contentLayoutGuide.topAnchor).isActive = true
-        dancerDetailContentView.bottomAnchor.constraint(equalTo: dancerDetailScrollView.contentLayoutGuide.bottomAnchor).isActive = true
+        dancerDetailContentView.translatesAutoresizingMaskIntoConstraints = false
+        dancerDetailContentView.widthAnchor.constraint(equalTo: dancerDetailScrollView.frameLayoutGuide.widthAnchor).isActive = true
+        dancerDetailContentView.leadingAnchor.constraint(equalTo: contentLayout.leadingAnchor).isActive = true
+        dancerDetailContentView.trailingAnchor.constraint(equalTo: contentLayout.trailingAnchor).isActive = true
+        dancerDetailContentView.topAnchor.constraint(equalTo: contentLayout.topAnchor).isActive = true
+        dancerDetailContentView.bottomAnchor.constraint(equalTo: contentLayout.bottomAnchor).isActive = true
             
         dancerDetailContentView.addSubview(coverImageView)
         coverImageView.leadingAnchor.constraint(equalTo: dancerDetailContentView.leadingAnchor, constant: 0).isActive = true
         coverImageView.trailingAnchor.constraint(equalTo: dancerDetailContentView.trailingAnchor, constant: 0).isActive = true
-        coverImageView.heightAnchor.constraint(equalToConstant: 220).isActive = true
+        coverImageView.heightAnchor.constraint(equalTo: dancerDetailContentView.widthAnchor, multiplier: 9 / 16).isActive = true
         coverImageView.topAnchor.constraint(equalTo: dancerDetailContentView.topAnchor, constant: 0).isActive = true
             
         dancerDetailContentView.addSubview(profileImageView)
         profileImageView.leadingAnchor.constraint(equalTo: dancerDetailContentView.leadingAnchor, constant: 25).isActive = true
         profileImageView.topAnchor.constraint(equalTo: coverImageView.bottomAnchor, constant: 25).isActive = true
-        profileImageView.heightAnchor.constraint(equalToConstant: 90).isActive = true
-        profileImageView.widthAnchor.constraint(equalToConstant: 90).isActive = true
+        profileImageView.widthAnchor.constraint(equalTo: dancerDetailContentView.widthAnchor, multiplier: 1 / 4).isActive = true
+        profileImageView.heightAnchor.constraint(equalTo: profileImageView.widthAnchor, multiplier: 1).isActive = true
 
         dancerDetailContentView.addSubview(dancerInfoStackView)
         dancerInfoStackView.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 20).isActive = true
