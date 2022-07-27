@@ -34,4 +34,12 @@ class DancerManager {
             try? document.data(as: Dancer.self)
         }
     }
+    
+    func requestDancersBy(dancerIDs ids: [String]) async throws -> [Dancer]? {
+        let snapshot = try await Constant.dancerRef.whereField("id", in: ids).getDocuments()
+
+        return snapshot.documents.compactMap { document in
+            try? document.data(as: Dancer.self)
+        }
+    }
 }
