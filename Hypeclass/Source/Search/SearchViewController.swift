@@ -206,6 +206,32 @@ extension SearchViewController: UICollectionViewDelegate {
     }
 }
 
+//MARK: - TableView Extension
+
+extension SearchViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 116
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let dancerDetailVC = DancerDetailViewController()
+        // ☑️ TODO: 댄서 ID 건네주어야함.
+        self.navigationController?.pushViewController(dancerDetailVC, animated: true)
+    }
+}
+
+extension SearchViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // 추천 알고리즘에 따른 추천 데이터 갯수 반환
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // Cell 반환 추천 데이터 -> 추천 알고리즘 논의
+        return UITableViewCell()
+    }
+}
+
 //MARK: - Preview
 
 import SwiftUI
