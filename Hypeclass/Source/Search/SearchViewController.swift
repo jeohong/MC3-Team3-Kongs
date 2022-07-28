@@ -33,6 +33,13 @@ class SearchViewController: BaseViewController {
         return cv
     }()
     
+    let recommendTable: UITableView = {
+        let table = UITableView()
+        table.backgroundColor = .clear
+        
+        return table
+    }()
+    
     let historyCellID = "history"
     
     var historyList = [String]()
@@ -46,6 +53,15 @@ class SearchViewController: BaseViewController {
         configureSearchBar()
         configureHistoryCollection()
     }
+    
+    let recommandTitle: UILabel = {
+        let label = UILabel()
+        label.text = "이런 댄서는 어때요?"
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        
+        return label
+    }()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -89,6 +105,19 @@ class SearchViewController: BaseViewController {
         historyCollectionView.leadingAnchor.constraint(equalTo: historyTitle.leadingAnchor).isActive = true
         historyCollectionView.heightAnchor.constraint(equalToConstant: 25).isActive = true
         historyCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -13).isActive = true
+        
+        self.view.addSubview(recommandTitle)
+        recommandTitle.translatesAutoresizingMaskIntoConstraints = false
+        recommandTitle.topAnchor.constraint(equalTo: historyCollectionView.bottomAnchor, constant: 38).isActive = true
+        recommandTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 27).isActive = true
+        
+
+        self.view.addSubview(recommendTable)
+        recommendTable.translatesAutoresizingMaskIntoConstraints = false
+        recommendTable.topAnchor.constraint(equalTo: recommandTitle.bottomAnchor, constant: 13).isActive = true
+        recommendTable.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        recommendTable.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        recommendTable.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
     }
     
     func configureNavigationBarUI() {
