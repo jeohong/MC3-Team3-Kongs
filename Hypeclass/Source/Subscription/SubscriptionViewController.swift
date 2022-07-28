@@ -21,7 +21,8 @@ class SubscriptionViewController: BaseViewController{
         var button = UIButton()
         button.setTitle("댄서", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
-        button.addTarget(self, action: #selector(dancerTapped), for: .touchUpInside)
+        button.tag = 0
+        button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
         return button
     }()
     
@@ -29,7 +30,8 @@ class SubscriptionViewController: BaseViewController{
         var button = UIButton()
         button.setTitle("스튜디오", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
-        button.addTarget(self, action: #selector(studioTapped), for: .touchUpInside)
+        button.tag = 1
+        button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
         return button
     }()
     
@@ -41,7 +43,8 @@ class SubscriptionViewController: BaseViewController{
         return sep
     }()
     
-    private var isDancerTab = true
+//    private var isDancerTab = true
+    private var selectedTab = 0
     
     private let cellID = "subscription"
     
@@ -67,23 +70,24 @@ class SubscriptionViewController: BaseViewController{
     
     // MARK: - Selectors
     
-    @objc func dancerTapped() {
-        if !isDancerTab {
-            UIView.animate(withDuration: 0.3) {
-                self.tabIndicator.frame.origin.x = 0
+    @objc func buttonTapped(_ sender: UIButton) {
+        if selectedTab != sender.tag {
+            switch sender.tag {
+            case 0:
+                UIView.animate(withDuration: 0.3) {
+                    self.tabIndicator.frame.origin.x = 0
+                }
+                selectedTab = sender.tag
+                tableView.reloadData()
+            case 1:
+                UIView.animate(withDuration: 0.3) {
+                    self.tabIndicator.frame.origin.x = Device.width / 2
+                }
+                selectedTab = sender.tag
+                tableView.reloadData()
+            default:
+                print("default")
             }
-            isDancerTab.toggle()
-            tableView.reloadData()
-        }
-    }
-    
-    @objc func studioTapped() {
-        if isDancerTab {
-            UIView.animate(withDuration: 0.3) {
-                self.tabIndicator.frame.origin.x = Device.width / 2
-            }
-            isDancerTab.toggle()
-            tableView.reloadData()
         }
     }
     
@@ -176,15 +180,19 @@ class SubscriptionViewController: BaseViewController{
 
 extension SubscriptionViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isDancerTab {
+        switch selectedTab {
+        case 0:
             return dancerIDs.count
-        } else {
+        case 1:
             return studioIDs.count
+        default:
+            return 0
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if isDancerTab {
+        switch selectedTab {
+        case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! ItemCell
             cell.titleLabel.text = DancerManager.myDancers?[indexPath.row].name
             cell.subtitleLabel.text =  "장르"
@@ -194,7 +202,7 @@ extension SubscriptionViewController: UITableViewDelegate, UITableViewDataSource
             cell.backgroundColor = .clear
             
             return cell
-        } else {
+        case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! ItemCell
             cell.titleLabel.text = StudioManager.myStudios?[indexPath.row].name
             cell.subtitleLabel.text = StudioManager.myStudios?[indexPath.row].description
@@ -205,31 +213,41 @@ extension SubscriptionViewController: UITableViewDelegate, UITableViewDataSource
             cell.backgroundColor = .clear
             
             return cell
+        default:
+            return ItemCell()
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if isDancerTab {
+        switch selectedTab {
+        case 0:
             let dancerDetailVC = DancerDetailViewController()
             dancerDetailVC.dancerID = DancerManager.myDancers?[indexPath.row].id
             self.navigationController?.pushViewController(dancerDetailVC, animated: true)
-        } else {
+        case 1:
             // TODO: 스튜디오 디테일 페이지로 이동, 스튜디오 ID 넘기기
+            print("Move to studio detail")
+        default:
+            print("default")
         }
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            if isDancerTab {
+            switch selectedTab {
+            case 0:
                 DancerManager.myDancers?.remove(at: indexPath.row)
                 dancerIDs.remove(at: indexPath.row)
                 // TODO: UserDefault에 변경사항 반영
-            } else {
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            case 1:
                 StudioManager.myStudios?.remove(at: indexPath.row)
                 studioIDs.remove(at: indexPath.row)
                 // TODO: UserDefault에 변경사항 반영
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            default:
+                print("default")
             }
-            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
 }
