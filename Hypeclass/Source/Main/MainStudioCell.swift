@@ -13,7 +13,7 @@ class MainStudioCell: UICollectionViewCell {
     
     var studioImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .white
+        imageView.backgroundColor = .gray
         imageView.layer.cornerRadius = 10
         imageView.clipsToBounds = true
 

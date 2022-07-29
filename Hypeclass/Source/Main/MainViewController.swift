@@ -67,7 +67,6 @@ class MainViewController: BaseViewController {
     
     private let pageControl: UIPageControl = {
         let control = UIPageControl()
-        control.numberOfPages = 5
         control.currentPage = 0
         
         return control
@@ -75,7 +74,7 @@ class MainViewController: BaseViewController {
     
     private let scrollImageTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "HIGGS Studio 합류"
+        label.text = ""
         label.textColor = .white
         label.font = .systemFont(ofSize: 22, weight: .bold)
         
@@ -85,7 +84,7 @@ class MainViewController: BaseViewController {
     private let scrollImageSubtitleLabel: UILabel = {
         let label = UILabel()
         label.text = "지금 바로 춤추러 가기 >"
-        label.textColor = .white
+        label.textColor = .gray
         label.font = .systemFont(ofSize: 12, weight: .bold)
         label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pageDidTap)))
         label.isUserInteractionEnabled = true
@@ -108,6 +107,7 @@ class MainViewController: BaseViewController {
         layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = 16
         layout.minimumLineSpacing = 16
+        
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = .background
         cv.showsHorizontalScrollIndicator = false
@@ -123,9 +123,12 @@ class MainViewController: BaseViewController {
         configureUI()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        addContentToScrollView()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        Task {
+            await requestStudios()
+            addContentToScrollView()
+        }
     }
     
     // MARK: - Selectors
@@ -217,8 +220,11 @@ class MainViewController: BaseViewController {
         studioCollectionView.heightAnchor.constraint(equalToConstant: 75).isActive = true
     }
     
+    // 스크롤뷰에 컨텐츠를 추가합니다.
     private func addContentToScrollView() {
-        for idx in 0..<5 {
+        scrollImageTitleLabel.text = "\(StudioManager.allStudios?[pageControl.currentPage].name ?? "") Studio 합류"
+        
+        for idx in 0..<(StudioManager.allStudios?.count ?? 0) {
             let imageView = UIImageView()
             imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pageDidTap)))
             imageView.isUserInteractionEnabled = true
@@ -230,8 +236,21 @@ class MainViewController: BaseViewController {
         }
     }
     
-    private func setPageControlSelectedPage(currentPage: Int) {
-        pageControl.currentPage = currentPage
+    // StudioManager.allStudios가 nil이면 firebase에서 스튜디오 정보를 가져옵니다.
+    private func requestStudios() async {
+        do {
+            if StudioManager.allStudios == nil {
+                IndicatorView.shared.show()
+                IndicatorView.shared.showIndicator()
+                StudioManager.allStudios = try await StudioManager.shared.requestAllStudios()
+                IndicatorView.shared.dismiss()
+                pageControl.numberOfPages = StudioManager.allStudios?.count ?? 0
+            }
+            studioCollectionView.reloadData()
+        }
+        catch {
+            print(error)
+        }
     }
 }
 
@@ -239,15 +258,14 @@ class MainViewController: BaseViewController {
 
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // TODO: count 다이내믹하게 적용
-        return 10
+        return StudioManager.allStudios?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: studioCellID, for: indexPath) as! MainStudioCell
         // TODO: url Image
         cell.studioImage = UIImageView()
-        cell.studioNameLabel.text = "Studio"
+        cell.studioNameLabel.text = StudioManager.allStudios?[indexPath.item].name
         return cell
     }
     
@@ -272,7 +290,14 @@ extension MainViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == imageScrollView {
             let value = scrollView.contentOffset.x / scrollView.frame.size.width
-            setPageControlSelectedPage(currentPage: Int(round(value)))
+            if value > CGFloat(pageControl.numberOfPages - 1) {
+                imageScrollView.setContentOffset(CGPoint(x: 0, y: .zero), animated: true)
+            } else if value < 0 {
+                imageScrollView.setContentOffset(CGPoint(x: imageScrollView.contentSize.width - (Device.width - 44) , y: .zero), animated: true)
+            } else {
+                pageControl.currentPage = Int(round(value))
+            }
+            scrollImageTitleLabel.text = "\(StudioManager.allStudios?[pageControl.currentPage].name ?? "") Studio 합류"
         }
     }
 }
