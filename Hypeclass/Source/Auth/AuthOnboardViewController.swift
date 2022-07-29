@@ -31,15 +31,28 @@ class AuthOnboardViewController: BaseViewController {
         return label
     }()
     
+    private let ctaButton: CTAButton = {
+        let button = CTAButton(title: "시작하기")
+        button.frame = CGRect(x: 0, y: 0, width: 300, height: 60)
+        button.addTarget(button, action: #selector(ctaButtonTap), for: .touchUpInside)
+        return button
+    }()
+    
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
     }
     //MARK: - Selectors
+    
+    @objc func ctaButtonTap() {
+        print("DEBUG: CTAButton Tapp")
+    }
     //MARK: - Helpers
     func configureUI() {
         //레이아웃 구성
+        let safeArea = view.safeAreaLayoutGuide
+        
         view.addSubview(primaryLabel)
         primaryLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -52,6 +65,15 @@ class AuthOnboardViewController: BaseViewController {
         NSLayoutConstraint.activate([
             secondaryLabel.topAnchor.constraint(equalTo: primaryLabel.bottomAnchor, constant: 20),
             secondaryLabel.leadingAnchor.constraint(equalTo: primaryLabel.leadingAnchor)
+        ])
+        
+        view.addSubview(ctaButton)
+        ctaButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            ctaButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+            ctaButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            ctaButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -20),
+            ctaButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
 }
@@ -73,5 +95,6 @@ struct AuthOnboardViewControllerRepresentable: UIViewControllerRepresentable {
 struct AuthOnboardViewControllerPreview: PreviewProvider {
     static var previews: some View {
         AuthOnboardViewControllerRepresentable()
+            .preferredColorScheme(.dark)
     }
 }
