@@ -104,9 +104,6 @@ class SearchDetailViewController: BaseViewController {
                 self.searchStudio = searchResult?[0] as! [Studio]?
                 self.searchDancer = searchResult?[1] as! [Dancer]?
                 self.searchGenre = searchResult?[2] as! [Dancer]?
-                print("tesssss\(self.searchStudio)")
-                print("tesssss\(self.searchDancer)")
-                print("tesssss\(self.searchGenre)")
             }
             dancerTable.reloadData()
         }
