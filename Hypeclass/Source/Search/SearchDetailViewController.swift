@@ -131,12 +131,22 @@ extension SearchDetailViewController: UITableViewDataSource {
         let cell = dancerTable.dequeueReusableCell(withIdentifier: SearchDetailCell.dancerCellID, for:indexPath) as! SearchDetailCell
         //        cell.profileImage.load(url: URL(string: searchResult[indexPath.row].profileImageURL)!)
         
+        if !(searchDancer?.isEmpty)! {
+            cell.nameLabel.text = searchDancer![indexPath.row].name
+            cell.genreLabel.text = searchDancer![indexPath.row].description
+            cell.classdayLabel.text = searchDancer![indexPath.row].id
+        } else if !(searchStudio?.isEmpty)! {
+            cell.nameLabel.text = searchStudio![indexPath.row].name
+            cell.genreLabel.text = searchStudio![indexPath.row].description
+            cell.classdayLabel.text = searchStudio![indexPath.row].id
+        } else {
+            cell.nameLabel.text = searchGenre![indexPath.row].name
+            cell.genreLabel.text = searchGenre![indexPath.row].description
+            cell.classdayLabel.text = searchGenre![indexPath.row].id
+        }
+        
         // Mock데이터에 있는 이미지 링크의 이미지를 불러오지 못함 임시 이미지 링크를 첨부합니다.
         cell.profileImage.load(url: URL(string: "https://src.hidoc.co.kr/image/lib/2021/4/28/1619598179113_0.jpg")!)
-        
-        cell.nameLabel.text = "hello"
-        cell.genreLabel.text =  "방송 댄스"
-        cell.classdayLabel.text = "화, 수, 목"
         cell.backgroundColor = .clear
         
         return cell
