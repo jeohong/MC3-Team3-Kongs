@@ -10,6 +10,8 @@ import Foundation
 class DancerManager {
     static let shared = DancerManager()
     
+    static var myDancers: [Dancer]?
+    
     func createDancer(id: String, name: String, studios: [String]) {
         let dancer = Dancer(id: id, name: name, lastUpdate: Date(), description: "\(name) description", coverImageURL: nil, profileImageURL: nil, genres: nil, studios: studios, youtubeURL: nil, instagramURL: nil)
         do {
