@@ -35,10 +35,10 @@ class SearchDetailViewController: BaseViewController {
         
         return table
     }()
-    
-    var searchDancer: [Dancer]? = nil
-    var searchGenre: [Dancer]? = nil
-    var searchStudio: [Studio]? = nil
+        
+    var searchStudio: [Studio]?
+    var searchDancer: [Dancer]?
+    var searchGenre: [Dancer]?
     
     //MARK: - LifeCycle
     
@@ -92,13 +92,21 @@ class SearchDetailViewController: BaseViewController {
     
     private func requestSearch() async {
         do {
-            if searchDancer == nil && searchStudio == nil {
+            if searchStudio == nil && searchDancer == nil {
                 IndicatorView.shared.show()
                 IndicatorView.shared.showIndicator()
-                searchStudio = try await SearchManager.shared.requestQuery(queryString: searchLabel.text ?? "", mode: .name, category: .studio)
-                searchDancer = try await SearchManager.shared.requestQuery(queryString: searchLabel.text ?? "", mode: .name, category: .dancer)
-                searchGenre = try await SearchManager.shared.requestQuery(queryString: searchLabel.text ?? "", mode: .genres, category: .dancer)
+                async let searchStudio: [Studio]? = SearchManager.shared.requestQuery(queryString: searchLabel.text ?? "", mode: .name, category: .studio)
+                async let searchDancer: [Dancer]? = try await SearchManager.shared.requestQuery(queryString: searchLabel.text ?? "", mode: .name, category: .dancer)
+                async let searchGenre: [Dancer]? = try await SearchManager.shared.requestQuery(queryString: searchLabel.text ?? "", mode: .genres, category: .dancer)
+                let searchResult: [Any]? = try await [searchStudio, searchDancer, searchGenre]
                 IndicatorView.shared.dismiss()
+                
+                self.searchStudio = searchResult?[0] as! [Studio]?
+                self.searchDancer = searchResult?[1] as! [Dancer]?
+                self.searchGenre = searchResult?[2] as! [Dancer]?
+                print("tesssss\(self.searchStudio)")
+                print("tesssss\(self.searchDancer)")
+                print("tesssss\(self.searchGenre)")
             }
             dancerTable.reloadData()
         }
@@ -106,10 +114,12 @@ class SearchDetailViewController: BaseViewController {
             print(error)
         }
     }
+
+    func requestSearch(cell: SearchDetailCell, index: Int, queryArray: [Any]?) {
+    }
 }
 
 //MARK: - TableView Extension
-
 extension SearchDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 116
@@ -124,7 +134,7 @@ extension SearchDetailViewController: UITableViewDelegate {
 
 extension SearchDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (searchDancer?.count ?? 0) + (searchGenre?.count ?? 0) + (searchStudio?.count ?? 0)
+        return (searchDancer?.count ?? 0) + (searchStudio?.count ?? 0) + (searchGenre?.count ?? 0)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
