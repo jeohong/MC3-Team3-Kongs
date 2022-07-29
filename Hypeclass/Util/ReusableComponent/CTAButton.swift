@@ -23,5 +23,6 @@ class CTAButton: UIButton {
         backgroundColor = .accent
         setTitleColor(.black, for: .normal)
         setTitle(title, for: .normal)
+        titleLabel?.font = .boldSystemFont(ofSize: 20)
     }
 }
