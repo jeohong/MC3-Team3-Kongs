@@ -19,6 +19,14 @@ class StudioManager {
         }
     }
     
+    func requestAllStudios() async throws -> [Studio]? {
+        let snapshot = try await Constant.studioRef.getDocuments()
+        
+        return snapshot.documents.compactMap { document in
+            try? document.data(as: Studio.self)
+        }
+    }
+    
     func requestStudiosBy(dancerName name: String) async throws -> [Studio]? {
         let snapshot = try await Constant.studioRef.whereField("dancers", arrayContains: name).getDocuments()
         
