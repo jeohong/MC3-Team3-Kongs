@@ -10,41 +10,66 @@ import UIKit
 class MainViewController: BaseViewController {
     // MARK: - Properties
     
-    private let headerView: UIStackView = {
-        let view = UIStackView()
-        view.axis = .vertical
-        view.spacing = 20
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
     private let headerTitle: UILabel = {
         let label = UILabel()
-        label.text = "댄서들의 클래스를 확인해보세요"
-        label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
-        label.adjustsFontSizeToFitWidth = true
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "춤추러 가는 길, \n어려울 필요 없으니까."
+        label.numberOfLines = 2
+        label.font = .systemFont(ofSize: 22, weight: .semibold)
+        
         return label
     }()
     
     private let searchButton: UIButton = {
         var config = UIButton.Configuration.gray()
-        config.buttonSize = .large
-        config.titleAlignment = .leading
-        config.title = "댄서 또는 장르를 검색해보세요"
-        config.background = .listSidebarCell()
-        config.image = UIImage(systemName: "magnifyingglass")
-        config.imagePadding = 4
-        config.imagePlacement = .leading
         config.baseForegroundColor = UIColor(hex: 0x7A7A7A)
         config.baseBackgroundColor = UIColor(hex: 0x2D2C38)
+        
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 12, weight: .regular, scale: .large)
+        config.image = UIImage(systemName: "magnifyingglass", withConfiguration: imageConfig)
+        config.imagePadding = 13
+        config.imagePlacement = .leading
+        
+        var titleAttr = AttributedString.init("댄서, 스튜디오 무엇이든지")
+        titleAttr.font = .systemFont(ofSize: 12, weight: .regular)
+        config.attributedTitle = titleAttr
+        
+        config.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 0)
         
         let button = UIButton(configuration: config)
         button.addTarget(self, action: #selector(searchButtonDidTap), for: .touchUpInside)
         button.contentHorizontalAlignment = .leading
-        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.cornerRadius = 10
+        button.clipsToBounds = true
+        
         return button
     }()
+    
+    // TODO: carousel View
+    
+    private let studioCellID = "studio"
+    
+    private let studioLabel: UILabel = {
+        let label = UILabel()
+        label.text = "함께하는 스튜디오들"
+        label.font = .systemFont(ofSize: 18, weight: .semibold)
+        
+        return label
+    }()
+    
+    private let studioCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumInteritemSpacing = 16
+        layout.minimumLineSpacing = 16
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.backgroundColor = .background
+        cv.showsHorizontalScrollIndicator = false
+        cv.contentInset = UIEdgeInsets(top: 0, left: 22, bottom: 0, right: 22)
+        
+        return cv
+    }()
+    
+    // MARK: Should be replaced!
     
     private let genreView: UIStackView = {
         let view = UIStackView()
@@ -148,38 +173,39 @@ class MainViewController: BaseViewController {
     }
     
     // MARK: - Helpers
+    
     private func configureUI() {
-        view.addSubview(headerView)
-        headerView.addArrangedSubview(headerTitle)
-        headerView.addArrangedSubview(searchButton)
         
-        view.addSubview(genreView)
-        genreView.addArrangedSubview(genreTitle)
-        genreView.addArrangedSubview(genreCollectionView)
+        // headerTitle
+        view.addSubview(headerTitle)
+        headerTitle.translatesAutoresizingMaskIntoConstraints = false
+        headerTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
+        headerTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 88).isActive = true
         
-        view.addSubview(dancerRecommendationView)
-        dancerRecommendationView.addArrangedSubview(dancerRecommendationTitle)
-        dancerRecommendationView.addArrangedSubview(dancerRecommendationCollectionView)
+        // searchButton
+        view.addSubview(searchButton)
+        searchButton.translatesAutoresizingMaskIntoConstraints = false
+        searchButton.topAnchor.constraint(equalTo: headerTitle.bottomAnchor, constant: 30).isActive = true
+        searchButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22).isActive = true
+        searchButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22).isActive = true
         
-        let safeArea = self.view.safeAreaLayoutGuide
-        NSLayoutConstraint.activate([
-            headerView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 20),
-            headerView.leftAnchor.constraint(equalTo: safeArea.leftAnchor, constant: 25),
-            headerView.rightAnchor.constraint(equalTo: safeArea.rightAnchor, constant: -25),
-       ])
-        NSLayoutConstraint.activate([
-            genreView.leftAnchor.constraint(equalTo: safeArea.leftAnchor),
-            genreView.rightAnchor.constraint(equalTo: safeArea.rightAnchor),
-            genreView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 180),
-            genreView.heightAnchor.constraint(equalToConstant: 150),
-       ])
-        // 326 464
-        NSLayoutConstraint.activate([
-            dancerRecommendationView.leftAnchor.constraint(equalTo: safeArea.leftAnchor),
-            dancerRecommendationView.rightAnchor.constraint(equalTo: safeArea.rightAnchor),
-            dancerRecommendationView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 365),
-            dancerRecommendationView.heightAnchor.constraint(equalToConstant: 250),
-       ])
+        // studioLabel
+        view.addSubview(studioLabel)
+        studioLabel.translatesAutoresizingMaskIntoConstraints = false
+        studioLabel.topAnchor.constraint(equalTo: searchButton.bottomAnchor, constant: 40).isActive = true
+        studioLabel.leadingAnchor.constraint(equalTo: searchButton.leadingAnchor).isActive = true
+        
+        // studioCollectionView
+        studioCollectionView.register(MainStudioCell.self, forCellWithReuseIdentifier: studioCellID)
+        studioCollectionView.dataSource = self
+        studioCollectionView.delegate = self
+        
+        view.addSubview(studioCollectionView)
+        studioCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        studioCollectionView.topAnchor.constraint(equalTo: studioLabel.bottomAnchor, constant: 8).isActive = true
+        studioCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        studioCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        studioCollectionView.heightAnchor.constraint(equalToConstant: 75).isActive = true
     }
     
     private func configureCollectionView() {
@@ -192,47 +218,31 @@ class MainViewController: BaseViewController {
 
 // MARK: - UICollectionViewDataSource, Delegate
 
-extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch collectionView {
-            case genreCollectionView:
-                //TODO: - CaseIterable protocol model data에 추가
-                return 8
-            case dancerRecommendationCollectionView:
-                return MockDataSet.dancers.count
-            default: return 5
-        }
+        // TODO: count 다이내믹하게 적용
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch collectionView {
-            case genreCollectionView:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainViewControllerGenreCell.id, for: indexPath) as! MainViewControllerGenreCell
-                    cell.prepare(image: UIStackView(frame: .zero))
-                return cell
-            case dancerRecommendationCollectionView:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainViewControllerDancerCell.id, for: indexPath) as! MainViewControllerDancerCell
-                    cell.prepare(image: UIStackView(frame: .zero))
-               return cell
-            default:
-                return UICollectionViewCell()
-        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: studioCellID, for: indexPath) as! MainStudioCell
+        // TODO: url Image
+        cell.studioImage = UIImageView()
+        cell.studioNameLabel.text = "Studio"
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // TODO: ViewController 간 이동
-        switch collectionView {
-        case genreCollectionView:
-            let searchDetailVC = SearchDetailViewController()
-            // ☑️ TODO: 검색 키워드 건네주어야함
-            self.navigationController?.pushViewController(searchDetailVC, animated: true)
-        case dancerRecommendationCollectionView:
-            let dancerDetailVC = DancerDetailViewController()
-            // ☑️ TODO: 댄서 ID 건네주어야함.
-            self.navigationController?.pushViewController(dancerDetailVC, animated: true)
-        default:
-            return
-        }
+        // TODO: StudioViewController 이동
+    }
+}
+
+extension MainViewController: UICollectionViewDelegate {
+}
+
+extension MainViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 55, height: 70)
     }
 }
 
