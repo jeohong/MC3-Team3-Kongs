@@ -28,6 +28,12 @@ class DancerManager {
         }
     }
     
+    func requestDancerBy(dancerName name: String) async throws -> Dancer? {
+        let document = try await Constant.dancerRef.document(name).getDocument()
+        
+        return try? document.data(as: Dancer.self)
+    }
+    
     func requestDancersBy(studioName name: String) async throws -> [Dancer]? {
         let snapshot = try await Constant.dancerRef.whereField("studios", arrayContains: name).getDocuments()
         
