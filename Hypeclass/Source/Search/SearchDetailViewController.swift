@@ -36,7 +36,11 @@ class SearchDetailViewController: BaseViewController {
         return table
     }()
     
-    var searchResult: [Dancer] = []
+    var searchDancer: [Dancer]? = nil
+    var searchGenre: [Dancer]? = nil
+    var searchStudio: [Studio]? = nil
+    var searchResult: [Any]? = nil
+    var searchTemp: NSSet? = nil
     
     //MARK: - LifeCycle
     
@@ -50,8 +54,8 @@ class SearchDetailViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        searchResult = MockDataSet.dancers.filter { dancer in
-            dancer.name!.lowercased().contains(searchLabel.text?.lowercased() ?? "")
+        Task {
+            await requestSearch()
         }
     }
     
@@ -87,6 +91,23 @@ class SearchDetailViewController: BaseViewController {
         dancerTable.dataSource = self
         dancerTable.register(SearchDetailCell.self, forCellReuseIdentifier: SearchDetailCell.dancerCellID)
     }
+    
+    private func requestSearch() async {
+        do {
+            if searchDancer == nil && searchStudio == nil {
+                IndicatorView.shared.show()
+                IndicatorView.shared.showIndicator()
+                searchStudio = try await SearchManager.shared.requestQuery(queryString: searchLabel.text ?? "", mode: .name, category: .studio)
+                searchDancer = try await SearchManager.shared.requestQuery(queryString: searchLabel.text ?? "", mode: .name, category: .dancer)
+                searchGenre = try await SearchManager.shared.requestQuery(queryString: searchLabel.text ?? "", mode: .genres, category: .dancer)
+                IndicatorView.shared.dismiss()
+            }
+            dancerTable.reloadData()
+        }
+        catch {
+            print(error)
+        }
+    }
 }
 
 //MARK: - TableView Extension
@@ -105,17 +126,17 @@ extension SearchDetailViewController: UITableViewDelegate {
 
 extension SearchDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchResult.count
+        return searchResult?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = dancerTable.dequeueReusableCell(withIdentifier: SearchDetailCell.dancerCellID, for:indexPath) as! SearchDetailCell
-//        cell.profileImage.load(url: URL(string: searchResult[indexPath.row].profileImageURL)!)
+        //        cell.profileImage.load(url: URL(string: searchResult[indexPath.row].profileImageURL)!)
         
         // Mock데이터에 있는 이미지 링크의 이미지를 불러오지 못함 임시 이미지 링크를 첨부합니다.
         cell.profileImage.load(url: URL(string: "https://src.hidoc.co.kr/image/lib/2021/4/28/1619598179113_0.jpg")!)
         
-        cell.nameLabel.text = searchResult[indexPath.row].name
+        cell.nameLabel.text = "hello"
         cell.genreLabel.text =  "방송 댄스"
         cell.classdayLabel.text = "화, 수, 목"
         cell.backgroundColor = .clear
