@@ -33,7 +33,6 @@ class AuthOnboardViewController: BaseViewController {
     
     private let ctaButton: CTAButton = {
         let button = CTAButton(title: "시작하기")
-        button.frame = CGRect(x: 0, y: 0, width: 300, height: 60)
         button.addTarget(button, action: #selector(ctaButtonTap), for: .touchUpInside)
         return button
     }()
