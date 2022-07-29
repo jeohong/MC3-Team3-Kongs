@@ -8,13 +8,16 @@
 import UIKit
 
 class ContainerTextField: UITextField {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    override init(frame: CGRect) {
+        super.init(frame: frame)
     }
-    */
-
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) is not implemented")
+    }
+    
+    init() {
+        super.init(frame: CGRect.zero)
+        backgroundColor = .container
+    }
 }

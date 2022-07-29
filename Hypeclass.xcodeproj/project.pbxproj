@@ -63,6 +63,7 @@
 		C08A10B22883BCC1009A38E7 /* MockDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08A10B12883BCC1009A38E7 /* MockDataSet.swift */; };
 		C0A9D9BC288FAF15007493A2 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C0A9D9BB288FAF15007493A2 /* FirebaseFirestoreSwift */; };
 		C0C444FC2894495D00036ADE /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C444FB2894495D00036ADE /* AuthViewController.swift */; };
+		C0C444FE28944DE200036ADE /* ContainerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C444FD28944DE200036ADE /* ContainerTextField.swift */; };
 		C0C7B28728944044003FA2C2 /* AuthOnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C7B28628944044003FA2C2 /* AuthOnboardViewController.swift */; };
 		C0C7B28928944395003FA2C2 /* CTAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C7B28828944395003FA2C2 /* CTAButton.swift */; };
 		C76C91C6289143C100703CCD /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76C91C5289143C100703CCD /* ItemCell.swift */; };
@@ -129,6 +130,7 @@
 		C07E5C90287E707200BDA46D /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		C08A10B12883BCC1009A38E7 /* MockDataSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataSet.swift; sourceTree = "<group>"; };
 		C0C444FB2894495D00036ADE /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		C0C444FD28944DE200036ADE /* ContainerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerTextField.swift; sourceTree = "<group>"; };
 		C0C7B28628944044003FA2C2 /* AuthOnboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthOnboardViewController.swift; sourceTree = "<group>"; };
 		C0C7B28828944395003FA2C2 /* CTAButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTAButton.swift; sourceTree = "<group>"; };
 		C76C91C5289143C100703CCD /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				C05BF1FC287BC88400C95E1B /* IndicatorView.swift */,
 				C76C91C5289143C100703CCD /* ItemCell.swift */,
 				C0C7B28828944395003FA2C2 /* CTAButton.swift */,
+				C0C444FD28944DE200036ADE /* ContainerTextField.swift */,
 			);
 			path = ReusableComponent;
 			sourceTree = "<group>";
@@ -486,6 +489,7 @@
 				C07E5C91287E707200BDA46D /* Genre.swift in Sources */,
 				C05BF1F8287BC7EF00C95E1B /* UIImage.swift in Sources */,
 				C7CE676228814D3C00C8F137 /* Weekday.swift in Sources */,
+				C0C444FE28944DE200036ADE /* ContainerTextField.swift in Sources */,
 				C7CE67D5288FD2F900C8F137 /* DanceClassManager.swift in Sources */,
 				A37F02C7288842640027D3FC /* SearchDetailCell.swift in Sources */,
 				A3F1480D28882CA90025B822 /* UIImageView.swift in Sources */,
