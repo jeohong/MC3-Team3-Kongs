@@ -22,6 +22,7 @@
 		A3F1480D28882CA90025B822 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F1480C28882CA90025B822 /* UIImageView.swift */; };
 		B5DB2D66288633E100703587 /* DancerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DB2D65288633E100703587 /* DancerCell.swift */; };
 		C011CF4628940446001E6AD1 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C011CF4528940446001E6AD1 /* AuthManager.swift */; };
+		C011CF4828940480001E6AD1 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C011CF4728940480001E6AD1 /* FirebaseAuth */; };
 		C039DCBA287D940F0007951D /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C039DCB9287D940F0007951D /* MainTabController.swift */; };
 		C039DCBE287D944C0007951D /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C039DCBD287D944C0007951D /* ScheduleViewController.swift */; };
 		C039DCC0287D94630007951D /* SubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C039DCBF287D94630007951D /* SubscriptionViewController.swift */; };
@@ -141,6 +142,7 @@
 				C040218C287EB8DB009D9083 /* FirebaseFirestore in Frameworks */,
 				C040218E287EB8DB009D9083 /* FirebaseStorage in Frameworks */,
 				C0A9D9BC288FAF15007493A2 /* FirebaseFirestoreSwift in Frameworks */,
+				C011CF4828940480001E6AD1 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +363,7 @@
 				C040218B287EB8DB009D9083 /* FirebaseFirestore */,
 				C040218D287EB8DB009D9083 /* FirebaseStorage */,
 				C0A9D9BB288FAF15007493A2 /* FirebaseFirestoreSwift */,
+				C011CF4728940480001E6AD1 /* FirebaseAuth */,
 			);
 			productName = Hypeclass;
 			productReference = C05BF1C5287BC33100C95E1B /* Hypeclass.app */;
@@ -703,6 +706,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C011CF4728940480001E6AD1 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C040218A287EB8DB009D9083 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
 		C040218B287EB8DB009D9083 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C040218A287EB8DB009D9083 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
