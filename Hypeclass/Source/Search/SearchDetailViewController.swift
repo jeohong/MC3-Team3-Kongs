@@ -39,8 +39,6 @@ class SearchDetailViewController: BaseViewController {
     var searchDancer: [Dancer]? = nil
     var searchGenre: [Dancer]? = nil
     var searchStudio: [Studio]? = nil
-    var searchResult: [Any]? = nil
-    var searchTemp: NSSet? = nil
     
     //MARK: - LifeCycle
     
@@ -126,7 +124,7 @@ extension SearchDetailViewController: UITableViewDelegate {
 
 extension SearchDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchResult?.count ?? 0
+        return (searchDancer?.count ?? 0) + (searchGenre?.count ?? 0) + (searchStudio?.count ?? 0)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
