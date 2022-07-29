@@ -24,6 +24,8 @@ class MainStudioCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = .white
         label.font = .systemFont(ofSize: 12.0, weight: .bold)
+        label.numberOfLines = 1
+        label.textAlignment = .center
         
         return label
     }()

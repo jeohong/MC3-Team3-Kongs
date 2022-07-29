@@ -8,7 +8,17 @@
 import UIKit
 
 class MainViewController: BaseViewController {
+    
     // MARK: - Properties
+    
+    private let logoImageView: UIImageView = {
+        let image = UIImageView()
+        image.backgroundColor = .green
+        image.layer.cornerRadius = 10
+        image.clipsToBounds = true
+        
+        return image
+    }()
     
     private let headerTitle: UILabel = {
         let label = UILabel()
@@ -44,7 +54,44 @@ class MainViewController: BaseViewController {
         return button
     }()
     
-    // TODO: carousel View
+    private let imageScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.backgroundColor = .white
+        scrollView.isPagingEnabled = true
+        scrollView.isScrollEnabled = true
+        scrollView.layer.cornerRadius = 10
+        scrollView.clipsToBounds = true
+        
+        return scrollView
+    }()
+    
+    private let pageControl: UIPageControl = {
+        let control = UIPageControl()
+        control.numberOfPages = 5
+        control.currentPage = 0
+        
+        return control
+    }()
+    
+    private let scrollImageTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "HIGGS Studio 합류"
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 22, weight: .bold)
+        
+        return label
+    }()
+    
+    private let scrollImageSubtitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "지금 바로 춤추러 가기 >"
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 12, weight: .bold)
+        label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pageDidTap)))
+        label.isUserInteractionEnabled = true
+        
+        return label
+    }()
     
     private let studioCellID = "studio"
     
@@ -68,101 +115,17 @@ class MainViewController: BaseViewController {
         
         return cv
     }()
-    
-    // MARK: Should be replaced!
-    
-    private let genreView: UIStackView = {
-        let view = UIStackView()
-        view.axis = .vertical
-        view.spacing = 10
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-        
-    private let genreTitle: UILabel = {
-        let label = UILabel()
-        label.text = "이 장르에 도전해보는건 어때요?"
-        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        label.adjustsFontSizeToFitWidth = true
-        
-        //MARK: - TODO: func textRect(라벨 박스 크기 확인)
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    private let genreFlowLayout: UICollectionViewFlowLayout = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 12.0
-        layout.minimumInteritemSpacing = 12.0
-        
-        // TODO: 100, 100 frame으로 조정
-        
-        layout.itemSize = CGSize(width: 100, height: 100)
-        return layout
-      }()
-
-    private lazy var genreCollectionView: UICollectionView = {
-        let view = UICollectionView(frame: .zero, collectionViewLayout: self.genreFlowLayout)
-        view.isScrollEnabled = true
-        view.showsHorizontalScrollIndicator = false
-        view.showsVerticalScrollIndicator = true
-        view.contentInset = .zero
-        view.backgroundColor = .clear
-        view.clipsToBounds = true
-        view.register(MainViewControllerGenreCell.self, forCellWithReuseIdentifier: MainViewControllerGenreCell.id)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentInset = UIEdgeInsets(top: 0, left: 25, bottom: 0, right: 0)
-        return view
-    }()
-    
-    private let dancerRecommendationView: UIStackView = {
-        let view = UIStackView()
-        view.axis = .vertical
-        view.spacing = 10
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private let dancerRecommendationTitle: UILabel = {
-        let label = UILabel()
-        label.text = "새로운 댄서를 반겨주세요!"
-        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        label.adjustsFontSizeToFitWidth = true
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let dancerRecommendationFlowLayout: UICollectionViewFlowLayout = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 15.0
-        layout.minimumInteritemSpacing = 15.0
-        layout.itemSize = CGSize(width: 155, height: 210)
-        return layout
-      }()
-    
-    private lazy var dancerRecommendationCollectionView: UICollectionView = {
-        let view = UICollectionView(frame: .zero, collectionViewLayout: self.dancerRecommendationFlowLayout)
-        view.backgroundColor = .clear
-        view.isScrollEnabled = true
-        view.showsHorizontalScrollIndicator = false
-        view.showsVerticalScrollIndicator = true
-        view.contentInset = .zero
-        view.clipsToBounds = true
-        view.register(MainViewControllerDancerCell.self, forCellWithReuseIdentifier: MainViewControllerDancerCell.id)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentInset = UIEdgeInsets(top: 0, left: 25, bottom: 0, right: 0)
-        return view
-    }()
 
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        configureCollectionView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        addContentToScrollView()
     }
     
     // MARK: - Selectors
@@ -172,15 +135,27 @@ class MainViewController: BaseViewController {
         self.navigationController?.pushViewController(searchVC, animated: true)
     }
     
+    @objc func pageDidTap() {
+        // TODO: 어딘가의 페이지로 넘어가기
+        print("Selected Page: \(pageControl.currentPage)")
+    }
+    
     // MARK: - Helpers
     
     private func configureUI() {
+        // logoImageView
+        view.addSubview(logoImageView)
+        logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
+        logoImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        logoImageView.widthAnchor.constraint(equalToConstant: 65).isActive = true
+        logoImageView.heightAnchor.constraint(equalToConstant: 65).isActive = true
         
         // headerTitle
         view.addSubview(headerTitle)
         headerTitle.translatesAutoresizingMaskIntoConstraints = false
-        headerTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
-        headerTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 88).isActive = true
+        headerTitle.centerYAnchor.constraint(equalTo: logoImageView.centerYAnchor).isActive = true
+        headerTitle.leadingAnchor.constraint(equalTo: logoImageView.trailingAnchor, constant: 15).isActive = true
         
         // searchButton
         view.addSubview(searchButton)
@@ -189,10 +164,44 @@ class MainViewController: BaseViewController {
         searchButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22).isActive = true
         searchButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22).isActive = true
         
+        // imageScrollView
+        view.addSubview(imageScrollView)
+        imageScrollView.delegate = self
+        imageScrollView.translatesAutoresizingMaskIntoConstraints = false
+        imageScrollView.topAnchor.constraint(equalTo: searchButton.bottomAnchor, constant: 28).isActive = true
+        imageScrollView.leadingAnchor.constraint(equalTo: searchButton.leadingAnchor).isActive = true
+        imageScrollView.trailingAnchor.constraint(equalTo: searchButton.trailingAnchor).isActive = true
+        imageScrollView.heightAnchor.constraint(equalToConstant: (Device.width - 40) * 0.6).isActive = true
+        
+        // pageControl
+        view.addSubview(pageControl)
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
+        pageControl.topAnchor.constraint(equalTo: imageScrollView.bottomAnchor, constant: 10).isActive = true
+        pageControl.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        pageControl.heightAnchor.constraint(equalToConstant: 6).isActive = true
+        
+        // scrollImageTitleLabel
+        view.addSubview(scrollImageTitleLabel)
+        scrollImageTitleLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pageDidTap)))
+        scrollImageTitleLabel.isUserInteractionEnabled = true
+        scrollImageTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        scrollImageTitleLabel.topAnchor.constraint(equalTo: pageControl.bottomAnchor).isActive = true
+        scrollImageTitleLabel.leadingAnchor.constraint(equalTo: searchButton.leadingAnchor).isActive = true
+        scrollImageTitleLabel.trailingAnchor.constraint(equalTo: searchButton.trailingAnchor).isActive = true
+        
+        // scrollImageSubtitleLabel
+        view.addSubview(scrollImageSubtitleLabel)
+        scrollImageSubtitleLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pageDidTap)))
+        scrollImageSubtitleLabel.isUserInteractionEnabled = true
+        scrollImageSubtitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        scrollImageSubtitleLabel.topAnchor.constraint(equalTo: scrollImageTitleLabel.bottomAnchor, constant: 5).isActive = true
+        scrollImageSubtitleLabel.leadingAnchor.constraint(equalTo: searchButton.leadingAnchor).isActive = true
+        scrollImageSubtitleLabel.trailingAnchor.constraint(equalTo: searchButton.trailingAnchor).isActive = true
+        
         // studioLabel
         view.addSubview(studioLabel)
         studioLabel.translatesAutoresizingMaskIntoConstraints = false
-        studioLabel.topAnchor.constraint(equalTo: searchButton.bottomAnchor, constant: 40).isActive = true
+        studioLabel.topAnchor.constraint(equalTo: scrollImageSubtitleLabel.bottomAnchor, constant: 40).isActive = true
         studioLabel.leadingAnchor.constraint(equalTo: searchButton.leadingAnchor).isActive = true
         
         // studioCollectionView
@@ -208,11 +217,21 @@ class MainViewController: BaseViewController {
         studioCollectionView.heightAnchor.constraint(equalToConstant: 75).isActive = true
     }
     
-    private func configureCollectionView() {
-        genreCollectionView.dataSource = self
-        genreCollectionView.delegate = self
-        dancerRecommendationCollectionView.dataSource = self
-        dancerRecommendationCollectionView.delegate = self
+    private func addContentToScrollView() {
+        for idx in 0..<5 {
+            let imageView = UIImageView()
+            imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pageDidTap)))
+            imageView.isUserInteractionEnabled = true
+            imageView.image = UIImage(named: "DancerCoverImage")
+            let xPos = (Device.width - 44) * CGFloat(idx)
+            imageView.frame = CGRect(x: xPos, y: imageScrollView.bounds.minY, width: imageScrollView.bounds.width, height: imageScrollView.bounds.height)
+            imageScrollView.addSubview(imageView)
+            imageScrollView.contentSize.width = imageView.frame.width * CGFloat(idx + 1)
+        }
+    }
+    
+    private func setPageControlSelectedPage(currentPage: Int) {
+        pageControl.currentPage = currentPage
     }
 }
 
@@ -234,6 +253,7 @@ extension MainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // TODO: StudioViewController 이동
+        print("StudioViewController 이동")
     }
 }
 
@@ -243,6 +263,17 @@ extension MainViewController: UICollectionViewDelegate {
 extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 55, height: 70)
+    }
+}
+
+// MARK: - UIScrollViewDelegate Extension
+
+extension MainViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == imageScrollView {
+            let value = scrollView.contentOffset.x / scrollView.frame.size.width
+            setPageControlSelectedPage(currentPage: Int(round(value)))
+        }
     }
 }
 
