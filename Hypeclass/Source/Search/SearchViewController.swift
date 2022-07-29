@@ -104,9 +104,9 @@ class SearchViewController: BaseViewController {
     // Navigation 화면 전환
     func pushSearchDetailView(_ searchText: String) {
         // async - await 함수 호출 방법 ( 추후 View 작업시 삭제할 내용 )
-        async {
-            print(try await SearchManager.shared.requestSearchStudio(queryString: "Aca"))
-        }
+//        async {
+//            print(try await SearchManager.shared.requestSearchStudio(studioSearch: "Aca"))
+//        }
         
         let searchDetailVC = SearchDetailViewController()
         searchDetailVC.searchLabel.text = searchText
