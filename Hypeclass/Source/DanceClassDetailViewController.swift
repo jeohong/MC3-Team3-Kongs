@@ -47,6 +47,30 @@ class DanceClassDetailViewController: BaseViewController {
         return label
     }()
     
+    private let aboutTextView: UITextView = {
+        let textView = UITextView()
+        textView.isScrollEnabled = false
+        textView.font = UIFont.systemFont(ofSize: 16)
+        textView.textColor = .white
+        textView.text = """
+        춤추고 싶은 사람 누구나 참여 가능한
+        힉스 비디오 클래스!
+        
+        *다채로운 영상을 남기고 싶은 각양각색의
+        댄서나 일반인을 모집합니다.
+        
+        - 진행기간 :
+        8월 1일 첫째주 부터 9월 9일까지 (6주간)
+        
+        - 정원 : 각 레슨마다 10명씩
+        
+        - 촬영 날짜: 9월 18일 일요일 오후 12시 이후
+        """
+        textView.sizeToFit()
+        
+        return textView
+    }()
+    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.rowHeight = 60
@@ -92,7 +116,6 @@ class DanceClassDetailViewController: BaseViewController {
         tableView.register(ItemCell.self, forCellReuseIdentifier: "DanceClassDetailCell")
         tableView.delegate = self
         tableView.dataSource = self
-
     }
     
     func configureUI() {
@@ -131,10 +154,18 @@ class DanceClassDetailViewController: BaseViewController {
             aboutLabel.leadingAnchor.constraint(equalTo: secondaryLabel.leadingAnchor)
         ])
         
+        view.addSubview(aboutTextView)
+        aboutTextView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            aboutTextView.topAnchor.constraint(equalTo: aboutLabel.bottomAnchor, constant: 10),
+            aboutTextView.leadingAnchor.constraint(equalTo: aboutLabel.leadingAnchor),
+            aboutTextView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -25)
+        ])
+        
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: secondaryLabel.bottomAnchor, constant: 20),
+            tableView.topAnchor.constraint(equalTo: aboutTextView.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.heightAnchor.constraint(equalToConstant: 400)
@@ -162,7 +193,7 @@ extension DanceClassDetailViewController: UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 60
+        return 50
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -174,7 +205,7 @@ extension DanceClassDetailViewController: UITableViewDataSource, UITableViewDele
         view.addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:  25).isActive = true
+        label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
         return view
     }
     
