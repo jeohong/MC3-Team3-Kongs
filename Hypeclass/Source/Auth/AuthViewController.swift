@@ -17,14 +17,14 @@ class AuthViewController: BaseViewController, UITextFieldDelegate {
         return label
     }()
     
-    private let nameContainer: UIView = {
+    private let textFieldContainer: UIView = {
         let view = UIView()
         view.backgroundColor = .container
         view.layer.cornerRadius = 8
         return view
     }()
     
-    private let nameTextField: UITextField = {
+    private let textField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "이름"
         textField.font = UIFont.boldSystemFont(ofSize: 16)
@@ -32,23 +32,6 @@ class AuthViewController: BaseViewController, UITextFieldDelegate {
         textField.tintColor = .label
         textField.frame.size = CGSize(width: 300, height: 50)
         textField.addDoneButtonOnKeyboard()
-        return textField
-    }()
-    
-    private let phoneNumberContainer: UIView = {
-        let view = UIView()
-        view.backgroundColor = .container
-        view.layer.cornerRadius = 8
-        return view
-    }()
-    
-    private let phoneNumberField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "전화번호"
-        textField.font = UIFont.boldSystemFont(ofSize: 16)
-        textField.textColor = .white
-        textField.tintColor = .label
-        textField.frame.size = CGSize(width: 300, height: 50)
         return textField
     }()
     
@@ -72,14 +55,12 @@ class AuthViewController: BaseViewController, UITextFieldDelegate {
         super.viewDidLoad()
         configureUI()
         dismissKeyboardWhenTappedAround()
-        nameTextField.delegate = self
-        phoneNumberField.delegate = self
     }
     
     //MARK: - Selectors
     
     @objc func ctaButtonTap() {
-        print("DEBUG: CTAButton Tapp")
+        AuthManager.shared.userName = textField.text
     }
     
     //MARK: - Helpers
@@ -102,27 +83,23 @@ class AuthViewController: BaseViewController, UITextFieldDelegate {
             inputInfoLabel.leadingAnchor.constraint(equalTo: primaryLabel.leadingAnchor)
         ])
         
-        view.addSubview(nameContainer)
-        nameContainer.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(textFieldContainer)
+        textFieldContainer.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            nameContainer.topAnchor.constraint(equalTo: inputInfoLabel.bottomAnchor, constant: 10),
-            nameContainer.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
-            nameContainer.heightAnchor.constraint(equalToConstant: 50),
-            nameContainer.leadingAnchor.constraint(equalTo: inputInfoLabel.leadingAnchor),
-            nameContainer.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -25)
+            textFieldContainer.topAnchor.constraint(equalTo: inputInfoLabel.bottomAnchor, constant: 10),
+            textFieldContainer.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
+            textFieldContainer.heightAnchor.constraint(equalToConstant: 50),
+            textFieldContainer.leadingAnchor.constraint(equalTo: inputInfoLabel.leadingAnchor),
+            textFieldContainer.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -25)
         ])
         
-        nameContainer.addSubview(nameTextField)
-        nameTextField.translatesAutoresizingMaskIntoConstraints = false
+        textFieldContainer.addSubview(textField)
+        textField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            nameTextField.leadingAnchor.constraint(equalTo: nameContainer.leadingAnchor, constant: 20),
-            nameTextField.centerYAnchor.constraint(equalTo: nameContainer.centerYAnchor),
-            nameTextField.trailingAnchor.constraint(equalTo: nameContainer.trailingAnchor, constant: -20)
+            textField.leadingAnchor.constraint(equalTo: textFieldContainer.leadingAnchor, constant: 20),
+            textField.centerYAnchor.constraint(equalTo: textFieldContainer.centerYAnchor),
+            textField.trailingAnchor.constraint(equalTo: textFieldContainer.trailingAnchor, constant: -20)
         ])
-        
-        view.addSubview(phoneNumberContainer)
-        phoneNumberContainer.translatesAutoresizingMaskIntoConstraints = false
-  
         
         view.addSubview(ctaButton)
         ctaButton.translatesAutoresizingMaskIntoConstraints = false
