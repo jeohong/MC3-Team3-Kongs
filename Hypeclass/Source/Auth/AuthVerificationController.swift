@@ -15,6 +15,7 @@ class AuthVerificationController: BaseViewController {
         let label = UILabel()
         label.text = "인증번호를 입력해주세요."
         label.font = UIFont.boldSystemFont(ofSize: 24)
+        
         return label
     }()
     
@@ -22,6 +23,7 @@ class AuthVerificationController: BaseViewController {
         let view = UIView()
         view.backgroundColor = .container
         view.layer.cornerRadius = 8
+        
         return view
     }()
     
@@ -34,6 +36,7 @@ class AuthVerificationController: BaseViewController {
         textField.frame.size = CGSize(width: 300, height: 50)
         textField.keyboardType = .numberPad
         textField.addDoneButtonOnKeyboard()
+        
         return textField
     }()
     
@@ -42,12 +45,14 @@ class AuthVerificationController: BaseViewController {
         label.text = "인증번호 6자리"
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textColor = .secondaryLabel
+        
         return label
     }()
     
     private let ctaButton: CTAButton = {
         let button = CTAButton(title: "시작하기")
         button.addTarget(self, action: #selector(ctaButtonTap), for: .touchUpInside)
+        
         return button
     }()
     
