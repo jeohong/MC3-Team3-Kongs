@@ -17,7 +17,7 @@ class DanceClassDetailViewController: BaseViewController {
     
     private let coverImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .red
+        imageView.backgroundColor = .gray
         
         return imageView
     }()
@@ -50,8 +50,13 @@ class DanceClassDetailViewController: BaseViewController {
     private let aboutTextView: UITextView = {
         let textView = UITextView()
         textView.isScrollEnabled = false
-        textView.font = UIFont.systemFont(ofSize: 16)
+        textView.font = UIFont.systemFont(ofSize: 14)
         textView.textColor = .white
+        textView.backgroundColor = .clear
+        textView.textContainer.lineFragmentPadding = 0
+        textView.textAlignment = .left
+        textView.isEditable = false
+        
         textView.text = """
         춤추고 싶은 사람 누구나 참여 가능한
         힉스 비디오 클래스!
