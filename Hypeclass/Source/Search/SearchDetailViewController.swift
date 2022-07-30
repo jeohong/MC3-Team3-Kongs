@@ -35,7 +35,7 @@ class SearchDetailViewController: BaseViewController {
         
         return table
     }()
-        
+    
     var searchStudio: [Studio]?
     var searchDancer: [Dancer]?
     var searchGenre: [Dancer]?
@@ -111,8 +111,17 @@ class SearchDetailViewController: BaseViewController {
             print(error)
         }
     }
-
-    func requestSearch(cell: SearchDetailCell, index: Int, queryArray: [Any]?) {
+    
+    func fetchCell(cell: SearchDetailCell, index: Int, queryArray: [Any]?) {
+        if let dancer = queryArray as? [Dancer] {
+            cell.nameLabel.text = dancer[index].name
+            cell.genreLabel.text = dancer[index].description
+            cell.classdayLabel.text = dancer[index].id
+        } else if let studio = queryArray as? [Studio] {
+            cell.nameLabel.text = studio[index].name
+            cell.genreLabel.text = studio[index].description
+            cell.classdayLabel.text = studio[index].id
+        }
     }
 }
 
@@ -139,17 +148,11 @@ extension SearchDetailViewController: UITableViewDataSource {
         //        cell.profileImage.load(url: URL(string: searchResult[indexPath.row].profileImageURL)!)
         
         if !(searchDancer?.isEmpty)! {
-            cell.nameLabel.text = searchDancer![indexPath.row].name
-            cell.genreLabel.text = searchDancer![indexPath.row].description
-            cell.classdayLabel.text = searchDancer![indexPath.row].id
+            fetchCell(cell: cell, index: indexPath.row, queryArray: searchDancer)
         } else if !(searchStudio?.isEmpty)! {
-            cell.nameLabel.text = searchStudio![indexPath.row].name
-            cell.genreLabel.text = searchStudio![indexPath.row].description
-            cell.classdayLabel.text = searchStudio![indexPath.row].id
+            fetchCell(cell: cell, index: indexPath.row, queryArray: searchStudio)
         } else {
-            cell.nameLabel.text = searchGenre![indexPath.row].name
-            cell.genreLabel.text = searchGenre![indexPath.row].description
-            cell.classdayLabel.text = searchGenre![indexPath.row].id
+            fetchCell(cell: cell, index: indexPath.row, queryArray: searchGenre)
         }
         
         // Mock데이터에 있는 이미지 링크의 이미지를 불러오지 못함 임시 이미지 링크를 첨부합니다.
