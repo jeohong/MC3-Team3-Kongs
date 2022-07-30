@@ -13,6 +13,8 @@ class AuthManager {
     static let shared = AuthManager()
     
     var verificationID: String?
+    var userName: String?
+    var phoneNumber: String?
     var currentUser: User? { Auth.auth().currentUser }
     var isLogin: Bool { currentUser != nil }
     
