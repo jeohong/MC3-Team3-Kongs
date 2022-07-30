@@ -135,8 +135,10 @@ class StudioViewController: BaseViewController {
         if remoteHeartState != isHeart {
             if isHeart {
                 addToSubscription()
+                StudioManager.shared.incrementLikes(studioName: studio?.name ?? "")
             } else {
                 removeFromSubscription()
+                StudioManager.shared.decrementLikes(studioName: studio?.name ?? "")
             }
         }
     }

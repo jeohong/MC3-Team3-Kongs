@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 class StudioManager {
     static let shared = StudioManager()
@@ -43,5 +44,17 @@ class StudioManager {
         return snapshot.documents.compactMap { document in
             try? document.data(as: Studio.self)
         }
+    }
+    
+    func incrementLikes(studioName name: String) {
+        Constant.studioRef.document(name).updateData([
+            "likes": FieldValue.increment(Int64(1))
+        ])
+    }
+    
+    func decrementLikes(studioName name: String) {
+        Constant.studioRef.document(name).updateData([
+            "likes": FieldValue.increment(Int64(-1))
+        ])
     }
 }
