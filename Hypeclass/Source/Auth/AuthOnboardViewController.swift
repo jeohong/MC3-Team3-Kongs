@@ -8,7 +8,6 @@
 import UIKit
 
 class AuthOnboardViewController: BaseViewController {
-    
 
     //MARK: - Properties
     
@@ -33,21 +32,26 @@ class AuthOnboardViewController: BaseViewController {
     
     private let ctaButton: CTAButton = {
         let button = CTAButton(title: "시작하기")
-        button.addTarget(button, action: #selector(ctaButtonTap), for: .touchUpInside)
+        button.addTarget(self, action: #selector(ctaButtonTap), for: .touchUpInside)
         return button
     }()
     
     //MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
     }
+    
     //MARK: - Selectors
     
     @objc func ctaButtonTap() {
-        print("DEBUG: CTAButton Tapp")
+        let vc = AuthViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
+    
     //MARK: - Helpers
+    
     func configureUI() {
         //레이아웃 구성
         let safeArea = view.safeAreaLayoutGuide
@@ -55,7 +59,7 @@ class AuthOnboardViewController: BaseViewController {
         view.addSubview(primaryLabel)
         primaryLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            primaryLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            primaryLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
             primaryLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25)
         ])
         
