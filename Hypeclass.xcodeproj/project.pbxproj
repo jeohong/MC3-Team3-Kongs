@@ -61,6 +61,8 @@
 		C08A10B22883BCC1009A38E7 /* MockDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08A10B12883BCC1009A38E7 /* MockDataSet.swift */; };
 		C0A9D9BC288FAF15007493A2 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C0A9D9BB288FAF15007493A2 /* FirebaseFirestoreSwift */; };
 		C76C91C6289143C100703CCD /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76C91C5289143C100703CCD /* ItemCell.swift */; };
+		C76C91CE2894509600703CCD /* StudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76C91CD2894509600703CCD /* StudioViewController.swift */; };
+		C76C91D02894559600703CCD /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76C91CF2894559600703CCD /* HeaderView.swift */; };
 		C7CE676028807C8E00C8F137 /* WeekdayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE675F28807C8E00C8F137 /* WeekdayCell.swift */; };
 		C7CE676228814D3C00C8F137 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE676128814D3C00C8F137 /* Weekday.swift */; };
 		C7CE67AF2886F70700C8F137 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE67AE2886F70700C8F137 /* ScheduleView.swift */; };
@@ -123,6 +125,8 @@
 		C07E5C90287E707200BDA46D /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		C08A10B12883BCC1009A38E7 /* MockDataSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataSet.swift; sourceTree = "<group>"; };
 		C76C91C5289143C100703CCD /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		C76C91CD2894509600703CCD /* StudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioViewController.swift; sourceTree = "<group>"; };
+		C76C91CF2894559600703CCD /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		C7CE675F28807C8E00C8F137 /* WeekdayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayCell.swift; sourceTree = "<group>"; };
 		C7CE676128814D3C00C8F137 /* Weekday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekday.swift; sourceTree = "<group>"; };
 		C7CE67AE2886F70700C8F137 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
@@ -152,6 +156,7 @@
 				A31C3F462882AC38005A6F6E /* Separator.swift */,
 				C05BF1FC287BC88400C95E1B /* IndicatorView.swift */,
 				C76C91C5289143C100703CCD /* ItemCell.swift */,
+				C76C91CF2894559600703CCD /* HeaderView.swift */,
 			);
 			path = ReusableComponent;
 			sourceTree = "<group>";
@@ -310,6 +315,7 @@
 		C05BF20A287BCF7F00C95E1B /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				C76C91CC2894504500703CCD /* Studio */,
 				C039DCB9287D940F0007951D /* MainTabController.swift */,
 				0ADD3B7E288447B30074C496 /* DancerDetailViewController.swift */,
 				C04B1F082889257D001D2C99 /* WeeklyScheduleCell.swift */,
@@ -336,6 +342,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C76C91CC2894504500703CCD /* Studio */ = {
+			isa = PBXGroup;
+			children = (
+				C76C91CD2894509600703CCD /* StudioViewController.swift */,
+			);
+			path = Studio;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -428,6 +442,7 @@
 				0AA1E7DE288EE32A00AC0CE9 /* DancerDetailScheduleModel.swift in Sources */,
 				0AA1E7E0288EE3F600AC0CE9 /* DancerDetailSchduleManager.swift in Sources */,
 				C05BF1FA287BC7EF00C95E1B /* UIColor.swift in Sources */,
+				C76C91CE2894509600703CCD /* StudioViewController.swift in Sources */,
 				C7CE676028807C8E00C8F137 /* WeekdayCell.swift in Sources */,
 				C039DCBA287D940F0007951D /* MainTabController.swift in Sources */,
 				C04B1F092889257D001D2C99 /* WeeklyScheduleCell.swift in Sources */,
@@ -461,6 +476,7 @@
 				C07E5C91287E707200BDA46D /* Genre.swift in Sources */,
 				C05BF1F8287BC7EF00C95E1B /* UIImage.swift in Sources */,
 				C7CE676228814D3C00C8F137 /* Weekday.swift in Sources */,
+				C76C91D02894559600703CCD /* HeaderView.swift in Sources */,
 				C7CE67D5288FD2F900C8F137 /* DanceClassManager.swift in Sources */,
 				A37F02C7288842640027D3FC /* SearchDetailCell.swift in Sources */,
 				A3F1480D28882CA90025B822 /* UIImageView.swift in Sources */,
