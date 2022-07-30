@@ -291,8 +291,9 @@ class StudioViewController: BaseViewController {
         if isAlreadySubscribed() { return }
         
         if var subscriptions = UserDefaults.standard.stringArray(forKey: "SubscribedStudios") {
-            if(subscriptions.count > 10) {
-                subscriptions.removeFirst()
+            if(subscriptions.count >= 10) {
+                presentBottomAlert(message: "구독 가능한 스튜디오는 최대 10개입니다.")
+                return
             }
             subscriptions.append(studio!.id)
             UserDefaults.standard.set(subscriptions, forKey: "SubscribedStudios")
