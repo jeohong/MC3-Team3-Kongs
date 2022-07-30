@@ -35,6 +35,12 @@ class DanceClassDetailViewController: BaseViewController {
         return label
     }()
     
+    private let ctaButton: CTAButton = {
+        let button = CTAButton(title: "신청하기")
+        
+        return button
+    }()
+    
     //MARK: - LifeCycle
     
     override func viewDidLoad() {
@@ -48,6 +54,7 @@ class DanceClassDetailViewController: BaseViewController {
     
     func configureUI() {
         //레이아웃 구성
+        let safeArea = view.safeAreaLayoutGuide
         
         view.addSubview(coverImageView)
         coverImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -74,7 +81,14 @@ class DanceClassDetailViewController: BaseViewController {
             secondaryLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor)
         ])
         
-        
+        view.addSubview(ctaButton)
+        ctaButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            ctaButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+            ctaButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            ctaButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -20),
+            ctaButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
     }
 }
 
