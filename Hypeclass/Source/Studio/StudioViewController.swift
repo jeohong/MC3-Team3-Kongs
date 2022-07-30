@@ -24,6 +24,33 @@ class StudioViewController: BaseViewController {
         return view
     }()
     
+    private let navigationBar: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        
+        return view
+    }()
+    
+    private let backButtonView: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(systemName: "chevron.backward.circle.fill")
+        view.tintColor = .white
+        
+        return view
+    }()
+    
+    private let heartView: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(systemName: "heart")
+        view.tintColor = .white
+        
+        return view
+    }()
+    
+    private var isHeart = false
+    
+    private let studioID = "81DB67B8-9CAC-4AFE-B261-75BF7EE54534"
+    
     private var studioHeaderView = HeaderView(frame: .zero, coverImageURL: nil, profileImageURL: nil, title: "HIGGS STUDIO", subtitle: "서울특별시 관악구 솔밭로 1 지하 1층", instagramURL: "https://instagram.com/dann.oao")
     
     private let tabCellID = "tab"
@@ -96,14 +123,33 @@ class StudioViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         scrollView.contentSize = CGSize(width: Device.width, height: contentView.frame.height)
+        isHeart = isAlreadySubscribed()
     }
     //MARK: - Selectors
+    
+    @objc func backButtonDidTap() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func heartDidTap() {
+        isHeart.toggle()
+        if isHeart {
+            heartView.image = UIImage(systemName: "heart.fill")
+            presentBottomAlert(message: "스튜디오를 구독하였습니다.")
+            addToSubscription()
+        } else {
+            heartView.image = UIImage(systemName: "heart")
+            presentBottomAlert(message: "스튜디오 구독이 취소되었습니다.")
+            removeFromSubscription()
+        }
+    }
     
     //MARK: - Helpers
     
     private func configureUI() {
         // scrollView
         view.addSubview(scrollView)
+        scrollView.delegate = self
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
@@ -122,6 +168,31 @@ class StudioViewController: BaseViewController {
         let contentViewHeight = contentView.heightAnchor.constraint(greaterThanOrEqualTo: view.heightAnchor)
         contentViewHeight.priority = .defaultLow
         contentViewHeight.isActive = true
+        
+        // navigationBar
+        view.addSubview(navigationBar)
+        navigationBar.frame = CGRect(x: 0, y: 0, width: Device.width, height: 92)
+
+        // backButtonView
+        view.addSubview(backButtonView)
+        backButtonView.translatesAutoresizingMaskIntoConstraints = false
+        backButtonView.topAnchor.constraint(equalTo: navigationBar.topAnchor, constant: 50).isActive = true
+        backButtonView.leadingAnchor.constraint(equalTo: navigationBar.leadingAnchor, constant: 25).isActive = true
+        backButtonView.widthAnchor.constraint(equalToConstant: 32).isActive = true
+        backButtonView.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        backButtonView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backButtonDidTap)))
+        backButtonView.isUserInteractionEnabled = true
+        
+        // heartView
+        view.addSubview(heartView)
+        if isAlreadySubscribed() { heartView.image = UIImage(systemName: "heart.fill") }
+        heartView.translatesAutoresizingMaskIntoConstraints = false
+        heartView.centerYAnchor.constraint(equalTo: backButtonView.centerYAnchor).isActive = true
+        heartView.trailingAnchor.constraint(equalTo: navigationBar.trailingAnchor, constant: -25).isActive = true
+        heartView.widthAnchor.constraint(equalToConstant: 28).isActive = true
+        heartView.heightAnchor.constraint(equalToConstant: 28).isActive = true
+        heartView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(heartDidTap)))
+        heartView.isUserInteractionEnabled = true
         
         // studioHeaderView
         contentView.addSubview(studioHeaderView)
@@ -192,6 +263,40 @@ class StudioViewController: BaseViewController {
         if let firstVC = viewControllers.first {
             pageViewController.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
+    }
+    
+    func isAlreadySubscribed() -> Bool {
+        if let subscriptions = UserDefaults.standard.stringArray(forKey: "SubscribedStudios") {
+            if subscriptions.contains(studioID) {
+                return true
+            }
+            return false
+        } else {
+            return false
+        }
+    }
+    
+    func addToSubscription() {
+        if isAlreadySubscribed() { return }
+        
+        if var subscriptions = UserDefaults.standard.stringArray(forKey: "SubscribedStudios") {
+            if(subscriptions.count > 10) {
+                subscriptions.removeFirst()
+            }
+            subscriptions.append(studioID)
+            UserDefaults.standard.set(subscriptions, forKey: "SubscribedStudios")
+        } else {
+            var newList = [String]()
+            newList.append(studioID)
+            UserDefaults.standard.set(newList, forKey: "SubscribedStudios")
+        }
+    }
+    
+    func removeFromSubscription() {
+        if !isAlreadySubscribed() { return }
+        
+        let subscriptions = UserDefaults.standard.stringArray(forKey: "SubscribedStudios")!.filter { $0 != studioID }
+        UserDefaults.standard.set(subscriptions, forKey: "SubscribedStudios")
     }
     
     func moveIndicator(index: Int) {
@@ -268,6 +373,19 @@ extension StudioViewController: UIPageViewControllerDataSource, UIPageViewContro
         }
     }
 }
+
+// MARK: - UIScrollViewDelegate Extension
+
+extension StudioViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y != 0 {
+            navigationBar.backgroundColor = .background
+        } else {
+            navigationBar.backgroundColor = .clear
+        }
+    }
+}
+
 
 //MARK: - Preview
 import SwiftUI

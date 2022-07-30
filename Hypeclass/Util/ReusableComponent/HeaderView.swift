@@ -13,14 +13,14 @@ class HeaderView: UIView {
     
     private let coverImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "DancerCoverImage")
+        imageView.backgroundColor = .gray
         
         return imageView
     }()
     
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "DancerProfileImage")
+        imageView.backgroundColor = .gray
         imageView.layer.cornerRadius = 10
         imageView.clipsToBounds = true
         
