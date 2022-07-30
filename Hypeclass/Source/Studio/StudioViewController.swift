@@ -52,6 +52,22 @@ class StudioViewController: BaseViewController {
         return sep
     }()
     
+    private var viewControllers: [UIViewController] = []
+    
+    private let containerView: UIStackView = {
+        let view = UIStackView()
+        view.axis = .vertical
+        view.backgroundColor = .gray
+        
+        return view
+    }()
+    
+    private let pageViewController: UIPageViewController = {
+        let pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+
+        return pageController
+    }()
+    
     private let sampleContentView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemBlue
@@ -64,6 +80,7 @@ class StudioViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        configurePageViewController()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,6 +93,10 @@ class StudioViewController: BaseViewController {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        scrollView.contentSize = CGSize(width: Device.width, height: contentView.frame.height)
+    }
     //MARK: - Selectors
     
     //MARK: - Helpers
@@ -137,15 +158,47 @@ class StudioViewController: BaseViewController {
         tabIndicator.bottomAnchor.constraint(equalTo: tabIndicatorView.bottomAnchor).isActive = true
         tabIndicator.widthAnchor.constraint(equalToConstant: Device.width / CGFloat(tabString.count)).isActive = true
         
-//        // test
-//        contentView.addSubview(sampleContentView)
-//        sampleContentView.translatesAutoresizingMaskIntoConstraints = false
-//        sampleContentView.topAnchor.constraint(equalTo: tabCollectionView.bottomAnchor).isActive = true
-//        sampleContentView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-//        sampleContentView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
-//        sampleContentView.heightAnchor.constraint(equalToConstant: 1000).isActive = true
+        // containerView
+        contentView.addSubview(containerView)
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.topAnchor.constraint(equalTo: tabIndicatorView.bottomAnchor).isActive = true
+        containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+
+        // pageViewController
+        addChild(pageViewController)
+        pageViewController.dataSource = self
+        pageViewController.delegate = self
+
+        containerView.addArrangedSubview(pageViewController.view)
+        pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        pageViewController.view.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
+        pageViewController.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
+        pageViewController.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
+        pageViewController.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
+        pageViewController.didMove(toParent: self)
     }
     
+    func configurePageViewController() {
+        // TO DO: 실제 뷰 컨트롤러로 대체
+        for idx in 0..<3 {
+            let vc = DancerDetailViewController()
+            vc.dancerDetailScrollView.isScrollEnabled = false
+            vc.view.tag = idx
+            pageViewController.view.heightAnchor.constraint(equalToConstant: vc.view.frame.height).isActive = true
+            viewControllers.append(vc)
+        }
+        if let firstVC = viewControllers.first {
+            pageViewController.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
+        }
+    }
+    
+    func moveIndicator(index: Int) {
+        UIView.animate(withDuration: 0.3) {
+            self.tabIndicator.frame.origin.x = CGFloat(index) * (Device.width / CGFloat(self.tabString.count))
+        }
+    }
 }
 
 // MARK: - UICollectionView Extension
@@ -167,10 +220,11 @@ extension StudioViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        UIView.animate(withDuration: 0.3) {
-            self.tabIndicator.frame.origin.x = CGFloat(indexPath.item) * (Device.width / CGFloat(self.tabString.count))
-        }
+        moveIndicator(index: indexPath.item)
+        let isForward = selectedTab < indexPath.item ? true : false
         selectedTab = indexPath.item
+        pageViewController.setViewControllers([viewControllers[selectedTab]], direction: isForward ? .forward : .reverse, animated: true, completion: nil)
+        scrollView.contentSize = CGSize(width: Device.width, height: contentView.frame.height)
         collectionView.reloadData()
     }
 }
@@ -181,6 +235,37 @@ extension StudioViewController: UICollectionViewDelegate {
 extension StudioViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width / CGFloat(tabString.count), height: collectionView.frame.height)
+    }
+}
+
+// MARK: - UIPageViewController Extension
+
+extension StudioViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        guard let index = viewControllers.firstIndex(of: viewController) else { return nil }
+        let previousIndex = index - 1
+        if previousIndex < 0 {
+            return nil
+        }
+        return viewControllers[previousIndex]
+    }
+
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        guard let index = viewControllers.firstIndex(of: viewController) else { return nil }
+        let nextIndex = index + 1
+        if nextIndex == viewControllers.count {
+            return nil
+        }
+        return viewControllers[nextIndex]
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if true {
+            selectedTab = pageViewController.viewControllers!.first!.view.tag
+            moveIndicator(index: selectedTab)
+            scrollView.contentSize = CGSize(width: Device.width, height: contentView.frame.height)
+            tabCollectionView.reloadData()
+        }
     }
 }
 
