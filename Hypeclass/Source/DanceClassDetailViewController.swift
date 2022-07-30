@@ -51,9 +51,16 @@ class DanceClassDetailViewController: BaseViewController {
     //MARK: - Selectors
     
     @objc func ctaButtonTap() {
-        let vc = UINavigationController(rootViewController: AuthOnboardViewController())
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
+        if AuthManager.shared.isLogin {
+            // 로그인 되어 있을 시 신청 메서드 작동
+            presentAlert(title: "신청하기", message: "신청 후에는 취소, 수강관련안내 문자가 회원님의 핸드폰 번호로 전송됩니다", isCancelActionIncluded: true, preferredStyle: .alert) { action in
+                print("DEUBG: 신청하기 로직 연결 필요")
+            }
+        } else {
+            let vc = UINavigationController(rootViewController: AuthOnboardViewController())
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true, completion: nil)
+        }
     }
     
     //MARK: - Helpers
