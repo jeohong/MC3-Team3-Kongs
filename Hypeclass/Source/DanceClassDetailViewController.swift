@@ -39,6 +39,14 @@ class DanceClassDetailViewController: BaseViewController {
         return label
     }()
     
+    private let aboutLabel: UILabel = {
+        let label = UILabel()
+        label.text = "소개"
+        label.textColor = .white
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        return label
+    }()
+    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.rowHeight = 60
@@ -114,6 +122,13 @@ class DanceClassDetailViewController: BaseViewController {
             secondaryLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
             secondaryLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             secondaryLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor)
+        ])
+        
+        view.addSubview(aboutLabel)
+        aboutLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            aboutLabel.topAnchor.constraint(equalTo: secondaryLabel.bottomAnchor, constant: 20),
+            aboutLabel.leadingAnchor.constraint(equalTo: secondaryLabel.leadingAnchor)
         ])
         
         view.addSubview(tableView)
