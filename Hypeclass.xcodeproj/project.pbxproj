@@ -65,6 +65,7 @@
 		C0C444FC2894495D00036ADE /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C444FB2894495D00036ADE /* AuthViewController.swift */; };
 		C0C444FE28944DE200036ADE /* ContainerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C444FD28944DE200036ADE /* ContainerTextField.swift */; };
 		C0C445002894EE1300036ADE /* AuthPhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C444FF2894EE1200036ADE /* AuthPhoneNumberViewController.swift */; };
+		C0C445022894F0DF00036ADE /* AuthVerificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C445012894F0DF00036ADE /* AuthVerificationController.swift */; };
 		C0C7B28728944044003FA2C2 /* AuthOnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C7B28628944044003FA2C2 /* AuthOnboardViewController.swift */; };
 		C0C7B28928944395003FA2C2 /* CTAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C7B28828944395003FA2C2 /* CTAButton.swift */; };
 		C76C91C6289143C100703CCD /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76C91C5289143C100703CCD /* ItemCell.swift */; };
@@ -133,6 +134,7 @@
 		C0C444FB2894495D00036ADE /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		C0C444FD28944DE200036ADE /* ContainerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerTextField.swift; sourceTree = "<group>"; };
 		C0C444FF2894EE1200036ADE /* AuthPhoneNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPhoneNumberViewController.swift; sourceTree = "<group>"; };
+		C0C445012894F0DF00036ADE /* AuthVerificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVerificationController.swift; sourceTree = "<group>"; };
 		C0C7B28628944044003FA2C2 /* AuthOnboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthOnboardViewController.swift; sourceTree = "<group>"; };
 		C0C7B28828944395003FA2C2 /* CTAButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTAButton.swift; sourceTree = "<group>"; };
 		C76C91C5289143C100703CCD /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 				C0C7B28628944044003FA2C2 /* AuthOnboardViewController.swift */,
 				C0C444FB2894495D00036ADE /* AuthViewController.swift */,
 				C0C444FF2894EE1200036ADE /* AuthPhoneNumberViewController.swift */,
+				C0C445012894F0DF00036ADE /* AuthVerificationController.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				C039DCBE287D944C0007951D /* ScheduleViewController.swift in Sources */,
 				C7CE67D3288FD2EA00C8F137 /* DancerManager.swift in Sources */,
 				C05BF1F3287BC7EF00C95E1B /* UIView.swift in Sources */,
+				C0C445022894F0DF00036ADE /* AuthVerificationController.swift in Sources */,
 				C05BF1FD287BC88400C95E1B /* IndicatorView.swift in Sources */,
 				C05BF1F4287BC7EF00C95E1B /* UIFont.swift in Sources */,
 				A38A4C57287E97B900614E94 /* SearchViewController.swift in Sources */,

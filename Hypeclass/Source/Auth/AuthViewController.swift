@@ -61,6 +61,8 @@ class AuthViewController: BaseViewController, UITextFieldDelegate {
     
     @objc func ctaButtonTap() {
         AuthManager.shared.userName = textField.text
+        let vc = AuthPhoneNumberViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     //MARK: - Helpers

@@ -8,11 +8,12 @@
 import UIKit
 
 class AuthPhoneNumberViewController: BaseViewController {
+    
     //MARK: - Properties
     
     private let primaryLabel: UILabel = {
         let label = UILabel()
-        label.text = "신청자의 이름을 알려주세요."
+        label.text = "전화번호를 알려주세요."
         label.font = UIFont.boldSystemFont(ofSize: 24)
         return label
     }()
@@ -26,58 +27,45 @@ class AuthPhoneNumberViewController: BaseViewController {
     
     private let textField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "이름"
+        textField.placeholder = "인증번호"
         textField.font = UIFont.boldSystemFont(ofSize: 16)
         textField.textColor = .white
         textField.tintColor = .label
         textField.frame.size = CGSize(width: 300, height: 50)
+        textField.keyboardType = .numberPad
         textField.addDoneButtonOnKeyboard()
-        return textField
-    }()
-    
-    private let phoneNumberContainer: UIView = {
-        let view = UIView()
-        view.backgroundColor = .container
-        view.layer.cornerRadius = 8
-        return view
-    }()
-    
-    private let phoneNumberField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "전화번호"
-        textField.font = UIFont.boldSystemFont(ofSize: 16)
-        textField.textColor = .white
-        textField.tintColor = .label
-        textField.frame.size = CGSize(width: 300, height: 50)
         return textField
     }()
     
     private let inputInfoLabel: UILabel = {
         let label = UILabel()
-        label.text = "반드시 본명을 입력해주세요."
+        label.text = " "
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textColor = .secondaryLabel
         return label
     }()
     
     private let ctaButton: CTAButton = {
-        let button = CTAButton(title: "다음")
+        let button = CTAButton(title: "시작하기")
         button.addTarget(self, action: #selector(ctaButtonTap), for: .touchUpInside)
         return button
     }()
     
     //MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         dismissKeyboardWhenTappedAround()
 
     }
+    
     //MARK: - Selectors
     
     @objc func ctaButtonTap() {
         print("DEBUG: CTAButton Tapp")
-        AuthManager.shared.userName = textField.text
+        let vc = AuthVerificationController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     //MARK: - Helpers
