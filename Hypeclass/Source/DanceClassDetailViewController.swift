@@ -15,6 +15,19 @@ class DanceClassDetailViewController: BaseViewController {
     
     let headerTitles = ["강사", "스튜디오"]
     
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.contentInsetAdjustmentBehavior = .never
+        scrollView.isScrollEnabled = true
+        scrollView.contentSize = CGSize(width: 400, height: 1000)
+        return scrollView
+    }()
+    
+    private let contentView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
     private let coverImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .gray
@@ -126,55 +139,8 @@ class DanceClassDetailViewController: BaseViewController {
     func configureUI() {
         //레이아웃 구성
         let safeArea = view.safeAreaLayoutGuide
-        
-        view.addSubview(coverImageView)
-        coverImageView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            coverImageView.topAnchor.constraint(equalTo: view.topAnchor),
-            coverImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            coverImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            coverImageView.heightAnchor.constraint(equalToConstant: 220)
-        ])
-        
-        view.addSubview(titleLabel)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: coverImageView.bottomAnchor, constant: 28),
-            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
-            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25)
-        ])
-        
-        view.addSubview(secondaryLabel)
-        secondaryLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            secondaryLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
-            secondaryLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            secondaryLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor)
-        ])
-        
-        view.addSubview(aboutLabel)
-        aboutLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            aboutLabel.topAnchor.constraint(equalTo: secondaryLabel.bottomAnchor, constant: 20),
-            aboutLabel.leadingAnchor.constraint(equalTo: secondaryLabel.leadingAnchor)
-        ])
-        
-        view.addSubview(aboutTextView)
-        aboutTextView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            aboutTextView.topAnchor.constraint(equalTo: aboutLabel.bottomAnchor, constant: 10),
-            aboutTextView.leadingAnchor.constraint(equalTo: aboutLabel.leadingAnchor),
-            aboutTextView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -25)
-        ])
-        
-        view.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: aboutTextView.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.heightAnchor.constraint(equalToConstant: 400)
-        ])
+        let contentLayout = scrollView.contentLayoutGuide
+        let frameLayout = scrollView.frameLayoutGuide
         
         view.addSubview(ctaButton)
         ctaButton.translatesAutoresizingMaskIntoConstraints = false
@@ -184,6 +150,77 @@ class DanceClassDetailViewController: BaseViewController {
             ctaButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -20),
             ctaButton.heightAnchor.constraint(equalToConstant: 50)
         ])
+        
+        view.addSubview(scrollView)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: ctaButton.topAnchor, constant: -20)
+        ])
+        
+        scrollView.addSubview(contentView)
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            contentView.leadingAnchor.constraint(equalTo: contentLayout.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: contentLayout.trailingAnchor),
+            contentView.topAnchor.constraint(equalTo: contentLayout.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: contentLayout.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: frameLayout.widthAnchor),
+            contentView.heightAnchor.constraint(equalToConstant: 1000)
+        ])
+        
+        contentView.addSubview(coverImageView)
+        coverImageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            coverImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            coverImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            coverImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            coverImageView.heightAnchor.constraint(equalToConstant: 220)
+        ])
+        
+        contentView.addSubview(titleLabel)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: coverImageView.bottomAnchor, constant: 28),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 25),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -25)
+        ])
+        
+        contentView.addSubview(secondaryLabel)
+        secondaryLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            secondaryLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
+            secondaryLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            secondaryLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor)
+        ])
+        
+        contentView.addSubview(aboutLabel)
+        aboutLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            aboutLabel.topAnchor.constraint(equalTo: secondaryLabel.bottomAnchor, constant: 20),
+            aboutLabel.leadingAnchor.constraint(equalTo: secondaryLabel.leadingAnchor)
+        ])
+        
+        contentView.addSubview(aboutTextView)
+        aboutTextView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            aboutTextView.topAnchor.constraint(equalTo: aboutLabel.bottomAnchor, constant: 10),
+            aboutTextView.leadingAnchor.constraint(equalTo: aboutLabel.leadingAnchor),
+            aboutTextView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -25)
+        ])
+        
+        contentView.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: aboutTextView.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            tableView.heightAnchor.constraint(equalToConstant: 400)
+        ])
+        
+
     }
 }
 
