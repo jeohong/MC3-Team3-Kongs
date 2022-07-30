@@ -26,6 +26,15 @@ class DanceClassDetailViewController: BaseViewController {
         return label
     }()
     
+    private let secondaryLabel: UILabel = {
+        let label = UILabel()
+        label.text = "6월 29일 수요일 18:20 ~ 21:40"
+        label.font = UIFont.systemFont(ofSize: 12, weight: .light)
+        label.textColor = .white
+        
+        return label
+    }()
+    
     //MARK: - LifeCycle
     
     override func viewDidLoad() {
@@ -53,7 +62,16 @@ class DanceClassDetailViewController: BaseViewController {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: coverImageView.bottomAnchor, constant: 28),
-            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25)
+            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25)
+        ])
+        
+        view.addSubview(secondaryLabel)
+        secondaryLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            secondaryLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
+            secondaryLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            secondaryLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor)
         ])
         
         
