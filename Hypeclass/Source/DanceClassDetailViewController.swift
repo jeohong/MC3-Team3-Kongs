@@ -37,7 +37,7 @@ class DanceClassDetailViewController: BaseViewController {
     
     private let ctaButton: CTAButton = {
         let button = CTAButton(title: "신청하기")
-        
+        button.addTarget(self, action: #selector(ctaButtonTap), for: .touchUpInside)
         return button
     }()
     
@@ -49,6 +49,12 @@ class DanceClassDetailViewController: BaseViewController {
     }
     
     //MARK: - Selectors
+    
+    @objc func ctaButtonTap() {
+        let vc = UINavigationController(rootViewController: AuthOnboardViewController())
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
+    }
     
     //MARK: - Helpers
     
