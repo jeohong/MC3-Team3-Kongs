@@ -43,7 +43,6 @@ class SubscriptionViewController: BaseViewController{
         return sep
     }()
     
-//    private var isDancerTab = true
     private var selectedTab = 0
     
     private let cellID = "subscription"

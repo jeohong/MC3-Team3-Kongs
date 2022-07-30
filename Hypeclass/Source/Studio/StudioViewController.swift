@@ -132,6 +132,13 @@ class StudioViewController: BaseViewController {
     
     @objc func backButtonDidTap() {
         self.navigationController?.popViewController(animated: true)
+        if remoteHeartState != isHeart {
+            if isHeart {
+                addToSubscription()
+            } else {
+                removeFromSubscription()
+            }
+        }
     }
     
     @objc func heartDidTap() {
@@ -139,11 +146,9 @@ class StudioViewController: BaseViewController {
         if isHeart {
             heartView.image = UIImage(systemName: "heart.fill")
             presentBottomAlert(message: "스튜디오를 구독하였습니다.")
-            addToSubscription()
         } else {
             heartView.image = UIImage(systemName: "heart")
             presentBottomAlert(message: "스튜디오 구독이 취소되었습니다.")
-            removeFromSubscription()
         }
     }
     
@@ -301,6 +306,7 @@ class StudioViewController: BaseViewController {
         
         let subscriptions = UserDefaults.standard.stringArray(forKey: "SubscribedStudios")!.filter { $0 != studio!.id }
         UserDefaults.standard.set(subscriptions, forKey: "SubscribedStudios")
+        StudioManager.myStudios = StudioManager.myStudios?.filter { $0.id != studio!.id }
     }
     
     func moveIndicator(index: Int) {
