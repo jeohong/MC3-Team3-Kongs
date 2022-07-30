@@ -47,11 +47,13 @@ class StudioViewController: BaseViewController {
         return view
     }()
     
+    private var remoteHeartState = false
+    
     private var isHeart = false
     
-    private let studioID = "81DB67B8-9CAC-4AFE-B261-75BF7EE54534"
+    var studio: Studio?
     
-    private var studioHeaderView = HeaderView(frame: .zero, coverImageURL: nil, profileImageURL: nil, title: "HIGGS STUDIO", subtitle: "서울특별시 관악구 솔밭로 1 지하 1층", instagramURL: "https://instagram.com/dann.oao")
+    private var studioHeaderView: HeaderView?
     
     private let tabCellID = "tab"
     
@@ -123,7 +125,8 @@ class StudioViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         scrollView.contentSize = CGSize(width: Device.width, height: contentView.frame.height)
-        isHeart = isAlreadySubscribed()
+        remoteHeartState = isAlreadySubscribed()
+        isHeart = remoteHeartState
     }
     //MARK: - Selectors
     
@@ -195,11 +198,12 @@ class StudioViewController: BaseViewController {
         heartView.isUserInteractionEnabled = true
         
         // studioHeaderView
-        contentView.addSubview(studioHeaderView)
-        studioHeaderView.translatesAutoresizingMaskIntoConstraints = false
-        studioHeaderView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        studioHeaderView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-        studioHeaderView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        studioHeaderView = HeaderView(frame: .zero, coverImageURL: nil, profileImageURL: nil, title: "\(studio?.name ?? "") STUDIO", subtitle: studio?.description, instagramURL: "https://instagram.com/dann.oao")
+        contentView.addSubview(studioHeaderView!)
+        studioHeaderView!.translatesAutoresizingMaskIntoConstraints = false
+        studioHeaderView!.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        studioHeaderView!.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        studioHeaderView!.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         
         // tabCollectionView
         tabCollectionView.register(TabCell.self, forCellWithReuseIdentifier: tabCellID)
@@ -208,7 +212,7 @@ class StudioViewController: BaseViewController {
         
         contentView.addSubview(tabCollectionView)
         tabCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        tabCollectionView.topAnchor.constraint(equalTo: studioHeaderView.bottomAnchor).isActive = true
+        tabCollectionView.topAnchor.constraint(equalTo: studioHeaderView!.bottomAnchor).isActive = true
         tabCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
         tabCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         tabCollectionView.heightAnchor.constraint(equalToConstant: 48).isActive = true
@@ -267,7 +271,7 @@ class StudioViewController: BaseViewController {
     
     func isAlreadySubscribed() -> Bool {
         if let subscriptions = UserDefaults.standard.stringArray(forKey: "SubscribedStudios") {
-            if subscriptions.contains(studioID) {
+            if subscriptions.contains(studio!.id) {
                 return true
             }
             return false
@@ -283,11 +287,11 @@ class StudioViewController: BaseViewController {
             if(subscriptions.count > 10) {
                 subscriptions.removeFirst()
             }
-            subscriptions.append(studioID)
+            subscriptions.append(studio!.id)
             UserDefaults.standard.set(subscriptions, forKey: "SubscribedStudios")
         } else {
             var newList = [String]()
-            newList.append(studioID)
+            newList.append(studio!.id)
             UserDefaults.standard.set(newList, forKey: "SubscribedStudios")
         }
     }
@@ -295,7 +299,7 @@ class StudioViewController: BaseViewController {
     func removeFromSubscription() {
         if !isAlreadySubscribed() { return }
         
-        let subscriptions = UserDefaults.standard.stringArray(forKey: "SubscribedStudios")!.filter { $0 != studioID }
+        let subscriptions = UserDefaults.standard.stringArray(forKey: "SubscribedStudios")!.filter { $0 != studio!.id }
         UserDefaults.standard.set(subscriptions, forKey: "SubscribedStudios")
     }
     

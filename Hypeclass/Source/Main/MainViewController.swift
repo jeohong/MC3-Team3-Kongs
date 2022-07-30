@@ -143,7 +143,7 @@ class MainViewController: BaseViewController {
     // MARK: - Selectors
     
     @objc func searchButtonDidTap() {
-        let searchVC = StudioViewController()
+        let searchVC = SearchViewController()
         self.navigationController?.pushViewController(searchVC, animated: true)
     }
     
