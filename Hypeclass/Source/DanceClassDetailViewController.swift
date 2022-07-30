@@ -12,8 +12,8 @@ class DanceClassDetailViewController: BaseViewController {
     //MARK: - Properties
     
     var model: DanceClass?
-    
     let headerTitles = ["강사", "스튜디오"]
+    private var coverImageTopAnchor: NSLayoutConstraint?
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -69,7 +69,6 @@ class DanceClassDetailViewController: BaseViewController {
         textView.textContainer.lineFragmentPadding = 0
         textView.textAlignment = .left
         textView.isEditable = false
-        
         textView.text = """
         춤추고 싶은 사람 누구나 참여 가능한
         힉스 비디오 클래스!
@@ -95,12 +94,14 @@ class DanceClassDetailViewController: BaseViewController {
         tableView.isScrollEnabled = false
         tableView.backgroundColor = .clear
         tableView.separatorColor = .clear
+        
         return tableView
     }()
     
     private let ctaButton: CTAButton = {
         let button = CTAButton(title: "신청하기")
         button.addTarget(self, action: #selector(ctaButtonTap), for: .touchUpInside)
+        
         return button
     }()
     
@@ -110,6 +111,7 @@ class DanceClassDetailViewController: BaseViewController {
         super.viewDidLoad()
         configureUI()
         configureTableView()
+        scrollView.delegate = self
     }
     
     //MARK: - Selectors
@@ -162,6 +164,7 @@ class DanceClassDetailViewController: BaseViewController {
         
         scrollView.addSubview(contentView)
         contentView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             contentView.leadingAnchor.constraint(equalTo: contentLayout.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: contentLayout.trailingAnchor),
@@ -173,8 +176,9 @@ class DanceClassDetailViewController: BaseViewController {
         
         contentView.addSubview(coverImageView)
         coverImageView.translatesAutoresizingMaskIntoConstraints = false
+        coverImageTopAnchor = NSLayoutConstraint(item: coverImageView, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1, constant: 0)
+        contentView.addConstraint(coverImageTopAnchor!)
         NSLayoutConstraint.activate([
-            coverImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             coverImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             coverImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             coverImageView.heightAnchor.constraint(equalToConstant: 220)
@@ -219,8 +223,6 @@ class DanceClassDetailViewController: BaseViewController {
             tableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             tableView.heightAnchor.constraint(equalToConstant: 400)
         ])
-        
-
     }
 }
 
@@ -268,6 +270,18 @@ extension DanceClassDetailViewController: UITableViewDataSource, UITableViewDele
     }
 }
 
+extension DanceClassDetailViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        //MARK: 커버 이미지 stick to top 애니메이션
+        let offset = scrollView.contentOffset.y
+        if offset < 0 {
+            coverImageTopAnchor?.constant = offset
+            coverImageView.heightConstraint?.constant = 210 - offset
+        } else {
+            coverImageView.heightConstraint?.constant = 210
+        }
+    }
+}
 
 //MARK: - Preview
 import SwiftUI
