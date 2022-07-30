@@ -18,6 +18,14 @@ class DanceClassDetailViewController: BaseViewController {
         return imageView
     }()
     
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "아프로 스타일 하우스 클래스"
+        label.font = UIFont.boldSystemFont(ofSize: 26)
+        
+        return label
+    }()
+    
     //MARK: - LifeCycle
     
     override func viewDidLoad() {
@@ -40,6 +48,15 @@ class DanceClassDetailViewController: BaseViewController {
             coverImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             coverImageView.heightAnchor.constraint(equalToConstant: 220)
         ])
+        
+        view.addSubview(titleLabel)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: coverImageView.bottomAnchor, constant: 28),
+            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25)
+        ])
+        
+        
     }
 }
 
