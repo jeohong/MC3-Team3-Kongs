@@ -14,7 +14,7 @@ class StudioManager {
     static var myStudios: [Studio]?
     
     func createStudio(id: String, name: String, dancers: [String]) {
-        let studio = Studio(id: id, name: name, description: "\(name) description", instagramURL: nil, youtubeURL: nil, dancers: dancers)
+        let studio = Studio(id: id, name: name, description: "\(name) description", instagramURL: nil, youtubeURL: nil, dancers: dancers, likes: nil)
         do {
             try Constant.studioRef.document("\(name)").setData(from: studio)
         } catch let error {
