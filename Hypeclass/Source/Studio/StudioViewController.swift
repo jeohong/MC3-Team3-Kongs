@@ -27,6 +27,7 @@ class StudioViewController: BaseViewController {
     private let navigationBar: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
+        view.alpha = 0.7
         
         return view
     }()
