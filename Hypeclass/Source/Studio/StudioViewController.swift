@@ -129,6 +129,7 @@ class StudioViewController: BaseViewController {
         remoteHeartState = isAlreadySubscribed()
         isHeart = remoteHeartState
     }
+    
     //MARK: - Selectors
     
     @objc func backButtonDidTap() {
@@ -400,8 +401,8 @@ extension StudioViewController: UIScrollViewDelegate {
     }
 }
 
-
 //MARK: - Preview
+
 import SwiftUI
 
 struct StudioViewControllerRepresentable: UIViewControllerRepresentable {

@@ -31,6 +31,7 @@ class HeaderView: UIView {
         let label = UILabel()
         label.textColor = .white
         label.font = .systemFont(ofSize: 16.0, weight: .medium)
+        
         return label
     }()
     
@@ -38,6 +39,8 @@ class HeaderView: UIView {
         let label = UILabel()
         label.textColor = .white
         label.font = .systemFont(ofSize: 12.0, weight: .ultraLight)
+        label.numberOfLines = 2
+        
         return label
     }()
     
@@ -103,12 +106,14 @@ class HeaderView: UIView {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.topAnchor.constraint(equalTo: profileImageView.topAnchor, constant: 10).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 20).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -25).isActive = true
         
         // subtitleLabel
         self.addSubview(subtitleLabel)
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 1).isActive = true
         subtitleLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
+        subtitleLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor).isActive = true
         
         // instagramImageView
         self.addSubview(instagramImageView)
