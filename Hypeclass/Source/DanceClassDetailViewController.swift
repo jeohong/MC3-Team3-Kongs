@@ -33,6 +33,7 @@ class DanceClassDetailViewController: BaseViewController {
     private let coverImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .gray
+        imageView.contentMode = .scaleToFill
         
         return imageView
     }()
