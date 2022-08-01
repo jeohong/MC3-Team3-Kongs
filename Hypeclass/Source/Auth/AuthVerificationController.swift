@@ -62,7 +62,24 @@ class AuthVerificationController: BaseViewController {
     //MARK: - Selectors
     
     @objc func ctaButtonTap() {
-        self.dismiss(animated: true)
+        guard let verificationCode = textField.text else {
+            presentBottomAlert(message: "인증번호를 입력해주세요.")
+            return
+        }
+        
+        guard verificationCode.count == 6 else {
+            presentBottomAlert(message: "유효하지 않은 인증번호 입니다.")
+            return
+        }
+        
+        Task {
+            do {
+                try await AuthManager.shared.signInWith(verificationCode: verificationCode)
+                self.dismiss(animated: true)
+            } catch {
+                presentBottomAlert(message: "인증에 실패했습니다.")
+            }
+        }
     }
     
     //MARK: - Helpers
