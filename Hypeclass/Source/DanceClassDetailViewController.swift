@@ -99,7 +99,6 @@ class DanceClassDetailViewController: BaseViewController {
         configureUI()
         configureTableView()
         scrollView.delegate = self
-//        configure()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -124,12 +123,6 @@ class DanceClassDetailViewController: BaseViewController {
     
     //MARK: - Helpers
     
-    func configureTableView() {
-        tableView.register(ItemCell.self, forCellReuseIdentifier: "DanceClassDetailCell")
-        tableView.delegate = self
-        tableView.dataSource = self
-    }
-    
     func configure() {
         guard let model = model else { return }
         guard let dancerID = model.dancerID else { return }
@@ -137,6 +130,7 @@ class DanceClassDetailViewController: BaseViewController {
         IndicatorView.shared.show()
         IndicatorView.shared.showIndicator()
         titleLabel.text = model.name
+        secondaryLabel.text = "\(model.startTime?.text ?? "") \(model.startTime?.dayOfTheWeek ?? "") \(model.startTime?.hourMinText ?? "") ~ \(model.endTime?.hourMinText ?? "")"
         aboutTextView.text = model.description
 
         Task {
@@ -156,6 +150,12 @@ class DanceClassDetailViewController: BaseViewController {
                 presentBottomAlert(message: "데이터를 불러오지 못했습니다.")
             }
         }
+    }
+    
+    func configureTableView() {
+        tableView.register(ItemCell.self, forCellReuseIdentifier: "DanceClassDetailCell")
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     func configureUI() {
