@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 class StudioManager {
     static let shared = StudioManager()
@@ -15,7 +16,7 @@ class StudioManager {
     static var allStudios: [Studio]?
     
     func createStudio(id: String, name: String, dancers: [String]) {
-        let studio = Studio(id: id, name: name, description: "\(name) description", instagramURL: nil, youtubeURL: nil, dancers: dancers)
+        let studio = Studio(id: id, name: name, description: "\(name) description", instagramURL: nil, youtubeURL: nil, dancers: dancers, likes: nil)
         do {
             try Constant.studioRef.document("\(name)").setData(from: studio)
         } catch let error {
@@ -45,5 +46,17 @@ class StudioManager {
         return snapshot.documents.compactMap { document in
             try? document.data(as: Studio.self)
         }
+    }
+    
+    func incrementLikes(studioName name: String) {
+        Constant.studioRef.document(name).updateData([
+            "likes": FieldValue.increment(Int64(1))
+        ])
+    }
+    
+    func decrementLikes(studioName name: String) {
+        Constant.studioRef.document(name).updateData([
+            "likes": FieldValue.increment(Int64(-1))
+        ])
     }
 }
