@@ -1,33 +1,32 @@
 //
-//  MainViewController+GenreCell.swift
+//  IntroduceViewController + DancerCell.swift
 //  Hypeclass
 //
-//  Created by apple developer academy on 2022/07/18.
+//  Created by Hong jeongmin on 2022/08/01.
 //
 
 import UIKit
 
-class MainViewControllerGenreCell: UICollectionViewCell {
+class IntroduceDancerCell: UICollectionViewCell {
 
     static let id = "GenreCell"
     
     // MARK: UIImageView로 수정
+    
     private var imageView: UIStackView = {
         let view = UIStackView()
         view.backgroundColor = .gray
         view.axis = .vertical
         view.alignment = .center
-        view.layer.cornerRadius = 50
+        view.layer.cornerRadius = 40
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    private let genreLabel: UILabel = {
+    let genreLabel: UILabel = {
         let label = UILabel()
-        label.text = "스트릿 댄스"
         label.font = UIFont.systemFont(ofSize: 12, weight: .bold)
         label.numberOfLines = 2
-//        label.adjustsFontSizeToFitWidth = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
