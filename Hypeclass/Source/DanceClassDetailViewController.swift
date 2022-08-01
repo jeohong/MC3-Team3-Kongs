@@ -11,7 +11,9 @@ class DanceClassDetailViewController: BaseViewController {
     
     //MARK: - Properties
     
-    var model: DanceClass?
+    var model: DanceClass? = MockDataSet.danceClass
+    var instructor: [Dancer]?
+    var studio: [Studio]?
     let headerTitles = ["강사", "스튜디오"]
     private var coverImageTopAnchor: NSLayoutConstraint?
     
@@ -37,7 +39,6 @@ class DanceClassDetailViewController: BaseViewController {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "아프로 스타일 하우스 클래스"
         label.font = UIFont.boldSystemFont(ofSize: 26)
         
         return label
@@ -69,20 +70,6 @@ class DanceClassDetailViewController: BaseViewController {
         textView.textContainer.lineFragmentPadding = 0
         textView.textAlignment = .left
         textView.isEditable = false
-        textView.text = """
-        춤추고 싶은 사람 누구나 참여 가능한
-        힉스 비디오 클래스!
-        
-        *다채로운 영상을 남기고 싶은 각양각색의
-        댄서나 일반인을 모집합니다.
-        
-        - 진행기간 :
-        8월 1일 첫째주 부터 9월 9일까지 (6주간)
-        
-        - 정원 : 각 레슨마다 10명씩
-        
-        - 촬영 날짜: 9월 18일 일요일 오후 12시 이후
-        """
         textView.sizeToFit()
         
         return textView
@@ -112,6 +99,11 @@ class DanceClassDetailViewController: BaseViewController {
         configureUI()
         configureTableView()
         scrollView.delegate = self
+//        configure()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        configure()
     }
     
     //MARK: - Selectors
@@ -136,6 +128,34 @@ class DanceClassDetailViewController: BaseViewController {
         tableView.register(ItemCell.self, forCellReuseIdentifier: "DanceClassDetailCell")
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    func configure() {
+        guard let model = model else { return }
+        guard let dancerID = model.dancerID else { return }
+        guard let studioID = model.studioID else { return }
+        IndicatorView.shared.show()
+        IndicatorView.shared.showIndicator()
+        titleLabel.text = model.name
+        aboutTextView.text = model.description
+
+        Task {
+            do {
+                async let dancers = DancerManager.shared.requestDancersBy(dancerIDs: [dancerID])
+                async let studios = StudioManager.shared.requestStudiosBy(studioIDs: [studioID])
+                let results: [Any] = try await [dancers, studios]
+                self.instructor = results[0] as? [Dancer]
+                self.studio = results[1] as? [Studio]
+                if let url = URL(string: self.studio?.first?.profileImageURL ?? "") {
+                    coverImageView.load(url: url)
+                }
+                tableView.reloadData()
+                IndicatorView.shared.dismiss()
+            } catch {
+                IndicatorView.shared.dismiss()
+                presentBottomAlert(message: "데이터를 불러오지 못했습니다.")
+            }
+        }
     }
     
     func configureUI() {
@@ -256,7 +276,7 @@ extension DanceClassDetailViewController: UITableViewDataSource, UITableViewDele
     //MARK: - ROW
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return section == 0 ? instructor?.count ?? 0 : studio?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -264,7 +284,18 @@ extension DanceClassDetailViewController: UITableViewDataSource, UITableViewDele
             return UITableViewCell()
         }
         cell.backgroundColor = .clear
-        cell.profileImage.backgroundColor = .systemPink
+        cell.profileImage.backgroundColor = .gray
+        if indexPath.section == 0 {
+            guard let dancer = instructor?[indexPath.row] else { return cell }
+            guard let url = URL(string: dancer.profileImageURL ?? "") else { return cell }
+            cell.profileImage.load(url: url)
+            cell.titleLabel.text = dancer.name
+        } else {
+            guard let studio = studio?[indexPath.row] else { return cell }
+            guard let url = URL(string: studio.profileImageURL ?? "") else { return cell }
+            cell.profileImage.load(url: url)
+            cell.titleLabel.text = studio.name
+        }
         
         return cell
     }
