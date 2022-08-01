@@ -43,25 +43,28 @@ class SubscriptionViewController: BaseViewController{
         return sep
     }()
     
-//    private var isDancerTab = true
     private var selectedTab = 0
     
     private let cellID = "subscription"
     
     private var dancerIDs = UserDefaults.standard.stringArray(forKey: "SubscribedDancers") ?? ["958DDBD8-689E-49D0-AC60-F7C0EC2611BC", "ADC4A0E1-50DF-4784-9228-EE4622C226E8", "0E36AA46-941C-40B0-9B18-818745EE1FD0"]
     
-    private var studioIDs = UserDefaults.standard.stringArray(forKey: "SubscribedStudios") ?? ["81DB67B8-9CAC-4AFE-B261-75BF7EE54534", "E23BD12A-ACDB-4BF6-B7C8-CFFC6BA4D1D4"]
+//    private var studioIDs = UserDefaults.standard.stringArray(forKey: "SubscribedStudios") ?? ["81DB67B8-9CAC-4AFE-B261-75BF7EE54534", "E23BD12A-ACDB-4BF6-B7C8-CFFC6BA4D1D4"]
+    private var studioIDs = ["81DB67B8-9CAC-4AFE-B261-75BF7EE54534", "E23BD12A-ACDB-4BF6-B7C8-CFFC6BA4D1D4"]
     
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UserDefaults.standard.set(["81DB67B8-9CAC-4AFE-B261-75BF7EE54534", "E23BD12A-ACDB-4BF6-B7C8-CFFC6BA4D1D4"], forKey: "SubscribedStudios")
         configureUI()
         configureTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        studioIDs = UserDefaults.standard.stringArray(forKey: "SubscribedStudios") ?? []
+        tableView.reloadData()
         Task {
             await requestMyDancers()
             await requestMyStudios()
@@ -145,6 +148,7 @@ class SubscriptionViewController: BaseViewController{
     
     // DancerManager.myDancers가 nil이면 Userdefault에 저장된 구독한 댄서 아이디 배열로 firebase에서 댄서 정보를 가져옵니다.
     private func requestMyDancers() async {
+        if dancerIDs.count <= 0 { return }
         do {
             if DancerManager.myDancers == nil {
                 IndicatorView.shared.show()
@@ -161,6 +165,7 @@ class SubscriptionViewController: BaseViewController{
     
     // StudioManager.myStudios가 nil이면 Userdefault에 저장된 구독한 스튜디오 아이디 배열로 firebase에서 스튜디오 정보를 가져옵니다.
     private func requestMyStudios() async {
+        if studioIDs.count <= 0 { return }
         do {
             if StudioManager.myStudios == nil {
                 IndicatorView.shared.show()
@@ -211,6 +216,7 @@ extension SubscriptionViewController: UITableViewDelegate, UITableViewDataSource
             //cell.profileImage.load(url: URL(string: "https://src.hidoc.co.kr/image/lib/2021/4/28/1619598179113_0.jpg")!)
             cell.profileImage.image = UIImage()
             cell.backgroundColor = .clear
+            cell.accessibilityLabel = StudioManager.myStudios?[indexPath.row].id
             
             return cell
         default:
@@ -225,10 +231,11 @@ extension SubscriptionViewController: UITableViewDelegate, UITableViewDataSource
             dancerDetailVC.dancerID = DancerManager.myDancers?[indexPath.row].id
             self.navigationController?.pushViewController(dancerDetailVC, animated: true)
         case 1:
-            // TODO: 스튜디오 디테일 페이지로 이동, 스튜디오 ID 넘기기
-            print("Move to studio detail")
+            let studioDetailVC = StudioViewController()
+            studioDetailVC.studio = StudioManager.myStudios?[indexPath.row]
+            self.navigationController?.pushViewController(studioDetailVC, animated: true)
         default:
-            print("default")
+            return
         }
     }
     
@@ -241,12 +248,13 @@ extension SubscriptionViewController: UITableViewDelegate, UITableViewDataSource
                 // TODO: UserDefault에 변경사항 반영
                 tableView.deleteRows(at: [indexPath], with: .fade)
             case 1:
+                let subscriptions = UserDefaults.standard.stringArray(forKey: "SubscribedStudios")!.filter { $0 != StudioManager.myStudios?[indexPath.row].id }
+                UserDefaults.standard.set(subscriptions, forKey: "SubscribedStudios")
                 StudioManager.myStudios?.remove(at: indexPath.row)
                 studioIDs.remove(at: indexPath.row)
-                // TODO: UserDefault에 변경사항 반영
                 tableView.deleteRows(at: [indexPath], with: .fade)
             default:
-                print("default")
+                return
             }
         }
     }

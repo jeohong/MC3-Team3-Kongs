@@ -82,28 +82,6 @@ class ItemCell: UITableViewCell {
         profileImage.heightAnchor.constraint(equalToConstant: 65).isActive = true
         profileImage.backgroundColor = .gray
         
-        // Add titleLabel, subtitleLabel, detailLable to textView
-        textView.addSubview(titleLabel)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.leadingAnchor.constraint(equalTo: textView.leadingAnchor).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: textView.topAnchor).isActive = true
-        
-        textView.addSubview(subtitleLabel)
-        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        subtitleLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
-        subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 7).isActive = true
-        
-        textView.addSubview(detailLabel)
-        detailLabel.translatesAutoresizingMaskIntoConstraints = false
-        detailLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
-        detailLabel.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 2).isActive = true
-        
-        // textView
-        self.addSubview(textView)
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 20).isActive = true
-        textView.topAnchor.constraint(equalTo: self.topAnchor, constant: 30).isActive = true
-
         // >
         self.addSubview(navigationImage)
         navigationImage.translatesAutoresizingMaskIntoConstraints = false
@@ -111,6 +89,32 @@ class ItemCell: UITableViewCell {
         navigationImage.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -24).isActive = true
         navigationImage.widthAnchor.constraint(equalToConstant: 9).isActive = true
         navigationImage.heightAnchor.constraint(equalToConstant: 19).isActive = true
+        
+        // textView
+        self.addSubview(textView)
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 20).isActive = true
+        textView.topAnchor.constraint(equalTo: self.topAnchor, constant: 30).isActive = true
+        textView.trailingAnchor.constraint(equalTo: navigationImage.trailingAnchor, constant: -20).isActive = true
+        
+        // Add titleLabel, subtitleLabel, detailLable to textView
+        textView.addSubview(titleLabel)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.leadingAnchor.constraint(equalTo: textView.leadingAnchor).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: textView.topAnchor).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: textView.trailingAnchor).isActive = true
+        
+        textView.addSubview(subtitleLabel)
+        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        subtitleLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
+        subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 7).isActive = true
+        subtitleLabel.trailingAnchor.constraint(equalTo: textView.trailingAnchor).isActive = true
+        
+        textView.addSubview(detailLabel)
+        detailLabel.translatesAutoresizingMaskIntoConstraints = false
+        detailLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
+        detailLabel.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 2).isActive = true
+        detailLabel.trailingAnchor.constraint(equalTo: textView.trailingAnchor).isActive = true
     }
 }
 
