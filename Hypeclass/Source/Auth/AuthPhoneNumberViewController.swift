@@ -27,7 +27,7 @@ class AuthPhoneNumberViewController: BaseViewController {
     
     private let textField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "인증번호"
+        textField.placeholder = "전화번호"
         textField.font = UIFont.boldSystemFont(ofSize: 16)
         textField.textColor = .white
         textField.tintColor = .label
