@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0AA1E7DE288EE32A00AC0CE9 /* DancerDetailScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA1E7DD288EE32A00AC0CE9 /* DancerDetailScheduleModel.swift */; };
+		0AA1E7E0288EE3F600AC0CE9 /* DancerDetailSchduleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA1E7DF288EE3F600AC0CE9 /* DancerDetailSchduleManager.swift */; };
 		0ADD3B7F288447B30074C496 /* DancerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD3B7E288447B30074C496 /* DancerDetailViewController.swift */; };
 		97C17C86288738A300A510CA /* MainViewController+GenreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C17C85288738A300A510CA /* MainViewController+GenreCell.swift */; };
 		97C17C882888351A00A510CA /* MainViewController+DancerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C17C872888351A00A510CA /* MainViewController+DancerCell.swift */; };
@@ -16,6 +18,7 @@
 		A37F02C7288842640027D3FC /* SearchDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37F02C6288842640027D3FC /* SearchDetailCell.swift */; };
 		A38A4C57287E97B900614E94 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38A4C56287E97B900614E94 /* SearchViewController.swift */; };
 		A38A4C59287E97CF00614E94 /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38A4C58287E97CF00614E94 /* SearchDetailViewController.swift */; };
+		A38A6E552890043B007982CF /* SearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38A6E542890043B007982CF /* SearchManager.swift */; };
 		A3F1480D28882CA90025B822 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F1480C28882CA90025B822 /* UIImageView.swift */; };
 		B5DB2D66288633E100703587 /* DancerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DB2D65288633E100703587 /* DancerCell.swift */; };
 		C039DCBA287D940F0007951D /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C039DCB9287D940F0007951D /* MainTabController.swift */; };
@@ -60,9 +63,14 @@
 		C7CE676028807C8E00C8F137 /* WeekdayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE675F28807C8E00C8F137 /* WeekdayCell.swift */; };
 		C7CE676228814D3C00C8F137 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE676128814D3C00C8F137 /* Weekday.swift */; };
 		C7CE67AF2886F70700C8F137 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE67AE2886F70700C8F137 /* ScheduleView.swift */; };
+		C7CE67D3288FD2EA00C8F137 /* DancerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE67D2288FD2EA00C8F137 /* DancerManager.swift */; };
+		C7CE67D5288FD2F900C8F137 /* DanceClassManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE67D4288FD2F900C8F137 /* DanceClassManager.swift */; };
+		C7CE67D7288FD30900C8F137 /* StudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE67D6288FD30900C8F137 /* StudioManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0AA1E7DD288EE32A00AC0CE9 /* DancerDetailScheduleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DancerDetailScheduleModel.swift; sourceTree = "<group>"; };
+		0AA1E7DF288EE3F600AC0CE9 /* DancerDetailSchduleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DancerDetailSchduleManager.swift; sourceTree = "<group>"; };
 		0ADD3B7E288447B30074C496 /* DancerDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DancerDetailViewController.swift; sourceTree = "<group>"; };
 		97C17C85288738A300A510CA /* MainViewController+GenreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+GenreCell.swift"; sourceTree = "<group>"; };
 		97C17C872888351A00A510CA /* MainViewController+DancerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+DancerCell.swift"; sourceTree = "<group>"; };
@@ -72,6 +80,7 @@
 		A37F02C6288842640027D3FC /* SearchDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailCell.swift; sourceTree = "<group>"; };
 		A38A4C56287E97B900614E94 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		A38A4C58287E97CF00614E94 /* SearchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailViewController.swift; sourceTree = "<group>"; };
+		A38A6E542890043B007982CF /* SearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchManager.swift; sourceTree = "<group>"; };
 		A3F1480C28882CA90025B822 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		B5DB2D65288633E100703587 /* DancerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DancerCell.swift; sourceTree = "<group>"; };
 		C039DCB9287D940F0007951D /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
@@ -115,6 +124,9 @@
 		C7CE675F28807C8E00C8F137 /* WeekdayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayCell.swift; sourceTree = "<group>"; };
 		C7CE676128814D3C00C8F137 /* Weekday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekday.swift; sourceTree = "<group>"; };
 		C7CE67AE2886F70700C8F137 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
+		C7CE67D2288FD2EA00C8F137 /* DancerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DancerManager.swift; sourceTree = "<group>"; };
+		C7CE67D4288FD2F900C8F137 /* DanceClassManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DanceClassManager.swift; sourceTree = "<group>"; };
+		C7CE67D6288FD30900C8F137 /* StudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +148,7 @@
 			children = (
 				A31C3F4328828B96005A6F6E /* SearchBar.swift */,
 				A31C3F462882AC38005A6F6E /* Separator.swift */,
+				C05BF1FC287BC88400C95E1B /* IndicatorView.swift */,
 			);
 			path = ReusableComponent;
 			sourceTree = "<group>";
@@ -208,7 +221,6 @@
 		C05BF1DE287BC79600C95E1B /* Config */ = {
 			isa = PBXGroup;
 			children = (
-				A31C3F452882ABD3005A6F6E /* ReusableComponent */,
 				C05BF1E0287BC7A300C95E1B /* Base */,
 				C05BF1DF287BC79D00C95E1B /* Font */,
 			);
@@ -236,7 +248,7 @@
 		C05BF1E4287BC7D300C95E1B /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				C05BF1FC287BC88400C95E1B /* IndicatorView.swift */,
+				A31C3F452882ABD3005A6F6E /* ReusableComponent */,
 				C05BF1FE287BC90900C95E1B /* Device.swift */,
 				C05BF1E5287BC7DB00C95E1B /* Extension */,
 			);
@@ -267,6 +279,10 @@
 			children = (
 				C05BF1E2287BC7C800C95E1B /* Constant.swift */,
 				C040218F287EBAB9009D9083 /* DancerService.swift */,
+				C7CE67D2288FD2EA00C8F137 /* DancerManager.swift */,
+				C7CE67D4288FD2F900C8F137 /* DanceClassManager.swift */,
+				C7CE67D6288FD30900C8F137 /* StudioManager.swift */,
+				A38A6E542890043B007982CF /* SearchManager.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -282,6 +298,8 @@
 				C07E5C90287E707200BDA46D /* Genre.swift */,
 				C7CE676128814D3C00C8F137 /* Weekday.swift */,
 				C08A10B12883BCC1009A38E7 /* MockDataSet.swift */,
+				0AA1E7DD288EE32A00AC0CE9 /* DancerDetailScheduleModel.swift */,
+				0AA1E7DF288EE3F600AC0CE9 /* DancerDetailSchduleManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -402,7 +420,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0ADD3B7F288447B30074C496 /* DancerDetailViewController.swift in Sources */,
+				A38A6E552890043B007982CF /* SearchManager.swift in Sources */,
 				C05BF1DD287BC60600C95E1B /* MainViewController.swift in Sources */,
+				0AA1E7DE288EE32A00AC0CE9 /* DancerDetailScheduleModel.swift in Sources */,
+				0AA1E7E0288EE3F600AC0CE9 /* DancerDetailSchduleManager.swift in Sources */,
 				C05BF1FA287BC7EF00C95E1B /* UIColor.swift in Sources */,
 				C7CE676028807C8E00C8F137 /* WeekdayCell.swift in Sources */,
 				C039DCBA287D940F0007951D /* MainTabController.swift in Sources */,
@@ -418,6 +439,7 @@
 				C05BF1CB287BC33100C95E1B /* SceneDelegate.swift in Sources */,
 				C05BF209287BCAD900C95E1B /* Dancer.swift in Sources */,
 				C039DCBE287D944C0007951D /* ScheduleViewController.swift in Sources */,
+				C7CE67D3288FD2EA00C8F137 /* DancerManager.swift in Sources */,
 				C05BF1F3287BC7EF00C95E1B /* UIView.swift in Sources */,
 				C05BF1FD287BC88400C95E1B /* IndicatorView.swift in Sources */,
 				C05BF1F4287BC7EF00C95E1B /* UIFont.swift in Sources */,
@@ -431,9 +453,11 @@
 				C05BF1F1287BC7EF00C95E1B /* UIViewController.swift in Sources */,
 				C05BF1FB287BC7EF00C95E1B /* UINavigationBar.swift in Sources */,
 				C05BF1F2287BC7EF00C95E1B /* UITextField.swift in Sources */,
+				C7CE67D7288FD30900C8F137 /* StudioManager.swift in Sources */,
 				C07E5C91287E707200BDA46D /* Genre.swift in Sources */,
 				C05BF1F8287BC7EF00C95E1B /* UIImage.swift in Sources */,
 				C7CE676228814D3C00C8F137 /* Weekday.swift in Sources */,
+				C7CE67D5288FD2F900C8F137 /* DanceClassManager.swift in Sources */,
 				A37F02C7288842640027D3FC /* SearchDetailCell.swift in Sources */,
 				A3F1480D28882CA90025B822 /* UIImageView.swift in Sources */,
 				C039DCC0287D94630007951D /* SubscriptionViewController.swift in Sources */,
