@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Event: Codable {
+struct Event: Codable {
     let id: String
     let type: EventType?
     let relatedID: String
@@ -16,7 +16,7 @@ class Event: Codable {
     let description: String?
     let deadLine: Date?
     
-    enum EventType: Codable {
+    enum EventType: String, Codable {
         case dancer
         case studio
         case danceClass

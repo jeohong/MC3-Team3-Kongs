@@ -6,10 +6,14 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MainViewController: BaseViewController {
     
     // MARK: - Properties
+    
+    private var mainEventModels: [Event]?
+    private var studioModels: [Studio]?
     
     private let logoImageView: UIImageView = {
         let image = UIImageView()
@@ -121,14 +125,15 @@ class MainViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        configure()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        Task {
-            await requestStudios()
-            addContentToScrollView()
-        }
+//        Task {
+//            await requestStudios()
+//            addContentToScrollView()
+//        }
     }
     
     // MARK: - Selectors
@@ -144,6 +149,44 @@ class MainViewController: BaseViewController {
     }
     
     // MARK: - Helpers
+    
+    private func configure() {
+        Task {
+            do {
+                IndicatorView.shared.show()
+                IndicatorView.shared.showIndicator()
+                async let events = await EventManager.shared.requestAllEvents()
+                async let studios = await StudioManager.shared.requestAllStudios()
+                let result: [Any?] = try await [events, studios]
+                self.mainEventModels = result[0] as? [Event]
+                self.studioModels = result[1] as? [Studio]
+                studioCollectionView.reloadData()
+                pageControl.numberOfPages = mainEventModels?.count ?? 0
+                addContentToScrollView()
+                IndicatorView.shared.dismiss()
+            } catch {
+                presentBottomAlert(message: "데이터를 불러오지 못했어요🥲")
+            }
+        }
+    }
+    
+    // 스크롤뷰에 컨텐츠를 추가합니다.
+    private func addContentToScrollView() {
+        scrollImageTitleLabel.text = "\(StudioManager.allStudios?[pageControl.currentPage].name ?? "") Studio 합류"
+        
+        for idx in 0..<(mainEventModels?.count ?? 0) {
+            guard let event = mainEventModels?[idx] else { continue }
+            let imageView = UIImageView()
+            imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pageDidTap)))
+            imageView.isUserInteractionEnabled = true
+            let url = URL(string: event.coverImageURL ?? "")
+            imageView.kf.setImage(with: url)
+            let xPos = (Device.width - 44) * CGFloat(idx)
+            imageView.frame = CGRect(x: xPos, y: imageScrollView.bounds.minY, width: imageScrollView.bounds.width, height: imageScrollView.bounds.height)
+            imageScrollView.addSubview(imageView)
+            imageScrollView.contentSize.width = imageView.frame.width * CGFloat(idx + 1)
+        }
+    }
     
     private func configureUI() {
         // logoImageView
@@ -219,59 +262,31 @@ class MainViewController: BaseViewController {
         studioCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         studioCollectionView.heightAnchor.constraint(equalToConstant: 75).isActive = true
     }
-    
-    // 스크롤뷰에 컨텐츠를 추가합니다.
-    private func addContentToScrollView() {
-        scrollImageTitleLabel.text = "\(StudioManager.allStudios?[pageControl.currentPage].name ?? "") Studio 합류"
-        
-        for idx in 0..<(StudioManager.allStudios?.count ?? 0) {
-            let imageView = UIImageView()
-            imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pageDidTap)))
-            imageView.isUserInteractionEnabled = true
-            imageView.image = UIImage(named: "DancerCoverImage")
-            let xPos = (Device.width - 44) * CGFloat(idx)
-            imageView.frame = CGRect(x: xPos, y: imageScrollView.bounds.minY, width: imageScrollView.bounds.width, height: imageScrollView.bounds.height)
-            imageScrollView.addSubview(imageView)
-            imageScrollView.contentSize.width = imageView.frame.width * CGFloat(idx + 1)
-        }
-    }
-    
-    // StudioManager.allStudios가 nil이면 firebase에서 스튜디오 정보를 가져옵니다.
-    private func requestStudios() async {
-        do {
-            if StudioManager.allStudios == nil {
-                IndicatorView.shared.show()
-                IndicatorView.shared.showIndicator()
-                StudioManager.allStudios = try await StudioManager.shared.requestAllStudios()
-                IndicatorView.shared.dismiss()
-                pageControl.numberOfPages = StudioManager.allStudios?.count ?? 0
-            }
-            studioCollectionView.reloadData()
-        }
-        catch {
-            print(error)
-        }
-    }
 }
 
 // MARK: - UICollectionViewDataSource, Delegate
 
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return StudioManager.allStudios?.count ?? 0
+        return studioModels?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: studioCellID, for: indexPath) as! MainStudioCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: studioCellID, for: indexPath) as? MainStudioCell else { return UICollectionViewCell() }
         // TODO: url Image
-        cell.studioImage = UIImageView()
-        cell.studioNameLabel.text = StudioManager.allStudios?[indexPath.item].name
+        guard let studio = studioModels?[indexPath.row] else { return cell }
+        let url = URL(string: studio.profileImageURL ?? "")
+        cell.studioImage.kf.setImage(with: url)
+        cell.studioNameLabel.text = studio.name
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // TODO: StudioViewController 이동
-        print("StudioViewController 이동")
+        guard let studio = studioModels?[indexPath.row] else { return }
+        let studioVC = StudioViewController()
+        studioVC.studio = studio
+        self.navigationController?.pushViewController(studioVC, animated: true)
     }
 }
 

@@ -11,7 +11,15 @@ import FirebaseFirestoreSwift
 
 class EventManager {
     
-    func requestMainEvents() {
+    static let shared = EventManager()
+    
+    private init() {} // 객체 생성을 막기 위한 접근 제한
+    
+    func requestAllEvents() async throws -> [Event]? {
+        let snapshot = try await Constant.eventRef.getDocuments()
         
+        return snapshot.documents.compactMap { document in
+            try? document.data(as: Event.self)
+        }
     }
 }
