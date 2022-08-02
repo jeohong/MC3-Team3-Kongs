@@ -70,6 +70,7 @@
 		C0C44504289529F700036ADE /* DanceClassDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C44503289529F700036ADE /* DanceClassDetailViewController.swift */; };
 		C0C7B28728944044003FA2C2 /* AuthOnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C7B28628944044003FA2C2 /* AuthOnboardViewController.swift */; };
 		C0C7B28928944395003FA2C2 /* CTAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C7B28828944395003FA2C2 /* CTAButton.swift */; };
+		C0FD9C332899028800D33C72 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C0FD9C322899028800D33C72 /* Kingfisher */; };
 		C76C91C6289143C100703CCD /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76C91C5289143C100703CCD /* ItemCell.swift */; };
 		C76C91CA2893C0BE00703CCD /* MainStudioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76C91C92893C0BE00703CCD /* MainStudioCell.swift */; };
 		C76C91CE2894509600703CCD /* StudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76C91CD2894509600703CCD /* StudioViewController.swift */; };
@@ -167,6 +168,7 @@
 				C040218E287EB8DB009D9083 /* FirebaseStorage in Frameworks */,
 				C0A9D9BC288FAF15007493A2 /* FirebaseFirestoreSwift in Frameworks */,
 				C011CF4828940480001E6AD1 /* FirebaseAuth in Frameworks */,
+				C0FD9C332899028800D33C72 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +418,7 @@
 				C040218D287EB8DB009D9083 /* FirebaseStorage */,
 				C0A9D9BB288FAF15007493A2 /* FirebaseFirestoreSwift */,
 				C011CF4728940480001E6AD1 /* FirebaseAuth */,
+				C0FD9C322899028800D33C72 /* Kingfisher */,
 			);
 			productName = Hypeclass;
 			productReference = C05BF1C5287BC33100C95E1B /* Hypeclass.app */;
@@ -447,6 +450,7 @@
 			mainGroup = C05BF1BC287BC33100C95E1B;
 			packageReferences = (
 				C040218A287EB8DB009D9083 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				C0FD9C312899028700D33C72 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = C05BF1C6287BC33100C95E1B /* Products */;
 			projectDirPath = "";
@@ -767,6 +771,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		C0FD9C312899028700D33C72 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = exactVersion;
+				version = 7.3.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -789,6 +801,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C040218A287EB8DB009D9083 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
+		};
+		C0FD9C322899028800D33C72 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C0FD9C312899028700D33C72 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
