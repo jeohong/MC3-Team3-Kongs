@@ -70,6 +70,7 @@
 		C0C7B28728944044003FA2C2 /* AuthOnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C7B28628944044003FA2C2 /* AuthOnboardViewController.swift */; };
 		C0C7B28928944395003FA2C2 /* CTAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C7B28828944395003FA2C2 /* CTAButton.swift */; };
 		C0FD9C332899028800D33C72 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C0FD9C322899028800D33C72 /* Kingfisher */; };
+		C0FD9C352899182700D33C72 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FD9C342899182700D33C72 /* EventManager.swift */; };
 		C76C91C6289143C100703CCD /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76C91C5289143C100703CCD /* ItemCell.swift */; };
 		C76C91CA2893C0BE00703CCD /* MainStudioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76C91C92893C0BE00703CCD /* MainStudioCell.swift */; };
 		C76C91CE2894509600703CCD /* StudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76C91CD2894509600703CCD /* StudioViewController.swift */; };
@@ -145,6 +146,7 @@
 		C0C44503289529F700036ADE /* DanceClassDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DanceClassDetailViewController.swift; sourceTree = "<group>"; };
 		C0C7B28628944044003FA2C2 /* AuthOnboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthOnboardViewController.swift; sourceTree = "<group>"; };
 		C0C7B28828944395003FA2C2 /* CTAButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTAButton.swift; sourceTree = "<group>"; };
+		C0FD9C342899182700D33C72 /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
 		C76C91C5289143C100703CCD /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		C76C91C92893C0BE00703CCD /* MainStudioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStudioCell.swift; sourceTree = "<group>"; };
 		C76C91CD2894509600703CCD /* StudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioViewController.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 			children = (
 				C05BF1E2287BC7C800C95E1B /* Constant.swift */,
 				C040218F287EBAB9009D9083 /* DancerService.swift */,
+				C0FD9C342899182700D33C72 /* EventManager.swift */,
 				C7CE67D2288FD2EA00C8F137 /* DancerManager.swift */,
 				C7CE67D4288FD2F900C8F137 /* DanceClassManager.swift */,
 				C7CE67D6288FD30900C8F137 /* StudioManager.swift */,
@@ -507,6 +510,7 @@
 				C0C444FC2894495D00036ADE /* AuthViewController.swift in Sources */,
 				C05BF209287BCAD900C95E1B /* Dancer.swift in Sources */,
 				C039DCBE287D944C0007951D /* ScheduleViewController.swift in Sources */,
+				C0FD9C352899182700D33C72 /* EventManager.swift in Sources */,
 				C7CE67D3288FD2EA00C8F137 /* DancerManager.swift in Sources */,
 				C05BF1F3287BC7EF00C95E1B /* UIView.swift in Sources */,
 				C0C445022894F0DF00036ADE /* AuthVerificationController.swift in Sources */,
