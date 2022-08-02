@@ -169,7 +169,7 @@ class ScheduleViewController: BaseViewController {
     
     @objc func pushMainView() {
         // TODO: 어느 뷰로 갈지 정하기
-        self.navigationController?.pushViewController(MainViewController(), animated: true)
+        self.tabBarController?.selectedIndex = 0
     }
     
     // MARK: - Helpers
