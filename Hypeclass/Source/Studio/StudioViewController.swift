@@ -266,13 +266,17 @@ class StudioViewController: BaseViewController {
     
     func configurePageViewController() {
         // TO DO: 실제 뷰 컨트롤러로 대체
-        for idx in 0..<3 {
+        for idx in 0..<2 {
             let vc = DancerDetailViewController()
             vc.dancerDetailScrollView.isScrollEnabled = false
             vc.view.tag = idx
             pageViewController.view.heightAnchor.constraint(equalToConstant: vc.view.frame.height).isActive = true
             viewControllers.append(vc)
         }
+        let vc = StudioEventViewController()
+        vc.view.tag = 2
+        viewControllers.append(vc)
+        pageViewController.view.heightAnchor.constraint(equalToConstant: vc.view.frame.height).isActive = true
         if let firstVC = viewControllers.first {
             pageViewController.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
