@@ -272,6 +272,9 @@ extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // TODO: StudioViewController 이동
         print("StudioViewController 이동")
+        let vc = StudioViewController()
+        vc.studio = StudioManager.allStudios?[indexPath.row]
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
