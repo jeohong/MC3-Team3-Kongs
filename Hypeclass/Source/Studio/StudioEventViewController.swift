@@ -10,6 +10,7 @@ import UIKit
 class StudioEventViewController: BaseViewController {
     
     //MARK: - Properties
+    
     let tableView: UITableView = {
        let tableView = UITableView()
         tableView.rowHeight = 260
@@ -18,7 +19,9 @@ class StudioEventViewController: BaseViewController {
         tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         return tableView
     }()
+    
     //MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
