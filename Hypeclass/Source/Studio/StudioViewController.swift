@@ -208,7 +208,7 @@ class StudioViewController: BaseViewController {
         heartView.isUserInteractionEnabled = true
         
         // studioHeaderView
-        studioHeaderView = HeaderView(frame: .zero, coverImageURL: nil, profileImageURL: nil, title: "\(studio?.name ?? "") STUDIO", subtitle: studio?.description, instagramURL: "https://instagram.com/dann.oao")
+        studioHeaderView = HeaderView(frame: .zero, coverImageURL: studio?.coverImageURL, profileImageURL: studio?.profileImageURL, title: "\(studio?.name ?? "") STUDIO", subtitle: studio?.location, instagramURL: studio?.instagramURL)
         contentView.addSubview(studioHeaderView!)
         studioHeaderView!.translatesAutoresizingMaskIntoConstraints = false
         studioHeaderView!.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
@@ -310,6 +310,7 @@ class StudioViewController: BaseViewController {
                 return
             }
             subscriptions.append(studio!.id)
+            StudioManager.myStudios?.append(studio!)
             UserDefaults.standard.set(subscriptions, forKey: "SubscribedStudios")
         } else {
             var newList = [String]()
