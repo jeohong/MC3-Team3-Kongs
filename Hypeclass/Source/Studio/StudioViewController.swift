@@ -9,7 +9,7 @@ import UIKit
 
 class StudioViewController: BaseViewController {
     
-    //MARK: - Properties
+    // MARK: - Properties
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -94,7 +94,7 @@ class StudioViewController: BaseViewController {
     
     private let pageViewController: UIPageViewController = {
         let pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-        // MARK: - Disable swipe gesture
+        // TODO: Disable swipe gesture
 
         return pageController
     }()
@@ -106,7 +106,7 @@ class StudioViewController: BaseViewController {
         return view
     }()
     
-    //MARK: - LifeCycle
+    // MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,8 +130,8 @@ class StudioViewController: BaseViewController {
         remoteHeartState = isAlreadySubscribed()
         isHeart = remoteHeartState
     }
-    
-    //MARK: - Selectors
+
+    // MARK: - Selectors
     
     @objc func backButtonDidTap() {
         self.navigationController?.popViewController(animated: true)
@@ -266,18 +266,14 @@ class StudioViewController: BaseViewController {
     }
     
     func configurePageViewController() {
-        // TO DO: 실제 뷰 컨트롤러로 대체
-        let infoVC = DancerDetailViewController()
-        infoVC.dancerDetailScrollView.isScrollEnabled = false
+        let infoVC = IntroduceViewController()
         infoVC.view.tag = 0
-        pageViewController.view.heightAnchor.constraint(equalToConstant: infoVC.view.frame.height).isActive = true
         viewControllers.append(infoVC)
         
         let scheduleVC = StudioScheduleViewController()
         scheduleVC.studioID = studio?.id
         scheduleVC.view.tag = 1
         scheduleVC.scheduleView?.delegate = self
-        pageViewController.view.heightAnchor.constraint(equalToConstant: scheduleVC.view.frame.height).isActive = true
         viewControllers.append(scheduleVC)
         
         let vc = StudioEventViewController()
