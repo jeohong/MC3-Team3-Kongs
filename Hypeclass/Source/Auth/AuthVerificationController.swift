@@ -15,6 +15,7 @@ class AuthVerificationController: BaseViewController {
         let label = UILabel()
         label.text = "인증번호를 입력해주세요."
         label.font = UIFont.boldSystemFont(ofSize: 24)
+        
         return label
     }()
     
@@ -22,18 +23,20 @@ class AuthVerificationController: BaseViewController {
         let view = UIView()
         view.backgroundColor = .container
         view.layer.cornerRadius = 8
+        
         return view
     }()
     
     private let textField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "전화번호"
+        textField.placeholder = "인증번호"
         textField.font = UIFont.boldSystemFont(ofSize: 16)
         textField.textColor = .white
         textField.tintColor = .label
         textField.frame.size = CGSize(width: 300, height: 50)
         textField.keyboardType = .numberPad
         textField.addDoneButtonOnKeyboard()
+        
         return textField
     }()
     
@@ -42,12 +45,14 @@ class AuthVerificationController: BaseViewController {
         label.text = "인증번호 6자리"
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textColor = .secondaryLabel
+        
         return label
     }()
     
     private let ctaButton: CTAButton = {
         let button = CTAButton(title: "시작하기")
         button.addTarget(self, action: #selector(ctaButtonTap), for: .touchUpInside)
+        
         return button
     }()
     
@@ -62,7 +67,25 @@ class AuthVerificationController: BaseViewController {
     //MARK: - Selectors
     
     @objc func ctaButtonTap() {
-        self.dismiss(animated: true)
+        guard let verificationCode = textField.text else {
+            presentBottomAlert(message: "인증번호를 입력해주세요.")
+            return
+        }
+        
+        guard verificationCode.count == 6 else {
+            presentBottomAlert(message: "유효하지 않은 인증번호 입니다.")
+            return
+        }
+        
+        Task {
+            do {
+                try await AuthManager.shared.signInWith(verificationCode: verificationCode)
+                presentBottomAlert(message: "인증에 성공하였습니다.")
+                self.dismiss(animated: true)
+            } catch {
+                presentBottomAlert(message: "인증에 실패했습니다.")
+            }
+        }
     }
     
     //MARK: - Helpers

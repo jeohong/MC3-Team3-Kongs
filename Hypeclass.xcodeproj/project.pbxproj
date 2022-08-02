@@ -106,6 +106,7 @@
 		C039DCBF287D94630007951D /* SubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionViewController.swift; sourceTree = "<group>"; };
 		C0402188287EAE23009D9083 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C040218F287EBAB9009D9083 /* DancerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DancerService.swift; sourceTree = "<group>"; };
+		C04076732897D4A100C3A8C5 /* Hypeclass.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Hypeclass.entitlements; sourceTree = "<group>"; };
 		C04B1F082889257D001D2C99 /* WeeklyScheduleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyScheduleCell.swift; sourceTree = "<group>"; };
 		C05BF1C5287BC33100C95E1B /* Hypeclass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hypeclass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C05BF1C8287BC33100C95E1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -239,6 +240,7 @@
 		C05BF1C7287BC33100C95E1B /* Hypeclass */ = {
 			isa = PBXGroup;
 			children = (
+				C04076732897D4A100C3A8C5 /* Hypeclass.entitlements */,
 				C05BF1DE287BC79600C95E1B /* Config */,
 				C05BF1E4287BC7D300C95E1B /* Util */,
 				C05BF207287BCAC600C95E1B /* Model */,
@@ -682,6 +684,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Hypeclass/Hypeclass.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4DC5UF7YA9;
@@ -713,6 +716,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Hypeclass/Hypeclass.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4DC5UF7YA9;
