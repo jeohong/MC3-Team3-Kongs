@@ -20,6 +20,8 @@ class MainViewController: BaseViewController {
         image.backgroundColor = .green
         image.layer.cornerRadius = 10
         image.clipsToBounds = true
+        image.contentMode = .scaleAspectFill
+        image.image = UIImage(named: "logo")
         
         return image
     }()
@@ -198,14 +200,14 @@ class MainViewController: BaseViewController {
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
         logoImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        logoImageView.widthAnchor.constraint(equalToConstant: 65).isActive = true
-        logoImageView.heightAnchor.constraint(equalToConstant: 65).isActive = true
+        logoImageView.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        logoImageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
         
         // headerTitle
         view.addSubview(headerTitle)
         headerTitle.translatesAutoresizingMaskIntoConstraints = false
         headerTitle.centerYAnchor.constraint(equalTo: logoImageView.centerYAnchor).isActive = true
-        headerTitle.leadingAnchor.constraint(equalTo: logoImageView.trailingAnchor, constant: 15).isActive = true
+        headerTitle.leadingAnchor.constraint(equalTo: logoImageView.trailingAnchor, constant: 0).isActive = true
         
         // searchButton
         view.addSubview(searchButton)
