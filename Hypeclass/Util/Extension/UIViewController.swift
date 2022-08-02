@@ -71,25 +71,29 @@ extension UIViewController {
         
         let alertSuperview = UIView()
         alertSuperview.tag = 936419836287461
-        alertSuperview.backgroundColor = UIColor.gray.withAlphaComponent(0.9)
+        alertSuperview.backgroundColor = UIColor.accent.withAlphaComponent(0.8)
         alertSuperview.layer.cornerRadius = 6
         alertSuperview.isHidden = true
         alertSuperview.translatesAutoresizingMaskIntoConstraints = false
     
         let alertLabel = UILabel()
-        alertLabel.font = .systemFont(ofSize: 14, weight: .regular)
+        alertLabel.font = .systemFont(ofSize: 14, weight: .semibold)
             
-        alertLabel.textColor = .white
+        alertLabel.textColor = .black
         alertLabel.translatesAutoresizingMaskIntoConstraints = false
         
         self.view.addSubview(alertSuperview)
         alertSuperview.bottomAnchor.constraint(equalTo: target ?? view.safeAreaLayoutGuide.bottomAnchor, constant: -50).isActive = true
+        alertSuperview.heightAnchor.constraint(equalToConstant: 50).isActive = true
         alertSuperview.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        alertSuperview.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
+        alertSuperview.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
+
         alertSuperview.addSubview(alertLabel)
-        alertLabel.topAnchor.constraint(equalTo: alertSuperview.topAnchor, constant: 12).isActive = true
-        alertLabel.bottomAnchor.constraint(equalTo: alertSuperview.bottomAnchor, constant: -12).isActive = true
-        alertLabel.leadingAnchor.constraint(equalTo: alertSuperview.leadingAnchor, constant: 10).isActive = true
-        alertLabel.trailingAnchor.constraint(equalTo: alertSuperview.trailingAnchor, constant: -200).isActive = true
+        alertLabel.topAnchor.constraint(equalTo: alertSuperview.topAnchor, constant: 13).isActive = true
+        alertLabel.bottomAnchor.constraint(equalTo: alertSuperview.bottomAnchor, constant: -13).isActive = true
+        alertLabel.leadingAnchor.constraint(equalTo: alertSuperview.leadingAnchor, constant: 13).isActive = true
+        alertLabel.trailingAnchor.constraint(equalTo: alertSuperview.trailingAnchor, constant: -30).isActive = true
         
         alertLabel.text = message
         alertSuperview.alpha = 1.0
