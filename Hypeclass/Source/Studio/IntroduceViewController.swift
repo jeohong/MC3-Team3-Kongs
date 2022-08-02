@@ -11,8 +11,8 @@ class IntroduceViewController: BaseViewController {
     
     //MARK: - Properties
     
-    // 지오 PR 올라오면 데이터 받아서 처리 ( 샘플 코드 )
-    var studioInfo: Studio? = Studio(id: "123", name: "Apple", description: "안녕하세요 반갑습니다 ㅋ_ㅋ", instagramURL: "www.naver.com", youtubeURL: nil, dancers: ["Chikong", "Luke", "Ian", "Jio", "Nia", "Raven"], likes: 2)
+    // 데이터 연결 되면 PR 올라오면 데이터 받아서 처리 ( 샘플 코드 )
+    var studioInfo: Studio? = Studio(id: "11", name: "Apple", description: "소개글입니다.\n 방가방가", profileImageURL: nil, coverImageURL: nil, instagramURL: nil, youtubeURL: nil, dancers: ["Chikong"], likes: 2, location: nil)
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -67,7 +67,9 @@ class IntroduceViewController: BaseViewController {
     
     private let recentVideoTable: UITableView = {
         let tableView = UITableView()
+        tableView.rowHeight = 180
         tableView.backgroundColor = .clear
+        tableView.isScrollEnabled = false
         
         return tableView
     }()
@@ -125,8 +127,8 @@ class IntroduceViewController: BaseViewController {
         self.view.addSubview(recentVideoTable)
         recentVideoTable.translatesAutoresizingMaskIntoConstraints = false
         recentVideoTable.topAnchor.constraint(equalTo: recentVideoLabel.bottomAnchor, constant: 14).isActive = true
-        recentVideoTable.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25.09).isActive = true
-        recentVideoTable.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -11).isActive = true
+        recentVideoTable.leadingAnchor.constraint(equalTo: introduceLabel.leadingAnchor).isActive = true
+        recentVideoTable.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -11).isActive = true
         recentVideoTable.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     

@@ -21,7 +21,10 @@ class RecentVideoCell: UITableViewCell {
     
     private let videoThumbnail: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .green
+        imageView.contentMode = .scaleToFill
+        imageView.backgroundColor = .gray
+        imageView.layer.cornerRadius = 8
+        imageView.clipsToBounds = true
         
         return imageView
     }()
