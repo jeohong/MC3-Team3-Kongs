@@ -16,13 +16,26 @@ extension Date {
     
     var text: String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateFormat = "MM월 dd일"
         return dateFormatter.string(from: self)
     }
     
     var detailText: String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm"
+        return dateFormatter.string(from: self)
+    }
+    
+    var hourMinText: String { // 시 분 만 출력
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter.string(from: self)
+    }
+    
+    var dayOfTheWeek: String { // 한국말 요일 리턴
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ko") // 한국 지정
+        dateFormatter.dateFormat = "E요일"
         return dateFormatter.string(from: self)
     }
     
@@ -39,7 +52,6 @@ extension Date {
         return formatter.localizedString(for: self, relativeTo: Date())
     }
     
-    //2022-01-11T08:18:09.000Z 에 해당하는 메서드 만들기
     
     // 캘린더의 컴포넌트를 가져오는 extension(eg. Date().get(.month) -> 오늘 날짜에 해당하는 월 반환)
     func get(_ components: Calendar.Component..., calendar: Calendar = Calendar.current) -> DateComponents {
