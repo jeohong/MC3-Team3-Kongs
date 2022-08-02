@@ -33,7 +33,7 @@ class ScheduleView: UIView {
         super.init(frame: .zero)
         self.model = model
         dancerNameLabel.text = model.dancerName
-        classInfoLabel.text = "\(model.startTime?.hourMinText)~\(model.endTime?.hourMinText)  |  \(model.studioName)"
+        classInfoLabel.text = "\(model.startTime?.hourMinText ?? "")~\(model.endTime?.hourMinText ?? "")  |  \(model.studioName ?? "")"
         
         configureUI(width: viewWidth)
     }
