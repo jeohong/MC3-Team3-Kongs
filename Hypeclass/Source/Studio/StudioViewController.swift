@@ -420,7 +420,6 @@ extension StudioViewController: ScheduleItemDelegate {
         let vc = DanceClassDetailViewController()
         vc.model = schedule
         self.navigationController?.pushViewController(vc, animated: true)
-        print(schedule)
     }
 }
 
