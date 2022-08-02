@@ -65,9 +65,12 @@ class IntroduceViewController: BaseViewController {
         return label
     }()
     
-//    private let recentVideoTable: UITableView {
-//        
-//    }
+    private let recentVideoTable: UITableView = {
+        let tableView = UITableView()
+        tableView.backgroundColor = .clear
+        
+        return tableView
+    }()
     
     //MARK: - LifeCycle
     
@@ -75,12 +78,14 @@ class IntroduceViewController: BaseViewController {
         super.viewDidLoad()
         configureUI()
         configureInstructorsCollection()
+        configurerecentVideoTable()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         introduceLabel.text = studioInfo?.description
         instructorsCollection.reloadData()
+        recentVideoTable.reloadData()
     }
     
     //MARK: - Selectors
@@ -116,12 +121,25 @@ class IntroduceViewController: BaseViewController {
         recentVideoLabel.translatesAutoresizingMaskIntoConstraints = false
         recentVideoLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
         recentVideoLabel.topAnchor.constraint(equalTo: instructorsCollection.bottomAnchor, constant: 27).isActive = true
+        
+        self.view.addSubview(recentVideoTable)
+        recentVideoTable.translatesAutoresizingMaskIntoConstraints = false
+        recentVideoTable.topAnchor.constraint(equalTo: recentVideoLabel.bottomAnchor, constant: 14).isActive = true
+        recentVideoTable.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25.09).isActive = true
+        recentVideoTable.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -11).isActive = true
+        recentVideoTable.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
     func configureInstructorsCollection() {
         instructorsCollection.register(IntroduceDancerCell.self, forCellWithReuseIdentifier: IntroduceDancerCell.id)
         instructorsCollection.dataSource = self
         instructorsCollection.delegate = self
+    }
+    
+    func configurerecentVideoTable() {
+        recentVideoTable.register(RecentVideoCell.self, forCellReuseIdentifier: RecentVideoCell.recentVideoCellID)
+        recentVideoTable.dataSource = self
+        recentVideoTable.delegate = self
     }
 }
 
@@ -140,13 +158,28 @@ extension IntroduceViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IntroduceDancerCell.id, for: indexPath) as! IntroduceDancerCell
-        cell.prepare(image: UIStackView(frame: .zero))
         cell.genreLabel.text = studioInfo?.dancers?[indexPath.row]
         
         return cell
     }
+}
+
+//MARK: - UITableView Extension
+
+extension IntroduceViewController: UITableViewDelegate {
     
+}
+
+extension IntroduceViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = recentVideoTable.dequeueReusableCell(withIdentifier: RecentVideoCell.recentVideoCellID, for:indexPath) as! RecentVideoCell
+        
+        return cell
+    }
 }
 
 //MARK: - Preview
