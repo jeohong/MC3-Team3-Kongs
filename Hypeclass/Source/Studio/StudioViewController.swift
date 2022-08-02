@@ -94,6 +94,7 @@ class StudioViewController: BaseViewController {
     
     private let pageViewController: UIPageViewController = {
         let pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+        // MARK: - Disable swipe gesture
 
         return pageController
     }()
@@ -266,17 +267,24 @@ class StudioViewController: BaseViewController {
     
     func configurePageViewController() {
         // TO DO: 실제 뷰 컨트롤러로 대체
-        for idx in 0..<2 {
-            let vc = DancerDetailViewController()
-            vc.dancerDetailScrollView.isScrollEnabled = false
-            vc.view.tag = idx
-            pageViewController.view.heightAnchor.constraint(equalToConstant: vc.view.frame.height).isActive = true
-            viewControllers.append(vc)
-        }
+        let infoVC = DancerDetailViewController()
+        infoVC.dancerDetailScrollView.isScrollEnabled = false
+        infoVC.view.tag = 0
+        pageViewController.view.heightAnchor.constraint(equalToConstant: infoVC.view.frame.height).isActive = true
+        viewControllers.append(infoVC)
+        
+        let scheduleVC = StudioScheduleViewController()
+        scheduleVC.studioID = studio?.id
+        scheduleVC.view.tag = 1
+        scheduleVC.scheduleView?.delegate = self
+        pageViewController.view.heightAnchor.constraint(equalToConstant: scheduleVC.view.frame.height).isActive = true
+        viewControllers.append(scheduleVC)
+        
         let vc = StudioEventViewController()
         vc.view.tag = 2
         viewControllers.append(vc)
         pageViewController.view.heightAnchor.constraint(equalToConstant: vc.view.frame.height).isActive = true
+        
         if let firstVC = viewControllers.first {
             pageViewController.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
@@ -402,6 +410,17 @@ extension StudioViewController: UIScrollViewDelegate {
         } else {
             navigationBar.backgroundColor = .clear
         }
+    }
+}
+
+// MARK: - ScheduleItemDelegate extension
+
+extension StudioViewController: ScheduleItemDelegate {
+    func scheduleDidSelect(schedule: DanceClass) {
+        let vc = DanceClassDetailViewController()
+        vc.model = schedule
+        self.navigationController?.pushViewController(vc, animated: true)
+        print(schedule)
     }
 }
 

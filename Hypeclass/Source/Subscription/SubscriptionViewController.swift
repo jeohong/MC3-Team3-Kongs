@@ -47,16 +47,17 @@ class SubscriptionViewController: BaseViewController{
     
     private let cellID = "subscription"
     
-    private var dancerIDs = UserDefaults.standard.stringArray(forKey: "SubscribedDancers") ?? ["958DDBD8-689E-49D0-AC60-F7C0EC2611BC", "ADC4A0E1-50DF-4784-9228-EE4622C226E8", "0E36AA46-941C-40B0-9B18-818745EE1FD0"]
+//    private var dancerIDs = UserDefaults.standard.stringArray(forKey: "SubscribedDancers") ?? []
+    private var dancerIDs = [String]()
     
 //    private var studioIDs = UserDefaults.standard.stringArray(forKey: "SubscribedStudios") ?? ["81DB67B8-9CAC-4AFE-B261-75BF7EE54534", "E23BD12A-ACDB-4BF6-B7C8-CFFC6BA4D1D4"]
-    private var studioIDs = ["81DB67B8-9CAC-4AFE-B261-75BF7EE54534", "E23BD12A-ACDB-4BF6-B7C8-CFFC6BA4D1D4"]
+    private var studioIDs = [String]()
     
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UserDefaults.standard.set(["81DB67B8-9CAC-4AFE-B261-75BF7EE54534", "E23BD12A-ACDB-4BF6-B7C8-CFFC6BA4D1D4"], forKey: "SubscribedStudios")
+        UserDefaults.standard.set(["8bc63898-aec4-44d4-8329-4bc9b52b98cd"], forKey: "SubscribedStudios")
         configureUI()
         configureTableView()
     }

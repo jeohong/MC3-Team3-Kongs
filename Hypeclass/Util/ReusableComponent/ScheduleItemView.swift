@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ScheduleItemDelegate {
-    func scheduleDidSelect(scheduleID: String)
+    func scheduleDidSelect(schedule: DanceClass)
 }
 
 class ScheduleItemView: UIView {
@@ -198,7 +198,7 @@ extension ScheduleItemView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.item != 0 {
             let schedule = weekSchedules[indexPath.section][indexPath.item - 1]
-            delegate?.scheduleDidSelect(scheduleID: schedule.id)
+            delegate?.scheduleDidSelect(schedule: schedule)
         }
     }
 }
