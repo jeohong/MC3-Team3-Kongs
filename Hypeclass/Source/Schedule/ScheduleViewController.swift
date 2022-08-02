@@ -84,8 +84,8 @@ class ScheduleViewController: BaseViewController {
         return cv
     }()
     
-//    private let subscriptionIDs = UserDefaults.standard.stringArray(forKey: "SubscribedDancers") ?? ["CDF787F4-5AD7-4138-AE13-F96DEF538E0D", "2EB613FC-956E-482F-80C1-DAC47C543729", "F77D3855-2CE5-468D-B702-8C9AA521461B"]
-    private let subscriptionIDs: [String] = []
+    private let subscriptionIDs = UserDefaults.standard.stringArray(forKey: "SubscribedDancers") ?? ["CDF787F4-5AD7-4138-AE13-F96DEF538E0D", "2EB613FC-956E-482F-80C1-DAC47C543729", "F77D3855-2CE5-468D-B702-8C9AA521461B"]
+//    private let subscriptionIDs: [String] = []
     
     private var weekSchedules: [[DanceClass]] = [
         [], [], [], [], [], [], []
@@ -119,6 +119,23 @@ class ScheduleViewController: BaseViewController {
         label.attributedText = attributedString
         label.textColor = .white
         label.font = .systemFont(ofSize: 14.0, weight: .thin)
+        return label
+    }()
+    
+    private let popUpTag: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 5
+        view.clipsToBounds = true
+        view.backgroundColor = .green
+        
+        return view
+    }()
+    
+    private let popUpLabel: UILabel = {
+        let label = UILabel()
+        label.text = "POP-UP"
+        label.font = .systemFont(ofSize: 12.0, weight: .semibold)
+        
         return label
     }()
     
@@ -218,6 +235,19 @@ class ScheduleViewController: BaseViewController {
         separator.bottomAnchor.constraint(equalTo: weekCollectionView.bottomAnchor).isActive = true
         separator.widthAnchor.constraint(equalToConstant: 0.5).isActive = true
         
+        // POP-UP Tag
+        view.addSubview(popUpLabel)
+        popUpLabel.translatesAutoresizingMaskIntoConstraints = false
+        popUpLabel.bottomAnchor.constraint(equalTo: separator.topAnchor, constant: -5).isActive = true
+        popUpLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        
+        view.addSubview(popUpTag)
+        popUpTag.translatesAutoresizingMaskIntoConstraints = false
+        popUpTag.centerYAnchor.constraint(equalTo: popUpLabel.centerYAnchor).isActive = true
+        popUpTag.trailingAnchor.constraint(equalTo: popUpLabel.leadingAnchor, constant: -3).isActive = true
+        popUpTag.heightAnchor.constraint(equalToConstant: 10).isActive = true
+        popUpTag.widthAnchor.constraint(equalToConstant: 10).isActive = true
+        
         // scheduleCollectionView
         scheduleCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: scheduleCellID)
         scheduleCollectionView.dataSource = self
@@ -265,9 +295,10 @@ class ScheduleViewController: BaseViewController {
                 let studioName = schedule.studioName
                 let startTime = "\(schedule.startTime!.get(.hour)):\(schedule.startTime!.get(.minute))"
                 let endTime = "\(schedule.endTime!.get(.hour)):\(schedule.endTime!.get(.minute))"
+                let isPopUp = schedule.isPopUp
                 
                 scheduleViewWidth = (scheduleCollectionView.frame.width - 15) / 2
-                let scheduleView = ScheduleView(frame: .zero, dancerName: dancerName ?? "", studioName: studioName ?? "", startTime: startTime, endTime: endTime, viewWidth: scheduleViewWidth)
+                let scheduleView = ScheduleView(frame: .zero, dancerName: dancerName ?? "", studioName: studioName ?? "", startTime: startTime, endTime: endTime, viewWidth: scheduleViewWidth, isPopUp: isPopUp ?? false)
                 scheduleView.translatesAutoresizingMaskIntoConstraints = false
                 scheduleView.widthAnchor.constraint(equalToConstant: scheduleViewWidth).isActive = true
                 scheduleView.heightAnchor.constraint(equalToConstant: scheduleCollectionView.frame.height / 8).isActive = true
