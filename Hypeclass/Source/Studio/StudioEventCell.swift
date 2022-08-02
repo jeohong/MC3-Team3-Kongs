@@ -16,6 +16,7 @@ class StudioEventCell: UITableViewCell {
         imageView.contentMode = .scaleToFill
         imageView.backgroundColor = .gray
         imageView.layer.cornerRadius = 8
+        imageView.clipsToBounds = true
         
         return imageView
     }()
@@ -25,6 +26,7 @@ class StudioEventCell: UITableViewCell {
         label.text = "아프로 스타일 하우스 댄스"
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = .white
+        label.backgroundColor = .purple
         
         return label
     }()
@@ -34,46 +36,47 @@ class StudioEventCell: UITableViewCell {
         label.text = "08/01 ~ 09/09"
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 12, weight: .light)
+        label.backgroundColor = .purple
         
         return label
     }()
     
     //MARK: - LifeCycle
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        configureUI()
+        backgroundColor = .clear
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     //MARK: - Helpers
     
     func configureUI() {
-        contentView.addSubview(coverImageView)
+        self.addSubview(coverImageView)
         coverImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            coverImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            coverImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            coverImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            coverImageView.topAnchor.constraint(equalTo: self.topAnchor),
+            coverImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 25),
+            coverImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -25),
+            coverImageView.heightAnchor.constraint(equalToConstant: 200)
         ])
         
-        contentView.addSubview(titleLabel)
+        self.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: coverImageView.topAnchor, constant: 10),
+            titleLabel.topAnchor.constraint(equalTo: coverImageView.bottomAnchor, constant: 10),
             titleLabel.leadingAnchor.constraint(equalTo: coverImageView.leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: coverImageView.trailingAnchor),
         ])
         
-        contentView.addSubview(subTitleLabel)
+        self.addSubview(subTitleLabel)
         subTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            subTitleLabel.topAnchor.constraint(equalTo: titleLabel.topAnchor),
+            subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
             subTitleLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor)
         ])
     }
