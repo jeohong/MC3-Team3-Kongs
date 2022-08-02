@@ -122,6 +122,23 @@ class ScheduleViewController: BaseViewController {
         return label
     }()
     
+    private let popUpTag: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 5
+        view.clipsToBounds = true
+        view.backgroundColor = .green
+        
+        return view
+    }()
+    
+    private let popUpLabel: UILabel = {
+        let label = UILabel()
+        label.text = "POP-UP"
+        label.font = .systemFont(ofSize: 12.0, weight: .semibold)
+        
+        return label
+    }()
+    
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
@@ -217,6 +234,19 @@ class ScheduleViewController: BaseViewController {
         separator.topAnchor.constraint(equalTo: weekCollectionView.topAnchor).isActive = true
         separator.bottomAnchor.constraint(equalTo: weekCollectionView.bottomAnchor).isActive = true
         separator.widthAnchor.constraint(equalToConstant: 0.5).isActive = true
+        
+        // POP-UP Tag
+        view.addSubview(popUpLabel)
+        popUpLabel.translatesAutoresizingMaskIntoConstraints = false
+        popUpLabel.bottomAnchor.constraint(equalTo: separator.topAnchor, constant: -5).isActive = true
+        popUpLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        
+        view.addSubview(popUpTag)
+        popUpTag.translatesAutoresizingMaskIntoConstraints = false
+        popUpTag.centerYAnchor.constraint(equalTo: popUpLabel.centerYAnchor).isActive = true
+        popUpTag.trailingAnchor.constraint(equalTo: popUpLabel.leadingAnchor, constant: -3).isActive = true
+        popUpTag.heightAnchor.constraint(equalToConstant: 10).isActive = true
+        popUpTag.widthAnchor.constraint(equalToConstant: 10).isActive = true
         
         // scheduleCollectionView
         scheduleCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: scheduleCellID)

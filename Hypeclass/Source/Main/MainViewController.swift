@@ -143,7 +143,7 @@ class MainViewController: BaseViewController {
         case .studio:
             let studioVC = StudioViewController()
             // 네트워킹 연결 필요.
-            studioVC.studio = Studio(id: "79cd0072-9136-4743-8b27-126d4a236d6c", name: "Higgs", description: "Higgs's description", profileImageURL: "https://firebasestorage.googleapis.com/v0/b/hypeclass-95cdb.appspot.com/o/studio%2Fprofile%2FHiggs.png?alt=media&token=51493849-1d8d-4905-8022-15868f977eb8", coverImageURL: nil, instagramURL: "https://www.instagram.com/higgs_seoul/", youtubeURL: nil, dancers: nil, likes: nil)
+            studioVC.studio = Studio(id: "79cd0072-9136-4743-8b27-126d4a236d6c", name: "Higgs", description: "Higgs's description", profileImageURL: "https://firebasestorage.googleapis.com/v0/b/hypeclass-95cdb.appspot.com/o/studio%2Fprofile%2FHiggs.png?alt=media&token=51493849-1d8d-4905-8022-15868f977eb8", coverImageURL: nil, instagramURL: "https://www.instagram.com/higgs_seoul/", youtubeURL: nil, dancers: nil, likes: nil, location: nil)
             self.navigationController?.pushViewController(studioVC, animated: true)
         case .dancer:
             print("DEBUG: 댄서 뷰 컨트롤러 이동")

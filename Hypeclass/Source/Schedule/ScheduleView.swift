@@ -27,6 +27,15 @@ class ScheduleView: UIView {
         return label
     }()
     
+    private let popUpTag: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 5
+        view.clipsToBounds = true
+        view.backgroundColor = .green
+        
+        return view
+    }()
+    
     // MARK: - LifeCycle
     
     required init(frame: CGRect, viewWidth: CGFloat, model: DanceClass) {
@@ -35,7 +44,7 @@ class ScheduleView: UIView {
         dancerNameLabel.text = model.dancerName
         classInfoLabel.text = "\(model.startTime?.hourMinText ?? "")~\(model.endTime?.hourMinText ?? "")  |  \(model.studioName ?? "")"
         
-        configureUI(width: viewWidth)
+        configureUI(width: viewWidth, isPopUp: model.isPopUp ?? false)
     }
     
     required init?(coder: NSCoder) {
@@ -44,7 +53,7 @@ class ScheduleView: UIView {
     
     // MARK: - Helpers
     
-    private func configureUI(width: CGFloat) {
+    private func configureUI(width: CGFloat, isPopUp: Bool) {
         // ScheduleView
         self.backgroundColor = .background
         self.layer.cornerRadius = 10
@@ -68,5 +77,15 @@ class ScheduleView: UIView {
         classInfoLabel.topAnchor.constraint(equalTo: dancerNameLabel.bottomAnchor).isActive = true
         classInfoLabel.leadingAnchor.constraint(equalTo: dancerNameLabel.leadingAnchor).isActive = true
         classInfoLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -15).isActive = true
+        
+        if isPopUp {
+            // popUpTag
+            self.addSubview(popUpTag)
+            popUpTag.translatesAutoresizingMaskIntoConstraints = false
+            popUpTag.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
+            popUpTag.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
+            popUpTag.heightAnchor.constraint(equalToConstant: 10).isActive = true
+            popUpTag.widthAnchor.constraint(equalToConstant: 10).isActive = true
+        }
     }
 }
