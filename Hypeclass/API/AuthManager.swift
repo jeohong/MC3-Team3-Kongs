@@ -28,10 +28,11 @@ class AuthManager {
         UserDefaults.standard.set(phoneNumber, forKey: "phoneNumber")
         let subString = phoneNumber.substring(from: 3, to: 11)
         let globalNumString = "+8210\(subString)"
+        print("DEBUG: globalNumString : \(globalNumString)")
         PhoneAuthProvider.provider()
             .verifyPhoneNumber(globalNumString, uiDelegate: nil) { verificationID, error in
                 if let error = error {
-                    print("ERROR: \(error.localizedDescription)")
+                    print("ERROR: \(error)")
                 } else {
                     self.verificationID = verificationID
                     print("DEBUG: success - verify phoneNumber ")

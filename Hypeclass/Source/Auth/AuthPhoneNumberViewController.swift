@@ -15,6 +15,7 @@ class AuthPhoneNumberViewController: BaseViewController {
         let label = UILabel()
         label.text = "전화번호를 알려주세요."
         label.font = UIFont.boldSystemFont(ofSize: 24)
+        
         return label
     }()
     
@@ -22,18 +23,20 @@ class AuthPhoneNumberViewController: BaseViewController {
         let view = UIView()
         view.backgroundColor = .container
         view.layer.cornerRadius = 8
+        
         return view
     }()
     
     private let textField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "인증번호"
+        textField.placeholder = "전화번호"
         textField.font = UIFont.boldSystemFont(ofSize: 16)
         textField.textColor = .white
         textField.tintColor = .label
         textField.frame.size = CGSize(width: 300, height: 50)
         textField.keyboardType = .numberPad
         textField.addDoneButtonOnKeyboard()
+        
         return textField
     }()
     
@@ -42,12 +45,14 @@ class AuthPhoneNumberViewController: BaseViewController {
         label.text = " "
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textColor = .secondaryLabel
+        
         return label
     }()
     
     private let ctaButton: CTAButton = {
         let button = CTAButton(title: "시작하기")
         button.addTarget(self, action: #selector(ctaButtonTap), for: .touchUpInside)
+        
         return button
     }()
     
@@ -63,7 +68,17 @@ class AuthPhoneNumberViewController: BaseViewController {
     //MARK: - Selectors
     
     @objc func ctaButtonTap() {
-        print("DEBUG: CTAButton Tapp")
+        guard let phoneNumber = textField.text else {
+            presentBottomAlert(message: "전화번호를 입력하세요")
+            return
+        }
+        
+        guard phoneNumber.count == 11 else {
+            presentBottomAlert(message: "유효하지 않은 전화번호입니다.")
+            return
+        }
+        
+        AuthManager.shared.requestVerificationCode(phoneNumber: phoneNumber)
         let vc = AuthVerificationController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
