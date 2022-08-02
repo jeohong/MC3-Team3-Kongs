@@ -70,6 +70,7 @@
 		C0C7B28728944044003FA2C2 /* AuthOnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C7B28628944044003FA2C2 /* AuthOnboardViewController.swift */; };
 		C0C7B28928944395003FA2C2 /* CTAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C7B28828944395003FA2C2 /* CTAButton.swift */; };
 		C0FD9C2E2898B9AB00D33C72 /* StudioEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FD9C2D2898B9AB00D33C72 /* StudioEventViewController.swift */; };
+		C0FD9C302898BB9B00D33C72 /* StudioEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FD9C2F2898BB9B00D33C72 /* StudioEventCell.swift */; };
 		C76C91C6289143C100703CCD /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76C91C5289143C100703CCD /* ItemCell.swift */; };
 		C76C91CA2893C0BE00703CCD /* MainStudioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76C91C92893C0BE00703CCD /* MainStudioCell.swift */; };
 		C76C91CE2894509600703CCD /* StudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76C91CD2894509600703CCD /* StudioViewController.swift */; };
@@ -145,6 +146,7 @@
 		C0C7B28628944044003FA2C2 /* AuthOnboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthOnboardViewController.swift; sourceTree = "<group>"; };
 		C0C7B28828944395003FA2C2 /* CTAButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTAButton.swift; sourceTree = "<group>"; };
 		C0FD9C2D2898B9AB00D33C72 /* StudioEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioEventViewController.swift; sourceTree = "<group>"; };
+		C0FD9C2F2898BB9B00D33C72 /* StudioEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioEventCell.swift; sourceTree = "<group>"; };
 		C76C91C5289143C100703CCD /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		C76C91C92893C0BE00703CCD /* MainStudioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStudioCell.swift; sourceTree = "<group>"; };
 		C76C91CD2894509600703CCD /* StudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioViewController.swift; sourceTree = "<group>"; };
@@ -391,6 +393,7 @@
 				C76C91CD2894509600703CCD /* StudioViewController.swift */,
 				C0FD9C2D2898B9AB00D33C72 /* StudioEventViewController.swift */,
 				C76C91D128951E3800703CCD /* TabCell.swift */,
+				C0FD9C2F2898BB9B00D33C72 /* StudioEventCell.swift */,
 			);
 			path = Studio;
 			sourceTree = "<group>";
@@ -487,6 +490,7 @@
 				0AA1E7E0288EE3F600AC0CE9 /* DancerDetailSchduleManager.swift in Sources */,
 				C05BF1FA287BC7EF00C95E1B /* UIColor.swift in Sources */,
 				C76C91CE2894509600703CCD /* StudioViewController.swift in Sources */,
+				C0FD9C302898BB9B00D33C72 /* StudioEventCell.swift in Sources */,
 				C76C91D228951E3900703CCD /* TabCell.swift in Sources */,
 				C7CE676028807C8E00C8F137 /* WeekdayCell.swift in Sources */,
 				C039DCBA287D940F0007951D /* MainTabController.swift in Sources */,
