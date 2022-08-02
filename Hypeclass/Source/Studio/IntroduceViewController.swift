@@ -56,6 +56,19 @@ class IntroduceViewController: BaseViewController {
         return collection
     }()
     
+    private let recentVideoLabel: UILabel = {
+        let label = UILabel()
+        label.text = "최근 영상"
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        
+        return label
+    }()
+    
+//    private let recentVideoTable: UITableView {
+//        
+//    }
+    
     //MARK: - LifeCycle
     
     override func viewDidLoad() {
@@ -98,6 +111,11 @@ class IntroduceViewController: BaseViewController {
         instructorsCollection.heightAnchor.constraint(equalToConstant: 78).isActive = true
         instructorsCollection.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         instructorsCollection.contentInset = UIEdgeInsets(top: 0, left: 31, bottom: 0, right: 0)
+        
+        self.view.addSubview(recentVideoLabel)
+        recentVideoLabel.translatesAutoresizingMaskIntoConstraints = false
+        recentVideoLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
+        recentVideoLabel.topAnchor.constraint(equalTo: instructorsCollection.bottomAnchor, constant: 27).isActive = true
     }
     
     func configureInstructorsCollection() {

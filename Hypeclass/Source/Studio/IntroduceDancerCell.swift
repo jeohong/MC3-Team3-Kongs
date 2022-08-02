@@ -8,7 +8,7 @@
 import UIKit
 
 class IntroduceDancerCell: UICollectionViewCell {
-
+    
     static let id = "GenreCell"
     
     // MARK: UIImageView로 수정
@@ -30,33 +30,37 @@ class IntroduceDancerCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-      
-      // MARK: Initializer
-      @available(*, unavailable)
-      required init?(coder: NSCoder) {
+    
+    // MARK: Initializer
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-      }
-      
-      override init(frame: CGRect) {
+    }
+    
+    override init(frame: CGRect) {
         super.init(frame: frame)
         
         contentView.addSubview(imageView)
-        imageView.addArrangedSubview(genreLabel)
-          
+        
         NSLayoutConstraint.activate([
-          imageView.leftAnchor.constraint(equalTo: self.contentView.leftAnchor),
-          imageView.rightAnchor.constraint(equalTo: self.contentView.rightAnchor),
-          imageView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
-          imageView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
+            imageView.leftAnchor.constraint(equalTo: self.contentView.leftAnchor),
+            imageView.rightAnchor.constraint(equalTo: self.contentView.rightAnchor),
+            imageView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
+            imageView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
         ])
-      }
-      
-      override func prepareForReuse() {
+        
+        imageView.addSubview(genreLabel)
+        genreLabel.translatesAutoresizingMaskIntoConstraints = false
+        genreLabel.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -6).isActive = true
+        genreLabel.centerXAnchor.constraint(equalTo: imageView.centerXAnchor).isActive = true
+    }
+    
+    override func prepareForReuse() {
         super.prepareForReuse()
         
-         self.prepare(image: nil)
-      }
-      
+        self.prepare(image: nil)
+    }
+    
     // MARK: UIImageView로 수정
     func prepare(image: UIStackView?) {
         self.imageView = image ?? UIStackView(frame: .zero)
