@@ -261,19 +261,14 @@ class ScheduleViewController: BaseViewController {
             stackViews[$0.0] = stackView
             
             weekSchedules[$0.0].forEach { schedule in
-                let dancerName = schedule.dancerName
-                let studioName = schedule.studioName
-                let startTime = "\(schedule.startTime!.get(.hour)):\(schedule.startTime!.get(.minute))"
-                let endTime = "\(schedule.endTime!.get(.hour)):\(schedule.endTime!.get(.minute))"
-                
                 scheduleViewWidth = (scheduleCollectionView.frame.width - 15) / 2
-                let scheduleView = ScheduleView(frame: .zero, dancerName: dancerName ?? "", studioName: studioName ?? "", startTime: startTime, endTime: endTime, viewWidth: scheduleViewWidth)
+                let scheduleView = ScheduleView(frame: .zero, viewWidth: scheduleViewWidth, model: schedule)
                 scheduleView.translatesAutoresizingMaskIntoConstraints = false
                 scheduleView.widthAnchor.constraint(equalToConstant: scheduleViewWidth).isActive = true
                 scheduleView.heightAnchor.constraint(equalToConstant: scheduleCollectionView.frame.height / 8).isActive = true
                 
                 scheduleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.pushDetailView(_:))))
-                scheduleView.accessibilityLabel = schedule.dancerID ?? ""
+                scheduleView.accessibilityLabel = schedule.id
                 
                 stackView.addArrangedSubview(scheduleView)
             }
