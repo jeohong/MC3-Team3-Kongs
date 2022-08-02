@@ -44,7 +44,7 @@ class ScheduleItemView: UIView {
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 10
-        cv.backgroundColor = .searchBarBackground
+        cv.backgroundColor = .container
         cv.layer.cornerRadius = 10
         cv.clipsToBounds = true
         cv.showsHorizontalScrollIndicator = false
