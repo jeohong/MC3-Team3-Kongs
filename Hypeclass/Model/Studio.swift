@@ -15,4 +15,5 @@ struct Studio: Codable {
     let youtubeURL: String?
     let dancers: [String]?
     let likes: Int?
+    let location: String?
 }
