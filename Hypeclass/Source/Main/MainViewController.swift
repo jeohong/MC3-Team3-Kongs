@@ -128,14 +128,6 @@ class MainViewController: BaseViewController {
         configure()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-//        Task {
-//            await requestStudios()
-//            addContentToScrollView()
-//        }
-    }
-    
     // MARK: - Selectors
     
     @objc func searchButtonDidTap() {
@@ -144,8 +136,20 @@ class MainViewController: BaseViewController {
     }
     
     @objc func pageDidTap() {
-        // TODO: 어딘가의 페이지로 넘어가기
-        print("Selected Page: \(pageControl.currentPage)")
+        guard let event = mainEventModels?[pageControl.currentPage] else { return } // 이벤트에 따라 다른 페이지로 이동
+        switch event.type {
+        case .studio:
+            let studioVC = StudioViewController()
+            // 네트워킹 연결 필요.
+            studioVC.studio = Studio(id: "79cd0072-9136-4743-8b27-126d4a236d6c", name: "Higgs", description: "Higgs's description", profileImageURL: "https://firebasestorage.googleapis.com/v0/b/hypeclass-95cdb.appspot.com/o/studio%2Fprofile%2FHiggs.png?alt=media&token=51493849-1d8d-4905-8022-15868f977eb8", coverImageURL: nil, instagramURL: "https://www.instagram.com/higgs_seoul/", youtubeURL: nil, dancers: nil, likes: nil)
+            self.navigationController?.pushViewController(studioVC, animated: true)
+        case .dancer:
+            print("DEBUG: 댄서 뷰 컨트롤러 이동")
+        case .danceClass:
+            print("DEBUG: 댄스 클래스 뷰 컨트롤러 이동")
+        default:
+            print("ERROR: 유효하지 않은 타입의 이벤트입니다.")
+        }
     }
     
     // MARK: - Helpers
@@ -172,7 +176,7 @@ class MainViewController: BaseViewController {
     
     // 스크롤뷰에 컨텐츠를 추가합니다.
     private func addContentToScrollView() {
-        scrollImageTitleLabel.text = "\(StudioManager.allStudios?[pageControl.currentPage].name ?? "") Studio 합류"
+        scrollImageTitleLabel.text = mainEventModels?[pageControl.currentPage].title
         
         for idx in 0..<(mainEventModels?.count ?? 0) {
             guard let event = mainEventModels?[idx] else { continue }
