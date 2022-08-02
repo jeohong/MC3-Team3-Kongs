@@ -73,6 +73,8 @@
 		C76C91CE2894509600703CCD /* StudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76C91CD2894509600703CCD /* StudioViewController.swift */; };
 		C76C91D02894559600703CCD /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76C91CF2894559600703CCD /* HeaderView.swift */; };
 		C76C91D228951E3900703CCD /* TabCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76C91D128951E3800703CCD /* TabCell.swift */; };
+		C76C91D62896EE1900703CCD /* ScheduleItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76C91D52896EE1900703CCD /* ScheduleItemView.swift */; };
+		C76C91D828970BA800703CCD /* ScheduleItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76C91D728970BA800703CCD /* ScheduleItemCell.swift */; };
 		C76C91CA2893C0BE00703CCD /* MainStudioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76C91C92893C0BE00703CCD /* MainStudioCell.swift */; };
 		C7CE676028807C8E00C8F137 /* WeekdayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE675F28807C8E00C8F137 /* WeekdayCell.swift */; };
 		C7CE676228814D3C00C8F137 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE676128814D3C00C8F137 /* Weekday.swift */; };
@@ -147,6 +149,8 @@
 		C76C91CD2894509600703CCD /* StudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioViewController.swift; sourceTree = "<group>"; };
 		C76C91CF2894559600703CCD /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		C76C91D128951E3800703CCD /* TabCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCell.swift; sourceTree = "<group>"; };
+		C76C91D52896EE1900703CCD /* ScheduleItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleItemView.swift; sourceTree = "<group>"; };
+		C76C91D728970BA800703CCD /* ScheduleItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleItemCell.swift; sourceTree = "<group>"; };
 		C76C91C92893C0BE00703CCD /* MainStudioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStudioCell.swift; sourceTree = "<group>"; };
 		C7CE675F28807C8E00C8F137 /* WeekdayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayCell.swift; sourceTree = "<group>"; };
 		C7CE676128814D3C00C8F137 /* Weekday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekday.swift; sourceTree = "<group>"; };
@@ -179,6 +183,8 @@
 				C05BF1FC287BC88400C95E1B /* IndicatorView.swift */,
 				C76C91C5289143C100703CCD /* ItemCell.swift */,
 				C76C91CF2894559600703CCD /* HeaderView.swift */,
+				C76C91D52896EE1900703CCD /* ScheduleItemView.swift */,
+				C76C91D728970BA800703CCD /* ScheduleItemCell.swift */,
 				C0C7B28828944395003FA2C2 /* CTAButton.swift */,
 				C0C444FD28944DE200036ADE /* ContainerTextField.swift */,
 			);
@@ -486,6 +492,7 @@
 				C76C91CE2894509600703CCD /* StudioViewController.swift in Sources */,
 				C76C91D228951E3900703CCD /* TabCell.swift in Sources */,
 				C7CE676028807C8E00C8F137 /* WeekdayCell.swift in Sources */,
+				C76C91D828970BA800703CCD /* ScheduleItemCell.swift in Sources */,
 				C039DCBA287D940F0007951D /* MainTabController.swift in Sources */,
 				C04B1F092889257D001D2C99 /* WeeklyScheduleCell.swift in Sources */,
 				C0C7B28728944044003FA2C2 /* AuthOnboardViewController.swift in Sources */,
@@ -534,6 +541,7 @@
 				C05BF1F6287BC7EF00C95E1B /* UIApplication.swift in Sources */,
 				C05BF1F9287BC7EF00C95E1B /* Date.swift in Sources */,
 				A38A4C59287E97CF00614E94 /* SearchDetailViewController.swift in Sources */,
+				C76C91D62896EE1900703CCD /* ScheduleItemView.swift in Sources */,
 				A35DE3A128840A2E00A29BA7 /* HistoryCell.swift in Sources */,
 				C05BF1F5287BC7EF00C95E1B /* UIButton.swift in Sources */,
 				C0C7B28928944395003FA2C2 /* CTAButton.swift in Sources */,
