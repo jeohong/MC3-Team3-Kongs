@@ -66,7 +66,7 @@ class DanceClassDetailViewController: BaseViewController {
     private let aboutTextView: UITextView = {
         let textView = UITextView()
         textView.isScrollEnabled = false
-        textView.font = UIFont.systemFont(ofSize: 14)
+        textView.font = UIFont.systemFont(ofSize: 16)
         textView.textColor = .white
         textView.backgroundColor = .clear
         textView.textContainer.lineFragmentPadding = 0
@@ -79,7 +79,7 @@ class DanceClassDetailViewController: BaseViewController {
     
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.rowHeight = 80
+        tableView.rowHeight = 112
         tableView.isScrollEnabled = false
         tableView.backgroundColor = .clear
         tableView.separatorColor = .clear

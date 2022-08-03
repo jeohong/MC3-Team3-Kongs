@@ -20,6 +20,8 @@ class MainTabController: UITabBarController {
         super.viewDidLoad()
         configureViewControllers()
         uiTabBarSetting()
+        
+//        DanceClassManager.shared.createDanceClass(model: DanceClass(id: UUID().uuidString, name: "빈 힙합 정규 클래스", genres: nil, description: "q", isPopUp: false, coverImageURL: "https://firebasestorage.googleapis.com/v0/b/hypeclass-95cdb.appspot.com/o/dancer%2Fcover%2FBinnn_Cover.png?alt=media&token=bd519f83-4761-4730-b454-a4addd956a6e", startTime: Date(), endTime: Date() + (2 * 60 * 60), dancerID: "58bac0e0-4bf5-4e72-95b0-16e873a55c8f", dancerName: "Binn", studioID: "8bc63898-aec4-44d4-8329-4bc9b52b98cd", studioName: "Urban Play"))
     }
     
     //MARK: - Helpers

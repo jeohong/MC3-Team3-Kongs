@@ -20,7 +20,7 @@ class StudioEventViewController: BaseViewController {
         tableView.rowHeight = 260
         tableView.backgroundColor = .clear
         tableView.isScrollEnabled = false
-        tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: 0, right: 0)
         return tableView
     }()
     

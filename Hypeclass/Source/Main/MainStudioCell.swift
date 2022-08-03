@@ -23,7 +23,7 @@ class MainStudioCell: UICollectionViewCell {
     let studioNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .systemFont(ofSize: 12.0, weight: .bold)
+        label.font = .systemFont(ofSize: 14.0, weight: .bold)
         label.numberOfLines = 1
         label.textAlignment = .center
         
@@ -47,18 +47,22 @@ class MainStudioCell: UICollectionViewCell {
         // studioImage
         contentView.addSubview(studioImage)
         studioImage.translatesAutoresizingMaskIntoConstraints = false
-        studioImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        studioImage.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        studioImage.widthAnchor.constraint(equalToConstant: 55).isActive = true
-        studioImage.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        NSLayoutConstraint.activate([
+            studioImage.topAnchor.constraint(equalTo: contentView.topAnchor),
+            studioImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            studioImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            studioImage.heightAnchor.constraint(equalTo: studioImage.widthAnchor)
+        ])
 
         // studioNameLabel
         contentView.addSubview(studioNameLabel)
         studioNameLabel.translatesAutoresizingMaskIntoConstraints = false
         studioNameLabel.numberOfLines = 1
         studioNameLabel.allowsDefaultTighteningForTruncation = true
-        studioNameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        studioNameLabel.topAnchor.constraint(equalTo: studioImage.bottomAnchor, constant: 2).isActive = true
-        studioNameLabel.widthAnchor.constraint(equalToConstant: 55).isActive = true
+        NSLayoutConstraint.activate([
+            studioNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            studioNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            studioNameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
     }
 }

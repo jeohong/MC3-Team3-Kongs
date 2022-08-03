@@ -198,7 +198,7 @@ class MainViewController: BaseViewController {
             let url = URL(string: event.coverImageURL ?? "")
             imageView.kf.setImage(with: url)
             let xPos = (Device.width - 44) * CGFloat(idx)
-            imageView.frame = CGRect(x: xPos, y: imageScrollView.bounds.minY, width: imageScrollView.bounds.width, height: imageScrollView.bounds.height)
+            imageView.frame = CGRect(x: xPos, y: imageScrollView.bounds.minY, width: imageScrollView.bounds.width + 25, height: imageScrollView.bounds.height)
             imageScrollView.addSubview(imageView)
             imageScrollView.contentSize.width = imageView.frame.width * CGFloat(idx + 1)
         }
@@ -276,7 +276,7 @@ class MainViewController: BaseViewController {
         studioCollectionView.topAnchor.constraint(equalTo: studioLabel.bottomAnchor, constant: 8).isActive = true
         studioCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         studioCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        studioCollectionView.heightAnchor.constraint(equalToConstant: 75).isActive = true
+        studioCollectionView.heightAnchor.constraint(equalToConstant: 100).isActive = true
     }
 }
 
@@ -311,7 +311,7 @@ extension MainViewController: UICollectionViewDelegate {
 
 extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 55, height: 70)
+        return CGSize(width: 66, height: 90)
     }
 }
 
