@@ -11,6 +11,9 @@ class StudioEventViewController: BaseViewController {
     
     //MARK: - Properties
     
+    var model: Studio?
+    var danceClasses: [DanceClass]?
+    
     let tableView: UITableView = {
        let tableView = UITableView()
         tableView.rowHeight = 260
@@ -26,11 +29,24 @@ class StudioEventViewController: BaseViewController {
         super.viewDidLoad()
         configureUI()
         configureTable()
+        requestClasses()
     }
     
     //MARK: - Selectors
     
     //MARK: - Helpers
+    
+    func requestClasses() {
+        guard let studioID = model?.id else { return }
+        Task {
+            IndicatorView.shared.show()
+            IndicatorView.shared.showIndicator()
+            let result = try? await DanceClassManager.shared.requestDanceClassBy(studioID: studioID)
+            self.danceClasses = result
+            tableView.reloadData()
+            IndicatorView.shared.dismiss()
+        }
+    }
     
     func configureTable(){
         tableView.register(StudioEventCell.self, forCellReuseIdentifier: "StudioEventCell")
@@ -53,11 +69,14 @@ class StudioEventViewController: BaseViewController {
 
 extension StudioEventViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return danceClasses?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "StudioEventCell", for: indexPath) as? StudioEventCell else { return UITableViewCell() }
+        guard let danceClass = danceClasses?[indexPath.row] else { return cell }
+        cell.titleLabel.text = danceClass.name
+        cell.subTitleLabel.text = "\(danceClass.startTime?.hourMinText ?? "")~\(danceClass.endTime?.hourMinText ?? "")"
         return cell
     }
     

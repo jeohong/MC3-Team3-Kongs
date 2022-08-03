@@ -270,6 +270,7 @@ class StudioViewController: BaseViewController {
         viewControllers.append(scheduleVC)
         
         let vc = StudioEventViewController()
+        vc.model = studio
         vc.view.tag = 2
         viewControllers.append(vc)
         pageViewController.view.heightAnchor.constraint(equalToConstant: vc.view.frame.height).isActive = true

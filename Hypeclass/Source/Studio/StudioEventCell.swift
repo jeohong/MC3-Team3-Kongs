@@ -26,7 +26,7 @@ class StudioEventCell: UITableViewCell {
         label.text = "아프로 스타일 하우스 댄스"
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = .white
-        label.backgroundColor = .purple
+        label.backgroundColor = .gray
         
         return label
     }()
@@ -36,7 +36,7 @@ class StudioEventCell: UITableViewCell {
         label.text = "08/01 ~ 09/09"
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 12, weight: .light)
-        label.backgroundColor = .purple
+        label.backgroundColor = .gray
         
         return label
     }()
