@@ -12,7 +12,7 @@ class DanceClassDetailViewController: BaseViewController {
     
     //MARK: - Properties
     
-    var model: DanceClass? = MockDataSet.danceClass
+    var model: DanceClass?
     var instructor: [Dancer]?
     var studio: [Studio]?
     let headerTitles = ["강사", "스튜디오"]
@@ -79,7 +79,7 @@ class DanceClassDetailViewController: BaseViewController {
     
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.rowHeight = 60
+        tableView.rowHeight = 100
         tableView.isScrollEnabled = false
         tableView.backgroundColor = .clear
         tableView.separatorColor = .clear
@@ -258,7 +258,7 @@ extension DanceClassDetailViewController: UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+        return 40
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -296,6 +296,7 @@ extension DanceClassDetailViewController: UITableViewDataSource, UITableViewDele
             guard let url = URL(string: studio.profileImageURL ?? "") else { return cell }
             cell.profileImage.load(url: url)
             cell.titleLabel.text = studio.name
+//            cell.subtitleLabel.text = studio.description
         }
         
         return cell

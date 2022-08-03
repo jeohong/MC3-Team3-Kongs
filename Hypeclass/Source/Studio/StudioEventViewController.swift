@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class StudioEventViewController: BaseViewController {
     
@@ -75,6 +76,9 @@ extension StudioEventViewController: UITableViewDataSource, UITableViewDelegate 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "StudioEventCell", for: indexPath) as? StudioEventCell else { return UITableViewCell() }
         guard let danceClass = danceClasses?[indexPath.row] else { return cell }
+        
+        let url = URL(string: danceClass.coverImageURL ?? model?.coverImageURL ?? "")
+        cell.coverImageView.kf.setImage(with: url)
         cell.titleLabel.text = danceClass.name
         cell.subTitleLabel.text = "\(danceClass.startTime?.hourMinText ?? "")~\(danceClass.endTime?.hourMinText ?? "")"
         return cell

@@ -94,7 +94,7 @@ class ItemCell: UITableViewCell {
         self.addSubview(textView)
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 20).isActive = true
-        textView.topAnchor.constraint(equalTo: self.topAnchor, constant: 30).isActive = true
+        textView.topAnchor.constraint(equalTo: profileImage.topAnchor, constant:  10).isActive = true
         textView.trailingAnchor.constraint(equalTo: navigationImage.trailingAnchor, constant: -20).isActive = true
         
         // Add titleLabel, subtitleLabel, detailLable to textView
