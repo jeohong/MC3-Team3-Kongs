@@ -290,13 +290,13 @@ extension DanceClassDetailViewController: UITableViewDataSource, UITableViewDele
         cell.selectionStyle = .none
         if indexPath.section == 0 {
             guard let dancer = instructor?[indexPath.row] else { return cell }
-            guard let url = URL(string: dancer.profileImageURL ?? "") else { return cell }
-            cell.profileImage.load(url: url)
+            let url = URL(string: dancer.profileImageURL ?? "")
+            cell.profileImage.kf.setImage(with: url)
             cell.titleLabel.text = dancer.name
         } else {
             guard let studio = studio?[indexPath.row] else { return cell }
-            guard let url = URL(string: studio.profileImageURL ?? "") else { return cell }
-            cell.profileImage.load(url: url)
+            let url = URL(string: studio.profileImageURL ?? "")
+            cell.profileImage.kf.setImage(with: url)
             cell.titleLabel.text = studio.name
 //            cell.subtitleLabel.text = studio.description
         }
