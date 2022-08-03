@@ -79,7 +79,7 @@ class DanceClassDetailViewController: BaseViewController {
     
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.rowHeight = 100
+        tableView.rowHeight = 80
         tableView.isScrollEnabled = false
         tableView.backgroundColor = .clear
         tableView.separatorColor = .clear
@@ -100,12 +100,13 @@ class DanceClassDetailViewController: BaseViewController {
         super.viewDidLoad()
         configureUI()
         configureTableView()
+        configure()
         scrollView.delegate = self
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        configure()
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        configure()
+//    }
     
     //MARK: - Selectors
     
@@ -286,6 +287,7 @@ extension DanceClassDetailViewController: UITableViewDataSource, UITableViewDele
         }
         cell.backgroundColor = .clear
         cell.profileImage.backgroundColor = .gray
+        cell.selectionStyle = .none
         if indexPath.section == 0 {
             guard let dancer = instructor?[indexPath.row] else { return cell }
             guard let url = URL(string: dancer.profileImageURL ?? "") else { return cell }
@@ -300,6 +302,20 @@ extension DanceClassDetailViewController: UITableViewDataSource, UITableViewDele
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            guard let dancer = instructor?[indexPath.row] else { return }
+            let dancerVC = DancerDetailViewController()
+            dancerVC.model = dancer
+            self.navigationController?.pushViewController(dancerVC, animated: true)
+        } else {
+            guard let studio = studio?[indexPath.row] else { return }
+            let studioVC = StudioViewController()
+            studioVC.studio = studio
+            self.navigationController?.pushViewController(studioVC, animated: true)
+        }
     }
 }
 
