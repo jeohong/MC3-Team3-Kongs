@@ -41,6 +41,9 @@ class SearchDetailViewController: BaseViewController {
     var searchDancer: [Dancer]?
     var searchGenre: [Dancer]?
     
+    var dancerInfo: Dancer?
+    var studioInfo: Studio?
+    
     //MARK: - LifeCycle
     
     override func viewDidLoad() {
@@ -139,16 +142,25 @@ extension SearchDetailViewController: UITableViewDelegate {
         
         // Dancer 인지 Studio 인지 구분해서 전달
         if let cell = tableView.cellForRow(at: indexPath) as? SearchDetailCell {
-            print(cell.nameLabel.text!)
-            // 댄서 - 스튜디오 구분 로직 구현
-            
+            Task {
+                dancerInfo = try await DancerManager.shared.requestDancerBy(dancerName: cell.nameLabel.text!)
+                studioInfo = try await StudioManager.shared.requestStudio(studioName: cell.nameLabel.text!)
+                
+                // 구
+                if dancerInfo == nil {
+                    let studioVC = StudioViewController()
+                    
+                    studioVC.studio = studioInfo
+                    self.navigationController?.pushViewController(studioVC, animated: true)
+                    
+                } else {
+                    let dancerVC = DancerDetailViewController()
+                    
+                    dancerVC.dancerName = dancerInfo
+                    self.navigationController?.pushViewController(dancerVC, animated: true)
+                }
+            }
         }
-        
-        // 구분 로직에 따른 전달값 수정
-        
-        let dancerDetailVC = DancerDetailViewController()
-        // ☑️ TODO: 댄서 ID 건네주어야함.
-        self.navigationController?.pushViewController(dancerDetailVC, animated: true)
     }
 }
 

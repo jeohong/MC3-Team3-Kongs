@@ -12,6 +12,7 @@ class DancerDetailViewController: BaseViewController {
     //MARK: - Properties
     
     var dancerID: String?
+    var dancerName: Dancer?
     
     var dancerScheduleArray: [DancerDetailScheduleModel] = []
     var dancerDataManager = DancerDetailSchduleManager()

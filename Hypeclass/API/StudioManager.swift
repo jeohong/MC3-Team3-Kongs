@@ -48,6 +48,12 @@ class StudioManager {
         }
     }
     
+    func requestStudio(studioName name: String) async throws -> Studio? {
+        let document = try await Constant.studioRef.document(name).getDocument()
+        
+        return try? document.data(as: Studio.self)
+    }
+    
     func incrementLikes(studioName name: String) {
         Constant.studioRef.document(name).updateData([
             "likes": FieldValue.increment(Int64(1))
