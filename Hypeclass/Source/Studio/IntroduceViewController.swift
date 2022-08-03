@@ -163,7 +163,10 @@ class IntroduceViewController: BaseViewController {
 
 extension IntroduceViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-      
+        guard let dancer = instrutors?[indexPath.row] else { return }
+        let dancerVC = DancerDetailViewController()
+        dancerVC.model = dancer
+        self.navigationController?.pushViewController(dancerVC, animated: true)
     }
 }
 

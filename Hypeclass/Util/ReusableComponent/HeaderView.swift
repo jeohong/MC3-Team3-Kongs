@@ -32,7 +32,7 @@ class HeaderView: UIView {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .systemFont(ofSize: 16.0, weight: .medium)
+        label.font = .systemFont(ofSize: 20.0, weight: .bold)
         
         return label
     }()
