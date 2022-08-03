@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class DanceClassDetailViewController: BaseViewController {
     
@@ -141,9 +142,8 @@ class DanceClassDetailViewController: BaseViewController {
                 let results: [Any] = try await [dancers, studios]
                 self.instructor = results[0] as? [Dancer]
                 self.studio = results[1] as? [Studio]
-                if let url = URL(string: self.studio?.first?.profileImageURL ?? "") {
-                    coverImageView.load(url: url)
-                }
+                let url = URL(string: self.studio?.first?.profileImageURL ?? "")
+                coverImageView.kf.setImage(with: url)
                 tableView.reloadData()
                 IndicatorView.shared.dismiss()
             } catch {
