@@ -13,21 +13,24 @@ class IntroduceDancerCell: UICollectionViewCell {
     
     // MARK: UIImageView로 수정
     
-    private var imageView: UIStackView = {
-        let view = UIStackView()
+    var imageView: UIImageView = {
+        let view = UIImageView()
         view.backgroundColor = .gray
-        view.axis = .vertical
-        view.alignment = .center
+        view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
         view.layer.cornerRadius = 40
-        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.masksToBounds = true
+        
+
         return view
     }()
     
-    let genreLabel: UILabel = {
+    let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12, weight: .bold)
         label.numberOfLines = 2
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+
         return label
     }()
     
@@ -40,30 +43,36 @@ class IntroduceDancerCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        self.backgroundColor = .clear
         contentView.addSubview(imageView)
-        
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            imageView.leftAnchor.constraint(equalTo: self.contentView.leftAnchor),
-            imageView.rightAnchor.constraint(equalTo: self.contentView.rightAnchor),
-            imageView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
-            imageView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            imageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+            imageView.heightAnchor.constraint(equalTo: contentView.widthAnchor)
         ])
         
-        imageView.addSubview(genreLabel)
-        genreLabel.translatesAutoresizingMaskIntoConstraints = false
-        genreLabel.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -6).isActive = true
-        genreLabel.centerXAnchor.constraint(equalTo: imageView.centerXAnchor).isActive = true
+        contentView.addSubview(titleLabel)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+//            titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor),
+            titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            titleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor)
+        ])
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        self.prepare(image: nil)
+//        self.prepare(image: nil)
     }
-    
-    // MARK: UIImageView로 수정
-    func prepare(image: UIStackView?) {
-        self.imageView = image ?? UIStackView(frame: .zero)
-    }
+//
+//    // MARK: UIImageView로 수정
+//    func prepare(image: UIStackView?) {
+//        self.imageView = image ?? UIStackView(frame: .zero)
+//    }
 }
 

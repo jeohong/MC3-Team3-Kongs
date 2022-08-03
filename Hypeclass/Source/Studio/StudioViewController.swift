@@ -260,6 +260,7 @@ class StudioViewController: BaseViewController {
     
     private func configurePageViewController() {
         let infoVC = IntroduceViewController()
+        infoVC.model = studio
         infoVC.view.tag = 0
         viewControllers.append(infoVC)
         
@@ -278,6 +279,7 @@ class StudioViewController: BaseViewController {
         if let firstVC = viewControllers.first {
             pageViewController.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
+        pageViewController.isPagingEnabled = false
     }
     
     private func isAlreadySubscribed() -> Bool {
