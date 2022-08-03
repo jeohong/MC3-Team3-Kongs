@@ -177,16 +177,16 @@ class ScheduleViewController: BaseViewController {
     
     /// 댄서 디테일 뷰 페이지로 이동합니다.
     @objc func pushDetailView(_ sender: UITapGestureRecognizer) {
-        print("pushDetailView(): \(sender.view!.accessibilityLabel!)")
-        let dancerDetailVC = DancerDetailViewController()
-        guard let dancerID = sender.view?.accessibilityLabel else { return }
-        dancerDetailVC.dancerID = dancerID
-        self.navigationController?.pushViewController(dancerDetailVC, animated: true)
+        guard let scheduleView = sender.view as? ScheduleView else { return }
+        guard let danceClass = scheduleView.model else { return }
+        let danceClassDetailVC = DanceClassDetailViewController()
+        danceClassDetailVC.model = danceClass
+        self.navigationController?.pushViewController(danceClassDetailVC, animated: true)
     }
     
     @objc func pushMainView() {
         // TODO: 어느 뷰로 갈지 정하기
-        self.navigationController?.pushViewController(MainViewController(), animated: true)
+        self.tabBarController?.selectedIndex = 0
     }
     
     // MARK: - Helpers
@@ -291,21 +291,14 @@ class ScheduleViewController: BaseViewController {
             stackViews[$0.0] = stackView
             
             weekSchedules[$0.0].forEach { schedule in
-                let dancerName = schedule.dancerName
-                let studioName = schedule.studioName
-                let startTime = "\(schedule.startTime!.get(.hour)):\(schedule.startTime!.get(.minute))"
-                let endTime = "\(schedule.endTime!.get(.hour)):\(schedule.endTime!.get(.minute))"
-                let isPopUp = schedule.isPopUp
-                
                 scheduleViewWidth = (scheduleCollectionView.frame.width - 15) / 2
-                let scheduleView = ScheduleView(frame: .zero, dancerName: dancerName ?? "", studioName: studioName ?? "", startTime: startTime, endTime: endTime, viewWidth: scheduleViewWidth, isPopUp: isPopUp ?? false)
+                let scheduleView = ScheduleView(frame: .zero, viewWidth: scheduleViewWidth, model: schedule)
                 scheduleView.translatesAutoresizingMaskIntoConstraints = false
-                scheduleView.widthAnchor.constraint(equalToConstant: scheduleViewWidth).isActive = true
-                scheduleView.heightAnchor.constraint(equalToConstant: scheduleCollectionView.frame.height / 8).isActive = true
-                
+                NSLayoutConstraint.activate([
+                    scheduleView.widthAnchor.constraint(equalToConstant: scheduleViewWidth),
+                    scheduleView.heightAnchor.constraint(equalToConstant: scheduleCollectionView.frame.height / 8)
+                ])
                 scheduleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.pushDetailView(_:))))
-                scheduleView.accessibilityLabel = schedule.dancerID ?? ""
-                
                 stackView.addArrangedSubview(scheduleView)
             }
         }
