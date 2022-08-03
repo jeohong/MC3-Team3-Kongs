@@ -54,7 +54,7 @@ class SearchDetailViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         Task {
-            await requestSearch()
+            await requestSearch(query: searchLabel.text ?? "")
         }
     }
     
@@ -91,14 +91,14 @@ class SearchDetailViewController: BaseViewController {
         dancerTable.register(SearchDetailCell.self, forCellReuseIdentifier: SearchDetailCell.dancerCellID)
     }
     
-    private func requestSearch() async {
+    private func requestSearch(query: String) async {
         do {
             if searchStudio == nil && searchDancer == nil {
                 IndicatorView.shared.show()
                 IndicatorView.shared.showIndicator()
-                async let searchStudio: [Studio]? = SearchManager.shared.requestQuery(queryString: searchLabel.text ?? "", mode: .name, category: .studio)
-                async let searchDancer: [Dancer]? = try await SearchManager.shared.requestQuery(queryString: searchLabel.text ?? "", mode: .name, category: .dancer)
-                async let searchGenre: [Dancer]? = try await SearchManager.shared.requestQuery(queryString: searchLabel.text ?? "", mode: .genres, category: .dancer)
+                async let searchStudio: [Studio]? = SearchManager.shared.requestQuery(queryString: query, mode: .name, category: .studio)
+                async let searchDancer: [Dancer]? = SearchManager.shared.requestQuery(queryString: query, mode: .name, category: .dancer)
+                async let searchGenre: [Dancer]? = SearchManager.shared.requestQuery(queryString: query, mode: .genres, category: .dancer)
                 let searchResult: [Any]? = try await [searchStudio, searchDancer, searchGenre]
                 IndicatorView.shared.dismiss()
                 
@@ -137,7 +137,7 @@ extension SearchDetailViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        // Dancer 인지 Studio 인지 구분해서 ID 값 전달
+        // Dancer 인지 Studio 인지 구분해서 전달
         if let cell = tableView.cellForRow(at: indexPath) as? SearchDetailCell {
             print(cell.nameLabel.text!)
             // 댄서 - 스튜디오 구분 로직 구현
