@@ -69,7 +69,7 @@ class StudioEventViewController: BaseViewController {
 
 extension StudioEventViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return danceClasses?.count ?? 0
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -82,6 +82,9 @@ extension StudioEventViewController: UITableViewDataSource, UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 클래스 페이지로 이동
+        let danceClassVC = DanceClassDetailViewController()
+        danceClassVC.model = danceClasses?[indexPath.row]
+        self.navigationController?.pushViewController(danceClassVC, animated: true)
     }
 }
 
