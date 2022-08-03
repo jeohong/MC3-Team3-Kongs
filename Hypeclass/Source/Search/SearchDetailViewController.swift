@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class SearchDetailViewController: BaseViewController {
     
@@ -117,21 +118,34 @@ class SearchDetailViewController: BaseViewController {
             cell.nameLabel.text = dancer[index].name
             cell.genreLabel.text = dancer[index].description
             cell.classdayLabel.text = dancer[index].id
+            cell.profileImage.kf.setImage(with: URL(string: "\(dancer[index].profileImageURL ?? "")"))
         } else if let studio = queryArray as? [Studio] {
             cell.nameLabel.text = studio[index].name
             cell.genreLabel.text = studio[index].description
             cell.classdayLabel.text = studio[index].id
+            cell.profileImage.kf.setImage(with: URL(string: "\(studio[index].profileImageURL ?? "")"))
         }
     }
 }
 
 //MARK: - TableView Extension
+
 extension SearchDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 116
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // Dancer 인지 Studio 인지 구분해서 ID 값 전달
+        if let cell = tableView.cellForRow(at: indexPath) as? SearchDetailCell {
+            print(cell.nameLabel.text!)
+            // 댄서 - 스튜디오 구분 로직 구현
+            
+        }
+        
+        // 구분 로직에 따른 전달값 수정
+        
         let dancerDetailVC = DancerDetailViewController()
         // ☑️ TODO: 댄서 ID 건네주어야함.
         self.navigationController?.pushViewController(dancerDetailVC, animated: true)
@@ -145,7 +159,6 @@ extension SearchDetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = dancerTable.dequeueReusableCell(withIdentifier: SearchDetailCell.dancerCellID, for:indexPath) as! SearchDetailCell
-        //        cell.profileImage.load(url: URL(string: searchResult[indexPath.row].profileImageURL)!)
         
         if !(searchDancer?.isEmpty)! {
             fetchCell(cell: cell, index: indexPath.row, queryArray: searchDancer)
@@ -156,7 +169,7 @@ extension SearchDetailViewController: UITableViewDataSource {
         }
         
         // Mock데이터에 있는 이미지 링크의 이미지를 불러오지 못함 임시 이미지 링크를 첨부합니다.
-        cell.profileImage.load(url: URL(string: "https://src.hidoc.co.kr/image/lib/2021/4/28/1619598179113_0.jpg")!)
+//        cell.profileImage.kf.setImage(with: URL(string: "https://src.hidoc.co.kr/image/lib/2021/4/28/1619598179113_0.jpg"))
         cell.backgroundColor = .clear
         
         return cell
