@@ -11,6 +11,8 @@ class ScheduleView: UIView {
     
     // MARK: - Properties
     
+    var model: DanceClass?
+    
     private let dancerNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
@@ -36,12 +38,13 @@ class ScheduleView: UIView {
     
     // MARK: - LifeCycle
     
-    required init(frame: CGRect, dancerName: String, studioName: String, startTime: String, endTime: String, viewWidth: CGFloat, isPopUp: Bool) {
+    required init(frame: CGRect, viewWidth: CGFloat, model: DanceClass) {
         super.init(frame: .zero)
-        dancerNameLabel.text = dancerName
-        classInfoLabel.text = "\(startTime)~\(endTime)  |  \(studioName)"
+        self.model = model
+        dancerNameLabel.text = model.dancerName
+        classInfoLabel.text = "\(model.startTime?.hourMinText ?? "")~\(model.endTime?.hourMinText ?? "")  |  \(model.studioName ?? "")"
         
-        configureUI(width: viewWidth, isPopUp: isPopUp)
+        configureUI(width: viewWidth, isPopUp: model.isPopUp ?? false)
     }
     
     required init?(coder: NSCoder) {

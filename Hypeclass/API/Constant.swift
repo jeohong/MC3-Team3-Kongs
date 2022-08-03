@@ -12,4 +12,5 @@ class Constant {
     static let dancerRef = Firestore.firestore().collection("dancer")
     static let danceClassRef = Firestore.firestore().collection("danceClass")
     static let studioRef = Firestore.firestore().collection("studio")
+    static let eventRef = Firestore.firestore().collection("event")
 }

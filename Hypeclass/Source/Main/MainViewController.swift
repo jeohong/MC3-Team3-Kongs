@@ -6,16 +6,22 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MainViewController: BaseViewController {
     
     // MARK: - Properties
+    
+    private var mainEventModels: [Event]?
+    private var studioModels: [Studio]?
     
     private let logoImageView: UIImageView = {
         let image = UIImageView()
         image.backgroundColor = .green
         image.layer.cornerRadius = 10
         image.clipsToBounds = true
+        image.contentMode = .scaleAspectFill
+        image.image = UIImage(named: "logo")
         
         return image
     }()
@@ -121,14 +127,7 @@ class MainViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        Task {
-            await requestStudios()
-            addContentToScrollView()
-        }
+        configure()
     }
     
     // MARK: - Selectors
@@ -139,11 +138,61 @@ class MainViewController: BaseViewController {
     }
     
     @objc func pageDidTap() {
-        // TODO: 어딘가의 페이지로 넘어가기
-        print("Selected Page: \(pageControl.currentPage)")
+        guard let event = mainEventModels?[pageControl.currentPage] else { return } // 이벤트에 따라 다른 페이지로 이동
+        switch event.type {
+        case .studio:
+            let studioVC = StudioViewController()
+            // 네트워킹 연결 필요.
+            studioVC.studio = Studio(id: "79cd0072-9136-4743-8b27-126d4a236d6c", name: "Higgs", description: "Higgs's description", profileImageURL: "https://firebasestorage.googleapis.com/v0/b/hypeclass-95cdb.appspot.com/o/studio%2Fprofile%2FHiggs.png?alt=media&token=51493849-1d8d-4905-8022-15868f977eb8", coverImageURL: nil, instagramURL: "https://www.instagram.com/higgs_seoul/", youtubeURL: nil, dancers: nil, likes: nil, location: nil)
+            self.navigationController?.pushViewController(studioVC, animated: true)
+        case .dancer:
+            print("DEBUG: 댄서 뷰 컨트롤러 이동")
+        case .danceClass:
+            print("DEBUG: 댄스 클래스 뷰 컨트롤러 이동")
+        default:
+            print("ERROR: 유효하지 않은 타입의 이벤트입니다.")
+        }
     }
     
     // MARK: - Helpers
+    
+    private func configure() {
+        Task {
+            do {
+                IndicatorView.shared.show()
+                IndicatorView.shared.showIndicator()
+                async let events = await EventManager.shared.requestAllEvents()
+                async let studios = await StudioManager.shared.requestAllStudios()
+                let result: [Any?] = try await [events, studios]
+                self.mainEventModels = result[0] as? [Event]
+                self.studioModels = result[1] as? [Studio]
+                studioCollectionView.reloadData()
+                pageControl.numberOfPages = mainEventModels?.count ?? 0
+                addContentToScrollView()
+                IndicatorView.shared.dismiss()
+            } catch {
+                presentBottomAlert(message: "데이터를 불러오지 못했어요🥲")
+            }
+        }
+    }
+    
+    // 스크롤뷰에 컨텐츠를 추가합니다.
+    private func addContentToScrollView() {
+        scrollImageTitleLabel.text = mainEventModels?[pageControl.currentPage].title
+        
+        for idx in 0..<(mainEventModels?.count ?? 0) {
+            guard let event = mainEventModels?[idx] else { continue }
+            let imageView = UIImageView()
+            imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pageDidTap)))
+            imageView.isUserInteractionEnabled = true
+            let url = URL(string: event.coverImageURL ?? "")
+            imageView.kf.setImage(with: url)
+            let xPos = (Device.width - 44) * CGFloat(idx)
+            imageView.frame = CGRect(x: xPos, y: imageScrollView.bounds.minY, width: imageScrollView.bounds.width, height: imageScrollView.bounds.height)
+            imageScrollView.addSubview(imageView)
+            imageScrollView.contentSize.width = imageView.frame.width * CGFloat(idx + 1)
+        }
+    }
     
     private func configureUI() {
         // logoImageView
@@ -151,14 +200,14 @@ class MainViewController: BaseViewController {
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
         logoImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        logoImageView.widthAnchor.constraint(equalToConstant: 65).isActive = true
-        logoImageView.heightAnchor.constraint(equalToConstant: 65).isActive = true
+        logoImageView.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        logoImageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
         
         // headerTitle
         view.addSubview(headerTitle)
         headerTitle.translatesAutoresizingMaskIntoConstraints = false
         headerTitle.centerYAnchor.constraint(equalTo: logoImageView.centerYAnchor).isActive = true
-        headerTitle.leadingAnchor.constraint(equalTo: logoImageView.trailingAnchor, constant: 15).isActive = true
+        headerTitle.leadingAnchor.constraint(equalTo: logoImageView.trailingAnchor, constant: 0).isActive = true
         
         // searchButton
         view.addSubview(searchButton)
@@ -219,62 +268,31 @@ class MainViewController: BaseViewController {
         studioCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         studioCollectionView.heightAnchor.constraint(equalToConstant: 75).isActive = true
     }
-    
-    // 스크롤뷰에 컨텐츠를 추가합니다.
-    private func addContentToScrollView() {
-        scrollImageTitleLabel.text = "\(StudioManager.allStudios?[pageControl.currentPage].name ?? "") Studio 합류"
-        
-        for idx in 0..<(StudioManager.allStudios?.count ?? 0) {
-            let imageView = UIImageView()
-            imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pageDidTap)))
-            imageView.isUserInteractionEnabled = true
-            imageView.image = UIImage(named: "DancerCoverImage")
-            let xPos = (Device.width - 44) * CGFloat(idx)
-            imageView.frame = CGRect(x: xPos, y: imageScrollView.bounds.minY, width: imageScrollView.bounds.width, height: imageScrollView.bounds.height)
-            imageScrollView.addSubview(imageView)
-            imageScrollView.contentSize.width = imageView.frame.width * CGFloat(idx + 1)
-        }
-    }
-    
-    // StudioManager.allStudios가 nil이면 firebase에서 스튜디오 정보를 가져옵니다.
-    private func requestStudios() async {
-        do {
-            if StudioManager.allStudios == nil {
-                IndicatorView.shared.show()
-                IndicatorView.shared.showIndicator()
-                StudioManager.allStudios = try await StudioManager.shared.requestAllStudios()
-                IndicatorView.shared.dismiss()
-                pageControl.numberOfPages = StudioManager.allStudios?.count ?? 0
-            }
-            studioCollectionView.reloadData()
-        }
-        catch {
-            print(error)
-        }
-    }
 }
 
 // MARK: - UICollectionViewDataSource, Delegate
 
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return StudioManager.allStudios?.count ?? 0
+        return studioModels?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: studioCellID, for: indexPath) as! MainStudioCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: studioCellID, for: indexPath) as? MainStudioCell else { return UICollectionViewCell() }
         // TODO: url Image
-        cell.studioImage = UIImageView()
-        cell.studioNameLabel.text = StudioManager.allStudios?[indexPath.item].name
+        guard let studio = studioModels?[indexPath.row] else { return cell }
+        let url = URL(string: studio.profileImageURL ?? "")
+        cell.studioImage.kf.setImage(with: url)
+        cell.studioNameLabel.text = studio.name
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // TODO: StudioViewController 이동
-        print("StudioViewController 이동")
-        let vc = StudioViewController()
-        vc.studio = StudioManager.allStudios?[indexPath.row]
-        self.navigationController?.pushViewController(vc, animated: true)
+        guard let studio = studioModels?[indexPath.row] else { return }
+        let studioVC = StudioViewController()
+        studioVC.studio = studio
+        self.navigationController?.pushViewController(studioVC, animated: true)
     }
 }
 
