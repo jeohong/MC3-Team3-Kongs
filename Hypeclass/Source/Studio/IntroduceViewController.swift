@@ -103,7 +103,14 @@ class IntroduceViewController: BaseViewController {
         Task {
             let dancers = try await DancerManager.shared.requestDancersBy(studioName: studioName)
             self.instrutors = dancers
-            instructorsCollection.reloadData()
+            if instrutors?.isEmpty ?? true {
+                InstructorsLabel.isHidden = true
+                instructorsCollection.isHidden = true
+                InstructorsLabel.heightAnchor.constraint(equalToConstant: 0).isActive = true
+                instructorsCollection.heightAnchor.constraint(equalToConstant: 0).isActive = true
+            } else {
+                instructorsCollection.reloadData()
+            }
             recentVideoTable.reloadData()
         }
     }
