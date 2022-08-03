@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class HeaderView: UIView {
     
@@ -14,6 +15,7 @@ class HeaderView: UIView {
     private let coverImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .gray
+        imageView.contentMode = .scaleAspectFill
         
         return imageView
     }()
@@ -65,6 +67,8 @@ class HeaderView: UIView {
         
         titleLabel.text = title
         subtitleLabel.text = subtitle
+        if profileImageURL != nil { profileImageView.kf.setImage(with: URL(string: profileImageURL!)!) }
+        if coverImageURL != nil { coverImageView.kf.setImage(with: URL(string: coverImageURL!)!) }
         self.instagramURL = instagramURL
         configureUI()
     }

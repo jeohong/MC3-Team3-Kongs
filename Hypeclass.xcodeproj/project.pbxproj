@@ -10,10 +10,11 @@
 		0AA1E7DE288EE32A00AC0CE9 /* DancerDetailScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA1E7DD288EE32A00AC0CE9 /* DancerDetailScheduleModel.swift */; };
 		0AA1E7E0288EE3F600AC0CE9 /* DancerDetailSchduleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA1E7DF288EE3F600AC0CE9 /* DancerDetailSchduleManager.swift */; };
 		0ADD3B7F288447B30074C496 /* DancerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD3B7E288447B30074C496 /* DancerDetailViewController.swift */; };
-		97C17C86288738A300A510CA /* MainViewController+GenreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C17C85288738A300A510CA /* MainViewController+GenreCell.swift */; };
-		97C17C882888351A00A510CA /* MainViewController+DancerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C17C872888351A00A510CA /* MainViewController+DancerCell.swift */; };
 		A31C3F4428828B96005A6F6E /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31C3F4328828B96005A6F6E /* SearchBar.swift */; };
 		A31C3F472882AC38005A6F6E /* Separator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31C3F462882AC38005A6F6E /* Separator.swift */; };
+		A32BC13A2897CEFC00AB0E43 /* IntroduceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32BC1392897CEFC00AB0E43 /* IntroduceViewController.swift */; };
+		A32BC13C2897D6AF00AB0E43 /* IntroduceDancerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32BC13B2897D6AF00AB0E43 /* IntroduceDancerCell.swift */; };
+		A34A6A3D2898E22C00B7421B /* RecentVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34A6A3C2898E22C00B7421B /* RecentVideoCell.swift */; };
 		A35DE3A128840A2E00A29BA7 /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35DE3A028840A2E00A29BA7 /* HistoryCell.swift */; };
 		A37F02C7288842640027D3FC /* SearchDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37F02C6288842640027D3FC /* SearchDetailCell.swift */; };
 		A38A4C57287E97B900614E94 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38A4C56287E97B900614E94 /* SearchViewController.swift */; };
@@ -94,10 +95,11 @@
 		0AA1E7DD288EE32A00AC0CE9 /* DancerDetailScheduleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DancerDetailScheduleModel.swift; sourceTree = "<group>"; };
 		0AA1E7DF288EE3F600AC0CE9 /* DancerDetailSchduleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DancerDetailSchduleManager.swift; sourceTree = "<group>"; };
 		0ADD3B7E288447B30074C496 /* DancerDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DancerDetailViewController.swift; sourceTree = "<group>"; };
-		97C17C85288738A300A510CA /* MainViewController+GenreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+GenreCell.swift"; sourceTree = "<group>"; };
-		97C17C872888351A00A510CA /* MainViewController+DancerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+DancerCell.swift"; sourceTree = "<group>"; };
 		A31C3F4328828B96005A6F6E /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		A31C3F462882AC38005A6F6E /* Separator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Separator.swift; sourceTree = "<group>"; };
+		A32BC1392897CEFC00AB0E43 /* IntroduceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroduceViewController.swift; sourceTree = "<group>"; };
+		A32BC13B2897D6AF00AB0E43 /* IntroduceDancerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroduceDancerCell.swift; sourceTree = "<group>"; };
+		A34A6A3C2898E22C00B7421B /* RecentVideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentVideoCell.swift; sourceTree = "<group>"; };
 		A35DE3A028840A2E00A29BA7 /* HistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
 		A37F02C6288842640027D3FC /* SearchDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailCell.swift; sourceTree = "<group>"; };
 		A38A4C56287E97B900614E94 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -380,8 +382,6 @@
 			isa = PBXGroup;
 			children = (
 				C05BF1DC287BC60600C95E1B /* MainViewController.swift */,
-				97C17C85288738A300A510CA /* MainViewController+GenreCell.swift */,
-				97C17C872888351A00A510CA /* MainViewController+DancerCell.swift */,
 				C76C91C92893C0BE00703CCD /* MainStudioCell.swift */,
 			);
 			path = Main;
@@ -413,6 +413,9 @@
 				C0FD9C2F2898BB9B00D33C72 /* StudioEventCell.swift */,
 				C76C91D128951E3800703CCD /* TabCell.swift */,
 				C76C91DD289910D000703CCD /* StudioScheduleViewController.swift */,
+				A32BC1392897CEFC00AB0E43 /* IntroduceViewController.swift */,
+				A34A6A3C2898E22C00B7421B /* RecentVideoCell.swift */,
+				A32BC13B2897D6AF00AB0E43 /* IntroduceDancerCell.swift */,
 			);
 			path = Studio;
 			sourceTree = "<group>";
@@ -523,6 +526,7 @@
 				C05BF1F7287BC7EF00C95E1B /* String.swift in Sources */,
 				C05BF1FF287BC90900C95E1B /* Device.swift in Sources */,
 				C05BF1C9287BC33100C95E1B /* AppDelegate.swift in Sources */,
+				A32BC13A2897CEFC00AB0E43 /* IntroduceViewController.swift in Sources */,
 				97C17C882888351A00A510CA /* MainViewController+DancerCell.swift in Sources */,
 				97C17C86288738A300A510CA /* MainViewController+GenreCell.swift in Sources */,
 				C0FD9C3928994E0900D33C72 /* Event.swift in Sources */,
@@ -556,7 +560,9 @@
 				C7CE676228814D3C00C8F137 /* Weekday.swift in Sources */,
 				C76C91D02894559600703CCD /* HeaderView.swift in Sources */,
 				C76C91DE289910D000703CCD /* StudioScheduleViewController.swift in Sources */,
+				A32BC13C2897D6AF00AB0E43 /* IntroduceDancerCell.swift in Sources */,
 				C0C444FE28944DE200036ADE /* ContainerTextField.swift in Sources */,
+				A34A6A3D2898E22C00B7421B /* RecentVideoCell.swift in Sources */,
 				C7CE67D5288FD2F900C8F137 /* DanceClassManager.swift in Sources */,
 				C0C44504289529F700036ADE /* DanceClassDetailViewController.swift in Sources */,
 				A37F02C7288842640027D3FC /* SearchDetailCell.swift in Sources */,
@@ -711,7 +717,7 @@
 				CODE_SIGN_ENTITLEMENTS = Hypeclass/Hypeclass.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4DC5UF7YA9;
+				DEVELOPMENT_TEAM = HY8Y957QK3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Hypeclass/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -727,7 +733,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gongtae.Hypeclass;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jio.Hypeclass;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -743,7 +749,7 @@
 				CODE_SIGN_ENTITLEMENTS = Hypeclass/Hypeclass.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4DC5UF7YA9;
+				DEVELOPMENT_TEAM = HY8Y957QK3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Hypeclass/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -759,7 +765,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gongtae.Hypeclass;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jio.Hypeclass;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

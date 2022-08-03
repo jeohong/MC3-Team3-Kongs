@@ -84,8 +84,7 @@ class ScheduleViewController: BaseViewController {
         return cv
     }()
     
-    private let subscriptionIDs = UserDefaults.standard.stringArray(forKey: "SubscribedDancers") ?? ["CDF787F4-5AD7-4138-AE13-F96DEF538E0D", "2EB613FC-956E-482F-80C1-DAC47C543729", "F77D3855-2CE5-468D-B702-8C9AA521461B"]
-//    private let subscriptionIDs: [String] = []
+    private let subscriptionIDs = UserDefaults.standard.stringArray(forKey: "SubscribedDancers") ?? []
     
     private var weekSchedules: [[DanceClass]] = [
         [], [], [], [], [], [], []

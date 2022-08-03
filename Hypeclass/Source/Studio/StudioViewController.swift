@@ -9,7 +9,7 @@ import UIKit
 
 class StudioViewController: BaseViewController {
     
-    //MARK: - Properties
+    // MARK: - Properties
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -94,19 +94,12 @@ class StudioViewController: BaseViewController {
     
     private let pageViewController: UIPageViewController = {
         let pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-        // MARK: - Disable swipe gesture
+        // TODO: Disable swipe gesture
 
         return pageController
     }()
     
-    private let sampleContentView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .systemBlue
-        
-        return view
-    }()
-    
-    //MARK: - LifeCycle
+    // MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,8 +123,8 @@ class StudioViewController: BaseViewController {
         remoteHeartState = isAlreadySubscribed()
         isHeart = remoteHeartState
     }
-    
-    //MARK: - Selectors
+
+    // MARK: - Selectors
     
     @objc func backButtonDidTap() {
         self.navigationController?.popViewController(animated: true)
@@ -208,7 +201,7 @@ class StudioViewController: BaseViewController {
         heartView.isUserInteractionEnabled = true
         
         // studioHeaderView
-        studioHeaderView = HeaderView(frame: .zero, coverImageURL: nil, profileImageURL: nil, title: "\(studio?.name ?? "") STUDIO", subtitle: studio?.description, instagramURL: "https://instagram.com/dann.oao")
+        studioHeaderView = HeaderView(frame: .zero, coverImageURL: studio?.coverImageURL, profileImageURL: studio?.profileImageURL, title: "\(studio?.name ?? "") STUDIO", subtitle: studio?.location, instagramURL: studio?.instagramURL)
         contentView.addSubview(studioHeaderView!)
         studioHeaderView!.translatesAutoresizingMaskIntoConstraints = false
         studioHeaderView!.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
@@ -265,19 +258,15 @@ class StudioViewController: BaseViewController {
         pageViewController.didMove(toParent: self)
     }
     
-    func configurePageViewController() {
-        // TO DO: 실제 뷰 컨트롤러로 대체
-        let infoVC = DancerDetailViewController()
-        infoVC.dancerDetailScrollView.isScrollEnabled = false
+    private func configurePageViewController() {
+        let infoVC = IntroduceViewController()
         infoVC.view.tag = 0
-        pageViewController.view.heightAnchor.constraint(equalToConstant: infoVC.view.frame.height).isActive = true
         viewControllers.append(infoVC)
         
         let scheduleVC = StudioScheduleViewController()
         scheduleVC.studioID = studio?.id
         scheduleVC.view.tag = 1
         scheduleVC.scheduleView?.delegate = self
-        pageViewController.view.heightAnchor.constraint(equalToConstant: scheduleVC.view.frame.height).isActive = true
         viewControllers.append(scheduleVC)
         
         let vc = StudioEventViewController()
@@ -290,7 +279,7 @@ class StudioViewController: BaseViewController {
         }
     }
     
-    func isAlreadySubscribed() -> Bool {
+    private func isAlreadySubscribed() -> Bool {
         if let subscriptions = UserDefaults.standard.stringArray(forKey: "SubscribedStudios") {
             if subscriptions.contains(studio!.id) {
                 return true
@@ -301,7 +290,7 @@ class StudioViewController: BaseViewController {
         }
     }
     
-    func addToSubscription() {
+    private func addToSubscription() {
         if isAlreadySubscribed() { return }
         
         if var subscriptions = UserDefaults.standard.stringArray(forKey: "SubscribedStudios") {
@@ -310,6 +299,7 @@ class StudioViewController: BaseViewController {
                 return
             }
             subscriptions.append(studio!.id)
+            StudioManager.myStudios?.append(studio!)
             UserDefaults.standard.set(subscriptions, forKey: "SubscribedStudios")
         } else {
             var newList = [String]()
@@ -318,7 +308,7 @@ class StudioViewController: BaseViewController {
         }
     }
     
-    func removeFromSubscription() {
+    private func removeFromSubscription() {
         if !isAlreadySubscribed() { return }
         
         let subscriptions = UserDefaults.standard.stringArray(forKey: "SubscribedStudios")!.filter { $0 != studio!.id }
@@ -326,7 +316,7 @@ class StudioViewController: BaseViewController {
         StudioManager.myStudios = StudioManager.myStudios?.filter { $0.id != studio!.id }
     }
     
-    func moveIndicator(index: Int) {
+    private func moveIndicator(index: Int) {
         UIView.animate(withDuration: 0.3) {
             self.tabIndicator.frame.origin.x = CGFloat(index) * (Device.width / CGFloat(self.tabString.count))
         }

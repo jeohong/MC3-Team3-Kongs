@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class SubscriptionViewController: BaseViewController{
    
@@ -45,25 +46,25 @@ class SubscriptionViewController: BaseViewController{
     
     private var selectedTab = 0
     
-    private let cellID = "subscription"
+    private let studioCellID = "studio"
     
-//    private var dancerIDs = UserDefaults.standard.stringArray(forKey: "SubscribedDancers") ?? []
-    private var dancerIDs = [String]()
+    private let dancerCellID = "dancer"
     
-//    private var studioIDs = UserDefaults.standard.stringArray(forKey: "SubscribedStudios") ?? ["81DB67B8-9CAC-4AFE-B261-75BF7EE54534", "E23BD12A-ACDB-4BF6-B7C8-CFFC6BA4D1D4"]
-    private var studioIDs = [String]()
+    private var dancerIDs = UserDefaults.standard.stringArray(forKey: "SubscribedDancers") ?? []
+    
+    private var studioIDs = UserDefaults.standard.stringArray(forKey: "SubscribedStudios") ?? []
     
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UserDefaults.standard.set(["8bc63898-aec4-44d4-8329-4bc9b52b98cd"], forKey: "SubscribedStudios")
         configureUI()
         configureTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        dancerIDs = UserDefaults.standard.stringArray(forKey: "SubscribedDancers") ?? []
         studioIDs = UserDefaults.standard.stringArray(forKey: "SubscribedStudios") ?? []
         tableView.reloadData()
         Task {
@@ -145,7 +146,8 @@ class SubscriptionViewController: BaseViewController{
     }
     
     private func configureTableView() {
-        tableView.register(ItemCell.self, forCellReuseIdentifier: cellID)
+        tableView.register(ItemCell.self, forCellReuseIdentifier: dancerCellID)
+        tableView.register(ItemCell.self, forCellReuseIdentifier: studioCellID)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 120
@@ -192,9 +194,9 @@ extension SubscriptionViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch selectedTab {
         case 0:
-            return dancerIDs.count
+            return DancerManager.myDancers?.count ?? 0
         case 1:
-            return studioIDs.count
+            return StudioManager.myStudios?.count ?? 0
         default:
             return 0
         }
@@ -203,26 +205,24 @@ extension SubscriptionViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch selectedTab {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! ItemCell
-            cell.titleLabel.text = DancerManager.myDancers?[indexPath.row].name
-            cell.subtitleLabel.text =  "장르"
-            cell.detailLabel.text = DancerManager.myDancers?[indexPath.row].id
+            let cell = tableView.dequeueReusableCell(withIdentifier: dancerCellID, for: indexPath) as! ItemCell
+            let dancer = DancerManager.myDancers?[indexPath.row]
+            cell.titleLabel.text = dancer?.name
+            cell.subtitleLabel.text = dancer?.genres?[0]
+            cell.detailLabel.text = dancer?.description
             // TODO: 댄서 이미지 url로 교체
-            cell.profileImage.load(url: URL(string: "https://src.hidoc.co.kr/image/lib/2021/4/28/1619598179113_0.jpg")!)
+            if dancer?.profileImageURL != nil { cell.profileImage.kf.setImage(with: URL(string: (dancer?.profileImageURL)!)) }
             cell.backgroundColor = .clear
             
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! ItemCell
-            cell.titleLabel.text = StudioManager.myStudios?[indexPath.row].name
-            cell.subtitleLabel.text = StudioManager.myStudios?[indexPath.row].description
-            cell.detailLabel.text = StudioManager.myStudios?[indexPath.row].id
-            // TODO: 스튜디오 이미지 url로 교체
-            //cell.profileImage.load(url: URL(string: "https://src.hidoc.co.kr/image/lib/2021/4/28/1619598179113_0.jpg")!)
-            cell.profileImage.image = UIImage()
-            cell.backgroundColor = .clear
-            cell.accessibilityLabel = StudioManager.myStudios?[indexPath.row].id
-            
+            let cell = tableView.dequeueReusableCell(withIdentifier: studioCellID, for: indexPath) as! ItemCell
+            let studio = StudioManager.myStudios?[indexPath.row]
+            cell.titleLabel.text = studio?.name
+            cell.subtitleLabel.text = studio?.location
+            cell.detailLabel.text = studio?.description
+            if studio?.profileImageURL != nil { cell.profileImage.kf.setImage(with: URL(string: (studio?.profileImageURL)!)) }
+            cell.backgroundColor = .clear            
             return cell
         default:
             return ItemCell()
@@ -233,7 +233,7 @@ extension SubscriptionViewController: UITableViewDelegate, UITableViewDataSource
         switch selectedTab {
         case 0:
             let dancerDetailVC = DancerDetailViewController()
-            dancerDetailVC.dancerID = DancerManager.myDancers?[indexPath.row].id
+            dancerDetailVC.model = DancerManager.myDancers?[indexPath.row]
             self.navigationController?.pushViewController(dancerDetailVC, animated: true)
         case 1:
             let studioDetailVC = StudioViewController()
@@ -248,9 +248,10 @@ extension SubscriptionViewController: UITableViewDelegate, UITableViewDataSource
         if editingStyle == .delete {
             switch selectedTab {
             case 0:
+                let subscriptions = UserDefaults.standard.stringArray(forKey: "SubscribedDancers")!.filter { $0 != DancerManager.myDancers?[indexPath.row].id }
+                UserDefaults.standard.set(subscriptions, forKey: "SubscribedDancers")
                 DancerManager.myDancers?.remove(at: indexPath.row)
                 dancerIDs.remove(at: indexPath.row)
-                // TODO: UserDefault에 변경사항 반영
                 tableView.deleteRows(at: [indexPath], with: .fade)
             case 1:
                 let subscriptions = UserDefaults.standard.stringArray(forKey: "SubscribedStudios")!.filter { $0 != StudioManager.myStudios?[indexPath.row].id }
