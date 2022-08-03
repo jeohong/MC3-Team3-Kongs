@@ -214,6 +214,7 @@ class DancerDetailViewController: BaseViewController {
         if model?.id != nil {
             // scheduleView
             scheduleView = ScheduleItemView(frame: .zero, dancerID: model!.id, date: selectedDate)
+            scheduleView?.delegate = self
             contentView.addSubview(scheduleView!)
             scheduleView?.translatesAutoresizingMaskIntoConstraints = false
             scheduleView?.topAnchor.constraint(equalTo: scheduleContentLabel.bottomAnchor).isActive = true
