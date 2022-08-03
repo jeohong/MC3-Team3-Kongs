@@ -155,8 +155,7 @@ extension SearchDetailViewController: UITableViewDelegate {
                     
                 } else {
                     let dancerVC = DancerDetailViewController()
-                    
-                    dancerVC.dancerName = dancerInfo
+                    dancerVC.model = dancerInfo
                     self.navigationController?.pushViewController(dancerVC, animated: true)
                 }
             }

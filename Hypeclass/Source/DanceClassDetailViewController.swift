@@ -142,7 +142,7 @@ class DanceClassDetailViewController: BaseViewController {
                 let results: [Any] = try await [dancers, studios]
                 self.instructor = results[0] as? [Dancer]
                 self.studio = results[1] as? [Studio]
-                let url = URL(string: self.studio?.first?.profileImageURL ?? "")
+                let url = URL(string: self.instructor?.first?.coverImageURL ?? "")
                 coverImageView.kf.setImage(with: url)
                 tableView.reloadData()
                 IndicatorView.shared.dismiss()
