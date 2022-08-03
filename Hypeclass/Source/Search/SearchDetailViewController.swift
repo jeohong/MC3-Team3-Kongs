@@ -116,13 +116,13 @@ class SearchDetailViewController: BaseViewController {
     func fetchCell(cell: SearchDetailCell, index: Int, queryArray: [Any]?) {
         if let dancer = queryArray as? [Dancer] {
             cell.nameLabel.text = dancer[index].name
-            cell.genreLabel.text = dancer[index].description
-            cell.classdayLabel.text = dancer[index].id
+            cell.genreLabel.text = dancer[index].genres?.joined(separator: ", ")
+            cell.classdayLabel.text = dancer[index].description
             cell.profileImage.kf.setImage(with: URL(string: "\(dancer[index].profileImageURL ?? "")"))
         } else if let studio = queryArray as? [Studio] {
             cell.nameLabel.text = studio[index].name
-            cell.genreLabel.text = studio[index].description
-            cell.classdayLabel.text = studio[index].id
+            cell.genreLabel.text = "좋아요 : \(studio[index].likes ?? 0)"
+            cell.classdayLabel.text = studio[index].description
             cell.profileImage.kf.setImage(with: URL(string: "\(studio[index].profileImageURL ?? "")"))
         }
     }
@@ -168,8 +168,6 @@ extension SearchDetailViewController: UITableViewDataSource {
             fetchCell(cell: cell, index: indexPath.row, queryArray: searchGenre)
         }
         
-        // Mock데이터에 있는 이미지 링크의 이미지를 불러오지 못함 임시 이미지 링크를 첨부합니다.
-//        cell.profileImage.kf.setImage(with: URL(string: "https://src.hidoc.co.kr/image/lib/2021/4/28/1619598179113_0.jpg"))
         cell.backgroundColor = .clear
         
         return cell
