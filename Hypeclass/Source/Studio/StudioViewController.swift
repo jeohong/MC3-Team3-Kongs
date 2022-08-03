@@ -99,13 +99,6 @@ class StudioViewController: BaseViewController {
         return pageController
     }()
     
-    private let sampleContentView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .systemBlue
-        
-        return view
-    }()
-    
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
@@ -265,7 +258,7 @@ class StudioViewController: BaseViewController {
         pageViewController.didMove(toParent: self)
     }
     
-    func configurePageViewController() {
+    private func configurePageViewController() {
         let infoVC = IntroduceViewController()
         infoVC.view.tag = 0
         viewControllers.append(infoVC)
@@ -286,7 +279,7 @@ class StudioViewController: BaseViewController {
         }
     }
     
-    func isAlreadySubscribed() -> Bool {
+    private func isAlreadySubscribed() -> Bool {
         if let subscriptions = UserDefaults.standard.stringArray(forKey: "SubscribedStudios") {
             if subscriptions.contains(studio!.id) {
                 return true
@@ -297,7 +290,7 @@ class StudioViewController: BaseViewController {
         }
     }
     
-    func addToSubscription() {
+    private func addToSubscription() {
         if isAlreadySubscribed() { return }
         
         if var subscriptions = UserDefaults.standard.stringArray(forKey: "SubscribedStudios") {
@@ -315,7 +308,7 @@ class StudioViewController: BaseViewController {
         }
     }
     
-    func removeFromSubscription() {
+    private func removeFromSubscription() {
         if !isAlreadySubscribed() { return }
         
         let subscriptions = UserDefaults.standard.stringArray(forKey: "SubscribedStudios")!.filter { $0 != studio!.id }
@@ -323,7 +316,7 @@ class StudioViewController: BaseViewController {
         StudioManager.myStudios = StudioManager.myStudios?.filter { $0.id != studio!.id }
     }
     
-    func moveIndicator(index: Int) {
+    private func moveIndicator(index: Int) {
         UIView.animate(withDuration: 0.3) {
             self.tabIndicator.frame.origin.x = CGFloat(index) * (Device.width / CGFloat(self.tabString.count))
         }

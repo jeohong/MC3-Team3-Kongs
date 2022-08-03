@@ -89,10 +89,9 @@ class ScheduleItemView: UIView {
         self.backgroundColor = .background
         self.dancerID = dancerID
         self.selectedDate = date
-        configureUI()
         Task {
             await requestDanceClasses()
-            scheduleCollectionView.reloadData()
+            configureUI()
         }
     }
     
@@ -131,7 +130,8 @@ class ScheduleItemView: UIView {
         scheduleCollectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         scheduleCollectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         let maxNum = weekSchedules.max { $0.count < $1.count }
-        scheduleCollectionView.heightAnchor.constraint(equalToConstant: 60 + 75 * CGFloat(maxNum!.count) + 10).isActive = true
+        if maxNum?.count ?? 0 < 1 { scheduleCollectionView.heightAnchor.constraint(equalToConstant: 145).isActive = true }
+        else { scheduleCollectionView.heightAnchor.constraint(equalToConstant: 60 + 75 * CGFloat(maxNum!.count) + 10).isActive = true }
                 
         // Separator
         self.addSubview(separator)

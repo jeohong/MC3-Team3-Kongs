@@ -15,6 +15,7 @@ class HeaderView: UIView {
     private let coverImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .gray
+        imageView.contentMode = .scaleAspectFill
         
         return imageView
     }()

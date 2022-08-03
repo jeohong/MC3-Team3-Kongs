@@ -194,9 +194,9 @@ extension SubscriptionViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch selectedTab {
         case 0:
-            return dancerIDs.count
+            return DancerManager.myDancers?.count ?? 0
         case 1:
-            return studioIDs.count
+            return StudioManager.myStudios?.count ?? 0
         default:
             return 0
         }
@@ -233,7 +233,7 @@ extension SubscriptionViewController: UITableViewDelegate, UITableViewDataSource
         switch selectedTab {
         case 0:
             let dancerDetailVC = DancerDetailViewController()
-            dancerDetailVC.dancerID = DancerManager.myDancers?[indexPath.row].id
+            dancerDetailVC.model = DancerManager.myDancers?[indexPath.row]
             self.navigationController?.pushViewController(dancerDetailVC, animated: true)
         case 1:
             let studioDetailVC = StudioViewController()
