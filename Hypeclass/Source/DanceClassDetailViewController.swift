@@ -22,7 +22,7 @@ class DanceClassDetailViewController: BaseViewController {
         let scrollView = UIScrollView()
         scrollView.contentInsetAdjustmentBehavior = .never
         scrollView.isScrollEnabled = true
-        scrollView.contentSize = CGSize(width: 400, height: 1000)
+        scrollView.contentSize = CGSize(width: 400, height: 800)
         return scrollView
     }()
     
@@ -80,11 +80,14 @@ class DanceClassDetailViewController: BaseViewController {
     
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.rowHeight = 112
+        tableView.rowHeight = 100
         tableView.isScrollEnabled = false
         tableView.backgroundColor = .clear
         tableView.separatorColor = .clear
-        
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
+
         return tableView
     }()
     
@@ -260,7 +263,15 @@ extension DanceClassDetailViewController: UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+        return 30
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return CGFloat.leastNormalMagnitude
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -289,6 +300,7 @@ extension DanceClassDetailViewController: UITableViewDataSource, UITableViewDele
         cell.backgroundColor = .clear
         cell.profileImage.backgroundColor = .gray
         cell.selectionStyle = .none
+        cell.titleLabel.font = UIFont.boldSystemFont(ofSize: 16)
         if indexPath.section == 0 {
             guard let dancer = instructor?[indexPath.row] else { return cell }
             let url = URL(string: dancer.profileImageURL ?? "")

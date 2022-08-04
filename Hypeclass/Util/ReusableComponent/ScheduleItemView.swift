@@ -185,8 +185,8 @@ extension ScheduleItemView: UICollectionViewDataSource {
             let schedule = weekSchedules[indexPath.section][indexPath.item - 1]
             cell.dancerNameLabel.text = schedule.dancerName
             cell.popUpTag.isHidden = !(schedule.isPopUp ?? false)
-            cell.startTimeLabel.text = "\(schedule.startTime!.get(.hour)):\(schedule.startTime!.get(.minute))"
-            cell.endTimeLabel.text = "\(schedule.endTime!.get(.hour)):\(schedule.endTime!.get(.minute))"
+            cell.startTimeLabel.text = schedule.startTime?.hourMinText ?? ""
+            cell.endTimeLabel.text = schedule.endTime?.hourMinText ?? ""
             return cell
         }
     }

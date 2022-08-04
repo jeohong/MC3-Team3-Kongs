@@ -35,6 +35,13 @@ class MainViewController: BaseViewController {
         return label
     }()
     
+    private let highLightView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .accent.withAlphaComponent(0.8)
+        
+        return view
+    }()
+    
     private let searchButton: UIButton = {
         var config = UIButton.Configuration.gray()
         config.baseForegroundColor = UIColor(hex: 0x7A7A7A)
@@ -218,6 +225,15 @@ class MainViewController: BaseViewController {
         headerTitle.translatesAutoresizingMaskIntoConstraints = false
         headerTitle.centerYAnchor.constraint(equalTo: logoImageView.centerYAnchor).isActive = true
         headerTitle.leadingAnchor.constraint(equalTo: logoImageView.trailingAnchor, constant: 0).isActive = true
+        
+        headerTitle.addSubview(highLightView)
+        highLightView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            highLightView.leadingAnchor.constraint(equalTo: headerTitle.leadingAnchor),
+            highLightView.trailingAnchor.constraint(equalTo: headerTitle.trailingAnchor),
+            highLightView.bottomAnchor.constraint(equalTo: headerTitle.bottomAnchor),
+            highLightView.heightAnchor.constraint(equalToConstant: 5)
+        ])
         
         // searchButton
         view.addSubview(searchButton)
