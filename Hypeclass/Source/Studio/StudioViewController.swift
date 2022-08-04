@@ -26,8 +26,8 @@ class StudioViewController: BaseViewController {
     
     private let navigationBar: UIView = {
         let view = UIView()
-        view.backgroundColor = .clear
-        view.alpha = 0.7
+//        view.backgroundColor = .clear
+//        view.alpha = 0.7
         
         return view
     }()
@@ -398,10 +398,32 @@ extension StudioViewController: UIPageViewControllerDataSource, UIPageViewContro
 
 extension StudioViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y != 0 {
-            navigationBar.backgroundColor = .background
+//        if scrollView.contentOffset.y != 0 {
+//            navigationBar.backgroundColor = .background
+//        } else {
+//            navigationBar.backgroundColor = .clear
+//        }
+        
+        let offset = scrollView.contentOffset.y - (UIApplication.shared.currentUIWindow()?.safeAreaInsets.top ?? 0)
+
+        //MARK: 네비게이션 바 Fade 애니메이션
+        var proportionalOffset =  offset / 70
+        
+        if proportionalOffset > 1 {
+            proportionalOffset = 1
+            let color = UIColor.background.withAlphaComponent(1)
+            DispatchQueue.main.async {
+                UIApplication.statusBarView?.backgroundColor = color
+                self.navigationBar.backgroundColor = color
+            }
         } else {
-            navigationBar.backgroundColor = .clear
+            let color = UIColor.background.withAlphaComponent(proportionalOffset)
+            let temp = proportionalOffset + 0.55
+            let tempColor = UIColor.background.withAlphaComponent(temp)
+            DispatchQueue.main.async {
+                UIApplication.statusBarView?.backgroundColor = color
+                self.navigationBar.backgroundColor = tempColor
+            }
         }
     }
 }

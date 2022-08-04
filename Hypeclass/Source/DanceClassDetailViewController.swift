@@ -330,6 +330,20 @@ extension DanceClassDetailViewController: UIScrollViewDelegate {
         } else {
             coverImageView.heightConstraint?.constant = 260
         }
+        
+        //MARK: 네비게이션 바 Fade 애니메이션
+        var proportionalOffset =  offset / 70
+        
+        if proportionalOffset > 1 {
+            proportionalOffset = 1
+            let color = UIColor.background.withAlphaComponent(1)
+            self.navigationController?.navigationBar.backgroundColor = color
+            UIApplication.statusBarBackgroundColor = color
+        } else {
+            let color = UIColor.background.withAlphaComponent(proportionalOffset)
+            self.navigationController?.navigationBar.backgroundColor = color
+            UIApplication.statusBarBackgroundColor = color
+        }
     }
 }
 

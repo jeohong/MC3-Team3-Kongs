@@ -13,7 +13,7 @@ class StudioEventCell: UITableViewCell {
     
     let coverImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleToFill
+        imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = .gray
         imageView.layer.cornerRadius = 8
         imageView.clipsToBounds = true
@@ -65,7 +65,7 @@ class StudioEventCell: UITableViewCell {
             coverImageView.topAnchor.constraint(equalTo: self.topAnchor),
             coverImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 25),
             coverImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -25),
-            coverImageView.heightAnchor.constraint(equalToConstant: 200)
+            coverImageView.heightAnchor.constraint(equalToConstant: 260)
         ])
         
         self.addSubview(titleLabel)

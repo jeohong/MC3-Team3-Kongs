@@ -17,7 +17,7 @@ class StudioEventViewController: BaseViewController {
     
     let tableView: UITableView = {
        let tableView = UITableView()
-        tableView.rowHeight = 260
+        tableView.rowHeight = 320
         tableView.backgroundColor = .clear
         tableView.isScrollEnabled = false
         return tableView
@@ -45,6 +45,7 @@ class StudioEventViewController: BaseViewController {
             self.danceClasses = result
             tableView.reloadData()
             IndicatorView.shared.dismiss()
+            
         }
     }
     
@@ -59,12 +60,12 @@ class StudioEventViewController: BaseViewController {
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 30),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        tableView.setContentOffset(CGPoint(x: 0, y: 30), animated: false)
+        tableView.setContentOffset(CGPoint(x: 0, y: -50), animated: false)
     }
 }
 
