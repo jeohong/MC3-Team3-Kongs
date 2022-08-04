@@ -28,9 +28,9 @@ class SearchManager {
         switch mode {
         case .name:
             if category == FirebaseCategory.dancer {
-                snapshot = try await Constant.dancerRef.whereField(mode.rawValue, isEqualTo: query).getDocuments()
+                snapshot = try await Constant.dancerRef.whereField("lowerCase" + mode.rawValue, isEqualTo: query.lowercased()).getDocuments()
             } else {
-                snapshot = try await Constant.studioRef.whereField(mode.rawValue, isEqualTo: query).getDocuments()
+                snapshot = try await Constant.studioRef.whereField("lowerCase" + mode.rawValue, isEqualTo: query).getDocuments()
             }
         case .genres:
             snapshot = try await Constant.dancerRef.whereField(mode.rawValue, arrayContains: query).getDocuments()
