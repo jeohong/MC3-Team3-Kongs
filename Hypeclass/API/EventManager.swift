@@ -16,7 +16,7 @@ class EventManager {
     private init() {} // 객체 생성을 막기 위한 접근 제한
     
     func requestAllEvents() async throws -> [Event]? {
-        let snapshot = try await Constant.eventRef.getDocuments()
+        let snapshot = try await Constant.eventRef.order(by: "id").getDocuments()
         
         return snapshot.documents.compactMap { document in
             try? document.data(as: Event.self)

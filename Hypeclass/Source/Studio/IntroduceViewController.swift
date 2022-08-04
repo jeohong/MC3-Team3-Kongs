@@ -6,13 +6,15 @@
 //
 
 import UIKit
+import Kingfisher
 
 class IntroduceViewController: BaseViewController {
     
     //MARK: - Properties
     
     // 데이터 연결 되면 PR 올라오면 데이터 받아서 처리 ( 샘플 코드 )
-    var studioInfo: Studio? = Studio(id: "11", name: "Apple", description: "소개글입니다.\n 방가방가", profileImageURL: nil, coverImageURL: nil, instagramURL: nil, youtubeURL: nil, dancers: ["Chikong"], likes: 2, location: nil)
+    var model: Studio?
+    private var instrutors: [Dancer]?
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -26,7 +28,7 @@ class IntroduceViewController: BaseViewController {
     private let introduceLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.sizeToFit()
         label.numberOfLines = 0
         
@@ -47,7 +49,7 @@ class IntroduceViewController: BaseViewController {
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 9.06
         layout.minimumInteritemSpacing = 9.06
-        layout.itemSize = CGSize(width: 78, height: 78)
+        layout.itemSize = CGSize(width: 80, height: 100)
         
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.backgroundColor = .clear
@@ -81,11 +83,11 @@ class IntroduceViewController: BaseViewController {
         configureUI()
         configureInstructorsCollection()
         configurerecentVideoTable()
+        configure()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        introduceLabel.text = studioInfo?.description
         instructorsCollection.reloadData()
         recentVideoTable.reloadData()
     }
@@ -93,6 +95,25 @@ class IntroduceViewController: BaseViewController {
     //MARK: - Selectors
     
     //MARK: - Helpers
+    func configure() {
+        introduceLabel.text = model?.description
+        guard let studioName = model?.name else {
+            return
+        }
+        Task {
+            let dancers = try await DancerManager.shared.requestDancersBy(studioName: studioName)
+            self.instrutors = dancers
+            if instrutors?.isEmpty ?? true {
+                InstructorsLabel.isHidden = true
+                instructorsCollection.isHidden = true
+                InstructorsLabel.heightAnchor.constraint(equalToConstant: 0).isActive = true
+                instructorsCollection.heightAnchor.constraint(equalToConstant: 0).isActive = true
+            } else {
+                instructorsCollection.reloadData()
+            }
+            recentVideoTable.reloadData()
+        }
+    }
     
     func configureUI() {
         self.view.addSubview(titleLabel)
@@ -115,7 +136,7 @@ class IntroduceViewController: BaseViewController {
         instructorsCollection.translatesAutoresizingMaskIntoConstraints = false
         instructorsCollection.topAnchor.constraint(equalTo: InstructorsLabel.bottomAnchor, constant: 10).isActive = true
         instructorsCollection.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        instructorsCollection.heightAnchor.constraint(equalToConstant: 78).isActive = true
+        instructorsCollection.heightAnchor.constraint(equalToConstant: 120).isActive = true
         instructorsCollection.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         instructorsCollection.contentInset = UIEdgeInsets(top: 0, left: 31, bottom: 0, right: 0)
         
@@ -149,19 +170,25 @@ class IntroduceViewController: BaseViewController {
 
 extension IntroduceViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("IntroduceViewController => DancerDetailViwe ( tranfer :  \((studioInfo?.dancers?[indexPath.row])!))")
+        guard let dancer = instrutors?[indexPath.row] else { return }
+        let dancerVC = DancerDetailViewController()
+        dancerVC.model = dancer
+        self.navigationController?.pushViewController(dancerVC, animated: true)
     }
 }
 
 extension IntroduceViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return studioInfo?.dancers?.count ?? 0
+        print("DEBUG: instructors : \(instrutors?.count)")
+        return instrutors?.count ?? 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IntroduceDancerCell.id, for: indexPath) as! IntroduceDancerCell
-        cell.genreLabel.text = studioInfo?.dancers?[indexPath.row]
-        
+        guard let dancer = instrutors?[indexPath.row] else { return cell }
+        let url = URL(string: dancer.profileImageURL ?? "")
+        cell.imageView.kf.setImage(with: url)
+        cell.titleLabel.text = dancer.name
         return cell
     }
 }

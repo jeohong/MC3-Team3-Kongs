@@ -125,7 +125,7 @@ class ScheduleViewController: BaseViewController {
         let view = UIView()
         view.layer.cornerRadius = 5
         view.clipsToBounds = true
-        view.backgroundColor = .green
+        view.backgroundColor = .accent
         
         return view
     }()

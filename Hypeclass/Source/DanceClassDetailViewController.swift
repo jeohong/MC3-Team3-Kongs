@@ -12,7 +12,7 @@ class DanceClassDetailViewController: BaseViewController {
     
     //MARK: - Properties
     
-    var model: DanceClass? = MockDataSet.danceClass
+    var model: DanceClass?
     var instructor: [Dancer]?
     var studio: [Studio]?
     let headerTitles = ["강사", "스튜디오"]
@@ -22,7 +22,7 @@ class DanceClassDetailViewController: BaseViewController {
         let scrollView = UIScrollView()
         scrollView.contentInsetAdjustmentBehavior = .never
         scrollView.isScrollEnabled = true
-        scrollView.contentSize = CGSize(width: 400, height: 1000)
+        scrollView.contentSize = CGSize(width: 400, height: 800)
         return scrollView
     }()
     
@@ -34,7 +34,8 @@ class DanceClassDetailViewController: BaseViewController {
     private let coverImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .gray
-        imageView.contentMode = .scaleToFill
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         
         return imageView
     }()
@@ -66,7 +67,7 @@ class DanceClassDetailViewController: BaseViewController {
     private let aboutTextView: UITextView = {
         let textView = UITextView()
         textView.isScrollEnabled = false
-        textView.font = UIFont.systemFont(ofSize: 14)
+        textView.font = UIFont.systemFont(ofSize: 16)
         textView.textColor = .white
         textView.backgroundColor = .clear
         textView.textContainer.lineFragmentPadding = 0
@@ -79,11 +80,14 @@ class DanceClassDetailViewController: BaseViewController {
     
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.rowHeight = 60
+        tableView.rowHeight = 100
         tableView.isScrollEnabled = false
         tableView.backgroundColor = .clear
         tableView.separatorColor = .clear
-        
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
+
         return tableView
     }()
     
@@ -100,12 +104,13 @@ class DanceClassDetailViewController: BaseViewController {
         super.viewDidLoad()
         configureUI()
         configureTableView()
+        configure()
         scrollView.delegate = self
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        configure()
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        configure()
+//    }
     
     //MARK: - Selectors
     
@@ -142,7 +147,7 @@ class DanceClassDetailViewController: BaseViewController {
                 let results: [Any] = try await [dancers, studios]
                 self.instructor = results[0] as? [Dancer]
                 self.studio = results[1] as? [Studio]
-                let url = URL(string: self.studio?.first?.profileImageURL ?? "")
+                let url = URL(string: self.model?.coverImageURL ?? "")
                 coverImageView.kf.setImage(with: url)
                 tableView.reloadData()
                 IndicatorView.shared.dismiss()
@@ -202,7 +207,7 @@ class DanceClassDetailViewController: BaseViewController {
         NSLayoutConstraint.activate([
             coverImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             coverImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            coverImageView.heightAnchor.constraint(equalToConstant: 220)
+            coverImageView.heightAnchor.constraint(equalToConstant: 260)
         ])
         
         contentView.addSubview(titleLabel)
@@ -258,7 +263,15 @@ extension DanceClassDetailViewController: UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+        return 30
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return CGFloat.leastNormalMagnitude
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -286,19 +299,36 @@ extension DanceClassDetailViewController: UITableViewDataSource, UITableViewDele
         }
         cell.backgroundColor = .clear
         cell.profileImage.backgroundColor = .gray
+        cell.selectionStyle = .none
+        cell.titleLabel.font = UIFont.boldSystemFont(ofSize: 16)
         if indexPath.section == 0 {
             guard let dancer = instructor?[indexPath.row] else { return cell }
-            guard let url = URL(string: dancer.profileImageURL ?? "") else { return cell }
-            cell.profileImage.load(url: url)
+            let url = URL(string: dancer.profileImageURL ?? "")
+            cell.profileImage.kf.setImage(with: url)
             cell.titleLabel.text = dancer.name
         } else {
             guard let studio = studio?[indexPath.row] else { return cell }
-            guard let url = URL(string: studio.profileImageURL ?? "") else { return cell }
-            cell.profileImage.load(url: url)
+            let url = URL(string: studio.profileImageURL ?? "")
+            cell.profileImage.kf.setImage(with: url)
             cell.titleLabel.text = studio.name
+//            cell.subtitleLabel.text = studio.description
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            guard let dancer = instructor?[indexPath.row] else { return }
+            let dancerVC = DancerDetailViewController()
+            dancerVC.model = dancer
+            self.navigationController?.pushViewController(dancerVC, animated: true)
+        } else {
+            guard let studio = studio?[indexPath.row] else { return }
+            let studioVC = StudioViewController()
+            studioVC.studio = studio
+            self.navigationController?.pushViewController(studioVC, animated: true)
+        }
     }
 }
 
@@ -308,9 +338,23 @@ extension DanceClassDetailViewController: UIScrollViewDelegate {
         let offset = scrollView.contentOffset.y
         if offset < 0 {
             coverImageTopAnchor?.constant = offset
-            coverImageView.heightConstraint?.constant = 210 - offset
+            coverImageView.heightConstraint?.constant = 260 - offset
         } else {
-            coverImageView.heightConstraint?.constant = 210
+            coverImageView.heightConstraint?.constant = 260
+        }
+        
+        //MARK: 네비게이션 바 Fade 애니메이션
+        var proportionalOffset =  offset / 70
+        
+        if proportionalOffset > 1 {
+            proportionalOffset = 1
+            let color = UIColor.background.withAlphaComponent(1)
+            self.navigationController?.navigationBar.backgroundColor = color
+            UIApplication.statusBarBackgroundColor = color
+        } else {
+            let color = UIColor.background.withAlphaComponent(proportionalOffset)
+            self.navigationController?.navigationBar.backgroundColor = color
+            UIApplication.statusBarBackgroundColor = color
         }
     }
 }

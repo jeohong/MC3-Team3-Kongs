@@ -35,6 +35,13 @@ class MainViewController: BaseViewController {
         return label
     }()
     
+    private let highLightView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .accent.withAlphaComponent(0.8)
+        
+        return view
+    }()
+    
     private let searchButton: UIButton = {
         var config = UIButton.Configuration.gray()
         config.baseForegroundColor = UIColor(hex: 0x7A7A7A)
@@ -67,6 +74,7 @@ class MainViewController: BaseViewController {
         scrollView.isScrollEnabled = true
         scrollView.layer.cornerRadius = 10
         scrollView.clipsToBounds = true
+        scrollView.showsHorizontalScrollIndicator = false
         
         return scrollView
     }()
@@ -141,12 +149,20 @@ class MainViewController: BaseViewController {
         guard let event = mainEventModels?[pageControl.currentPage] else { return } // 이벤트에 따라 다른 페이지로 이동
         switch event.type {
         case .studio:
-            let studioVC = StudioViewController()
             // 네트워킹 연결 필요.
-            studioVC.studio = Studio(id: "79cd0072-9136-4743-8b27-126d4a236d6c", name: "Higgs", description: "Higgs's description", profileImageURL: "https://firebasestorage.googleapis.com/v0/b/hypeclass-95cdb.appspot.com/o/studio%2Fprofile%2FHiggs.png?alt=media&token=51493849-1d8d-4905-8022-15868f977eb8", coverImageURL: nil, instagramURL: "https://www.instagram.com/higgs_seoul/", youtubeURL: nil, dancers: nil, likes: nil, location: nil)
-            self.navigationController?.pushViewController(studioVC, animated: true)
+            Task {
+                let studio = try? await StudioManager.shared.requestStudiosBy(studioIDs: [event.relatedID])
+                let studioVC = StudioViewController()
+                studioVC.studio = studio?.first
+                self.navigationController?.pushViewController(studioVC, animated: true)
+            }
         case .dancer:
-            print("DEBUG: 댄서 뷰 컨트롤러 이동")
+            Task {
+                let dancer = try? await DancerManager.shared.requestDancersBy(dancerIDs: [event.relatedID])
+                let dancerVC = DancerDetailViewController()
+                dancerVC.model = dancer?.first
+                self.navigationController?.pushViewController(dancerVC, animated: true)
+            }
         case .danceClass:
             print("DEBUG: 댄스 클래스 뷰 컨트롤러 이동")
         default:
@@ -185,10 +201,11 @@ class MainViewController: BaseViewController {
             let imageView = UIImageView()
             imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pageDidTap)))
             imageView.isUserInteractionEnabled = true
+            imageView.contentMode = .scaleAspectFill
             let url = URL(string: event.coverImageURL ?? "")
             imageView.kf.setImage(with: url)
             let xPos = (Device.width - 44) * CGFloat(idx)
-            imageView.frame = CGRect(x: xPos, y: imageScrollView.bounds.minY, width: imageScrollView.bounds.width, height: imageScrollView.bounds.height)
+            imageView.frame = CGRect(x: xPos, y: imageScrollView.bounds.minY, width: imageScrollView.bounds.width + 25, height: imageScrollView.bounds.height)
             imageScrollView.addSubview(imageView)
             imageScrollView.contentSize.width = imageView.frame.width * CGFloat(idx + 1)
         }
@@ -208,6 +225,15 @@ class MainViewController: BaseViewController {
         headerTitle.translatesAutoresizingMaskIntoConstraints = false
         headerTitle.centerYAnchor.constraint(equalTo: logoImageView.centerYAnchor).isActive = true
         headerTitle.leadingAnchor.constraint(equalTo: logoImageView.trailingAnchor, constant: 0).isActive = true
+        
+        headerTitle.addSubview(highLightView)
+        highLightView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            highLightView.leadingAnchor.constraint(equalTo: headerTitle.leadingAnchor),
+            highLightView.trailingAnchor.constraint(equalTo: headerTitle.trailingAnchor),
+            highLightView.bottomAnchor.constraint(equalTo: headerTitle.bottomAnchor),
+            highLightView.heightAnchor.constraint(equalToConstant: 5)
+        ])
         
         // searchButton
         view.addSubview(searchButton)
@@ -266,7 +292,7 @@ class MainViewController: BaseViewController {
         studioCollectionView.topAnchor.constraint(equalTo: studioLabel.bottomAnchor, constant: 8).isActive = true
         studioCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         studioCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        studioCollectionView.heightAnchor.constraint(equalToConstant: 75).isActive = true
+        studioCollectionView.heightAnchor.constraint(equalToConstant: 100).isActive = true
     }
 }
 
@@ -301,7 +327,7 @@ extension MainViewController: UICollectionViewDelegate {
 
 extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 55, height: 70)
+        return CGSize(width: 58, height: 80)
     }
 }
 
@@ -318,7 +344,7 @@ extension MainViewController: UIScrollViewDelegate {
             } else {
                 pageControl.currentPage = Int(round(value))
             }
-            scrollImageTitleLabel.text = "\(StudioManager.allStudios?[pageControl.currentPage].name ?? "") Studio 합류"
+            scrollImageTitleLabel.text = mainEventModels?[pageControl.currentPage].title
         }
     }
 }

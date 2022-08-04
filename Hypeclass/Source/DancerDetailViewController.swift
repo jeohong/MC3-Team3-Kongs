@@ -28,8 +28,6 @@ class DancerDetailViewController: BaseViewController {
     
     private let navigationBar: UIView = {
         let view = UIView()
-        view.backgroundColor = .clear
-        view.alpha = 0.7
         
         return view
     }()
@@ -214,6 +212,7 @@ class DancerDetailViewController: BaseViewController {
         if model?.id != nil {
             // scheduleView
             scheduleView = ScheduleItemView(frame: .zero, dancerID: model!.id, date: selectedDate)
+            scheduleView?.delegate = self
             contentView.addSubview(scheduleView!)
             scheduleView?.translatesAutoresizingMaskIntoConstraints = false
             scheduleView?.topAnchor.constraint(equalTo: scheduleContentLabel.bottomAnchor).isActive = true
@@ -282,10 +281,26 @@ class DancerDetailViewController: BaseViewController {
 
 extension DancerDetailViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y != 0 {
-            navigationBar.backgroundColor = .background
+        let offset = scrollView.contentOffset.y - (UIApplication.shared.currentUIWindow()?.safeAreaInsets.top ?? 0)
+
+        //MARK: 네비게이션 바 Fade 애니메이션
+        var proportionalOffset =  offset / 70
+        
+        if proportionalOffset > 1 {
+            proportionalOffset = 1
+            let color = UIColor.background.withAlphaComponent(1)
+            DispatchQueue.main.async {
+                UIApplication.statusBarView?.backgroundColor = color
+                self.navigationBar.backgroundColor = color
+            }
         } else {
-            navigationBar.backgroundColor = .clear
+            let color = UIColor.background.withAlphaComponent(proportionalOffset)
+            let temp = proportionalOffset + 0.55
+            let tempColor = UIColor.background.withAlphaComponent(temp)
+            DispatchQueue.main.async {
+                UIApplication.statusBarView?.backgroundColor = color
+                self.navigationBar.backgroundColor = tempColor
+            }
         }
     }
 }

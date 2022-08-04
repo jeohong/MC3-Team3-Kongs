@@ -70,6 +70,7 @@
 		C0C44504289529F700036ADE /* DanceClassDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C44503289529F700036ADE /* DanceClassDetailViewController.swift */; };
 		C0C7B28728944044003FA2C2 /* AuthOnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C7B28628944044003FA2C2 /* AuthOnboardViewController.swift */; };
 		C0C7B28928944395003FA2C2 /* CTAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C7B28828944395003FA2C2 /* CTAButton.swift */; };
+		C0CE2BDB289ACA37005EA4AD /* UIPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CE2BDA289ACA37005EA4AD /* UIPageViewController.swift */; };
 		C0FD9C2E2898B9AB00D33C72 /* StudioEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FD9C2D2898B9AB00D33C72 /* StudioEventViewController.swift */; };
 		C0FD9C302898BB9B00D33C72 /* StudioEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FD9C2F2898BB9B00D33C72 /* StudioEventCell.swift */; };
 		C0FD9C332899028800D33C72 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C0FD9C322899028800D33C72 /* Kingfisher */; };
@@ -154,10 +155,11 @@
 		C0C44503289529F700036ADE /* DanceClassDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DanceClassDetailViewController.swift; sourceTree = "<group>"; };
 		C0C7B28628944044003FA2C2 /* AuthOnboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthOnboardViewController.swift; sourceTree = "<group>"; };
 		C0C7B28828944395003FA2C2 /* CTAButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTAButton.swift; sourceTree = "<group>"; };
-		C0FD9C342899182700D33C72 /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
-		C0FD9C3828994E0900D33C72 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		C0CE2BDA289ACA37005EA4AD /* UIPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPageViewController.swift; sourceTree = "<group>"; };
 		C0FD9C2D2898B9AB00D33C72 /* StudioEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioEventViewController.swift; sourceTree = "<group>"; };
 		C0FD9C2F2898BB9B00D33C72 /* StudioEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioEventCell.swift; sourceTree = "<group>"; };
+		C0FD9C342899182700D33C72 /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
+		C0FD9C3828994E0900D33C72 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		C76C91C5289143C100703CCD /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		C76C91C92893C0BE00703CCD /* MainStudioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStudioCell.swift; sourceTree = "<group>"; };
 		C76C91CD2894509600703CCD /* StudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioViewController.swift; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 				C05BF1E8287BC7EF00C95E1B /* UIView.swift */,
 				C05BF1E6287BC7EF00C95E1B /* UIViewController.swift */,
 				A3F1480C28882CA90025B822 /* UIImageView.swift */,
+				C0CE2BDA289ACA37005EA4AD /* UIPageViewController.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -527,8 +530,6 @@
 				C05BF1FF287BC90900C95E1B /* Device.swift in Sources */,
 				C05BF1C9287BC33100C95E1B /* AppDelegate.swift in Sources */,
 				A32BC13A2897CEFC00AB0E43 /* IntroduceViewController.swift in Sources */,
-				97C17C882888351A00A510CA /* MainViewController+DancerCell.swift in Sources */,
-				97C17C86288738A300A510CA /* MainViewController+GenreCell.swift in Sources */,
 				C0FD9C3928994E0900D33C72 /* Event.swift in Sources */,
 				C05BF203287BC99A00C95E1B /* BaseViewController.swift in Sources */,
 				C05BF1CB287BC33100C95E1B /* SceneDelegate.swift in Sources */,
@@ -560,6 +561,7 @@
 				C7CE676228814D3C00C8F137 /* Weekday.swift in Sources */,
 				C76C91D02894559600703CCD /* HeaderView.swift in Sources */,
 				C76C91DE289910D000703CCD /* StudioScheduleViewController.swift in Sources */,
+				C0CE2BDB289ACA37005EA4AD /* UIPageViewController.swift in Sources */,
 				A32BC13C2897D6AF00AB0E43 /* IntroduceDancerCell.swift in Sources */,
 				C0C444FE28944DE200036ADE /* ContainerTextField.swift in Sources */,
 				A34A6A3D2898E22C00B7421B /* RecentVideoCell.swift in Sources */,
@@ -717,7 +719,7 @@
 				CODE_SIGN_ENTITLEMENTS = Hypeclass/Hypeclass.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = HY8Y957QK3;
+				DEVELOPMENT_TEAM = 4DC5UF7YA9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Hypeclass/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -733,7 +735,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jio.Hypeclass;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gongtae.Hypeclass;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -749,7 +751,7 @@
 				CODE_SIGN_ENTITLEMENTS = Hypeclass/Hypeclass.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = HY8Y957QK3;
+				DEVELOPMENT_TEAM = 4DC5UF7YA9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Hypeclass/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -765,7 +767,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jio.Hypeclass;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gongtae.Hypeclass;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

@@ -209,7 +209,7 @@ extension SubscriptionViewController: UITableViewDelegate, UITableViewDataSource
             let dancer = DancerManager.myDancers?[indexPath.row]
             cell.titleLabel.text = dancer?.name
             cell.subtitleLabel.text = dancer?.genres?[0]
-            cell.detailLabel.text = dancer?.description
+//            cell.detailLabel.text = dancer?.description
             // TODO: 댄서 이미지 url로 교체
             if dancer?.profileImageURL != nil { cell.profileImage.kf.setImage(with: URL(string: (dancer?.profileImageURL)!)) }
             cell.backgroundColor = .clear

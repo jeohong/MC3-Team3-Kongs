@@ -12,10 +12,9 @@ class DanceClassManager {
     
     static var myClasses: [DanceClass]?
     
-    func createDanceClass(id: String, name: String, dancerID: String, dancerName: String, studioID: String, studioName: String) {
-        let danceClass = DanceClass(id: id, name: name, genres: nil, description: "class \(name) description", isPopUp: false, startTime: Date(), endTime: Date(), dancerID: dancerID, dancerName: dancerName, studioID: studioID, studioName: studioName)
+    func createDanceClass(model: DanceClass) {
         do {
-            try Constant.danceClassRef.document("\(id)").setData(from: danceClass)
+            try Constant.danceClassRef.document("\(model.id)").setData(from: model)
         } catch let error {
             print("Error writing dance class to Firestore: \(error)")
         }

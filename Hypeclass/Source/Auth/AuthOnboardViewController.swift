@@ -20,6 +20,13 @@ class AuthOnboardViewController: BaseViewController {
         return label
     }()
     
+    private let highLightView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .accent.withAlphaComponent(0.8)
+        
+        return view
+    }()
+    
     private let secondaryLabel: UILabel = {
         let label = UILabel()
         label.text = "한번 회원가입하고,\n버튼하나로 간단하게 수업을 신청하세요."
@@ -62,6 +69,15 @@ class AuthOnboardViewController: BaseViewController {
         NSLayoutConstraint.activate([
             primaryLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
             primaryLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25)
+        ])
+        
+        primaryLabel.addSubview(highLightView)
+        highLightView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            highLightView.leadingAnchor.constraint(equalTo: primaryLabel.leadingAnchor, constant: 130),
+            highLightView.trailingAnchor.constraint(equalTo: primaryLabel.trailingAnchor, constant: -20),
+            highLightView.bottomAnchor.constraint(equalTo: primaryLabel.bottomAnchor),
+            highLightView.heightAnchor.constraint(equalToConstant: 5)
         ])
         
         view.addSubview(secondaryLabel)

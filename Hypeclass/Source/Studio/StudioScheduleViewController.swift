@@ -30,7 +30,7 @@ class StudioScheduleViewController: BaseViewController {
             scheduleView = ScheduleItemView(frame: .zero, studioID: self.studioID!, date: Date())
             view.addSubview(scheduleView!)
             scheduleView?.translatesAutoresizingMaskIntoConstraints = false
-            scheduleView?.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+            scheduleView?.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
             scheduleView?.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 26).isActive = true
             scheduleView?.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -26).isActive = true
         }

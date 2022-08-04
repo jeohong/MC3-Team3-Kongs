@@ -13,7 +13,7 @@ class StudioEventCell: UITableViewCell {
     
     let coverImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleToFill
+        imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = .gray
         imageView.layer.cornerRadius = 8
         imageView.clipsToBounds = true
@@ -26,7 +26,6 @@ class StudioEventCell: UITableViewCell {
         label.text = "아프로 스타일 하우스 댄스"
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = .white
-        label.backgroundColor = .purple
         
         return label
     }()
@@ -36,7 +35,6 @@ class StudioEventCell: UITableViewCell {
         label.text = "08/01 ~ 09/09"
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 12, weight: .light)
-        label.backgroundColor = .purple
         
         return label
     }()
@@ -53,6 +51,11 @@ class StudioEventCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+//        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0))
+    }
+    
     //MARK: - Helpers
     
     func configureUI() {
@@ -62,7 +65,7 @@ class StudioEventCell: UITableViewCell {
             coverImageView.topAnchor.constraint(equalTo: self.topAnchor),
             coverImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 25),
             coverImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -25),
-            coverImageView.heightAnchor.constraint(equalToConstant: 200)
+            coverImageView.heightAnchor.constraint(equalToConstant: 260)
         ])
         
         self.addSubview(titleLabel)

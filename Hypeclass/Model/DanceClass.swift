@@ -13,6 +13,7 @@ struct DanceClass: Codable {
     let genres: [String]?
     let description: String?
     let isPopUp: Bool?
+    let coverImageURL: String?
     
     // time
     let startTime: Date?

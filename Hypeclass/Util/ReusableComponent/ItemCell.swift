@@ -30,7 +30,7 @@ class ItemCell: UITableViewCell {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .systemFont(ofSize: 16.0, weight: .medium)
+        label.font = .systemFont(ofSize: 18.0, weight: .medium)
         
         return label
     }()
@@ -38,7 +38,7 @@ class ItemCell: UITableViewCell {
     let subtitleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .systemFont(ofSize: 12.0, weight: .ultraLight)
+        label.font = .systemFont(ofSize: 14.0, weight: .light)
         
         return label
     }()
@@ -46,7 +46,7 @@ class ItemCell: UITableViewCell {
     let detailLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .systemFont(ofSize: 12.0, weight: .ultraLight)
+        label.font = .systemFont(ofSize: 14.0, weight: .light)
         
         return label
     }()
@@ -76,10 +76,12 @@ class ItemCell: UITableViewCell {
         // profileImage
         self.addSubview(profileImage)
         profileImage.translatesAutoresizingMaskIntoConstraints = false
-        profileImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 25).isActive = true
-        profileImage.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        profileImage.widthAnchor.constraint(equalToConstant: 65).isActive = true
-        profileImage.heightAnchor.constraint(equalToConstant: 65).isActive = true
+        NSLayoutConstraint.activate([
+            profileImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 25),
+            profileImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            profileImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
+            profileImage.widthAnchor.constraint(equalTo: profileImage.heightAnchor)
+        ])
         profileImage.backgroundColor = .gray
         
         // >
@@ -94,7 +96,7 @@ class ItemCell: UITableViewCell {
         self.addSubview(textView)
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 20).isActive = true
-        textView.topAnchor.constraint(equalTo: self.topAnchor, constant: 30).isActive = true
+        textView.topAnchor.constraint(equalTo: profileImage.topAnchor, constant:  10).isActive = true
         textView.trailingAnchor.constraint(equalTo: navigationImage.trailingAnchor, constant: -20).isActive = true
         
         // Add titleLabel, subtitleLabel, detailLable to textView
