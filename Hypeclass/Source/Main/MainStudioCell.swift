@@ -23,7 +23,7 @@ class MainStudioCell: UICollectionViewCell {
     let studioNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .systemFont(ofSize: 14.0, weight: .bold)
+        label.font = .systemFont(ofSize: 12.0, weight: .semibold)
         label.numberOfLines = 1
         label.textAlignment = .center
         

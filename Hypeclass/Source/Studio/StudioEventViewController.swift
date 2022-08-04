@@ -20,7 +20,6 @@ class StudioEventViewController: BaseViewController {
         tableView.rowHeight = 260
         tableView.backgroundColor = .clear
         tableView.isScrollEnabled = false
-        tableView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: 0, right: 0)
         return tableView
     }()
     
@@ -65,6 +64,7 @@ class StudioEventViewController: BaseViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+        tableView.setContentOffset(CGPoint(x: 0, y: 30), animated: false)
     }
 }
 
@@ -80,7 +80,8 @@ extension StudioEventViewController: UITableViewDataSource, UITableViewDelegate 
         let url = URL(string: danceClass.coverImageURL ?? model?.coverImageURL ?? "")
         cell.coverImageView.kf.setImage(with: url)
         cell.titleLabel.text = danceClass.name
-        cell.subTitleLabel.text = "\(danceClass.startTime?.hourMinText ?? "")~\(danceClass.endTime?.hourMinText ?? "")"
+        cell.subTitleLabel.text = "\(danceClass.startTime?.text ?? "") \(danceClass.startTime?.hourMinText ?? "")~\(danceClass.endTime?.hourMinText ?? "")"
+        cell.selectionStyle = .none
         return cell
     }
     

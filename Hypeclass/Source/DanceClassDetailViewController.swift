@@ -34,7 +34,8 @@ class DanceClassDetailViewController: BaseViewController {
     private let coverImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .gray
-        imageView.contentMode = .scaleToFill
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         
         return imageView
     }()
@@ -143,7 +144,7 @@ class DanceClassDetailViewController: BaseViewController {
                 let results: [Any] = try await [dancers, studios]
                 self.instructor = results[0] as? [Dancer]
                 self.studio = results[1] as? [Studio]
-                let url = URL(string: self.instructor?.first?.coverImageURL ?? "")
+                let url = URL(string: self.model?.coverImageURL ?? "")
                 coverImageView.kf.setImage(with: url)
                 tableView.reloadData()
                 IndicatorView.shared.dismiss()
@@ -203,7 +204,7 @@ class DanceClassDetailViewController: BaseViewController {
         NSLayoutConstraint.activate([
             coverImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             coverImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            coverImageView.heightAnchor.constraint(equalToConstant: 220)
+            coverImageView.heightAnchor.constraint(equalToConstant: 260)
         ])
         
         contentView.addSubview(titleLabel)
@@ -325,9 +326,9 @@ extension DanceClassDetailViewController: UIScrollViewDelegate {
         let offset = scrollView.contentOffset.y
         if offset < 0 {
             coverImageTopAnchor?.constant = offset
-            coverImageView.heightConstraint?.constant = 210 - offset
+            coverImageView.heightConstraint?.constant = 260 - offset
         } else {
-            coverImageView.heightConstraint?.constant = 210
+            coverImageView.heightConstraint?.constant = 260
         }
     }
 }

@@ -51,6 +51,11 @@ class StudioEventCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+//        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0))
+    }
+    
     //MARK: - Helpers
     
     func configureUI() {

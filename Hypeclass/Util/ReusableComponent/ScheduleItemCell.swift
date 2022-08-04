@@ -13,9 +13,9 @@ class ScheduleItemCell: UICollectionViewCell {
     
     let popUpTag: UIView = {
         let view = UIView()
-        view.layer.cornerRadius = 5
+        view.layer.cornerRadius = 3.5
         view.clipsToBounds = true
-        view.backgroundColor = .green
+        view.backgroundColor = .accent
 
         return view
     }()
